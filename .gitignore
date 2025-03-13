@@ -47,3 +47,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+
+.ipynb_checkpoints/
+matthew_stephens_5min.ipynb
+rethinking_stats_youtube.ipynb
+
