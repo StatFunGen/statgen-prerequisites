@@ -1,0 +1,264 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "1e5900b0-da6a-415b-8e69-e7c01cff9327",
+   "metadata": {},
+   "source": [
+    "# Intuition\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "31be40c1-3534-42db-ae8d-07b5886fac15",
+   "metadata": {},
+   "source": [
+    "# Notations"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a96aea2d-8b37-4a76-94ab-52ff98e1f7bd",
+   "metadata": {},
+   "source": [
+    "## Mediator definition\n",
+    "\n",
+    "A **mediator** is a variable that lies on the causal pathway between the independent variable (genotype) and the dependent variable (trait). It explains how or why the independent variable affects the dependent variable.\n",
+    "\n",
+    "- **Example in Statistical Genetics:**  \n",
+    "  Suppose we are studying the effect of a genetic variant (genotype) on a trait (e.g., height). A potential **mediator** could be **Growth Hormone Levels**, which mediates the relationship between the genetic variant and the trait. In this case, growth hormone levels helps explain how the genetic variant influences height.\n",
+    "\n",
+    "- **Graphical Representation:**\n",
+    "  $$ \\text{SNP} \\to \\textbf{Growth Hormone Levels} \\to \\text{Height} $$  \n",
+    "\n",
+    "\n",
+    "Understanding mediation allows us to estimate both the **direct effect** of the genotype on the trait and the **indirect effect** through the mediator. Depending on the research question, mediators may or may not be included in the model.\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "58d544ce-922b-4a03-b765-9a1972fd1859",
+   "metadata": {},
+   "source": [
+    "# Example"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "77db5047-6e43-4b9c-8afc-30b087c66a62",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "rm(list=ls())\n",
+    "set.seed(21)  # For reproducibility\n",
+    "\n",
+    "# Genotype matrix for 100 individuals and 3 variants\n",
+    "N <- 100  # Number of individuals\n",
+    "M <- 3    # Number of SNPs (variants)\n",
+    "\n",
+    "# Create a random genotype matrix (0, 1, 2 values for each SNP)\n",
+    "X_raw <- matrix(sample(0:2, N * M, replace = TRUE), nrow = N, ncol = M)\n",
+    "\n",
+    "# Adding row and column names\n",
+    "rownames(X_raw) <- paste(\"Individual\", 1:N)\n",
+    "colnames(X_raw) <- paste(\"Variant\", 1:M)\n",
+    "\n",
+    "# Standardize genotype matrix (mean = 0, sd = 1 for each SNP)\n",
+    "X <- scale(X_raw, scale = TRUE)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "34cd189d-b3b1-4e6c-bfb6-068aedca8beb",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# Simulate Growth Hormone Levels (Mediator)\n",
+    "# Growth hormone level is influenced by SNPs, for simplicity use Variant 2 for effect\n",
+    "true_effect_snp_to_hormone <- 1.5   # SNP (Variant 2) affects growth hormone levels\n",
+    "growth_hormone <- true_effect_snp_to_hormone * X[, 2] + rnorm(N, mean = 0, sd = 0.5)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "989b444c-7192-4f74-bf37-c231c24adb6b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Simulate Height (Trait)\n",
+    "# Height is influenced by both SNP and growth hormone levels\n",
+    "true_effect_snp_to_height <- 2    # Direct effect of SNP on height\n",
+    "true_effect_hormone_to_height <- 3  # Mediator effect: growth hormone affects height\n",
+    "height <- true_effect_snp_to_height * X[, 2] + true_effect_hormone_to_height * growth_hormone + rnorm(N, mean = 0, sd = 2)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "b20e4cca-156a-4411-adff-03c472f96d36",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\n",
+       "Call:\n",
+       "lm(formula = height ~ X[, 2])\n",
+       "\n",
+       "Residuals:\n",
+       "   Min     1Q Median     3Q    Max \n",
+       "-5.875 -1.526 -0.285  1.371  8.098 \n",
+       "\n",
+       "Coefficients:\n",
+       "            Estimate Std. Error t value Pr(>|t|)    \n",
+       "(Intercept)  0.08926    0.25283   0.353    0.725    \n",
+       "X[, 2]       6.68051    0.25411  26.290   <2e-16 ***\n",
+       "---\n",
+       "Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n",
+       "\n",
+       "Residual standard error: 2.528 on 98 degrees of freedom\n",
+       "Multiple R-squared:  0.8758,\tAdjusted R-squared:  0.8746 \n",
+       "F-statistic: 691.2 on 1 and 98 DF,  p-value: < 2.2e-16\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# Now, estimate the total effect and direct effect\n",
+    "# Estimate Total Effect (SNP → Height) without controlling for the mediator\n",
+    "model_total_effect <- lm(height ~ X[, 2])\n",
+    "\n",
+    "summary(model_total_effect)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "d3035f64-0915-404f-8449-9d09c7b6e097",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\n",
+       "Call:\n",
+       "lm(formula = height ~ X[, 2] + growth_hormone)\n",
+       "\n",
+       "Residuals:\n",
+       "    Min      1Q  Median      3Q     Max \n",
+       "-3.9033 -1.3465  0.1348  1.2326  3.8371 \n",
+       "\n",
+       "Coefficients:\n",
+       "               Estimate Std. Error t value Pr(>|t|)    \n",
+       "(Intercept)     0.01725    0.18305   0.094    0.925    \n",
+       "X[, 2]          1.01182    0.62424   1.621    0.108    \n",
+       "growth_hormone  3.64659    0.38376   9.502 1.59e-15 ***\n",
+       "---\n",
+       "Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n",
+       "\n",
+       "Residual standard error: 1.829 on 97 degrees of freedom\n",
+       "Multiple R-squared:  0.9357,\tAdjusted R-squared:  0.9344 \n",
+       "F-statistic: 705.6 on 2 and 97 DF,  p-value: < 2.2e-16\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# Estimate Direct Effect (SNP → Height controlling for Growth Hormone)\n",
+    "model_direct_effect <- lm(height ~ X[, 2] + growth_hormone)\n",
+    "\n",
+    "summary(model_direct_effect)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c1a1cc5b-eb4f-4db8-9c5e-858f60510568",
+   "metadata": {},
+   "source": [
+    "The analysis shows that the **X[, 2]** is a strong predictor of height in the first model, with a highly significant effect. However, in the second model, after including growth hormone, **X[, 2]** becomes less significant (p-value = 0.108), indicating that growth hormone might mediate part of the relationship between **X[, 2]** and height. Growth hormone itself is highly significant in the second model and explains a substantial amount of variance in height. The inclusion of growth hormone improves the model fit, as reflected by a lower residual standard error and a higher $R^2$ (0.9357).\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2cfc97f7-fca6-4436-a0fa-4124e4c6bb7f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "483d3da0-5fd7-4d1e-8ca8-1483f682f6aa",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c3d5979a-9017-4630-bcbf-9dc512a70c87",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "39b3ffa6-632d-483a-a8ff-11d0ed6607cc",
+   "metadata": {},
+   "source": [
+    "> slide 62 from Xin He's slides\n",
+    "\n",
+    "\n",
+    "> slide 65 from Xin He's slides\n",
+    "\n",
+    "\n",
+    "> slide 30-34 from Gao Wang's slides\n",
+    "\n",
+    "> slide 348-350 from GW"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "73497dba-d6f3-41ce-a925-f61d2dab134e",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "R",
+   "language": "R",
+   "name": "ir"
+  },
+  "language_info": {
+   "codemirror_mode": "r",
+   "file_extension": ".r",
+   "mimetype": "text/x-r-source",
+   "name": "R",
+   "pygments_lexer": "r",
+   "version": "4.4.2"
+  },
+  "toc-autonumbering": true
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
