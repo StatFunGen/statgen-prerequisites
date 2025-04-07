@@ -1,0 +1,131 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="600" fill="#f8f9fa" />
+  
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle">Key Concepts in Statistical Genetics</text>
+  
+  <!-- Genotype Matrix Section -->
+  <rect x="40" y="50" width="340" height="325" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="5" />
+  <text x="210" y="65" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Raw Genotype Matrix (Xraw)</text>
+  
+  <!-- Genotype Matrix -->
+  <g transform="translate(70, 90)">
+    <!-- Matrix -->
+    <rect x="0" y="0" width="280" height="160" fill="white" stroke="#999" stroke-width="1" />
+    
+    <!-- Column Headers -->
+    <text x="30" y="-5" font-family="Arial" font-size="12" text-anchor="middle">SNP₁</text>
+    <text x="90" y="-5" font-family="Arial" font-size="12" text-anchor="middle">SNP₂</text>
+    <text x="150" y="-5" font-family="Arial" font-size="12" text-anchor="middle">SNP₃</text>
+    <text x="200" y="-5" font-family="Arial" font-size="12" text-anchor="middle">...</text>
+    <text x="250" y="-5" font-family="Arial" font-size="12" text-anchor="middle">SNPₘ</text>
+    
+    <!-- Row Headers -->
+    <text x="-5" y="25" font-family="Arial" font-size="12" text-anchor="end">Ind₁</text>
+    <text x="-5" y="65" font-family="Arial" font-size="12" text-anchor="end">Ind₂</text>
+    <text x="-5" y="105" font-family="Arial" font-size="12" text-anchor="end">...</text>
+    <text x="-5" y="145" font-family="Arial" font-size="12" text-anchor="end">Indₙ</text>
+    
+    <!-- Grid Lines -->
+    <line x1="0" y1="40" x2="280" y2="40" stroke="#ddd" stroke-width="1" />
+    <line x1="0" y1="80" x2="280" y2="80" stroke="#ddd" stroke-width="1" />
+    <line x1="0" y1="120" x2="280" y2="120" stroke="#ddd" stroke-width="1" />
+    <line x1="60" y1="0" x2="60" y2="160" stroke="#ddd" stroke-width="1" />
+    <line x1="120" y1="0" x2="120" y2="160" stroke="#ddd" stroke-width="1" />
+    <line x1="180" y1="0" x2="180" y2="160" stroke="#ddd" stroke-width="1" />
+    <line x1="220" y1="0" x2="220" y2="160" stroke="#ddd" stroke-width="1" />
+    <!-- <line x1="260" y1="0" x2="260" y2="160" stroke="#ddd" stroke-width="1" /> -->
+    
+    <!-- Matrix Values -->
+    <text x="30" y="25" font-family="Arial" font-size="14" text-anchor="middle">0</text>
+    <text x="90" y="25" font-family="Arial" font-size="14" text-anchor="middle">1</text>
+    <text x="150" y="25" font-family="Arial" font-size="14" text-anchor="middle">2</text>
+    <text x="200" y="25" font-family="Arial" font-size="14" text-anchor="middle">...</text>
+    <text x="250" y="25" font-family="Arial" font-size="14" text-anchor="middle">0</text>
+    
+    <text x="30" y="65" font-family="Arial" font-size="14" text-anchor="middle">1</text>
+    <text x="90" y="65" font-family="Arial" font-size="14" text-anchor="middle">2</text>
+    <text x="150" y="65" font-family="Arial" font-size="14" text-anchor="middle">0</text>
+    <text x="200" y="65" font-family="Arial" font-size="14" text-anchor="middle">...</text>
+    <text x="250" y="65" font-family="Arial" font-size="14" text-anchor="middle">1</text>
+    
+    <text x="30" y="105" font-family="Arial" font-size="14" text-anchor="middle">2</text>
+    <text x="90" y="105" font-family="Arial" font-size="14" text-anchor="middle">0</text>
+    <text x="150" y="105" font-family="Arial" font-size="14" text-anchor="middle">1</text>
+    <text x="200" y="105" font-family="Arial" font-size="14" text-anchor="middle">...</text>
+    <text x="250" y="105" font-family="Arial" font-size="14" text-anchor="middle">2</text>
+    
+    <text x="30" y="145" font-family="Arial" font-size="14" text-anchor="middle">0</text>
+    <text x="90" y="145" font-family="Arial" font-size="14" text-anchor="middle">2</text>
+    <text x="150" y="145" font-family="Arial" font-size="14" text-anchor="middle">1</text>
+    <text x="200" y="145" font-family="Arial" font-size="14" text-anchor="middle">...</text>
+    <text x="250" y="145" font-family="Arial" font-size="14" text-anchor="middle">0</text>
+  </g>
+  
+  <!-- Genotype Legend -->
+  <text x="210" y="275" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Genotype Coding</text>
+  <text x="70" y="300" font-family="Arial" font-size="14">0: Homozygous reference (AA)</text>
+  <text x="70" y="325" font-family="Arial" font-size="14">1: Heterozygous (Aa)</text>
+  <text x="70" y="350" font-family="Arial" font-size="14">2: Homozygous alternative (aa)</text>
+  
+  <!-- Standardization Section -->
+  <rect x="40" y="410" width="340" height="70" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="5" />
+  <text x="210" y="430" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Standardized Genotype Matrix (X)</text>
+  <text x="210" y="450" font-family="Arial" font-size="13" text-anchor="middle">X[,j] = 0</text>
+  <text x="210" y="470" font-family="Arial" font-size="13" text-anchor="middle">Var[X(,j)] = 1</text>
+  
+  <!-- MAF Section -->
+  <rect x="420" y="50" width="340" height="180" fill="#e8eaf6" stroke="#3f51b5" stroke-width="2" rx="5" />
+  <text x="590" y="75" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Minor Allele Frequency (MAF)</text>
+  
+  <!-- MAF Explanation -->
+  <text x="440" y="100" font-family="Arial" font-size="13">• Frequency of less common allele at a locus</text>
+  <text x="440" y="125" font-family="Arial" font-size="13">• For variant j, allele frequency:</text>
+  <text x="460" y="150" font-family="Arial" font-size="13">  f_j = E[X_raw(,j) / 2] = Σ (X_raw) / (2N)</text>
+  <text x="440" y="175" font-family="Arial" font-size="13">• MAF = min(f_j, 1-f_j)</text>
+  
+  <!-- MAF Visual -->
+  <rect x="450" y="190" width="280" height="30" fill="#d1d9ff" stroke="#3f51b5" stroke-width="1" />
+  <rect x="450" y="190" width="112" height="30" fill="#8c9eff" />
+  <text x="506" y="210" font-family="Arial" font-size="12" text-anchor="middle" fill="white">f_a = 0.4</text>
+  <text x="640" y="210" font-family="Arial" font-size="12" text-anchor="middle">f_A = 0.6</text>
+  
+  <!-- HWE Section -->
+  <rect x="420" y="260" width="340" height="220" fill="#fce4ec" stroke="#e91e63" stroke-width="2" rx="5" />
+  <text x="590" y="285" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Hardy-Weinberg Equilibrium (HWE)</text>
+  
+  <!-- HWE Explanation -->
+  <text x="440" y="310" font-family="Arial" font-size="13">• Expected genotype proportions based on allele</text>
+  <text x="445" y="330" font-family="Arial" font-size="13">  frequencies when certain conditions are met</text>
+  
+  <text x="440" y="355" font-family="Arial" font-size="13">• With allele frequencies f_A and f_a = 1-f_A:</text>
+  <text x="460" y="380" font-family="Arial" font-size="13">P(AA) = f_A² (genotype 0)</text>
+  <text x="460" y="400" font-family="Arial" font-size="13">P(Aa) = 2f_A·f_a (genotype 1)</text>
+  <text x="460" y="420" font-family="Arial" font-size="13">P(aa) = f_a² (genotype 2)</text>
+  
+  <!-- HWE Visual -->
+  <rect x="440" y="435" width="300" height="30" fill="white" stroke="#e91e63" stroke-width="1" />
+  <rect x="440" y="435" width="144" height="30" fill="#f8bbd0" />
+  <rect x="584" y="435" width="96" height="30" fill="#f48fb1" />
+  <rect x="680" y="435" width="60" height="30" fill="#f06292" />
+  <text x="512" y="455" font-family="Arial" font-size="12" text-anchor="middle">f_A² = 0.36</text>
+  <text x="632" y="455" font-family="Arial" font-size="12" text-anchor="middle">2f_A·f_a = 0.48</text>
+  <text x="710" y="455" font-family="Arial" font-size="12" text-anchor="middle">f_a² = 0.16</text>
+
+  <!-- Connecting Arrow from Raw to Standardized -->  
+  <path d="M 210 380 L 210 405" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+
+  <!-- Connecting Arrow from Raw to MAF -->
+  <path d="M 385 160 L 415 160" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  
+  <!-- Connecting Arrow from MAF to HWE -->
+  <path d="M 590 235 L 590 255" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  
+  <!-- Definitions -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+  </defs>
+</svg>
