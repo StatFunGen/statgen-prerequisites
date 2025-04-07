@@ -1,0 +1,128 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f9fa" />
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Understanding Kinship &amp; Genomic Relationship Matrix</text>
+  
+  
+  
+  <!-- Left panel: Kinship Explanation -->
+  <rect x="50" y="70" width="300" height="260" fill="white" stroke="#ddd" rx="10" ry="10" />
+  <text x="200" y="90" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Kinship Coefficient</text>
+  <text x="210" y="115" font-family="Arial" font-size="14" text-anchor="middle">Probability of randomly selected alleles</text>
+  <text x="210" y="135" font-family="Arial" font-size="14" text-anchor="middle">being identical by descent (IBD)</text>
+  
+  <!-- Person with self-relation -->
+  <circle cx="135" cy="180" r="30" fill="#FFD700" stroke="#333" stroke-width="2" />
+  <text x="135" y="185" font-family="Arial" font-size="12" text-anchor="middle">You</text>
+  <path d="M165,180 Q180,165 205,185 Q225,200 245,180" stroke="#333" stroke-width="2" fill="none" />
+  <circle cx="265" cy="180" r="30" fill="#FFD700" stroke="#333" stroke-width="2" />
+  <text x="265" y="185" font-family="Arial" font-size="12" text-anchor="middle">You</text>
+  <text x="200" y="210" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Φ = 1/2</text>
+  <text x="200" y="220" font-family="Arial" font-size="12" text-anchor="middle">(Self Kinship)</text>
+  
+  <!-- Parent-child relation -->
+  <circle cx="135" cy="290" r="30" fill="#FF9999" stroke="#333" stroke-width="2" />
+  <text x="135" y="295" font-family="Arial" font-size="12" text-anchor="middle">Parent</text>
+  <path d="M170,290 Q170,290 230,290" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <circle cx="265" cy="290" r="30" fill="#99CCFF" stroke="#333" stroke-width="2" />
+  <text x="265" y="295" font-family="Arial" font-size="12" text-anchor="middle">Child</text>
+  <text x="200" y="320" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Φ = 1/4</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Right panel: GRM Explanation -->
+  <rect x="400" y="70" width="350" height="260" fill="white" stroke="#ddd" rx="10" ry="10" />
+  <text x="575" y="90" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Genomic Relationship Matrix</text>
+  <text x="575" y="115" font-family="Arial" font-size="14" text-anchor="middle">G = XX<tspan baseline-shift="super" font-size="10">T</tspan>/M</text>
+  
+  <!-- GRM visualization -->
+  <g transform="translate(450, 160)">
+    <!-- X Matrix (genotype) -->
+    <rect x="-40" y="15" width="100" height="60" fill="#E6F3FF" stroke="#3366CC" stroke-width="2" />
+    <text x="10" y="5" font-family="Arial" font-size="16" text-anchor="middle">X</text>
+    <text x="20" y="120" font-family="Arial" font-size="12" text-anchor="middle">N inds × M SNPs</text>
+    
+    <!-- Multiplication symbol -->
+    <text x="75" y="50" font-family="Arial" font-size="16" text-anchor="middle">×</text>
+    
+    <!-- X Transpose Matrix -->
+    <rect x="90" y="0" width="60" height="100" fill="#E6F3FF" stroke="#3366CC" stroke-width="2" />
+    <text x="125" y="-8" font-family="Arial" font-size="16" text-anchor="middle">X<tspan baseline-shift="super" font-size="10">T</tspan></text>
+    <text x="140" y="120" font-family="Arial" font-size="12" text-anchor="middle">M SNPs × N individuals</text>
+    
+    <!-- Division symbol -->
+    <text x="175" y="50" font-family="Arial" font-size="16" text-anchor="middle">/</text>
+    
+    <!-- M (number of variants) -->
+    <circle cx="200" cy="45" r="10" fill="#FFD700" stroke="#333" stroke-width="2" />
+    <text x="200" y="50" font-family="Arial" font-size="16" text-anchor="middle">M</text>
+    
+    <!-- Equals symbol -->
+    <text x="220" y="50" font-family="Arial" font-size="16" text-anchor="middle">=</text>
+    
+    <!-- G Matrix (result) -->
+    <rect x="230" y="20" width="60" height="60" fill="#CCFFCC" stroke="#009900" stroke-width="2" />
+    <text x="260" y="10" font-family="Arial" font-size="16" text-anchor="middle">G</text>
+    <text x="265" y="100" font-family="Arial" font-size="12" text-anchor="middle">N × N matrix</text>
+  </g>
+  
+  <!-- Bottom panel: Relationship examples -->
+  <rect x="50" y="360" width="700" height="220" fill="white" stroke="#ddd" rx="10" ry="10" />
+  <text x="400" y="385" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Common Kinship Coefficients</text>
+  
+  <!-- Family tree visualization -->
+  <g transform="translate(20, 410)">
+    <!-- Grandparents -->
+    <circle cx="100" cy="0" r="20" fill="#FF9999" stroke="#333" stroke-width="2" />
+    <circle cx="200" cy="0" r="20" fill="#FF9999" stroke="#333" stroke-width="2" />
+    <text x="100" y="5" font-family="Arial" font-size="10" text-anchor="middle">GP1</text>
+    <text x="200" y="5" font-family="Arial" font-size="10" text-anchor="middle">GP2</text>
+    
+    <!-- Parents -->
+    <circle cx="150" cy="60" r="20" fill="#FF9999" stroke="#333" stroke-width="2" />
+    <text x="150" y="65" font-family="Arial" font-size="10" text-anchor="middle">Parent A</text>
+    <circle cx="350" cy="60" r="20" fill="#FF9999" stroke="#333" stroke-width="2" />
+    <text x="350" y="65" font-family="Arial" font-size="10" text-anchor="middle">Parent B</text>
+    
+    <!-- Children -->
+    <circle cx="150" cy="120" r="20" fill="#99CCFF" stroke="#333" stroke-width="2" />
+    <text x="150" y="125" font-family="Arial" font-size="10" text-anchor="middle">You</text>
+    <circle cx="250" cy="120" r="20" fill="#99CCFF" stroke="#333" stroke-width="2" />
+    <text x="250" y="125" font-family="Arial" font-size="10" text-anchor="middle">Sibling</text>
+    <circle cx="350" cy="120" r="20" fill="#99CCFF" stroke="#333" stroke-width="2" />
+    <text x="350" y="125" font-family="Arial" font-size="10" text-anchor="middle">Cousin</text>
+    
+    <!-- Connecting lines -->
+    <line x1="100" y1="20" x2="150" y2="40" stroke="#333" stroke-width="1.5" />
+    <line x1="200" y1="20" x2="150" y2="40" stroke="#333" stroke-width="1.5" />
+    <line x1="150" y1="80" x2="150" y2="100" stroke="#333" stroke-width="1.5" />
+    <line x1="350" y1="80" x2="150" y2="100" stroke="#333" stroke-width="1.5" />
+    <line x1="150" y1="80" x2="250" y2="100" stroke="#333" stroke-width="1.5" />
+    <line x1="350" y1="80" x2="250" y2="100" stroke="#333" stroke-width="1.5" />
+    <line x1="350" y1="80" x2="350" y2="100" stroke="#333" stroke-width="1.5" />
+  
+    
+    <!-- Kinship values -->
+    <text x="100" y="90" font-family="Arial" font-size="12" text-anchor="middle">Parent-Child</text>
+    <text x="100" y="110" font-family="Arial" font-size="12" text-anchor="middle">Φ = 1/4</text>
+    <text x="200" y="145" font-family="Arial" font-size="12" text-anchor="middle">Siblings</text>
+    <text x="200" y="160" font-family="Arial" font-size="12" text-anchor="middle">Φ = 1/4</text>
+    <text x="300" y="145" font-family="Arial" font-size="12" text-anchor="middle">Cousins</text>
+    <text x="300" y="160" font-family="Arial" font-size="12" text-anchor="middle">Φ = 1/16</text>
+    <text x="345" y="15" font-family="Arial" font-size="12" text-anchor="middle">Grandparent-Grandchild: Φ = 1/8</text>
+    
+    <!-- Label for reference -->
+    <text x="600" y="30" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">Coefficient of Relatedness = 2 × Kinship</text>
+    <rect x="425" y="50" width="300" height="80" fill="#f8f9fa" stroke="#ddd" rx="5" ry="5" />
+    <text x="560" y="65" font-family="Arial" font-size="10" text-anchor="middle">1. Diagonal elements of GRM reflect inbreeding coefficient</text>
+    <text x="547" y="95" font-family="Arial" font-size="10" text-anchor="middle">2. Off-diagonal elements reflect pairwise relatedness</text>
+    <text x="490" y="110" font-family="Arial" font-size="10" text-anchor="middle">between individuals</text>
+  </g>
+</svg>

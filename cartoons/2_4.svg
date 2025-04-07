@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10" />
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">Percentage of Variance Explained (PVE) / SNP Heritability</text>
+  
+  <!-- Linear Model Box -->
+  <rect x="50" y="70" width="700" height="100" fill="#e9ecef" rx="8" ry="8" stroke="#ced4da" stroke-width="1" />
+  <text x="400" y="95" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Linear Model: Y = Xβ + ε</text>
+  
+  <!-- Model Components -->
+  <rect x="80" y="110" width="150" height="40" fill="#fff" rx="5" ry="5" stroke="#6c757d" stroke-width="1" />
+  <text x="155" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Y: Phenotype</text>
+  
+  <rect x="260" y="110" width="150" height="40" fill="#fff" rx="5" ry="5" stroke="#6c757d" stroke-width="1" />
+  <text x="335" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X: Genotypes</text>
+  
+  <rect x="440" y="110" width="150" height="40" fill="#fff" rx="5" ry="5" stroke="#6c757d" stroke-width="1" />
+  <text x="515" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">β: Effect Sizes</text>
+  
+  <rect x="620" y="110" width="100" height="40" fill="#fff" rx="5" ry="5" stroke="#6c757d" stroke-width="1" />
+  <text x="670" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">ε: Error</text>
+  
+  <!-- Variance Decomposition Visualization -->
+  <rect x="150" y="190" width="500" height="180" fill="#e9ecef" rx="8" ry="8" stroke="#ced4da" stroke-width="1" />
+  <text x="400" y="215" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#333">Variance Decomposition</text>
+
+  <!-- Total Phenotypic Variance Bar -->
+  <rect x="200" y="240" width="400" height="50" fill="#e9ecef" stroke="#333" stroke-width="2" />
+  <text x="400" y="270" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">Total Phenotypic Variance: Var(Y)</text>
+  
+  <!-- Genetic Variance -->
+  <rect x="200" y="240" width="250" height="50" fill="#5cb85c" stroke="#333" stroke-width="2" />
+  <text x="325" y="270" font-family="Arial" font-size="14" text-anchor="middle" fill="#fff">Genetic Variance: Var(Xβ)</text>
+  
+  <!-- Environmental Variance -->
+  <rect x="450" y="240" width="150" height="50" fill="#d9534f" stroke="#333" stroke-width="2" />
+  <text x="525" y="270" font-family="Arial" font-size="14" text-anchor="middle" fill="#fff">Var(ε)</text>
+  
+  <!-- PVE Formula Visualization -->
+  <rect x="200" y="310" width="400" height="40" fill="#fff" rx="5" ry="5" stroke="#6c757d" stroke-width="1" />
+  <text x="400" y="335" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">PVE = h²ᵍ = Var(Xβ) / Var(Y)</text>
+
+  <!-- Legend -->
+  <rect x="240" y="380" width="320" height="100" fill="#f8f9fa" rx="8" ry="8" stroke="#ced4da" stroke-width="1" />
+  <text x="400" y="405" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Interpretation</text>
+  
+  <!-- Genetic Component -->
+  <rect x="260" y="420" width="20" height="20" fill="#5cb85c" stroke="#333" stroke-width="1" />
+  <text x="290" y="435" font-family="Arial" font-size="14" text-anchor="start" fill="#333">Genetic Component (SNP Heritability)</text>
+  
+  <!-- Environmental Component -->
+  <rect x="260" y="450" width="20" height="20" fill="#d9534f" stroke="#333" stroke-width="1" />
+  <text x="290" y="465" font-family="Arial" font-size="14" text-anchor="start" fill="#333">Environmental/Unexplained Component</text>
+</svg>
