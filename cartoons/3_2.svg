@@ -1,0 +1,313 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f9f9f9"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#333">Understanding Fine-Mapping in Statistical Genetics</text>
+  
+  <!-- GWAS Manhattan Plot -->
+  <g transform="translate(400, 140)">
+    <rect x="-320" y="-80" width="640" height="160" fill="#fff" stroke="#ccc" rx="5"/>
+    <text x="0" y="-60" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">GWAS Results (Manhattan Plot)</text>
+    
+    <!-- Chromosome axis -->
+    <line x1="-300" y1="40" x2="300" y2="40" stroke="#666" stroke-width="2"/>
+    <text x="315" y="45" font-family="Arial, sans-serif" font-size="12" fill="#333">Chromosome</text>
+    
+    <!-- Y-axis (-log10 p-value) -->
+    <line x1="-300" y1="40" x2="-300" y2="-50" stroke="#666" stroke-width="2"/>
+    <text x="-315" y="-10" font-family="Arial, sans-serif" font-size="12" fill="#333" transform="rotate(-90, -315, -10)">-log10(p-value)</text>
+    
+    <!-- Significance threshold -->
+    <line x1="-300" y1="0" x2="300" y2="0" stroke="#FF6347" stroke-width="1" stroke-dasharray="5,3"/>
+    <text x="-290" y="0" font-family="Arial, sans-serif" font-size="10" text-anchor="start" fill="#FF6347">Significance threshold</text>
+    
+    <!-- GWAS dots (SNPs) -->
+    <!-- Chromosome 1 -->
+    <circle cx="-260" cy="30" r="2" fill="#6495ED"/>
+    <circle cx="-255" cy="25" r="2" fill="#6495ED"/>
+    <circle cx="-250" cy="35" r="2" fill="#6495ED"/>
+    <circle cx="-245" cy="20" r="2" fill="#6495ED"/>
+    <circle cx="-240" cy="15" r="2" fill="#6495ED"/>
+    <circle cx="-235" cy="25" r="2" fill="#6495ED"/>
+    
+    <!-- Chromosome 2 -->
+    <circle cx="-200" cy="35" r="2" fill="#90EE90"/>
+    <circle cx="-195" cy="30" r="2" fill="#90EE90"/>
+    <circle cx="-190" cy="20" r="2" fill="#90EE90"/>
+    <circle cx="-185" cy="25" r="2" fill="#90EE90"/>
+    <circle cx="-180" cy="10" r="2" fill="#90EE90"/>
+    <circle cx="-175" cy="5" r="2" fill="#90EE90"/>
+    
+    <!-- Chromosome 3 with significant region -->
+    <circle cx="-140" cy="30" r="2" fill="#FFA07A"/>
+    <circle cx="-135" cy="25" r="2" fill="#FFA07A"/>
+    <circle cx="-130" cy="20" r="2" fill="#FFA07A"/>
+    <circle cx="-125" cy="-5" r="2" fill="#FFA07A"/>
+    <circle cx="-120" cy="-20" r="2" fill="#FFA07A"/>
+    <circle cx="-115" cy="-30" r="3" fill="#FF4500"/>
+    <circle cx="-110" cy="-15" r="2" fill="#FFA07A"/>
+    <circle cx="-105" cy="-10" r="2" fill="#FFA07A"/>
+    <circle cx="-100" cy="15" r="2" fill="#FFA07A"/>
+    <circle cx="-95" cy="25" r="2" fill="#FFA07A"/>
+    
+    <!-- Region highlight -->
+    <rect x="-135" y="-40" width="50" height="80" fill="#FF4500" opacity="0.2" stroke="#FF4500" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="-110" y="-45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FF4500">Associated Region</text>
+    
+    <!-- Other chromosomes -->
+    <circle cx="-60" cy="30" r="2" fill="#DDA0DD"/>
+    <circle cx="-55" cy="20" r="2" fill="#DDA0DD"/>
+    <circle cx="-50" cy="25" r="2" fill="#DDA0DD"/>
+    
+    <circle cx="-20" cy="15" r="2" fill="#20B2AA"/>
+    <circle cx="-15" cy="30" r="2" fill="#20B2AA"/>
+    <circle cx="-10" cy="25" r="2" fill="#20B2AA"/>
+    
+    <circle cx="20" cy="20" r="2" fill="#DAA520"/>
+    <circle cx="25" cy="30" r="2" fill="#DAA520"/>
+    <circle cx="30" cy="35" r="2" fill="#DAA520"/>
+    
+    <circle cx="60" cy="25" r="2" fill="#4682B4"/>
+    <circle cx="65" cy="20" r="2" fill="#4682B4"/>
+    <circle cx="70" cy="30" r="2" fill="#4682B4"/>
+    
+    <circle cx="100" cy="15" r="2" fill="#D2691E"/>
+    <circle cx="105" cy="25" r="2" fill="#D2691E"/>
+    <circle cx="110" cy="35" r="2" fill="#D2691E"/>
+    
+    <circle cx="140" cy="30" r="2" fill="#9370DB"/>
+    <circle cx="145" cy="25" r="2" fill="#9370DB"/>
+    <circle cx="150" cy="5" r="2" fill="#9370DB"/>
+    <circle cx="155" cy="-10" r="2" fill="#9370DB"/>
+    <circle cx="160" cy="10" r="2" fill="#9370DB"/>
+    <circle cx="165" cy="20" r="2" fill="#9370DB"/>
+    
+    <circle cx="200" cy="30" r="2" fill="#3CB371"/>
+    <circle cx="205" cy="35" r="2" fill="#3CB371"/>
+    <circle cx="210" cy="25" r="2" fill="#3CB371"/>
+    
+    <circle cx="240" cy="20" r="2" fill="#CD5C5C"/>
+    <circle cx="245" cy="15" r="2" fill="#CD5C5C"/>
+    <circle cx="250" cy="30" r="2" fill="#CD5C5C"/>
+    
+    <circle cx="280" cy="25" r="2" fill="#4169E1"/>
+    <circle cx="285" cy="35" r="2" fill="#4169E1"/>
+    <circle cx="290" cy="30" r="2" fill="#4169E1"/>
+    
+    <!-- Arrow pointing to significant region -->
+    <path d="M -110,-80 L -110,-50" stroke="#333" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- LD Structure and Fine-Mapping visualization -->
+  <g transform="translate(400, 320)">
+    <rect x="-360" y="-40" width="720" height="200" fill="#fff" stroke="#ccc" rx="5"/>
+    <text x="0" y="-20" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Fine-Mapping in a Region of High LD</text>
+    
+    <!-- OLS vs Fine-Mapping comparison -->
+    <g transform="translate(-250, 70)">
+      <!-- OLS Title -->
+      <text x="0" y="-55" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">OLS Estimates (No LD Consideration)</text>
+      
+      <!-- OLS SNP visualization -->
+      <rect x="-100" y="-50" width="200" height="80" fill="#E6F2FF" stroke="#4682B4"/>
+      
+      <!-- SNPs as vertical bars with height proportional to effect size -->
+      <rect x="-90" y="-20" width="10" height="20" fill="#4682B4"/>
+      <rect x="-70" y="-20" width="10" height="35" fill="#4682B4"/>
+      <rect x="-50" y="-20" width="10" height="15" fill="#4682B4"/>
+      <rect x="-30" y="-20" width="10" height="50" fill="#FF6347"/>
+      <rect x="-10" y="-20" width="10" height="40" fill="#4682B4"/>
+      <rect x="10" y="-20" width="10" height="25" fill="#4682B4"/>
+      <rect x="30" y="-20" width="10" height="30" fill="#4682B4"/>
+      <rect x="50" y="-20" width="10" height="45" fill="#4682B4"/>
+      <rect x="70" y="-20" width="10" height="20" fill="#4682B4"/>
+      
+      <!-- SNP labels -->
+      <text x="-85" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP1</text>
+      <text x="-65" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP2</text>
+      <text x="-45" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP3</text>
+      <text x="-25" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP4</text>
+      <text x="-5" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP5</text>
+      <text x="15" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP6</text>
+      <text x="35" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP7</text>
+      <text x="55" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP8</text>
+      <text x="75" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP9</text>
+      
+      <!-- Y-axis label -->
+      <text x="-110" y="0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333" transform="rotate(-90, -110, 0)">Effect Size (β)</text>
+    </g>
+    
+    <g transform="translate(250, 70)">
+      <!-- Fine-Mapping Title -->
+      <text x="0" y="-55" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">Fine-Mapping (With LD Consideration)</text>
+      
+      <!-- Fine-Mapping SNP visualization -->
+      <rect x="-100" y="-50" width="200" height="80" fill="#FFF0F5" stroke="#FF6347"/>
+      
+      <!-- LD structure visualization (correlation matrix) -->
+      <rect x="-100" y="-50" width="200" height="20" fill="#FEE" stroke="#FDD" stroke-width="0.5"/>
+      
+      <!-- SNPs as vertical bars with height proportional to probability of causality -->
+      <rect x="-90" y="-20" width="10" height="5" fill="#FFA07A"/>
+      <rect x="-70" y="-20" width="10" height="10" fill="#FFA07A"/>
+      <rect x="-50" y="-20" width="10" height="5" fill="#FFA07A"/>
+      <rect x="-30" y="-20" width="10" height="50" fill="#FF4500"/>
+      <rect x="-10" y="-20" width="10" height="15" fill="#FFA07A"/>
+      <rect x="10" y="-20" width="10" height="8" fill="#FFA07A"/>
+      <rect x="30" y="-20" width="10" height="10" fill="#FFA07A"/>
+      <rect x="50" y="-20" width="10" height="18" fill="#FFA07A"/>
+      <rect x="70" y="-20" width="10" height="7" fill="#FFA07A"/>
+      
+      <!-- SNP labels -->
+      <text x="-85" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP1</text>
+      <text x="-65" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP2</text>
+      <text x="-45" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP3</text>
+      <text x="-25" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP4</text>
+      <text x="-5" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP5</text>
+      <text x="15" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP6</text>
+      <text x="35" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP7</text>
+      <text x="55" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP8</text>
+      <text x="75" y="45" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#333">SNP9</text>
+      
+      <!-- Y-axis label -->
+      <text x="-110" y="0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333" transform="rotate(-90, -110, 0)">Probability of Causality</text>
+      
+      <!-- Highlight causal variant -->
+      <circle cx="-25" cy="-20" r="15" fill="none" stroke="#FF4500" stroke-width="2" stroke-dasharray="3,2"/>
+      <text x="-25" y="-40" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#FF4500">True Causal</text>
+    </g>
+    
+    <!-- LD Structure arrow -->
+    <path d="M 0,10 L 0,70" stroke="#333" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+    <text x="0" y="35" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">Consider LD</text>
+  </g>
+  
+  <!-- LD Heatmap -->
+  <g transform="translate(400, 245)">
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">Linkage Disequilibrium (LD) Structure</text>
+    
+    <!-- LD Matrix -->
+    <rect x="-90" y="0" width="20" height="20" fill="#FF0000" opacity="1.0"/>
+    <rect x="-70" y="0" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="-50" y="0" width="20" height="20" fill="#FF6666" opacity="0.8"/>
+    <rect x="-30" y="0" width="20" height="20" fill="#FF9999" opacity="0.7"/>
+    <rect x="-10" y="0" width="20" height="20" fill="#FFCCCC" opacity="0.6"/>
+    <rect x="10" y="0" width="20" height="20" fill="#FFE6E6" opacity="0.5"/>
+    <rect x="30" y="0" width="20" height="20" fill="#FFF0F0" opacity="0.4"/>
+    <rect x="50" y="0" width="20" height="20" fill="#FFF7F7" opacity="0.3"/>
+    <rect x="70" y="0" width="20" height="20" fill="#FFFAFA" opacity="0.2"/>
+    
+    <rect x="-90" y="20" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="-70" y="20" width="20" height="20" fill="#FF0000" opacity="1.0"/>
+    <rect x="-50" y="20" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="-30" y="20" width="20" height="20" fill="#FF6666" opacity="0.8"/>
+    <rect x="-10" y="20" width="20" height="20" fill="#FF9999" opacity="0.7"/>
+    <rect x="10" y="20" width="20" height="20" fill="#FFCCCC" opacity="0.6"/>
+    <rect x="30" y="20" width="20" height="20" fill="#FFE6E6" opacity="0.5"/>
+    <rect x="50" y="20" width="20" height="20" fill="#FFF0F0" opacity="0.4"/>
+    <rect x="70" y="20" width="20" height="20" fill="#FFF7F7" opacity="0.3"/>
+    
+    <rect x="-90" y="40" width="20" height="20" fill="#FF6666" opacity="0.8"/>
+    <rect x="-70" y="40" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="-50" y="40" width="20" height="20" fill="#FF0000" opacity="1.0"/>
+    <rect x="-30" y="40" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="-10" y="40" width="20" height="20" fill="#FF6666" opacity="0.8"/>
+    <rect x="10" y="40" width="20" height="20" fill="#FF9999" opacity="0.7"/>
+    <rect x="30" y="40" width="20" height="20" fill="#FFCCCC" opacity="0.6"/>
+    <rect x="50" y="40" width="20" height="20" fill="#FFE6E6" opacity="0.5"/>
+    <rect x="70" y="40" width="20" height="20" fill="#FFF0F0" opacity="0.4"/>
+    
+    <rect x="-90" y="60" width="20" height="20" fill="#FF9999" opacity="0.7"/>
+    <rect x="-70" y="60" width="20" height="20" fill="#FF6666" opacity="0.8"/>
+    <rect x="-50" y="60" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="-30" y="60" width="20" height="20" fill="#FF0000" opacity="1.0"/>
+    <rect x="-10" y="60" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="10" y="60" width="20" height="20" fill="#FF6666" opacity="0.8"/>
+    <rect x="30" y="60" width="20" height="20" fill="#FF9999" opacity="0.7"/>
+    <rect x="50" y="60" width="20" height="20" fill="#FFCCCC" opacity="0.6"/>
+    <rect x="70" y="60" width="20" height="20" fill="#FFE6E6" opacity="0.5"/>
+    
+    <rect x="-90" y="80" width="20" height="20" fill="#FFCCCC" opacity="0.6"/>
+    <rect x="-70" y="80" width="20" height="20" fill="#FF9999" opacity="0.7"/>
+    <rect x="-50" y="80" width="20" height="20" fill="#FF6666" opacity="0.8"/>
+    <rect x="-30" y="80" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="-10" y="80" width="20" height="20" fill="#FF0000" opacity="1.0"/>
+    <rect x="10" y="80" width="20" height="20" fill="#FF3333" opacity="0.9"/>
+    <rect x="30" y="80" width="20" height="20" fill="#FF6666" opacity="0.8"/>
+    <rect x="50" y="80" width="20" height="20" fill="#FF9999" opacity="0.7"/>
+    <rect x="70" y="80" width="20" height="20" fill="#FFCCCC" opacity="0.6"/>
+    
+    <!-- SNP labels -->
+    <text x="-80" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP1</text>
+    <text x="-60" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP2</text>
+    <text x="-40" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP3</text>
+    <text x="-20" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP4</text>
+    <text x="0" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP5</text>
+    <text x="20" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP6</text>
+    <text x="40" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP7</text>
+    <text x="60" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP8</text>
+    <text x="80" y="-5" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">SNP9</text>
+    
+    <!-- Color legend -->
+    <rect x="120" y="30" width="20" height="20" fill="#FF0000" opacity="1.0"/>
+    <rect x="120" y="50" width="20" height="20" fill="#FF9999" opacity="0.7"/>
+    <rect x="120" y="70" width="20" height="20" fill="#FFEEEE" opacity="0.3"/>
+    <text x="150" y="43" font-family="Arial, sans-serif" font-size="10" text-anchor="start" fill="#333">High LD (r² ≈ 1)</text>
+    <text x="150" y="63" font-family="Arial, sans-serif" font-size="10" text-anchor="start" fill="#333">Medium LD (r² ≈ 0.5)</text>
+    <text x="150" y="83" font-family="Arial, sans-serif" font-size="10" text-anchor="start" fill="#333">Low LD (r² ≈ 0)</text>
+    
+    <!-- Marking SNP4 as causal -->
+    <circle cx="-20" cy="-5" r="10" fill="none" stroke="#FF4500" stroke-width="1.5" stroke-dasharray="3,2"/>
+  </g>
+  
+  <!-- Fine-Mapping Steps (Bottom) -->
+  <g transform="translate(400, 530)">
+    <rect x="-360" y="-20" width="720" height="70" fill="#fff" stroke="#ccc" rx="5"/>
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Fine-Mapping Process</text>
+    
+    <!-- Process steps -->
+    <g transform="translate(-260, 30)">
+      <circle cx="0" cy="0" r="15" fill="#4682B4"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">1</text>
+      <text x="0" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">Identify Region</text>
+    </g>
+    
+    <g transform="translate(-130, 30)">
+      <circle cx="0" cy="0" r="15" fill="#4682B4"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">2</text>
+      <text x="0" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">Analyze LD Structure</text>
+    </g>
+    
+    <g transform="translate(0, 30)">
+      <circle cx="0" cy="0" r="15" fill="#4682B4"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">3</text>
+      <text x="0" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">Calculate Causality Probability</text>
+    </g>
+    
+    <g transform="translate(130, 30)">
+      <circle cx="0" cy="0" r="15" fill="#4682B4"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">4</text>
+      <text x="0" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">Rank SNPs</text>
+    </g>
+    
+    <g transform="translate(260, 30)">
+      <circle cx="0" cy="0" r="15" fill="#4682B4"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">5</text>
+      <text x="0" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">Identify Causal Variant</text>
+    </g>
+    
+    <!-- Connecting arrows -->
+    <line x1="-245" y1="30" x2="-145" y2="30" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="-115" y1="30" x2="-15" y2="30" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="15" y1="30" x2="115" y2="30" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="145" y1="30" x2="245" y2="30" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- Defining arrow head -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+</svg>

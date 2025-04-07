@@ -1,0 +1,55 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold">Collider Bias in Genetic Studies</text>
+  
+  <!-- Diagram Elements -->
+  
+  <!-- SNP Circle -->
+  <circle cx="200" cy="200" r="60" fill="#6ab7ff" stroke="#005cb8" stroke-width="3"/>
+  <text x="200" y="200" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">SNP</text>
+  <text x="200" y="225" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">(Variant 2)</text>
+  
+  <!-- Height Circle -->
+  <circle cx="600" cy="200" r="60" fill="#ffb366" stroke="#cc7000" stroke-width="3"/>
+  <text x="600" y="200" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">Height</text>
+  <text x="600" y="225" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">(Trait)</text>
+  
+  <!-- Study Participation Circle (Collider) -->
+  <circle cx="400" cy="350" r="70" fill="#ff7f7f" stroke="#990000" stroke-width="3"/>
+  <text x="400" y="340" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">Study</text>
+  <text x="400" y="365" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">Participation</text>
+  <text x="400" y="390" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-style="italic">(Collider)</text>
+  
+  <!-- Arrows -->
+  <!-- SNP to Study Participation -->
+  <path d="M 245 245 L 355 320" fill="none" stroke="#005cb8" stroke-width="4" marker-end="url(#arrowhead)"/>
+  <text x="280" y="270" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#005cb8" transform="rotate(-30, 280, 270)">Influences</text>
+  
+  <!-- Height to Study Participation -->
+  <path d="M 555 245 L 445 320" fill="none" stroke="#cc7000" stroke-width="4" marker-end="url(#arrowhead)"/>
+  <text x="520" y="270" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#cc7000" transform="rotate(30, 520, 270)">Influences</text>
+  
+  <!-- Spurious Association (dashed line) -->
+  <path d="M 260 200 L 540 200" fill="none" stroke="#990000" stroke-width="3" stroke-dasharray="8 4"/>
+  <text x="400" y="180" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#990000">Spurious Association</text>
+  <text x="400" y="160" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#990000">(when conditioning on study participation)</text>
+  
+  <!-- Arrowhead marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- Explanation Box -->
+  <rect x="100" y="420" width="600" height="60" rx="5" ry="5" fill="#e6f2ff" stroke="#0066cc" stroke-width="2"/>
+  <text x="400" y="445" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">
+    When we analyze only study participants, we condition on a variable (participation)
+  </text>
+  <text x="400" y="465" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">
+    that is influenced by both SNP and height, creating a misleading association between them.
+  </text>
+</svg>

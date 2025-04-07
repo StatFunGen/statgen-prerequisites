@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f9f9f9" rx="10" ry="10"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">Likelihood Ratio Test (LRT) in Genetics</text>
+  
+  <!-- Formula section -->
+  <rect x="100" y="60" width="600" height="80" fill="#e6f7ff" rx="5" ry="5" stroke="#0099cc" stroke-width="2"/>
+  <text x="400" y="90" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">LR(M₂, M₁) = L(M₂)/L(M₁) = p(D|M₂)/p(D|M₁)</text>
+  <text x="400" y="120" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">LRT = -2[log(L(M₁)) - log(L(M₂))]</text>
+  
+  <!-- Model comparison visualization -->
+  <rect x="50" y="160" width="700" height="400" fill="#ffffff" rx="10" ry="10" stroke="#cccccc" stroke-width="2"/>
+  
+  <!-- Two models -->
+  <rect x="80" y="190" width="270" height="340" fill="#fff2e6" rx="5" ry="5" stroke="#ff9966" stroke-width="2"/>
+  <text x="215" y="220" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">Model 1 (Null)</text>
+  <text x="215" y="245" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">No Genetic Effect</text>
+  
+  <rect x="450" y="190" width="270" height="340" fill="#e6f9e6" rx="5" ry="5" stroke="#66cc66" stroke-width="2"/>
+  <text x="585" y="220" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">Model 2 (Alternative)</text>
+  <text x="585" y="245" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">With Genetic Effect</text>
+  
+  <!-- Model 1 Visual (No genetic effect) -->
+  <rect x="120" y="270" width="190" height="140" fill="#fff9f9" rx="5" ry="5" stroke="#ff9966" stroke-width="1"/>
+  
+  <!-- People with similar height regardless of genotype -->
+  <g transform="translate(130, 310)">
+    <!-- Person 1 with genotype 0 -->
+    <circle cx="0" cy="60" r="15" fill="#ffcc99" stroke="#333" stroke-width="1"/>
+    <circle cx="-4" cy="57" r="2" fill="#333"/> <!-- left eye -->
+    <circle cx="4" cy="57" r="2" fill="#333"/> <!-- right eye -->
+    <path d="M-4,64 Q0,67 4,64" stroke="#333" stroke-width="1" fill="none"/> <!-- smile -->
+    <rect x="-8" cy="0" width="16" height="45" fill="#ffcc99" stroke="#333" stroke-width="1"/> <!-- body -->
+    <text x="0" y="90" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Genotype: 0</text>
+    <text x="0" y="105" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Height: 170cm</text>
+  </g>
+  
+  <g transform="translate(170, 310)">
+    <!-- Person 2 with genotype 1 -->
+    <circle cx="0" cy="60" r="15" fill="#ffcc99" stroke="#333" stroke-width="1"/>
+    <circle cx="-4" cy="57" r="2" fill="#333"/> <!-- left eye -->
+    <circle cx="4" cy="57" r="2" fill="#333"/> <!-- right eye -->
+    <path d="M-4,64 Q0,67 4,64" stroke="#333" stroke-width="1" fill="none"/> <!-- smile -->
+    <rect x="-8" cy="0" width="16" height="45" fill="#ffcc99" stroke="#333" stroke-width="1"/> <!-- body -->
+    <text x="0" y="90" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Genotype: 1</text>
+    <text x="0" y="105" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Height: 170cm</text>
+  </g>
+  
+  <g transform="translate(210, 310)">
+    <!-- Person 3 with genotype 2 -->
+    <circle cx="0" cy="60" r="15" fill="#ffcc99" stroke="#333" stroke-width="1"/>
+    <circle cx="-4" cy="57" r="2" fill="#333"/> <!-- left eye -->
+    <circle cx="4" cy="57" r="2" fill="#333"/> <!-- right eye -->
+    <path d="M-4,64 Q0,67 4,64" stroke="#333" stroke-width="1" fill="none"/> <!-- smile -->
+    <rect x="-8" cy="0" width="16" height="45" fill="#ffcc99" stroke="#333" stroke-width="1"/> <!-- body -->
+    <text x="0" y="90" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Genotype: 2</text>
+    <text x="0" y="105" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Height: 170cm</text>
+  </g>
+  
+  <text x="215" y="420" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">L(M₁) = p(data|no effect)</text>
+  
+  <!-- Model 2 Visual (With genetic effect) -->
+  <rect x="490" y="270" width="190" height="140" fill="#f9fffa" rx="5" ry="5" stroke="#66cc66" stroke-width="1"/>
+  
+  <!-- People with different heights based on genotype -->
+  <g transform="translate(500, 330)">
+    <!-- Person 1 with genotype 0 -->
+    <circle cx="0" cy="40" r="15" fill="#ffcc99" stroke="#333" stroke-width="1"/>
+    <circle cx="-4" cy="37" r="2" fill="#333"/> <!-- left eye -->
+    <circle cx="4" cy="37" r="2" fill="#333"/> <!-- right eye -->
+    <path d="M-4,44 Q0,47 4,44" stroke="#333" stroke-width="1" fill="none"/> <!-- smile -->
+    <rect x="-8" cy="0" width="16" height="25" fill="#ffcc99" stroke="#333" stroke-width="1"/> <!-- body -->
+    <text x="0" y="70" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Genotype: 0</text>
+    <text x="0" y="85" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Height: 170cm</text>
+  </g>
+  
+  <g transform="translate(540, 310)">
+    <!-- Person 2 with genotype 1 (taller) -->
+    <circle cx="0" cy="40" r="15" fill="#ffcc99" stroke="#333" stroke-width="1"/>
+    <circle cx="-4" cy="37" r="2" fill="#333"/> <!-- left eye -->
+    <circle cx="4" cy="37" r="2" fill="#333"/> <!-- right eye -->
+    <path d="M-4,44 Q0,47 4,44" stroke="#333" stroke-width="1" fill="none"/> <!-- smile -->
+    <rect x="-8" cy="0" width="16" height="45" fill="#ffcc99" stroke="#333" stroke-width="1"/> <!-- body -->
+    <text x="0" y="70" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Genotype: 1</text>
+    <text x="0" y="85" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Height: 172cm</text>
+  </g>
+  
+  <g transform="translate(580, 290)">
+    <!-- Person 3 with genotype 2 (tallest) -->
+    <circle cx="0" cy="40" r="15" fill="#ffcc99" stroke="#333" stroke-width="1"/>
+    <circle cx="-4" cy="37" r="2" fill="#333"/> <!-- left eye -->
+    <circle cx="4" cy="37" r="2" fill="#333"/> <!-- right eye -->
+    <path d="M-4,44 Q0,47 4,44" stroke="#333" stroke-width="1" fill="none"/> <!-- smile -->
+    <rect x="-8" cy="0" width="16" height="65" fill="#ffcc99" stroke="#333" stroke-width="1"/> <!-- body -->
+    <text x="0" y="70" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Genotype: 2</text>
+    <text x="0" y="85" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Height: 174cm</text>
+  </g>
+  
+  <text x="585" y="420" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">L(M₂) = p(data|genetic effect)</text>
+  
+  <!-- Likelihood comparison -->
+  <g transform="translate(170, 460)">
+    <text x="0" y="0" font-family="Arial" font-size="14" text-anchor="middle" fill="#ff6666">Low Likelihood</text>
+    <text x="0" y="20" font-family="Arial" font-size="14" text-anchor="middle" fill="#ff6666">Poor fit to data</text>
+  </g>
+  
+  <g transform="translate(540, 460)">
+    <text x="0" y="0" font-family="Arial" font-size="14" text-anchor="middle" fill="#33cc33">High Likelihood</text>
+    <text x="0" y="20" font-family="Arial" font-size="14" text-anchor="middle" fill="#33cc33">Better fit to data</text>
+  </g>
+  
+  <!-- Likelihood ratio visualization -->
+  <g transform="translate(400, 470)">
+    <line x1="-100" y1="0" x2="100" y2="0" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+    <polygon points="100,0 90,-5 90,5" fill="#333"/>
+    <text x="0" y="20" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold" fill="#333">Likelihood Ratio</text>
+    <text x="0" y="40" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">LR(M₂, M₁) = L(M₂)/L(M₁)</text>
+  </g>
+  
+  <!-- Chi-squared distribution -->
+  <g transform="translate(400, 520)">
+    <path d="M-150,30 C-120,10 -90,-10 -60,-20 C-30,-30 0,-30 30,-20 C60,-10 90,10 120,30" stroke="#0066cc" stroke-width="3" fill="none"/>
+    <line x1="-150" y1="30" x2="150" y2="30" stroke="#333" stroke-width="1"/>
+    <text x="0" y="60" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Under null hypothesis, LRT follows χ² distribution</text>
+    
+    <!-- Critical threshold visualization -->
+    <line x1="60" y1="-30" x2="60" y2="30" stroke="#ff3333" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="100" y="10" font-family="Arial" font-size="12" text-anchor="middle" fill="#ff3333">Critical threshold</text>
+  </g>
+</svg>

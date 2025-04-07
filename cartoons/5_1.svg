@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f5f5f5" rx="10" ry="10"/>
+  <!-- Title -->
+<text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Confounding in Genetic Association Studies</text>
+  <!-- Ancestry bubble (the confounder) -->
+  <ellipse cx="400" cy="180" rx="120" ry="90" fill="#FFB74D" stroke="#E65100" stroke-width="3"/>
+  <text x="400" y="180" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">Ancestry</text>
+  <text x="400" y="210" font-family="Arial" font-size="18" text-anchor="middle" font-style="italic" fill="#333">(Confounder)</text>
+  <!-- Genotype and Trait boxes -->
+  <rect x="150" y="350" width="160" height="80" fill="#81C784" stroke="#2E7D32" stroke-width="3" rx="10" ry="10"/>
+  <text x="230" y="395" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold" fill="#333">Genotype</text>
+  <rect x="490" y="350" width="160" height="80" fill="#64B5F6" stroke="#1565C0" stroke-width="3" rx="10" ry="10"/>
+  <text x="570" y="395" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold" fill="#333">Trait (Height)</text>
+  <!-- Connecting arrows from ancestry to genotype and trait -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  <!-- Arrow from ancestry to genotype -->
+  <line x1="320" y1="230" x2="240" y2="340" stroke="#333" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <!-- Arrow from ancestry to trait -->
+  <line x1="480" y1="230" x2="560" y2="340" stroke="#333" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <!-- Spurious association: dashed line between genotype and trait -->
+  <line x1="320" y1="390" x2="480" y2="390" stroke="#FF5252" stroke-width="3" stroke-dasharray="10,5"/>
+  <text x="400" y="380" font-family="Arial" font-size="18" text-anchor="middle" fill="#FF5252" font-style="italic">Spurious Association</text>
+  <!-- True causal pathway annotation -->
+<text x="270" y="300" font-family="Arial" font-size="16" text-anchor="middle" fill="#2E7D32" transform="rotate(-30, 270, 300)">Influences allele frequency</text>
+<text x="530" y="300" font-family="Arial" font-size="16" text-anchor="middle" fill="#1565C0" transform="rotate(30, 530, 300)">Influences height</text>
+  <!-- Legend -->
+  <rect x="50" y="50" width="20" height="20" fill="#FFB74D" stroke="#E65100" stroke-width="2"/>
+  <text x="80" y="65" font-family="Arial" font-size="16" fill="#333">Confounder</text>
+  <rect x="50" y="80" width="20" height="20" fill="#81C784" stroke="#2E7D32" stroke-width="2"/>
+  <text x="80" y="95" font-family="Arial" font-size="16" fill="#333">Independent Variable</text>
+  <rect x="50" y="110" width="20" height="20" fill="#64B5F6" stroke="#1565C0" stroke-width="2"/>
+  <text x="80" y="125" font-family="Arial" font-size="16" fill="#333">Dependent Variable</text>
+  <line x1="50" y1="140" x2="70" y2="140" stroke="#FF5252" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="80" y="145" font-family="Arial" font-size="16" fill="#333">Spurious Association</text>
+  <!-- Bottom caption -->
+  <text x="400" y="480" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">
+    When ancestry is not controlled for in the analysis, it might create a misleading association between genotype and trait.
+  </text>
+</svg>
