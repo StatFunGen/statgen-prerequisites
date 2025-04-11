@@ -8,7 +8,7 @@
   <!-- Single Variant Regression Panel -->
   <rect x="50" y="70" width="340" height="260" fill="white" stroke="#ddd" rx="10" ry="10" />
   <text x="220" y="95" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Single Variant Regression</text>
-  <text x="220" y="120" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">y = X<tspan baseline-shift="sub" font-size="10">j</tspan>β + ε</text>
+  <!-- <text x="220" y="110" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">y = X<tspan baseline-shift="sub" font-size="10">j</tspan>β + ε</text> -->
   
   <!-- Single variant visualization -->
   <g transform="translate(90, 140)">
@@ -32,6 +32,7 @@
     <text x="120" y="-10" font-family="Arial" font-size="14" text-anchor="middle">β</text>
     <text x="120" y="65" font-family="Arial" font-size="14" text-anchor="middle">β</text>
     <text x="120" y="140" font-family="Arial" font-size="10" text-anchor="middle">Effect</text>
+    <text x="120" y="155" font-family="Arial" font-size="10" text-anchor="middle">(scalar)</text>
     
     <!-- Plus symbol -->
     <text x="150" y="60" font-family="Arial" font-size="18" text-anchor="middle">+</text>
@@ -42,17 +43,13 @@
     <text x="185" y="140" font-family="Arial" font-size="10" text-anchor="middle">N × 1</text>
     <text x="185" y="155" font-family="Arial" font-size="10" text-anchor="middle">Error</text>
     
-    <!-- Individual example -->
-    <rect x="220" y="30" width="120" height="80" fill="#E6F3FF" stroke="#3366CC" stroke-width="1" rx="5" ry="5" />
-    <text x="280" y="50" font-family="Arial" font-size="12" text-anchor="middle">For individual i:</text>
-    <text x="280" y="70" font-family="Arial" font-size="12" text-anchor="middle" font-style="italic">y<tspan baseline-shift="sub" font-size="8">i</tspan> = βX<tspan baseline-shift="sub" font-size="8">i,j</tspan> + ε<tspan baseline-shift="sub" font-size="8">i</tspan></text>
-    <text x="280" y="90" font-family="Arial" font-size="10" text-anchor="middle">Tests one SNP at a time</text>
+   
   </g>
   
   <!-- Multiple Variant Regression Panel -->
   <rect x="410" y="70" width="340" height="260" fill="white" stroke="#ddd" rx="10" ry="10" />
   <text x="580" y="95" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Multiple Variant Regression</text>
-  <text x="580" y="120" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">Y = Xβ + ε</text>
+  <!-- <text x="580" y="120" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">Y = Xβ + ε</text> -->
   
   <!-- Multiple variant visualization -->
   <g transform="translate(450, 140)">
@@ -87,6 +84,12 @@
     <text x="235" y="155" font-family="Arial" font-size="10" text-anchor="middle">Error</text>
   </g>
   
+   <!-- Individual example -->
+    <rect x="320" y="150" width="120" height="80" fill="#E6F3FF" stroke="#3366CC" stroke-width="1" rx="5" ry="5" />
+    <text x="380" y="170" font-family="Arial" font-size="12" text-anchor="middle">For individual i:</text>
+    <text x="380" y="190" font-family="Arial" font-size="12" text-anchor="middle" font-style="italic">y<tspan baseline-shift="sub" font-size="8">i</tspan> = βX<tspan baseline-shift="sub" font-size="8">i,j</tspan> + ε<tspan baseline-shift="sub" font-size="8">i</tspan></text>
+    <text x="380" y="210" font-family="Arial" font-size="10" text-anchor="middle">Tests one SNP at a time</text>
+
   <!-- OLS Estimation Panel -->
   <rect x="50" y="350" width="340" height="210" fill="white" stroke="#ddd" rx="10" ry="10" />
   <text x="220" y="375" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Ordinary Least Squares (OLS)</text>
@@ -120,10 +123,10 @@
     <text x="255" y="5" font-family="Arial" font-size="14" text-anchor="middle">Y</text>
     
     <!-- Problem note -->
-    <rect x="70" y="100" width="200" height="60" fill="#FFEEEE" stroke="#CC3333" stroke-width="1" rx="5" ry="5" />
-    <text x="170" y="120" font-family="Arial" font-size="12" text-anchor="middle">Problem when M >> N:</text>
-    <text x="170" y="140" font-family="Arial" font-size="12" text-anchor="middle">(X<tspan baseline-shift="super" font-size="10">T</tspan>X) becomes singular</text>
-    <text x="170" y="160" font-family="Arial" font-size="12" text-anchor="middle">Cannot be inverted!</text>
+    <rect x="45" y="90" width="200" height="40" fill="#FFEEEE" stroke="#CC3333" stroke-width="1" rx="5" ry="5" />
+    <text x="120" y="102" font-family="Arial" font-size="10" text-anchor="middle">Problem when M >> N:</text>
+    <text x="130" y="115" font-family="Arial" font-size="10" text-anchor="middle">(X<tspan baseline-shift="super" font-size="8">T</tspan>X) becomes singular</text>
+    <text x="130" y="125" font-family="Arial" font-size="10" text-anchor="middle">Cannot be inverted!</text>
   </g>
   
   <!-- GWAS Panel -->
@@ -140,7 +143,7 @@
     <text x="60" y="95" font-family="Arial" font-size="12" text-anchor="middle">N × M where M >> N</text>
     
     <!-- Arrow -->
-    <path d="M130,40 L160,40 L160,10 L180,40 L160,70 L160,40" fill="#333" />
+    <path d="M130,40 L160,40 L130,10 L170,40 L130,70 L160,40" fill="#333" />
     
     <!-- Single SNP testing -->
     <g transform="translate(180, 0)">
@@ -148,10 +151,10 @@
       <rect x="30" y="0" width="20" height="80" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
       <rect x="60" y="0" width="20" height="80" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
       <rect x="90" y="0" width="20" height="80" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
-      <text x="10" y="95" font-family="Arial" font-size="12" text-anchor="middle">SNP 1</text>
-      <text x="40" y="95" font-family="Arial" font-size="12" text-anchor="middle">SNP 2</text>
-      <text x="70" y="95" font-family="Arial" font-size="12" text-anchor="middle">SNP 3</text>
-      <text x="100" y="95" font-family="Arial" font-size="12" text-anchor="middle">SNP 4</text>
+      <text x="10" y="95" font-family="Arial" font-size="10" text-anchor="middle">SNP<tspan baseline-shift="sub" font-size="6">1</tspan></text>
+      <text x="40" y="95" font-family="Arial" font-size="10" text-anchor="middle">SNP<tspan baseline-shift="sub" font-size="6">2</tspan></text>
+      <text x="70" y="95" font-family="Arial" font-size="10" text-anchor="middle">SNP<tspan baseline-shift="sub" font-size="6">3</tspan></text>
+      <text x="100" y="95" font-family="Arial" font-size="10" text-anchor="middle">SNP<tspan baseline-shift="sub" font-size="6">4</tspan></text>
       <text x="55" y="-10" font-family="Arial" font-size="14" text-anchor="middle">Test one at a time</text>
     </g>
   </g>
@@ -172,7 +175,7 @@
     
     <!-- Significance threshold -->
     <line x1="0" y1="30" x2="300" y2="30" stroke="#CC3333" stroke-width="1" stroke-dasharray="5,3" />
-    <text x="310" y="30" font-family="Arial" font-size="10" text-anchor="start">Significance</text>
+    <text x="250" y="45" font-family="Arial" font-size="10" text-anchor="start">Significance</text>
     
     <!-- Manhattan plot dots -->
     <g fill="#3366CC" opacity="0.5">
