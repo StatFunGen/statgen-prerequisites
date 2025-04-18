@@ -1,49 +1,18 @@
-<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="800" height="800" fill="#f8f9fa" />
+  <rect width="800" height="600" fill="#f8f9fa" />
   
   <!-- Title -->
   <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold"> Single marker linear regression</text>
-  
 
-<!-- GWAS Panel -->
-  <rect x="45" y="70" width="340" height="260" fill="white" stroke="#ddd" rx="10" ry="10" />
-  <text x="220" y="95" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">GWAS Approach</text>
-  <text x="220" y="120" font-family="Arial" font-size="14" text-anchor="middle">Test each SNP independently</text>
-  
-  <!-- GWAS visualization -->
-  <g transform="translate(70, 180)">
-    <!-- SNP matrix visualization -->
-    <rect x="0" y="0" width="120" height="80" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
-    <text x="60" y="-10" font-family="Arial" font-size="14" text-anchor="middle">Millions of SNPs</text>
-    <text x="60" y="40" font-family="Arial" font-size="16" text-anchor="middle">X</text>
-    <text x="60" y="95" font-family="Arial" font-size="12" text-anchor="middle">N × M where M >> N</text>
-    
-    <!-- Arrow -->
-    <path d="M130,40 L160,40 L130,10 L170,40 L130,70 L160,40" fill="#333" />
-    
-    <!-- Single SNP testing -->
-    <g transform="translate(180, 0)">
-      <rect x="0" y="0" width="20" height="80" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
-      <rect x="30" y="0" width="20" height="80" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
-      <rect x="60" y="0" width="20" height="80" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
-      <rect x="90" y="0" width="20" height="80" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
-      <text x="10" y="95" font-family="Arial" font-size="10" text-anchor="middle">SNP<tspan baseline-shift="sub" font-size="6">1</tspan></text>
-      <text x="40" y="95" font-family="Arial" font-size="10" text-anchor="middle">SNP<tspan baseline-shift="sub" font-size="6">2</tspan></text>
-      <text x="70" y="95" font-family="Arial" font-size="10" text-anchor="middle">SNP<tspan baseline-shift="sub" font-size="6">3</tspan></text>
-      <text x="100" y="95" font-family="Arial" font-size="10" text-anchor="middle">SNP<tspan baseline-shift="sub" font-size="6">4</tspan></text>
-      <text x="55" y="-10" font-family="Arial" font-size="14" text-anchor="middle">Test one at a time</text>
-    </g>
-  </g>
-  
 
   <!-- Single Variant Regression Panel -->
-  <rect x="400" y="70" width="340" height="260" fill="white" stroke="#ddd" rx="10" ry="10" />
-  <text x="580" y="95" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Single Variant Regression</text>
+  <rect x="50" y="70" width="700" height="260" fill="white" stroke="#ddd" rx="10" ry="10" />
+  <text x="380" y="95" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Single Variant Regression</text>
   <!-- <text x="220" y="110" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">y = X<tspan baseline-shift="sub" font-size="10">j</tspan>β + ε</text> -->
   
   <!-- Single variant visualization -->
-  <g transform="translate(480, 140)">
+  <g transform="translate(280, 140)">
     <!-- Trait vector -->
     <rect x="0" y="0" width="30" height="120" fill="#FFD700" stroke="#333" stroke-width="2" />
     <text x="15" y="-10" font-family="Arial" font-size="14" text-anchor="middle">Y</text>
@@ -149,78 +118,5 @@
     <!-- Information note -->
     <text x="180" y="90" font-family="Arial" font-size="10" fill="#666666" text-anchor="middle">OLS finds β̂ that minimizes</text>
     <text x="185" y="102" font-family="Arial" font-size="10" fill="#666666" text-anchor="middle">the sum of squared residuals</text>
-  </g>
-  
-  <!-- Bottom Panel: GWAS Rationale -->
-  <rect x="50" y="580" width="700" height="200" fill="white" stroke="#ddd" rx="10" ry="10" />
-  <text x="400" y="605" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Why Single Variant Testing in GWAS?</text>
-  
-  <!-- GWAS Manhattan plot sketch -->
-  <g transform="translate(100, 620)">
-    <!-- X-axis -->
-    <line x1="0" y1="90" x2="300" y2="90" stroke="#333" stroke-width="2" />
-    <text x="150" y="110" font-family="Arial" font-size="12" text-anchor="middle">Chromosome Position</text>
-    
-    <!-- Y-axis -->
-    <line x1="0" y1="90" x2="0" y2="0" stroke="#333" stroke-width="2" />
-    <text x="-20" y="45" font-family="Arial" font-size="12" text-anchor="middle" transform="rotate(-90, -20, 45)">-log10(p-value)</text>
-    
-    <!-- Significance threshold -->
-    <line x1="0" y1="30" x2="300" y2="30" stroke="#CC3333" stroke-width="1" stroke-dasharray="5,3" />
-    <text x="250" y="45" font-family="Arial" font-size="10" text-anchor="start">Significance</text>
-    
-    <!-- Manhattan plot dots -->
-    <g fill="#3366CC" opacity="0.5">
-      <circle cx="10" cy="80" r="2" />
-      <circle cx="15" cy="75" r="2" />
-      <circle cx="20" cy="82" r="2" />
-      <circle cx="25" cy="70" r="2" />
-      <circle cx="30" cy="75" r="2" />
-      <circle cx="35" cy="78" r="2" />
-      <circle cx="40" cy="60" r="2" />
-      <circle cx="45" cy="65" r="2" />
-      <circle cx="50" cy="75" r="2" />
-      <circle cx="55" cy="85" r="2" />
-      <circle cx="60" cy="75" r="2" />
-      <circle cx="65" cy="70" r="2" />
-      <circle cx="70" cy="55" r="2" />
-      <circle cx="75" cy="85" r="2" />
-      <circle cx="80" cy="80" r="2" />
-      <circle cx="85" cy="65" r="2" />
-      <circle cx="90" cy="75" r="2" />
-      <circle cx="100" cy="20" r="3" fill="#CC3333" />
-      <circle cx="105" cy="25" r="2" />
-      <circle cx="110" cy="80" r="2" />
-      <circle cx="120" cy="75" r="2" />
-      <circle cx="125" cy="60" r="2" />
-      <circle cx="130" cy="85" r="2" />
-      <circle cx="140" cy="80" r="2" />
-      <circle cx="150" cy="75" r="2" />
-      <circle cx="160" cy="60" r="2" />
-      <circle cx="170" cy="85" r="2" />
-      <circle cx="180" cy="80" r="2" />
-      <circle cx="190" cy="75" r="2" />
-      <circle cx="200" cy="15" r="3" fill="#CC3333" />
-      <circle cx="210" cy="85" r="2" />
-      <circle cx="220" cy="80" r="2" />
-      <circle cx="230" cy="75" r="2" />
-      <circle cx="240" cy="60" r="2" />
-      <circle cx="250" cy="85" r="2" />
-      <circle cx="260" cy="80" r="2" />
-      <circle cx="270" cy="75" r="2" />
-      <circle cx="280" cy="60" r="2" />
-      <circle cx="290" cy="85" r="2" />
-    </g>
-    
-    <!-- Benefits text -->
-    <g transform="translate(350, 10)">
-      <text x="0" y="0" font-family="Arial" font-size="14" font-weight="bold">Benefits of Single Variant Testing:</text>
-      <text x="0" y="25" font-family="Arial" font-size="12">1. Statistical simplicity</text>
-      <text x="0" y="45" font-family="Arial" font-size="12">2. Avoids overfitting (too many parameters)</text>
-      <text x="0" y="65" font-family="Arial" font-size="12">3. Enables multiple testing correction</text>
-      <text x="0" y="85" font-family="Arial" font-size="12">4. Easier interpretation</text>
-      <text x="0" y="105" font-family="Arial" font-size="12">5. Computationally feasible</text>
-      <text x="0" y="125" font-family="Arial" font-size="12">6. Identifies individual SNP effects</text>
-    </g>
   </g>
 </svg>
