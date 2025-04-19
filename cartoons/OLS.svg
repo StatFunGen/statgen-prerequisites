@@ -49,7 +49,7 @@
   <!-- OLS Estimation Panel -->
   <rect x="50" y="350" width="340" height="210" fill="white" stroke="#ddd" rx="10" ry="10" />
   <text x="220" y="375" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Ordinary Least Squares (OLS)</text>
-  <text x="220" y="395" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">β̂<tspan baseline-shift="sub" font-size="10">OLS</tspan> = (X<tspan baseline-shift="super" font-size="10">T</tspan>X)<tspan baseline-shift="super" font-size="10">-1</tspan>X<tspan baseline-shift="super" font-size="10">T</tspan>Y</text>
+  <text x="220" y="395" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">β̂<tspan baseline-shift="sub" font-size="10">OLS</tspan> = (X<tspan baseline-shift="sub" font-size="8">j</tspan><tspan baseline-shift="super" font-size="10">T</tspan>X<tspan baseline-shift="sub" font-size="8">j</tspan> )<tspan baseline-shift="super" font-size="10">-1</tspan>X<tspan baseline-shift="sub" font-size="8">j</tspan><tspan baseline-shift="super" font-size="10">T</tspan>Y</text>
   
   <!-- OLS visualization -->
   <g transform="translate(75, 420)">
@@ -62,14 +62,14 @@
     
     <!-- (X'X)^-1 -->
     <rect x="75" y="30" width="30" height="30" fill="#E6F3FF" stroke="#3366CC" stroke-width="2" />
-    <text x="90" y="5" font-family="Arial" font-size="14" text-anchor="middle">(X<tspan baseline-shift="super" font-size="10">T</tspan>X)<tspan baseline-shift="super" font-size="10">-1</tspan></text>
+    <text x="90" y="5" font-family="Arial" font-size="14" text-anchor="middle">(X<tspan baseline-shift="sub" font-size="8">j</tspan><tspan baseline-shift="super" font-size="10">T</tspan>X<tspan baseline-shift="sub" font-size="8">j</tspan>)<tspan baseline-shift="super" font-size="10">-1</tspan></text>
     
     <!-- Multiply symbol -->
     <text x="116" y="50" font-family="Arial" font-size="18" text-anchor="middle">×</text>
     
     <!-- X' -->
     <rect x="125" y="30" width="80" height="30" fill="#99CCFF" stroke="#3366CC" stroke-width="2" />
-    <text x="166" y="5" font-family="Arial" font-size="14" text-anchor="middle">X<tspan baseline-shift="super" font-size="10">T</tspan></text>
+    <text x="166" y="5" font-family="Arial" font-size="14" text-anchor="middle">X<tspan baseline-shift="sub" font-size="8">j</tspan><tspan baseline-shift="super" font-size="10">T</tspan></text>
     
     <!-- Multiply symbol -->
     <text x="215" y="50" font-family="Arial" font-size="18" text-anchor="middle">×</text>
@@ -92,7 +92,7 @@
     <line x1="0" y1="130" x2="0" y2="0" stroke="#333" stroke-width="2" /> <!-- y-axis -->
     
     <!-- Axis labels -->
-    <text x="140" y="145" font-family="Arial" font-size="12" text-anchor="middle">Genotype (X)</text>
+    <text x="140" y="145" font-family="Arial" font-size="12" text-anchor="middle">Genotype (X<tspan baseline-shift="sub" font-size="8">j</tspan>)</text>
     <text x="-20" y="75" font-family="Arial" font-size="12" text-anchor="middle" transform="rotate(-90, -20, 65)">Trait (Y)</text>
     
     <!-- Data points -->
