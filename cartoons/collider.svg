@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10" />
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Collider</text>
+  <!-- Basketball Recruitment bubble (the collider) -->
+  <ellipse cx="400" cy="330" rx="120" ry="90" fill="#e6e6ff" stroke="#6666cc" stroke-width="3" />
+  <text x="400" y="330" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold"
+    fill="#333">Collider</text>
+  <text x="400" y="360" font-family="Arial" font-size="20" text-anchor="middle" font-weight="bold" fill="#333">(Basketball</text>
+  <text x="400" y="380" font-family="Arial" font-size="20" text-anchor="middle" font-weight="bold" fill="#333">recruitment)</text>
+  <!-- Genotype and Trait boxes -->
+  <rect x="140" y="110" width="160" height="80" fill="#ffe6e6" stroke="#cc3366" stroke-width="3" rx="10" ry="10" />
+  <text x="220" y="150" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">Genetic</text>
+  <text x="220" y="175" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">Variant</text>
+  <rect x="500" y="110" width="160" height="80" fill="#e6ffe6" stroke="#33cc66" stroke-width="3" rx="10" ry="10" />
+  <text x="580" y="150" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">Trait</text>
+  <text x="580" y="175" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">(Height)</text>
+  <!-- Connecting arrows from genotype and trait to collider -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  <!-- Arrow from genotype to collider -->
+  <line x1="250" y1="200" x2="310" y2="250" stroke="#cc3366" stroke-width="3" marker-end="url(#arrowhead)" />
+  <!-- Arrow from trait to collider -->
+  <line x1="550" y1="200" x2="490" y2="250" stroke="#33cc66" stroke-width="3" marker-end="url(#arrowhead)" />
+  <!-- Induced association: dashed line between genotype and trait when conditioning on collider -->
+  <line x1="320" y1="150" x2="480" y2="150" stroke="#6666cc" stroke-width="3" stroke-dasharray="10,5" />
+  <text x="400" y="175" font-family="Arial" font-size="18" text-anchor="middle" fill="#6666cc"
+    font-style="italic">Induced Association</text>
+  <text x="400" y="110" font-family="Arial" font-size="14" text-anchor="middle" fill="#6666cc"
+    font-style="italic">(only appears</text>
+    <text x="400" y="130" font-family="Arial" font-size="14" text-anchor="middle" fill="#6666cc"
+    font-style="italic">when conditioning on collider)</text>
+  <!-- True causal pathway annotation -->
+  <text x="240" y="235" font-family="Arial" font-size="12" text-anchor="middle" fill="#cc3366"
+    transform="rotate(43, 250, 270)">Affects athletic</text>
+  <text x="225" y="265" font-family="Arial" font-size="12" text-anchor="middle" fill="#cc3366"
+    transform="rotate(43, 260, 300)">ability</text>
+
+  <text x="555" y="235" font-family="Arial" font-size="12" text-anchor="middle" fill="#33cc66"
+    transform="rotate(-43, 560, 270)">Tall players get</text>
+  <text x="560" y="250" font-family="Arial" font-size="12" text-anchor="middle" fill="#33cc66"
+    transform="rotate(-43, 560, 270)">recruited</text>
+  <!-- Legend -->
+  <rect x="50" y="290" width="20" height="20" fill="#e6e6ff" stroke="#6666cc" stroke-width="2" />
+  <text x="80" y="310" font-family="Arial" font-size="16" fill="#333">Collider</text>
+  <rect x="50" y="335" width="20" height="20" fill="#ffe6e6" stroke="#cc3366" stroke-width="2" />
+  <text x="80" y="350" font-family="Arial" font-size="16" fill="#333">X (Genetic Variant)</text>
+  <rect x="50" y="375" width="20" height="20" fill="#e6ffe6" stroke="#33cc66" stroke-width="2" />
+  <text x="80" y="390" font-family="Arial" font-size="16" fill="#333">Y (Trait)</text>
+  <line x1="50" y1="425" x2="70" y2="425" stroke="#6666cc" stroke-width="2" stroke-dasharray="4,2" />
+  <text x="80" y="430" font-family="Arial" font-size="16" fill="#333">Induced Association</text>
+  <!-- Bottom caption -->
+  <text x="400" y="460" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">
+    When we select only basketball players (condition on the collider),
+  </text>
+  <text x="400" y="480" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">
+    a spurious association may appear between genetic variants and height.
+  </text>
+</svg>
