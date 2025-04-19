@@ -1,0 +1,106 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10" />
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Marginal vs. Joint Effects</text>
+  
+  <!-- Divider Line -->
+  <line x1="400" y1="70" x2="400" y2="460" stroke="#cccccc" stroke-width="2" stroke-dasharray="5,5" />
+  
+  <!-- Left Side: Marginal Effects -->
+  <text x="200" y="80" font-family="Arial" font-size="20" text-anchor="middle" font-weight="bold" fill="#3366cc">Marginal Effects</text>
+  <text x="200" y="105" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic" fill="#333">(Three separate models, Y = Xⱼβⱼ)</text>
+  
+  <!-- Model 1 -->
+  <rect x="120" y="130" width="40" height="120" fill="#e6f2ff" stroke="#3366cc" stroke-width="2" />
+  <text x="140" y="200" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold" fill="#333">Y</text>
+  
+  <text x="175" y="200" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">=</text>
+  
+  <rect x="200" y="130" width="40" height="120" fill="#ffe6e6" stroke="#cc3366" stroke-width="2" />
+  <text x="220" y="150" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₁₁</text>
+  <text x="220" y="180" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₂₁</text>
+  <text x="220" y="210" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">...</text>
+  <text x="220" y="240" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Xₙ₁</text>
+  
+  <text x="250" y="200" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">×</text>
+  
+  <rect x="270" y="170" width="40" height="40" fill="#fff2e6" stroke="#ff9933" stroke-width="2" />
+  <text x="290" y="195" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold" fill="#333">β₁</text>
+  
+  <!-- Model 2 -->
+    <circle cx="175" cy="260" r="2" fill="black"/>
+    <circle cx="175" cy="270" r="2" fill="black"/>
+    <circle cx="175" cy="280" r="2" fill="black"/>
+  
+  <!-- Model 3 -->
+
+ <rect x="120" y="290" width="40" height="120" fill="#e6f2ff" stroke="#3366cc" stroke-width="2" />
+  <text x="140" y="360" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold" fill="#333">Y</text>
+  
+  <text x="175" y="360" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">=</text>
+  
+  <rect x="200" y="290" width="40" height="120" fill="#e2d1e6" stroke="#b257dd"  stroke-width="2" />
+  <text x="220" y="310" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₁₃</text>
+  <text x="220" y="340" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₂₃</text>
+  <text x="220" y="370" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">...</text>
+  <text x="220" y="400" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Xₙ₃</text>
+  
+  <text x="250" y="360" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">×</text>
+  
+  <rect x="270" y="330" width="40" height="40" fill="#fff2e6" stroke="#ff9933" stroke-width="2" />
+  <text x="290" y="355" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold" fill="#333">β₃</text>
+
+  <!-- Key point for marginal -->
+  <rect x="50" y="425" width="300" height="45" fill="#f2f2f2" stroke="#666666" stroke-width="2" rx="10" ry="10" />
+  <text x="200" y="455" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">Each variant analyzed independently</text>
+  
+  <!-- Right Side: Joint Effects -->
+  <text x="600" y="80" font-family="Arial" font-size="20" text-anchor="middle" font-weight="bold" fill="#33cc66">Joint Effects</text>
+  <text x="600" y="105" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic" fill="#333">(One model with all variants, Y = Xβ)</text>
+  
+  <!-- Y Vector -->
+  <rect x="450" y="210" width="40" height="120" fill="#e6f2ff" stroke="#3366cc" stroke-width="2" />
+  <text x="470" y="280" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold" fill="#333">Y</text>
+  
+  <text x="505" y="280" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">=</text>
+  
+  <!-- Design Matrix X -->
+  <rect x="530" y="210" width="120" height="120" fill="#f8f9fa" stroke="#666666" stroke-width="2" />
+  
+  <!-- Column 1 -->
+  <rect x="530" y="210" width="40" height="120" fill="#ffe6e6" />
+  <text x="550" y="230" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₁₁</text>
+  <text x="550" y="260" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₂₁</text>
+  <text x="550" y="290" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">...</text>
+  <text x="550" y="320" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Xₙ₁</text>
+  
+  <!-- Column 2 -->
+  <rect x="570" y="210" width="40" height="120" fill="#e6ffe6" />
+  <text x="590" y="230" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₁₂</text>
+  <text x="590" y="260" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₂₂</text>
+  <text x="590" y="290" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">...</text>
+  <text x="590" y="320" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Xₙ₂</text>
+  
+  <!-- Column 3 -->
+  <rect x="610" y="210" width="40" height="120" fill="#e2d1e6" />
+  <text x="630" y="230" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₁₃</text>
+  <text x="630" y="260" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">X₂₃</text>
+  <text x="630" y="290" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">...</text>
+  <text x="630" y="320" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Xₙ₃</text>
+  
+  <text x="665" y="280" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">×</text>
+  
+  <!-- Beta Vector -->
+  <rect x="680" y="230" width="40" height="90" fill="#fff2e6" stroke="#ff9933" stroke-width="2" />
+  <text x="700" y="250" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">β₁</text>
+  <text x="700" y="280" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">β₂</text>
+  <text x="700" y="310" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">β₃</text>
+  
+ 
+  <!-- Key point for joint -->
+  <rect x="450" y="395" width="300" height="75" fill="#f2f2f2" stroke="#666666" stroke-width="2" rx="10" ry="10" />
+  <text x="600" y="425" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">Accounts for correlations</text>
+  <text x="600" y="455" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">between variants (i.e., LD)</text>
+</svg>
