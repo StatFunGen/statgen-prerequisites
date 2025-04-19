@@ -1,6 +1,6 @@
 <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="100%" height="100%" fill="white"/>
+  <rect width="700" height="700" fill="white"/>
   
   <!-- Styles -->
   <style>
