@@ -60,12 +60,117 @@ echo "" >> "$OUTPUT_FILE"
 # Extract markdown cells and save to temporary file
 jq -r '.cells[] | select(.cell_type == "markdown") | .source | join("")' "$INPUT_FILE" > temp_markdown.txt
 
-# Preprocess the markdown file to identify and tag nested bullet points
+# Function to process Markdown tables to LaTeX tables
+convert_table_to_latex() {
+    local table_content="$1"
+    local lines=()
+    local line_count=0
+    
+    # Read lines into an array, skipping empty lines
+    while IFS= read -r line; do
+        if [[ -n "$line" && "$line" != *"---"* ]]; then
+            lines[$line_count]="$line"
+            ((line_count++))
+        fi
+    done <<< "$table_content"
+    
+    # Get header line (first line) and data lines
+    local header_line="${lines[0]}"
+    
+    # Count columns based on the header line
+    local num_columns=$(echo "$header_line" | grep -o "|" | wc -l)
+    num_columns=$((num_columns - 1))  # Adjust for pipe at beginning/end
+    
+    # Start LaTeX table with resizing to fit the slide width
+    echo "\\begin{table}[h]"
+    echo "\\centering"
+    echo "\\resizebox{\\textwidth}{!}{" # Make table fit slide width
+    echo "\\begin{tabular}{|$(printf "%0.s""c|" $(seq 1 $num_columns))}"
+    echo "\\hline"
+    
+    # Process header
+    local header_content=$(echo "$header_line" | sed 's/^|//;s/|$//')
+    IFS='|' read -ra HEADER_CELLS <<< "$header_content"
+    local header_row=""
+    for cell in "${HEADER_CELLS[@]}"; do
+        # Trim spaces and add to header row
+        trimmed_cell=$(echo "$cell" | sed 's/^ *//;s/ *$//')
+        # Apply formatting
+        trimmed_cell=$(echo "$trimmed_cell" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')  # Bold
+        trimmed_cell=$(echo "$trimmed_cell" | sed 's/`\([^`]*\)`/\\texttt{\1}/g')  # Code
+        header_row="${header_row}${trimmed_cell} & "
+    done
+    # Remove the trailing " & " and add line ending
+    header_row=$(echo "$header_row" | sed 's/ & $//')
+    echo "$header_row \\\\ \\hline"
+    
+    # Process data rows (skip the header)
+    for ((i=1; i<${#lines[@]}; i++)); do
+        local data_line="${lines[$i]}"
+        
+        # Extract and process cells
+        local row_content=$(echo "$data_line" | sed 's/^|//;s/|$//')
+        IFS='|' read -ra DATA_CELLS <<< "$row_content"
+        local data_row=""
+        for cell in "${DATA_CELLS[@]}"; do
+            # Trim spaces and add to data row
+            trimmed_cell=$(echo "$cell" | sed 's/^ *//;s/ *$//')
+            # Apply formatting
+            trimmed_cell=$(echo "$trimmed_cell" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')  # Bold
+            trimmed_cell=$(echo "$trimmed_cell" | sed 's/`\([^`]*\)`/\\texttt{\1}/g')  # Code
+            data_row="${data_row}${trimmed_cell} & "
+        done
+        # Remove the trailing " & " and add line ending
+        data_row=$(echo "$data_row" | sed 's/ & $//')
+        echo "$data_row \\\\ \\hline"
+    done
+    
+    # End LaTeX table
+    echo "\\end{tabular}}"
+    echo "\\end{table}"
+}
+
+# Preprocess markdown to identify tables and tag them for later processing
+awk -v RS= -v ORS='\n\n' '
+    # Process tables (lines that start with | and contain |---|)
+    /^\|.*\n\|[-:\| ]+\|/ {
+        print "TABLE_START";
+        print;
+        print "TABLE_END";
+        next;
+    }
+    # Print other blocks unchanged
+    {
+        print;
+    }
+' temp_markdown.txt > temp_with_tables.txt
+
+# Now preprocess to identify and tag nested bullet points
 awk '
     BEGIN { 
         in_list = 0;
         prev_indent = 0;
         list_level = 0;
+        in_table = 0;
+    }
+    
+    # Handle table markers
+    /^TABLE_START/ {
+        in_table = 1;
+        print;
+        next;
+    }
+    
+    /^TABLE_END/ {
+        in_table = 0;
+        print;
+        next;
+    }
+    
+    # If in table, print lines as is
+    in_table == 1 {
+        print;
+        next;
     }
     
     # Detect bullet points and their indentation level
@@ -147,7 +252,7 @@ awk '
             }
         }
     }
-' temp_markdown.txt > processed_markdown.txt
+' temp_with_tables.txt > processed_markdown.txt
 
 # Now convert the processed markdown to LaTeX
 {
@@ -155,8 +260,30 @@ awk '
     current_section=""
     current_subsection=""
     capture_section=false
+    in_table=false
+    table_content=""
     
     while IFS= read -r line || [[ -n "$line" ]]; do
+        # Check for table markers
+        if [[ "$line" == "TABLE_START" ]]; then
+            in_table=true
+            table_content=""
+            continue
+        elif [[ "$line" == "TABLE_END" ]]; then
+            in_table=false
+            # Process the table content to LaTeX
+            if [ "$capture_section" = true ]; then
+                latex_table=$(convert_table_to_latex "$table_content")
+                echo "$latex_table" >> "$OUTPUT_FILE"
+            fi
+            continue
+        elif [[ "$in_table" == true ]]; then
+            # Collect table content
+            table_content="${table_content}${line}
+"
+            continue
+        fi
+        
         # Check for main section headers (# Level 1)
         if [[ "$line" =~ ^#[[:space:]]+(.*) ]]; then
             section="${BASH_REMATCH[1]}"
@@ -178,7 +305,7 @@ awk '
                 # For Graphical Summary, create the frame immediately
                 if [[ "$section" == "Graphical Summary" ]]; then
                     echo "\\begin{frame}{$current_section}" >> "$OUTPUT_FILE"
-                    echo "\\includesvg[width=0.8\\textwidth]{./cartoons/genotype_coding.svg}" >> "$OUTPUT_FILE"
+                    echo "\\includesvg[width=0.8\\textwidth]{./cartoons/${BASENAME}.svg}" >> "$OUTPUT_FILE"
                     echo "\\end{frame}" >> "$OUTPUT_FILE"
                     echo "" >> "$OUTPUT_FILE"
                     capture_section=false
@@ -229,12 +356,14 @@ awk '
             elif [[ "$line" =~ ^ITEM_LEVEL_[0-9]+[[:space:]] ]]; then
                 # Extract the item text
                 item_text=$(echo "$line" | sed -E 's/^ITEM_LEVEL_[0-9]+[[:space:]]//')
-                # Convert bold text to LaTeX bold
-                item_text=$(echo "$item_text" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')
+                # Convert formatting
+                item_text=$(echo "$item_text" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')  # Convert bold
+                item_text=$(echo "$item_text" | sed 's/`\([^`]*\)`/\\texttt{\1}/g')  # Convert inline code
                 echo "\\item $item_text" >> "$OUTPUT_FILE"
             else
-                # Regular text - convert bold text to LaTeX bold
-                processed_line=$(echo "$line" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')
+                # Regular text - convert formatting
+                processed_line=$(echo "$line" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')  # Convert bold
+                processed_line=$(echo "$processed_line" | sed 's/`\([^`]*\)`/\\texttt{\1}/g')  # Convert inline code
                 # Only output if not a subsection marker line
                 if [[ ! "$processed_line" =~ ^##[[:space:]]+ ]]; then
                     echo "$processed_line" >> "$OUTPUT_FILE"
@@ -251,6 +380,6 @@ awk '
 } < processed_markdown.txt
 
 # Clean up
-rm temp_markdown.txt processed_markdown.txt
+rm temp_markdown.txt temp_with_tables.txt processed_markdown.txt
 
 echo "Conversion complete! Output saved to $OUTPUT_FILE"
