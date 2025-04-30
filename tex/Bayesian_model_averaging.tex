@@ -1,0 +1,79 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Bayesian Model Averaging}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Bayesian Model Averaging improves predictions by combining multiple models weighted by their posterior probabilities, acknowledging uncertainty in model selection rather than relying on a single "best" model.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/Bayesian_model_averaging.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+Let’s assume we have a set of models $M_1, M_2, \dots, M_K$ and we want to predict a value for a new observation $y^*$ based on the models. For each model $M_k$, we calculate a prediction, denoted as $\hat{y}^*_k$. 
+
+The \textbf{model-averaged prediction} is typically given by the weighted sum of the predictions from each model:
+
+$$
+\hat{y}^*_{\text{avg}} = \sum_{k=1}^{K} w_k \hat{y}^*_k
+$$
+
+Where:
+\begin{itemize}
+\item $w_k$ is the weight associated with model $M_k$, which reflects how likely or good the model is at describing the data.
+\item $\hat{y}^*_k$ is the prediction made by model $M_k$ for the new data point.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Technical Details: Weights in Model Averaging}
+
+The weights $w_k$ can be assigned based on various criteria:
+1. \textbf{Bayesian Model Averaging (BMA)}: In the Bayesian framework, the weights correspond to the posterior model probabilities, i.e., the probability of each model given the data:
+
+   $$ 
+   w_k = P(M_k | D) 
+   $$
+
+   Where $P(M_k | D)$ is the posterior probability of model $M_k$ given the observed data $D$.
+
+2. \textbf{[Do we want to include AIC and BIC???]}
+
+\textbf{Akaike Information Criterion (AIC) or Bayesian Information Criterion (BIC)}: In a frequentist context, the weights are often computed based on the relative likelihood of each model, using information criteria like AIC or BIC. The models with lower AIC/BIC values are considered to be more likely and receive higher weights.
+
+   $$ 
+   w_k = \frac{e^{-\frac{1}{2} \Delta \text{AIC}_k}}{\sum_{j=1}^K e^{-\frac{1}{2} \Delta \text{AIC}_j}} 
+   $$
+
+   Where $\Delta \text{AIC}_k = \text{AIC}_k - \min(\text{AIC})$, and $\text{AIC}_k$ is the AIC of model $k$.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Why Model Averaging Works}
+
+BMA accounts for the uncertainty involved in selecting the model, \textbf{preserving the uncertainty about models}.
+
+1. \textbf{Reduced Risk of Overfitting}: By averaging over multiple models, we avoid overfitting to any one model. Even if one model fits the training data well but fails to generalize, other models can provide complementary information, reducing the overall risk of overfitting.
+  
+2. \textbf{Improved Accuracy}: If models make different types of errors, combining their predictions can reduce the variance and bias, leading to more accurate predictions.
+
+3. \textbf{Incorporating Model Uncertainty}: In cases where model uncertainty is high, model averaging incorporates this uncertainty by using multiple models and averaging their predictions, rather than relying on a single model.
+
+\begin{itemize}
+\item \textbf{Advantages of BMA}
+\begin{itemize}
+\item Accounts for model uncertainty, leading to more robust inference.
+\item Prevents overconfidence in a single model when multiple models have similar posterior probabilities.
+\item Helps mitigate overfitting, especially with limited data.
+\end{itemize}
+\end{itemize}
+\end{frame}
+

@@ -1,0 +1,58 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Bayesian Model Comparison}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Bayesian model comparison evaluates competing models by measuring how well they predict observed data while accounting for model complexity, which is reflected in how broadly the prior distribution spreads probability across the parameter space.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/Bayesian_model_comparison.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+When comparing two models $M_1$ and $M_2$, we calculate the \textbf{posterior odds} for each model. The \textbf{posterior odds} represent the ratio of the posterior probabilities for the two models. This can be written as:
+
+$$
+\frac{P(M_1|D)}{P(M_2|D)} = \frac{P(D|M_1)P(M_1)}{P(D|M_2)P(M_2)}
+$$
+
+Where:
+\begin{itemize}
+\item $P(M_1|D)$ is the \textbf{posterior} probability of model $M_1$ given the data $D$.
+\item $P(M_2|D)$ is the \textbf{posterior} probability of model $M_2$ given the data $D$.
+\item $\frac{P(D|M_1)}{P(D|M_2)}$ is the \textbf{bayes factor} of $M_1$ and $M_2$
+\item $P(M_1)$ and $P(M_2)$ are the \textbf{prior probabilities} of models $M_1$ and $M_2$, respectively.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+Recall that the \textbf{Bayes Factor (BF)} is defined as:
+
+$$
+\text{BF}_{1,2} = \frac{L(\text{D}|\text{M}_1)}{L(\text{D}|\text{M}_2)} ={\frac {\int \Pr(\gamma _{1}|M_{1})\Pr(D|\gamma _{1},M_{1})\,d\gamma _{1}}{\int \Pr(\gamma _{2}|M_{2})\Pr(D|\gamma _{2},M_{2})\,d\gamma _{2}}} = \frac{\frac{Pr(M_1|D)Pr(D)}{Pr(M_1)} }{\frac{Pr(M_2|D)Pr(D)}{Pr(M_2)}} = \frac{Pr(M_1|D)}{Pr(M_2|D)} \times \frac{Pr(M_2)}{Pr(M_1)}
+$$
+
+This ratio here, $\frac{P(M_1|D)}{P(M_2|D)}$, simplifies to:
+
+$$
+\text{Posterior Odds} = \text{Prior Odds} \times \text{Bayes Factor (BF)}
+$$
+
+Where:
+\begin{itemize}
+\item \textbf{Prior Odds} = $\frac{P(M_1)}{P(M_2)}$ is the ratio of prior probabilities of the models.
+\item \textbf{Bayes Factor (BF)} = $\frac{P(D|M_1)}{P(D|M_2)}$ is the Bayes Factor of the two models given data $\text{D}$.
+\end{itemize}
+
+Thus, the \textbf{posterior odds} can be updated by multiplying the \textbf{prior odds} by the \textbf{Bayes Factor}.
+\end{frame}
+

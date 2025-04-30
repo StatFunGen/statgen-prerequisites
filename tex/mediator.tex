@@ -1,0 +1,50 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Mediator}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+A mediator is a variable that \textbf{sits in the causal pathway between an exposure and an outcome}, explaining the mechanism through which the exposure exerts its effect on the outcome.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/mediator.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+The key formula for the concept of a mediator is represented in a causal diagram as:
+$$
+X → M → Y
+$$
+Where:
+\begin{itemize}
+\item $X$ is the independent variable (e.g., genetic variant)
+\item $M$ is the mediator variable
+\item $Y$ is the dependent variable (e.g., trait)
+\item The arrows (→) indicate the direction of causal influence
+\end{itemize}
+
+This diagram illustrates that a mediator ($M$) lies in the causal pathway between the independent variable ($X$) and the dependent variable ($Y$). The mediator transmits the effect of $X$ on $Y$, creating an indirect causal pathway through which $X$ affects $Y$.
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+A \textbf{mediator} is a variable that explains the mechanism or process by which an independent variable (exposure) influences a dependent variable (outcome). Unlike confounders, mediators are part of the causal pathway and represent how or why an effect occurs.
+
+In formal causal inference terminology, mediation analysis separates the total effect of $X$ on $Y$ into:
+
+1. Direct Effect: The effect of $X$ on $Y$ that does not go through $M$
+2. Indirect Effect: The effect of $X$ on $Y$ that operates through $M$
+
+The total effect can be decomposed as:
+
+$$\text{Total Effect} = \text{Direct Effect} + \text{Indirect Effect}$$
+
+Unlike confounders which should be controlled for, adjusting for mediators can block the pathway of interest and mask the total causal effect being studied.
+\end{frame}
+

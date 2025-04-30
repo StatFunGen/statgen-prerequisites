@@ -1,0 +1,34 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Minor Allele Frequency}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+The minor allele frequency (MAF) represents the proportion of the less common allele in a population, which equals half the expected genotype value in diploid organisms like humans since each individual carries two alleles per locus.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/minor_allele_frequency.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+$$\text{MAF}_j = \frac{\mathbb{E}[X_{\text{additive},j}]}{2} = \frac{1}{2N}\sum_{i=1}^{N} X_{\text{additive},ij}$$
+
+Where:
+\begin{itemize}
+\item $X_{\text{additive},ij}$ represents the count of alternative alleles (0,1,2) for individual $i$ at variant $j$
+\item The division by 2 is necessary because in the additive model for diploid organisms, each individual contributes two alleles
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+If there are only two alleles at the same locus, then the frequency of them can be denoted as $f_j$ and $1-f_j$, and the $\text{MAF}_j$ is always defined as $\min(f_j, 1 - f_j)$ (ensuring that it always represents the frequency of the \textbf{less} common allele in the population, i.e., \textbf{minor allele}). If there are more alleles, the \textbf{MAF} is specific for each minor allele.
+
+\end{frame}
+

@@ -1,0 +1,76 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Likelihood Ratio Test}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+In statistics, the \textbf{likelihood-ratio test (LRT)} is a hypothesis test that involves comparing the goodness of fit of two competing statistical models, based on the ratio of their likelihoods (\textbf{LR}).
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/likelihood_ratio_test.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+If the first hypothesis ($H_1$) believes that the parameter $\theta$ lies in a specified subset $\Theta_1$ of $\Theta$ and the second hypothesis ($H_2$) believes that $\theta$ lies in the $\Theta_2$, the likelihood ratio test statistic (\textbf{LRT}) between those two hypothesis is given by:
+
+$$
+\lambda_{\text{LR}}=-2\ln \left[{\frac {~\sup_{\theta \in \Theta_1}{\mathcal{L}}(\theta)~}{~\sup_{\theta \in \Theta_2}{\mathcal{L}}(\theta)~}}\right] = -2 \left[ \ln \left( ~\sup_{\theta \in \Theta_1}{\mathcal{L}}(\theta)~\right) -\ln \left( ~\sup_{\theta \in \Theta_2}{\mathcal{L}}(\theta)~\right) \right]
+$$
+
+Where the $\sup$ notation refers to the supremum.
+
+[FIXME]-- here do we use the general H0 and H1 (null and alternative) or stick to H1 and H2?
+\end{frame}
+
+
+\begin{frame}{Technical Details: Why $\log$ instead of the ratio directly?}
+In practice, we often work with the log-likelihood ratio for several reasons:
+\begin{itemize}
+\item Likelihoods can be extremely small numbers (e.g., $10^{-300}$) that may cause numerical underflow
+\item The log transformation converts multiplications into additions, which is computationally more stable
+\item The resulting statistic has better-understood statistical properties
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Null and Alternative}
+
+A null hypothesis is often stated by saying that the parameter $\Theta_0$ of $\Theta$, while the alternative hypothesis is thus that $\theta$ lies in the complement of $\Theta_0$, i.e., in $\Theta \backslash \Theta_0$, which is denoted by $\Theta_0^{\text{c}}$. The likelihood ratio test statistic for the null hypothesis $H_0: \theta \in \Theta_0$ (versus the whole space $\Theta$) is given by:
+
+$$
+\lambda_{\text{LR}}=-2\ln \left[{\frac {~\sup_{\theta \in \Theta_0}{\mathcal{L}}(\theta)~}{~\sup_{\theta \in \Theta}{\mathcal{L}}(\theta)~}}\right]
+$$
+
+where the quantity inside the brackets is called the likelihood ratio. Here, the $\sup$ notation refers to the supremum. As all likelihoods are positive, and as the constrained maximum cannot exceed the unconstrained maximum, the likelihood ratio here is bounded between zero and one and therefore the $\lambda$ here would always be positive.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Interpretation}
+For the likelihood ratio (LRT):
+\begin{itemize}
+\item $\lambda < 0$: Model 1 better explains the data (higher likelihood)
+\item $\lambda > 0$: Model 2 better explains the data (higher likelihood)
+\item $\lambda = 0$: Both models explain the data equally well
+\end{itemize}
+
+The magnitude of $\lambda$ indicates the strength of evidence:
+\begin{itemize}
+\item Larger absolute values of $\lambda$ indicate stronger evidence in favor of one model over the other
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Properties}
+\begin{itemize}
+\item The likelihood ratio (LR) is always non-negative: $\text{LR} \geq 0$
+\item The log-likelihood ratio test statistic (LRT) can be positive or negative
+\item The factor of -2 in $\lambda$ is chosen for theoretical reasons relating to chi-squared distributions
+\end{itemize}
+\end{frame}
+

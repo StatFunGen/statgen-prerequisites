@@ -1,0 +1,35 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Bayes Factor}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+The Bayes factor is the ratio of two \textbf{marginal} likelihoods; that is, the likelihoods of two statistical models integrated over the prior probabilities of their parameters.
+
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/Bayes_factor.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+Given a model selection problem in which one wishes to choose between two models on the basis of observed data $\text{D}$, the plausibility of the two different models $\text{M}_1$ and $\text{M}_2$, parametrised by model parameter vectors $\gamma_1$ and $\gamma_2$, is assessed by the Bayes factor $\text{BF}$ given by:
+$$
+\text{BF}_{1,2} = \frac{L(\text{D}|\text{M}_1)}{L(\text{D}|\text{M}_2)} ={\frac {\int \Pr(\gamma _{1}|M_{1})\Pr(D|\gamma _{1},M_{1})\,d\gamma _{1}}{\int \Pr(\gamma _{2}|M_{2})\Pr(D|\gamma _{2},M_{2})\,d\gamma _{2}}}
+$$
+\end{frame}
+
+
+\begin{itemize}
+\item If instead of the Bayes factor integral, the likelihood corresponding to the maximum likelihood estimate (MLE) of the parameter for each statistical model is used, then the test becomes a classical likelihood-ratio test. The likelihood at the MLE is just a point estimate of the Bayes factor numerator and denominator, respectively. 
+\item Unlike a likelihood-ratio test (LRT), this Bayesian model comparison \textbf{does not depend on any single set of parameters, as it integrates over all parameters in each model (with respect to the respective priors)}. 
+\item Therefore, \textbf{likelihood ratio} can be considered as a \textbf{special case of Bayesian analysis} with a contrived prior that's hard to get at. 
+\item An advantage of the use of Bayes factors is that it automatically, and quite naturally, includes a penalty for including too much model structure. It thus guards against overfitting. For models where an explicit version of the likelihood is not available or too costly to evaluate numerically, approximate Bayesian computation can be used for model selection in a Bayesian framework, with the caveat that approximate-Bayesian estimates of Bayes factors are often biased.
+\end{itemize}
+\end{frame}
+

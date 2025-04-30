@@ -1,0 +1,44 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Ordinary Least Squares}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Single marker linear regression in statistical genetics explores how a specific genetic variant influences a trait by estimating a linear relationship between the variant's presence and the trait value.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/ordinary_least_squares.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+In the single marker linear regression, $\mathbf{Y} = \mathbf{X} \beta  + \boldsymbol{\epsilon}$,
+\begin{itemize}
+\item $\mathbf{Y}$ is the $N \times 1$ vector of trait values for $N$ individuals
+\item $\mathbf{X}$ is the $N \times 1$ vector of the genotype vector for a single variant across $N$ individuals
+\item $\beta$ is the scalar representing the effect size for the single variant (to be estimated)
+\item $\epsilon$ is the $N \times 1$ vector of error terms for $N$ individuals and $\epsilon \sim N(0, \sigma^2)$
+\end{itemize}
+
+Using \textbf{ordinary least squares (OLS)}, we can derive the estimators for $\boldsymbol{\beta}$ in matrix form:
+
+$$
+\hat{\beta}_{\text{OLS}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
+$$
+
+\end{frame}
+
+
+\begin{frame}{Technical Details: Formula for a specific individual}
+For individual $i$, this model can be written as:
+
+$$
+y_i =  \mathbf{X}_{i,j} \beta + \epsilon_i, \quad \epsilon_i \sim N(0, \sigma^2)
+$$
+\end{frame}
+

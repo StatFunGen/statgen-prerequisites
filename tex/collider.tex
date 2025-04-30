@@ -1,0 +1,56 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Collider}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+A collider is a variable that is \textbf{influenced by two other variables of interest}, creating a \textbf{spurious} association between them when we condition on (select or control for) the collider in our analysis.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/collider.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+The key formula for the concept of a collider is represented in a causal diagram as:
+$$
+X \rightarrow C \leftarrow Y
+$$
+Where:
+\begin{itemize}
+\item $C$ is the collider variable
+\item $X$ is one cause of the collider
+\item $Y$ is another cause of the collider
+\item The arrows (→) indicate the direction of causal influence
+\end{itemize}
+
+This diagram illustrates that a collider ($C$) is a variable that is *caused by* both the exposure ($X$) and the outcome ($Y$), creating a situation where $X$ and $Y$ both flow into $C$.
+
+A \textbf{collider} is a variable that is influenced by two other variables in a causal pathway. When we condition on (adjust for, stratify by, or select based on) a collider, we can induce a spurious association between its causes, even if they were originally independent.
+
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+Conditioning on a collider can introduce bias in the estimation of the relationship between its causes. This is often called \textbf{collider bias} or \textbf{selection bias}.
+
+In formal causal inference terminology, conditioning on a collider creates a situation where:
+$$
+P(Y|X) \neq P(Y|X, C)
+$$
+Where conditioning on $C$ creates a non-causal association between $X$ and $Y$. This inequality shows that the association between $X$ and $Y$ differs when we condition on the collider.
+
+Key characteristics of collider bias:
+1. \textbf{Induced Association}: Conditioning on a collider can create an association between variables that are causally independent
+2. \textbf{Berkson's Paradox}: A classic example of collider bias in epidemiology
+3. \textbf{Selection Bias}: Often occurs when study participants are selected based on criteria affected by both exposure and outcome
+4. \textbf{M-Bias}: A specific pattern in DAGs where conditioning on a collider creates a biased path
+
+Unlike confounders which \textbf{should be controlled} for in analyses, colliders \textbf{should not be controlled} for when estimating the causal effect of interest.
+\end{frame}
+

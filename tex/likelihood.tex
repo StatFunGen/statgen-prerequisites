@@ -1,0 +1,62 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Likelihood}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Likelihood is the plausibility of observing your data given a specific model or parameter value.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/likelihood.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+The likelihood for a model $\text{M}$ based on data $\text{D}$ is:
+
+$$
+\mathcal{L}(\text{M}|\text{D}) = P(\text{D}|\text{M})
+$$
+
+Where:
+\begin{itemize}
+\item (\text{M})$ is the likelihood function for model $\text{M}$ under data $\text{D}$
+\item $\text{M}$ represents the model
+\item $\text{D}$ represents the observed data
+\item $P(\text{D}|\text{M})$ is the probability of observing data $\text{D}$ given the model $\text{M}$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Technical Details: Single Sample}
+For a single observation $d$:
+$\mathcal{L}(d|\text{M}) = P(d|\text{M})$
+
+\end{frame}
+
+\begin{frame}{Technical Details: Multiple Samples (Independence Assumption)}
+For multiple independent observations $\text{D} = \{d_1, d_2, ..., d_n\}$:
+$$
+\mathcal{L}(\text{D}|\text{M}) = \prod_{i=1}^{n} P(d_i|\text{M})
+$$
+
+Under the assumption of independence, the joint probability of multiple independent samples is the product of their individual probabilities. 
+
+\end{frame}
+
+\begin{frame}{Technical Details: Log-Likelihood}
+We often work with log-likelihood for computational stability:
+
+$\mathcal{L}(\text{D}|\text{M}) = \log \mathcal{L}(\text{D}|\text{M}) = \sum_{i=1}^{n} \log P(d_i|\text{M})$
+
+The log transformation converts products to sums, making calculations easier and preventing numerical underflow with very small probabilities.
+
+In $\log$, unless otherwise specified, we use log base e.
+
+\end{frame}
+

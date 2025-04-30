@@ -1,0 +1,86 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Bayesian Mixture Model}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Bayesian mixture models are widely used in statistics to model data where observations come from a "mixture" of two or more different distributions.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/Bayesian_mixture_model.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+In a mixture model, we assume that the observed data are generated from a weighted sum of $K$ different distributions, where each distribution corresponds to a different "component" in the mixture. The probability density function (PDF) of a mixture model can be written as:
+
+$$
+f(y) = \sum_{k=1}^{K} \pi_k f_k(y)
+$$
+
+Where:
+
+\begin{itemize}
+\item $f(y)$ is the overall probability density function for observation $y$
+\item $K$ is the number of component distributions (subpopulations)
+\item $\pi_k$ is the mixture weight for the $k$-th component (with $\sum_{k=1}^{K} \pi_k = 1$)
+\item $f_k$ is the probability density function of the $k$-th continuous distribution, or probability mass functions if they are $k$ discrete contributions
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Technical Details: Component Densities and Mixture Proportions}
+
+$$
+f(y) = \sum_{k=1}^{K} \pi_k f_k(y)
+$$
+
+This is called a \textbf{mixture distribution} (or mixture model, or just mixture) with K components. (Sometimes it is called a finite mixture because one can also further generalize the ideas to an uncountably infinite number of components!)
+
+The $f_1,…,f_K$ are called the \textbf{component densities} (or component distributions).
+
+The $\pi_1,…,\pi_K$ are called the \textbf{mixture proportions}, where $\pi_k \geq 0$ and $\sum_{k=1}^K \pi_k=1$.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Hidden Variables}
+
+The unobserved random variable $Z$ is sometimes referred to as the “component of origin” or the “component that gave rise to” the observation $Y$. If we have $N$ observations $Y_1,…,Y_N$ from a mixture model it is common to let $Z_i$ denote the component that gave rise to $Y_i$.
+
+Introducing unobserved variables, $Z_i$, to help with computations or derivations is a common trick that is used beyond mixture models. This trick is sometimes called data augmentation. The unobserved random variables are sometimes called \textbf{hidden variables or latent variables}. Representing the mixture model
+
+$$
+p(y) = \sum_{k=1}^{K} \pi_k f_k(y)
+$$
+
+by the two-stage process:
+
+$$
+p(Z=k) = \pi_k \\
+p(y|Z=k) = f_k(y)
+$$
+
+is called the \textbf{latent variable representation of the mixture model}.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Mixture of normal distributions}
+
+In the case of a \textbf{mixture of normal distributions}, the individual components can be described by normal distributions with means $\mu_k$ and variances $\sigma_k^2$. The overall mixture density is then:
+
+$$
+f(y_i) = \sum_{k=1}^{K} \pi_k \mathcal{N}(y_i | \mu_k, \sigma_k^2)
+$$
+
+Where:
+\begin{itemize}
+\item $\mathcal{N}(y_i | \mu_k, \sigma_k^2)$ is the probability density function of the normal distribution for the $k$-th component, with mean $\mu_k$ and variance $\sigma_k^2$.
+\end{itemize}
+\end{frame}
+

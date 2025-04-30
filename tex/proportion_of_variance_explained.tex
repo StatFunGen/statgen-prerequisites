@@ -1,0 +1,73 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Proportion Of Variance Explained}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Proportion of variance explained (PVE) measures how much of the total variation in a trait (like height or disease risk) can be attributed to specific variables in your statistical model (e.g., genetic variants). Heritability is a specific application of this concept that measures how much of the variation in a trait across a population can be explained by genetic differences.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/proportion_of_variance_explained.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+Any phenotype can be modeled as the sum of genetic and environmental effects, i.e., $\text{Phenotype}~(Y) = \text{Genotype}~(G) + \text{Environment}~(E)$, and under the assumption that G and E are independent from each other, the \textbf{proportion of variance explained (PVE)} by genetic effect alone (also called  broad-sense heritability $H^2$) can be derived as 
+
+$$
+\text{PVE} = H^2 = \frac{\text{Var}(G)}{\text{Var}(Y)}
+$$
+
+where:
+\begin{itemize}
+\item $\text{Var}(G)$ is the genetic variance component
+\item $\text{Var}(E)$ is the environmental variance component
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Technical Details: Components of Variance}
+
+Any phenotype can be modeled as the sum of genetic and environmental effects:
+
+$$\text{Phenotype}~(P) = \text{Genotype}~(G) + \text{Environment}~(E)$$
+
+The phenotypic variance in the trait can then be partitioned as:
+
+$$\text{Var}(P) = \text{Var}(G) + \text{Var}(E) + 2\text{Cov}(G,E)$$
+
+Where:
+\begin{itemize}
+\item $\text{Var}(G)$ is the genetic variance component
+\item $\text{Var}(E)$ is the environmental variance component
+\item $\text{Cov}(G,E)$ is the covariance between genetic and environmental effects
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Broad-sense Heritability}
+
+In controlled experimental settings, we can design studies where $\text{Cov}(G,E)$ is minimized and effectively set to zero. In such cases, heritability is defined as the proportion of phenotypic variance attributable to all genetic effects:
+
+$$H^2 = \frac{\text{Var}(G)}{\text{Var}(P)}$$
+
+This represents the proportion of phenotypic variance attributable to genetic variance.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Narrow-sense Heritability}
+
+\textbf{Narrow-sense heritability} ($h^2$): The proportion attributable to only \textbf{additive} genetic effects:
+$$h^2 = \frac{\text{Var}(A)}{\text{Var}(P)}$$
+
+Where $\text{Var}(A)$ is the additive genetic variance, a component of $\text{Var}(G)$. 
+
+Other components of $\text{Var}(G)$ includes $\text{Var}(D)$ (dominance variance) and $\text{Var}(I)$ (epistatic variance, i.e., gene-gene interaction)
+
+\end{frame}
+

@@ -1,0 +1,51 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Linkage Disequilibrium Score}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+The LD score of a variant is a measure to describe how connected or tagged this variant is with other variants by summing up the squared correlation (r²) with every other variant under consideration.
+
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/linkage_disequilibrium_score.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+The LD score for a SNP is the sum of LD $r^2$ measured with all other SNPs:
+
+$$
+l_j = \sum_{k=1, k \neq j}^M r^2(\textbf{X}_j, \textbf{X}_k)
+$$
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+The \textbf{LD score} is a measure of the extent to which a given variant is in linkage disequilibrium (LD) with other variants across the genome. It is used to summarize the amount of genetic information (in terms of LD) that a variant shares with all other variants in a region of interest. The LD score for a variant $j$ is defined as the sum of the squared correlation coefficients $r^2$ between that variant and all other variants in the genome, typically within a specified genomic window or region. Mathematically, the LD score for variant $j$ is given by:
+
+$$
+l_j = \sum_{k=1, k \neq j}^M r^2_{i,k}
+$$
+
+<!-- Since $\textbf{X}$ is standardized, we can just calculate the sum of the squared sample correlations like this:
+
+$$\widetilde{l}_{j} = \frac{1}{N^2}\textbf{X}^\top_j\textbf{X}\textbf{X}^\top\textbf{X}_j - 1$$ -->
+However, this is not an unbiased estimate. We can correct for the bias like this:
+
+$$
+r_\text{adj}^2 =  \hat{r}^2 - \frac{1-\hat{r}^2}{N-2}
+$$
+$$
+l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2 
+$$
+
+This score reflects how much a variant is correlated with other variants across the genome, providing insight into the local structure of LD around that variant.
+
+\end{frame}
+

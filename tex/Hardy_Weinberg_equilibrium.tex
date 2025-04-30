@@ -1,0 +1,126 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Hardy Weinberg Equilibrium}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+The Hardy-Weinberg equilibrium (HWE) describes how allele and genotype frequencies remain constant across generations in a population where there is no interference from evolutionary forces.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/Hardy_Weinberg_equilibrium.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+For a genetic variants with two alleles (\texttt{A} and \texttt{a}) with frequencies $p$ and $q$ respectively (where $p + q = 1$):
+
+$$p^2 + 2pq + q^2 = 1$$
+
+Where:
+\begin{itemize}
+\item $p^2$ = frequency of genotype AA
+\item $2pq$ = frequency of genotype Aa
+\item $q^2$ = frequency of genotype aa
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Technical Details: Expected Counts Under HWE}
+The expected counts under HWE are:
+
+$$
+E_{AA} = f_A^2 \cdot N
+$$
+
+$$
+E_{Aa} = 2f_A f_a \cdot N
+$$
+
+$$
+E_{aa} = f_a^2 \cdot N
+$$
+
+where:  
+\begin{itemize}
+\item $f_A$: frequency of allele A
+\item $f_a = 1 - f_A$: frequency of allele a
+\item $N$ = Total number of individuals.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Test HWE Using Chi-squared Test}
+
+Then one can use Pearson's chi-squared test to test if HWE holds:
+
+$$
+\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
+$$
+
+where:  
+\begin{itemize}
+\item $O_i$ = Observed genotype count (AA, Aa, aa).  
+\item $E_i$ = Expected genotype count under Hardy-Weinberg Equilibrium.  
+\item The summation runs over all genotype categories.  
+\end{itemize}
+
+To determine statistical significance, compare $\chi^2$ with a \textbf{chi-square distribution} with \textbf{1 degree of freedom} (df = 1). The p-value is computed as:
+
+$$
+p = P(\chi^2 > \text{observed } \chi^2)
+$$
+
+If $p < 0.05$, we reject the \textbf{Hardy-Weinberg Equilibrium} assumption.
+\end{frame}
+
+\begin{frame}{Technical Details: When HWE Doesn't Hold}
+\begin{itemize}
+\item \textbf{Non-random mating}: When individuals choose mates based on genotype or phenotype, homozygosity increases beyond HWE expectations.
+\item \textbf{Natural selection}: When certain genotypes have survival or reproductive advantages, their frequencies change between generations.
+\item \textbf{Migration}: Gene flow introduces new alleles from other populations, altering local allele frequencies.
+\item \textbf{Genetic drift}: Random sampling effects in small populations cause unpredictable changes in allele frequencies.
+\item \textbf{Mutation}: New alleles emerge through mutation, changing the genetic composition of the population.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Common Misconceptions}
+\begin{itemize}
+\item While entire genomes aren't in HWE, individual loci often are, especially neutral markers.
+\item HWE is surprisingly robust to minor violations of its assumptions.
+\item Deviations from HWE often signal important biological phenomena rather than errors.
+\item HWE describes the mathematical relationship between allele and genotype frequencies, not the absence of genetic variation.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Role of HWE in Statistical Genetics}
+
+Hardy-Weinberg Equilibrium serves several critical functions in statistical genetics:
+
+\begin{itemize}
+\item \textbf{Quality control baseline}: Significant deviations from HWE often signal genotyping errors or technical artifacts rather than biological phenomena, providing an efficient method to identify problematic markers.
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Null hypothesis framework}: HWE establishes the expected genotype distribution under neutral conditions, serving as the statistical null model against which evolutionary forces can be detected.
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Allele frequency estimation}: When only partial genotype data is available, HWE principles allow researchers to estimate complete population allele frequencies.
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Statistical power improvement}: Filtering out markers that violate HWE improves signal-to-noise ratio in association studies, increasing power to detect true genetic effects.
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Population structure inference}: Systematic HWE deviations across multiple loci can reveal cryptic population substructure that might confound genetic analyses.
+\end{itemize}
+\end{frame}
+

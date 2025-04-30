@@ -1,0 +1,132 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Linkage Disequilibrium}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Linkage disequilibrium is the \textbf{non-random association} between alleles at different genetic loci, where certain combinations occur \textbf{more or less frequently than would be expected by chance} if the loci were segregating independently.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/linkage_disequilibrium.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+Given the genotype matrix $\mathbf{X}$ that has been centered (each column has mean 0) and scaled (each column has standard deviation 1), the LD matrix can be computed as:
+$$
+\mathbf{R} = \frac{\mathbf{X}^T \mathbf{X}}{N}
+$$
+
+where:
+
+\begin{itemize}
+\item $\mathbf{X}$ is the centered genotype matrix.
+\item $N$ is the number of individuals.
+\end{itemize}
+
+When $\mathbf{X}$ is scaled, the covariance matrix is the same as correlation matrix.
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+\textbf{r (correlation)} ranges from -1 to 1, and if it is 1 or -1, it means that the two variants are in perfect LD (markers are perfect proxies for each other). If $r^2=0$, it indicates that no association between markers.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Interpreting LD Values}
+
+\begin{itemize}
+\item \textbf{High LD ($r^2 > 0.8$)}:
+\begin{itemize}
+\item Alleles at different loci appear together much more frequently than expected
+\item Markers can serve as proxies for each other in genetic studies
+\item Likely physical proximity on chromosome or recent selection
+\item Less recombination between markers
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Moderate LD ($r^2$ between 0.2-0.8)}:
+\begin{itemize}
+\item Some association between loci, but not strong enough for perfect tagging
+\item Partial information about one locus given the other
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Low LD ($r^2 < 0.2$)}:
+\begin{itemize}
+\item Loci segregate nearly independently
+\item May indicate distant physical location or sufficient time for recombination
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: LD Blocks}
+
+LD blocks are the tegions of the genome with consistently high LD among SNPs.
+
+\begin{itemize}
+\item \textbf{Characteristics}:
+\begin{itemize}
+\item Typically separated by recombination hotspots
+\item SNPs within a block are highly correlated and tend to be inherited together
+\item Block size typically ranges from a few kb to >100 kb
+\item Can be visualized as triangular "heat maps" of pairwise LD values
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Significance}:
+\begin{itemize}
+\item Allow efficient tagging of untyped variants using representative SNPs
+\item Reduce genotyping costs by capturing maximum information with minimum markers
+\item Define natural units for haplotype analysis
+\item Inform optimal imputation strategies
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Population Variation in LD Patterns}
+
+\begin{itemize}
+\item \textbf{African populations}:
+\begin{itemize}
+\item Shorter LD blocks (typically 5-15 kb)
+\item More haplotype diversity
+\item Due to older population age and larger ancestral effective population size
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{European populations}:
+\begin{itemize}
+\item Intermediate LD blocks (typically 15-50 kb)
+\item Reflects out-of-Africa bottleneck and subsequent population expansion
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{East Asian populations}:
+\begin{itemize}
+\item Often longer LD blocks (can exceed 50 kb)
+\item Due to more recent bottlenecks and founder effects
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Isolated populations} (e.g., Finnish, Sardinian):
+\begin{itemize}
+\item Even more extensive LD
+\item Due to founder effects and genetic drift in small populations
+\end{itemize}
+\end{itemize}
+\end{frame}
+

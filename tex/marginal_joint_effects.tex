@@ -1,0 +1,88 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Marginal Joint Effects}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Marginal effects measure a genetic variant's influence on a trait when considered \textbf{alone, ignoring other variants}, while joint effects measure each variant's independent contribution when all variants are \textbf{simultaneously included} in the model, revealing their true effects after \textbf{accounting for correlations (LD) between them}.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/marginal_joint_effects.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+In multiple marker linear regression, we extend the single marker model to incorporate multiple genetic variants:
+
+$$
+\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}
+$$
+
+Where:
+\begin{itemize}
+\item $\mathbf{Y}$ is the $N \times 1$ vector of trait values for $N$ individuals
+\item $\mathbf{X}$ is the $N \times M$ matrix of genotypes for $M$ variants across $N$ individuals
+\item $\boldsymbol{\beta}$ is the $M \times 1$ vector of effect sizes for each variant (to be estimated)
+\item $\boldsymbol{\epsilon}$ is the $N \times 1$ vector of error terms for $N$ individuals and $\boldsymbol{\epsilon} \sim N(0, \sigma^2\mathbf{I})$
+\end{itemize}
+
+Using \textbf{ordinary least squares (OLS)}, we can derive the estimators for $\boldsymbol{\beta}$ in matrix form:
+
+$$
+\hat{\boldsymbol{\beta}}_{\text{OLS}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
+$$
+
+\end{frame}
+
+
+\begin{frame}{Technical Details: Marginal Effect}
+In the section about OLS, we discuss the single marker linear regression, which estimates the marginal effect of each X.
+
+The marginal effect of a genetic variant is its association with the trait when analyzed in isolation, without accounting for other variants:
+
+$$
+\hat{\beta}_{\text{marginal},j} = (\mathbf{X}_j^T\mathbf{X}_j)^{-1}\mathbf{X}_j^T\mathbf{Y}
+$$
+
+Where $\mathbf{X}_j$ is the column vector for the $j$-th variant.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Joint Effect}
+The joint effect of a genetic variant is its association with the trait when analyzed simultaneously with other variants, i.e., in the multiple marker model:
+
+$$
+\hat{\boldsymbol{\beta}}_{\text{joint}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
+$$
+
+Where $\hat{\beta}_{\text{joint},j}$ (the $j$-th element of $\hat{\boldsymbol{\beta}}_{\text{joint}}$) represents the effect of the $j$-th variant after accounting for all other variants in the model.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Key Differences Between Marginal and Joint Effects}
+
+1. \textbf{Correlation Structure}: 
+\begin{itemize}
+\item Marginal effects ignore correlations (linkage disequilibrium) between variants
+\item Joint effects account for correlations between variants
+\end{itemize}
+
+2. \textbf{Interpretation}:
+\begin{itemize}
+\item Marginal effect: The expected change in the trait associated with a unit change in the variant, not accounting for other variants
+\item Joint effect: The expected change in the trait associated with a unit change in the variant, holding all other variants constant
+\end{itemize}
+
+3. \textbf{Consistency}:
+\begin{itemize}
+\item When variants are uncorrelated, marginal and joint effects are identical
+\item When variants are correlated, marginal and joint effects will differ
+\item Joint effects can be smaller or larger than marginal effects, or even have opposite signs
+\end{itemize}
+\end{frame}
+

@@ -1,0 +1,55 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Confounder}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+A confounder is a variable that \textbf{influences both the exposure and outcome independently}, creating a \textbf{misleading association} between them that doesn't represent a true causal relationship.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/confounder.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+The key formula for the concept of a confounder is represented in a causal diagram as:
+$$
+X ← C → Y
+$$
+Where:
+\begin{itemize}
+\item $C$ is the confounder variable
+\item $X$ is the exposure/treatment variable 
+\item $Y$ is the outcome variable
+\item The arrows (←, →) indicate the direction of causal influence
+\end{itemize}
+
+This diagram illustrates that a confounder ($C$) has a direct causal effect on both the exposure ($X$) and the outcome ($Y$), creating a "backdoor path" between $X$ and $Y$ that must be blocked to obtain an unbiased estimate of the causal effect.
+
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+Confounding can cause bias in the estimation of the relationship between the genotype and the trait. To avoid this bias, confounders \textbf{must be controlled} in the analysis, typically by including them as covariates in regression models.
+
+In formal causal inference terminology, a confounder creates a situation where:
+$$
+P(Y|X) \neq P(Y|\text{do}(X))
+$$
+Where do(X) represents an intervention to set X to a specific value. This inequality shows that the observed association differs from the true causal effect due to the confounding variable.
+
+When adjusting for confounders in statistical models:
+1. Stratification: Analyzing the $X$-$Y$ relationship separately within strata of C
+2. Regression adjustment: $Y = \beta_0 + \beta_1 X + \beta_2 C + \epsilon$
+3. Propensity score methods: Creating balanced groups based on $P(X=1|C)$
+4. Instrumental variables: Using a variable $Z$ where $Z→X→Y$ and $Z \perp \!\!\! \perp C$
+5. Directed Acyclic Graphs (DAGs): Identifying minimal sufficient adjustment sets
+
+The backdoor criterion in causal inference provides a graphical rule for identifying which variables need to be controlled to eliminate confounding bias when estimating causal effects.
+\end{frame}
+

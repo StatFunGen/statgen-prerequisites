@@ -1,0 +1,38 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Genetic Relationship Matrix}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+\textbf{Genetic relationship matrix (GRM)} captures how related individuals are to each other at the genomic level by measuring the proportion of shared genetic variants across their genomes, and quantifies the genetic similarity between every pair of individuals in the population.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/genetic_relationship_matrix.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+The \textbf{Genomic Relationship Matrix (GRM)} is a standardized version of the kinship matrix that accounts for allele frequencies. One common formulation is:
+
+$$
+\mathbf{G} = \frac{ \mathbf{X} \mathbf{X}^T}{M}
+$$
+
+Where:
+\begin{itemize}
+\item $\mathbf{X}$ is the scaled genotype matrix of $N$ individuals and $M$ genetic variants.
+\item $ \mathbf{G} $ is an $ N \times N $ matrix capturing the pairwise genetic relationships.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+Note that because $\mathbf{X}$ is scaled so that the variance of each SNP is 1, instead of across individuals, so the diagonal elements of $\mathbf{G}$ is generally not 1.
+\end{frame}
+

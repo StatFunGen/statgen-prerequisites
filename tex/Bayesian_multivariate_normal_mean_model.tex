@@ -1,0 +1,234 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Bayesian Multivariate Normal Mean Model}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+The Bayesian multivariate normal mean model extends the univariate case by accounting for relationships between multiple parameters, allowing information from one variable to influence our beliefs about others through their correlation structure, which results in more precise posterior estimates than if we had treated each parameter independently.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/Bayesian_multivariate_normal_mean_model.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+The posterior distribution of the bivariate normal model is still multivariate normal, where the posterior precision matrix is the sum of the prior precision and the likelihood precision, and the posterior mean is a precision-weighted average of the prior mean and the observed data.
+
+$$
+\begin{pmatrix}
+\mu_1 \\
+\mu_2
+\end{pmatrix}
+\mid \mathbf{Y} \sim \mathcal{N}
+\left( 
+\begin{pmatrix}
+\mu_{1,1} \\
+\mu_{2,1}
+\end{pmatrix},
+\begin{pmatrix}
+\sigma_{1,1}^2 & \rho_1 \sigma_{1,1} \sigma_{2,1} \\
+\rho_1 \sigma_{1,1} \sigma_{2,1} & \sigma_{2,1}^2
+\end{pmatrix}
+\right)
+$$
+where:
+$$
+\begin{pmatrix}
+\mu_{1,1} \\
+\mu_{2,1}
+\end{pmatrix}
+= 
+\boldsymbol{\Sigma} \left( \boldsymbol{\Sigma_0}^{-1} \boldsymbol{\mu_0} + \boldsymbol{\Sigma}^{-1} \mathbf{Y} \right)
+$$
+
+and:
+
+$$
+\boldsymbol{\Sigma_1}^{-1} = \boldsymbol{\Sigma_0}^{-1} + \boldsymbol{\Sigma}^{-1} \\
+\boldsymbol{\Omega_1} = \boldsymbol{\Omega_0} + \boldsymbol{\Omega}
+$$
+\end{frame}
+
+
+\begin{frame}{Technical Details: Model Assumptions}
+
+In the Bayesian normal mean model, we assume the variables $Y_1$ and $Y_2$ follow a bivariate normal model:
+
+$$
+\mathbf{Y} = 
+\begin{pmatrix}
+Y_1 \\
+Y_2
+\end{pmatrix}
+\sim \mathcal{N}
+\left( 
+\begin{pmatrix}
+\mu_1 \\
+\mu_2
+\end{pmatrix},
+\begin{pmatrix}
+\sigma_1^2 & \rho \sigma_1 \sigma_2 \\
+\rho \sigma_1 \sigma_2 & \sigma_2^2
+\end{pmatrix}
+\right)
+$$
+
+where:
+
+\begin{itemize}
+\item $\mu_1$ and $\mu_2$ are the unknown mean parameters.
+\item $\sigma_1^2$ and $\sigma_2^2$ are the known variances.
+\item $\rho$ is the correlation between the two variables.
+\end{itemize}
+
+The Bayesian Normal Mean Model aims to infer what we can learn about the unknown parameters $\mu_1$ and $\mu_2$.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Prior Distribution}
+
+A common choice for the prior on $\mu_1$ and $\mu_2$ is a bivariate normal distribution:
+
+$$
+\boldsymbol{\mu} =
+\begin{pmatrix}
+\mu_1 \\
+\mu_2
+\end{pmatrix}
+\sim \mathcal{N}
+\left( 
+\begin{pmatrix}
+\mu_{10} \\
+\mu_{20}
+\end{pmatrix},
+\boldsymbol{\Sigma}_0
+\right)
+$$
+
+where
+$$
+\boldsymbol{\Sigma}_0 = \begin{pmatrix}
+\sigma_{1,0}^2 & \rho_0 \sigma_{1,0} \sigma_{2,0} \\
+\rho_0 \sigma_{1,0} \sigma_{2,0} & \sigma_{2,0}^2
+\end{pmatrix}
+$$
+
+where $\mu_{10}$ and $\mu_{20}$ are the prior means, and $\sigma_{1,0}^2$ and $\sigma_{2,0}^2$ are the prior variances, with $\rho_0$ being the prior correlation.
+
+$\boldsymbol{\Sigma}$ is called \textbf{covariance matrix} or \textbf{variance-covariance matrix}.
+
+The \textbf{precision matrix} is defined as:
+
+$$
+\boldsymbol{\Omega}_0 := \boldsymbol{\Sigma}^{-1}_0 = 
+\begin{pmatrix}
+\tau_{1,0} & \rho_0 \tau_{1,0} \tau_{2,0} \\
+\rho_0 \tau_{1,0} \tau_{2,0} & \tau_{2,0}
+\end{pmatrix}
+$$
+
+where $\tau_{1,0} = \frac{1}{\sigma_{1,0}^2}$ and $\tau_{2,0} = \frac{1}{\sigma_{2,0}^2}$.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Likelihood}
+
+The likelihood of the data given $\mu_1$, $\mu_2$, $\sigma_1^2$, $\sigma_2^2$, and $\rho$ is:
+
+$$
+\begin{pmatrix}
+Y_1 \\
+Y_2
+\end{pmatrix}
+\mid \mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \rho
+\sim \mathcal{N}
+\left( 
+\begin{pmatrix}
+\mu_1 \\
+\mu_2
+\end{pmatrix},
+\begin{pmatrix}
+\sigma_1^2 & \rho \sigma_1 \sigma_2 \\
+\rho \sigma_1 \sigma_2 & \sigma_2^2
+\end{pmatrix}
+\right)
+$$
+
+The probability density function (PDF) is:
+
+$$
+p(\mathbf{Y} \mid \mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \rho) \propto \exp\left( -\frac{1}{2} (\mathbf{Y} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{Y} - \boldsymbol{\mu}) \right)
+$$
+
+where $\boldsymbol{\mu} = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}$ and $\boldsymbol{\Sigma}$ is the covariance matrix:
+
+$$
+\boldsymbol{\Sigma} = 
+\begin{pmatrix}
+\sigma_1^2 & \rho \sigma_1 \sigma_2 \\
+\rho \sigma_1 \sigma_2 & \sigma_2^2
+\end{pmatrix}
+$$
+
+\end{frame}
+
+\begin{frame}{Technical Details: Posterior Distribution}
+
+Using Bayes' theorem, the posterior distribution of $\mu_1$ and $\mu_2$ is:
+
+$$
+p(\mu_1, \mu_2 \mid \mathbf{Y}) \propto p(\mathbf{Y} \mid \mu_1, \mu_2, \sigma_1^2, \sigma_2^2) p(\mu_1, \mu_2)
+$$
+
+Expanding the probability density functions:
+
+$$
+p(\mu_1, \mu_2 \mid \mathbf{Y}) \propto \exp\left( -\frac{1}{2} (\mathbf{Y} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{Y} - \boldsymbol{\mu}) \right)
+\exp\left( -\frac{1}{2} (\boldsymbol{\mu} - \boldsymbol{\mu_0})^T \boldsymbol{\Sigma_0}^{-1} (\boldsymbol{\mu} - \boldsymbol{\mu_0}) \right)
+$$
+
+Recognizing the quadratic form, the posterior distribution follows a bivariate normal distribution:
+
+$$
+\begin{pmatrix}
+\mu_1 \\
+\mu_2
+\end{pmatrix}
+\mid \mathbf{Y} \sim \mathcal{N}
+\left( 
+\begin{pmatrix}
+\mu_{1,1} \\
+\mu_{2,1}
+\end{pmatrix},
+\begin{pmatrix}
+\sigma_{1,1}^2 & \rho_1 \sigma_{1,1} \sigma_{2,1} \\
+\rho_1 \sigma_{1,1} \sigma_{2,1} & \sigma_{2,1}^2
+\end{pmatrix}
+\right)
+$$
+
+where:
+
+$$
+\begin{pmatrix}
+\mu_{1,1} \\
+\mu_{2,1}
+\end{pmatrix}
+= 
+\boldsymbol{\Sigma} \left( \boldsymbol{\Sigma_0}^{-1} \boldsymbol{\mu_0} + \boldsymbol{\Sigma}^{-1} \mathbf{Y} \right)
+$$
+
+and:
+
+$$
+\boldsymbol{\Sigma_1}^{-1} = \boldsymbol{\Sigma_0}^{-1} + \boldsymbol{\Sigma}^{-1} \\
+\boldsymbol{\Omega_1} = \boldsymbol{\Omega_0} + \boldsymbol{\Omega}
+$$
+
+\end{frame}
+

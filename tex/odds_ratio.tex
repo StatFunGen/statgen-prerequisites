@@ -1,0 +1,75 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Odds Ratio}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Odds ratio provides an intuitive measure of association strength between genetic variants and \textbf{binary outcomes} (like disease status) by comparing the odds of disease given a particular genotype to the odds without it, while logistic regression extends this concept to model the log-odds of disease as a linear function of genetic markers, allowing for multiple variants and covariates to be analyzed simultaneously.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/odds_ratio.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+In logistic regression for genetic association studies, we model the probability of a binary outcome (e.g., disease status) as a function of genetic markers:
+
+$$
+\text{logit}(p_i) = \ln\left(\frac{p_i}{1-p_i}\right) = \beta_0 + \beta_1 X_i
+$$
+
+Where:
+\begin{itemize}
+\item $p_i$ is the probability of disease for individual $i$
+\item $\frac{p_i}{1-p_i}$ is the odds of disease for individual $i$
+\item $X_i$ is the genotype for individual $i$ at a single marker (e.g., coded as 0, 1, 2 for the number of minor alleles)
+\item $\beta_0$ is the intercept
+\item $\beta_1$ is the log odds ratio per unit increase in $X$ (to be estimated)
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Technical Details: Definition of Odds}
+
+The odds for an event with probability $p$ is defined as:
+
+$$
+\text{Odds} = \frac{p}{1-p}
+$$
+
+For example, if the probability of disease is 0.2 (20%), then the odds of disease are $\frac{0.2}{0.8} = 0.25$, or 1:4.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Definition of Odds Ratio}
+
+The odds ratio compares the odds of disease between two groups. For a genetic variant with genotypes AA, Aa, and aa (where a is the risk allele), the odds ratio for aa vs. AA would be:
+
+$$
+\text{OR} = \frac{\text{Odds(Disease|aa)}}{\text{Odds(Disease|AA)}}
+$$
+
+In the logistic regression in the Key Formula section, the odds ratio (OR) can be calculated as:
+
+$$
+\text{OR} = e^{\beta_1}
+$$
+
+\end{frame}
+
+\begin{frame}{Technical Details: Interpretation in Genetics}
+
+\begin{itemize}
+\item OR = 1: No association between genotype and disease
+\item OR > 1: The variant increases disease risk (e.g., OR = 2 means individuals with this genotype have twice the odds of disease)
+\item OR < 1: The variant decreases disease risk (protective effect)
+\end{itemize}
+
+\end{frame}
+

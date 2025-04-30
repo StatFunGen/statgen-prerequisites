@@ -1,0 +1,65 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Likelihood Ratio}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+The likelihood ratio quantifies \textbf{how much more probable our observed data} is under one model compared to another, providing a natural way to choose between competing explanations of the data.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/likelihood_ratio.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+The likelihood ratio between Model 1 and Model 2 is:
+
+$$\text{LR} = \frac{L(\text{D}|\text{M}_1)}{L(\text{D}|\text{M}_2)}$$
+
+Where:
+\begin{itemize}
+\item $\text{LR}$ is the likelihood ratio
+\item $L(\text{D}|\text{M}_1)$ is the likelihood under Model 1
+\item $L(\text{D}|\text{M}_2)$ is the likelihood under Model 2
+\item $\text{D}$ represents the observed data
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Technical Details: Interpretation}
+For the likelihood ratio (LR):
+\begin{itemize}
+\item $\text{LR} > 1$: Model 1 better explains the data (higher likelihood)
+\item $\text{LR} < 1$: Model 2 better explains the data (higher likelihood)
+\item $\text{LR} = 1$: Both models explain the data equally well
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Parameter $\theta$ in a model}
+
+Suppose that, now instead of having two fully-specified models, we consider a model $M_1$ with a parameter space $\Theta$. 
+
+The corresponding hypothesis ($H_1$) is often stated by saying that the parameter $\theta$ lies in a specified subset $\Theta_1$ of $\Theta$. And another hypothesis ($H_2$) which believes that $\theta$ lies in the $\Theta_2$. The likelihood ratio test statistic between those two hypothesis is given by:
+
+$$
+LR = \frac {~\sup_{\theta \in \Theta_1}{\mathcal{L}}(\theta)~}{~\sup_{\theta \in \Theta_2}{\mathcal{L}}(\theta)~}
+$$
+
+Here, the $\sup$ notation refers to the supremum. If $\Theta_1$ is a subset of $\Theta_2$, e.g., $\Theta_2 = \Theta$, as the constrained maximum cannot exceed the unconstrained maximum, the likelihood ratio is bounded between zero and one. 
+
+\end{frame}
+
+\begin{frame}{Technical Details: Properties}
+\begin{itemize}
+\item The likelihood ratio is always non-negative: $\text{LR} \geq 0$
+\item Can be used to compare any two models/hypothesis
+\item Forms the basis for many statistical tests and model selection criteria
+\end{itemize}
+\end{frame}
+

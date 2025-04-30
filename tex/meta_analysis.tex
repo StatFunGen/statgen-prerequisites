@@ -1,0 +1,88 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Meta Analysis}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Meta-analysis provides a systematic approach to \textbf{combine results from multiple studies}, increasing statistical power and precision of effect estimates by leveraging the larger aggregate sample size.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/meta_analysis.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+In meta-analysis, the weighted mean effect size for a fixed-effects model is calculated as:
+
+$$\hat{\beta} = \frac{\sum_{i=1}^{k} w_i \hat{\beta}_i}{\sum_{i=1}^{k} w_i}$$
+
+Where:
+\begin{itemize}
+\item $\hat{\beta}$ is the combined effect estimate across all studies
+\item $\hat{\beta}_i$ is the effect estimate from study $i$
+\item $w_i$ is the weight assigned to study $i$
+\item $k$ is the number of studies
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Technical Details: Multiple Fixed-Effects Models}
+
+\begin{itemize}
+\item Weights for Fixed-Effects
+\end{itemize}
+    $$w_i = \frac{1}{v_i}$$
+    Where $v_i$ is the within-study variance for study $i$
+
+\begin{itemize}
+\item Variance of the Combined Estimate
+\end{itemize}
+    $$Var(\hat{\beta}) = \frac{1}{\sum_{i=1}^{k} w_i}$$
+
+\begin{itemize}
+\item Standard Error of the Combined Estimate
+\end{itemize}
+    $$SE(\hat{\beta}) = \sqrt{Var(\hat{\beta})} = \sqrt{\frac{1}{\sum_{i=1}^{k} w_i}}$$
+
+\end{frame}
+
+\begin{frame}{Technical Details: Multiple Random-Effects Models}
+
+\begin{itemize}
+\item Weighted Mean Effect Size
+\end{itemize}
+$$\hat{\beta}^* = \frac{\sum_{i=1}^{k} w_i^* \hat{\beta}_i}{\sum_{i=1}^{k} w_i^*}$$
+
+\begin{itemize}
+\item Weights for Random-Effects
+\end{itemize}
+    $$w_i^* = \frac{1}{v_i + \tau^2}$$
+
+    Where $\tau^2$ is the between-study variance
+
+\end{frame}
+
+\begin{frame}{Technical Details: Meta-Analysis in Genetic Studies}
+
+In genetic studies, meta-analysis often combines results from genome-wide association studies (GWAS) across different cohorts with weights either from the sample size or the inverse variance:
+
+\begin{itemize}
+\item Sample Size Weighting
+\end{itemize}
+    $$w_i = \sqrt{N_i}$$
+
+    Where $N_i$ is the sample size of study $i$
+
+\begin{itemize}
+\item Inverse Variance Weighting
+\end{itemize}
+    $$w_i = \frac{1}{SE(\hat{\beta}_i)^2}$$
+
+    Where $SE(\hat{\beta}_i)$ is the standard error of the effect size estimate in study $i$
+\end{frame}
+

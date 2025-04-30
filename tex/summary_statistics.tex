@@ -1,0 +1,169 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Summary Statistics}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Summary statistics in genetics capture \textbf{the association between genetic variants and traits}, allowing researchers to share and analyze meaningful associations \textbf{without requiring access to the complete individual-level genotype and phenotype data}.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/summary_statistics.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+$$
+Z = \frac{\beta}{\text{SE}(\beta)}
+$$
+
+This Z-score formula represents the most fundamental calculation in statistical genetics summary statistics. It standardizes the effect size ($\beta$) of a genetic variant by its standard error ($\text{SE}$), creating a normalized measure of association strength. The importance of this formula lies in its ability to quantify statistical significance while accounting for estimation precision. This single value determines p-values, enables cross-variant comparison, and forms the foundation for downstream analyses including meta-analysis, polygenic risk scoring, and genetic correlation estimation.
+
+\end{frame}
+
+
+\begin{frame}{Technical Details: Single Marker Linear Regression Model}
+Assuming that we use the single marker linear regression model (and everything is applicable to logistic regression or multiple markers models etc.), then for a trait vector $ \mathbf{y} $ and a genetic variant $ \mathbf{X}_j $ across $ N $ individuals:
+
+$$
+\mathbf{Y} = \mathbf{X}_j \beta_j + \boldsymbol{\epsilon}, \quad \boldsymbol{\epsilon} \sim N(0, \sigma^2)
+$$
+
+Where:
+\begin{itemize}
+\item $ \mathbf{Y} $ is the $ N \times 1 $ vector of trait values for $ N $ individuals.
+\item $ \mathbf{X}_j $ is the $ N \times 1 $ vector of genotypes for variant $ j $ across all individuals.
+\item $ \beta_j $ is the effect size of the genetic variant $ j $.
+\item $ \boldsymbol{\epsilon} $ is the $ N \times 1 $ vector of error terms (residuals), assumed to follow a normal distribution with mean 0 and variance $ \sigma^2 $.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: From OLS to Summary Staistics}
+
+And using \textbf{Ordinary Least Squares (OLS)} method (mentioned in Section [FIXME -- refer to the section label]), which minimizes the residual sum of squares (RSS) between the observed and predicted trait values, and both $\mathbf{x}$ and $\mathbf{Y}$ are scaled to have mean 0 and variance 1, we get the following formula for the OLS estimator of $ \beta_j$:
+
+$$
+\hat{\beta}_j = \frac{\mathbf{X}_j^T \mathbf{Y}}{\mathbf{X}_j^T \mathbf{X}_j} = \mathbf{X}_j^T \mathbf{Y} = \text{Cov}(\mathbf{X}_j, \mathbf{Y}) = r_{\mathbf{X_j}, \mathbf{Y}} 
+$$
+
+And the variance of $ \hat{\beta}_j $ can be calculated as:
+
+$$
+\text{Var}(\hat{\beta}_j) = \frac{\sigma^2}{\mathbf{X}_j^T \mathbf{X}_j} = \sigma^2
+$$
+
+Where $ \sigma^2 $ is the residual variance, which is typically estimated from the residuals of the model.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Z-score and P-value}
+
+\begin{itemize}
+\item Z-score 
+\begin{itemize}
+\item Z-score is the standardized effect size
+\end{itemize}
+\end{itemize}
+
+    $$
+    Z_j = \frac{\hat{\beta}_j}{SE(\hat{\beta}_j)} = \frac{\hat{\beta}_j}{\sqrt{\text{Var}(\hat{\beta}_j)}} = \frac{\hat{\beta}_j}{\sigma}
+    $$
+
+\begin{itemize}
+\item Under the null hypothesis of no association ($\beta_j = 0$), $Z_j$ follows a standard normal distribution, which forms the basis for statistical testing.
+\end{itemize}
+
+\begin{itemize}
+\item P-value
+\begin{itemize}
+\item Two-sided p-value: 
+\end{itemize}
+\end{itemize}
+    $$
+    P = 2 \times (1 - \Phi(|Z|))
+    $$
+\begin{itemize}
+\item $\Phi$ is the cumulative distribution function of the standard normal distribution
+\item Represents the probability of observing an effect as extreme as β by chance
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Example GWAS Summary Statistics Table -- part A}
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+SNP (rsID) & CHR & BP & A1 & A2 & MAF & BETA & SE & Z-score & P-value & N \\ \hline
+rs12345 & 1 & 10583 & A & G & 0.12 & 0.045 & 0.010 & 4.50 & 1.2e-06 & 100000 \\ \hline
+rs67890 & 2 & 20345 & C & T & 0.35 & -0.030 & 0.008 & -3.75 & 5.4e-04 & 95000 \\ \hline
+rs54321 & 18 & 45678 & G & A & 0.22 & 0.060 & 0.012 & 5.00 & 2.1e-07 & 102000 \\ \hline
+\end{tabular}}
+\end{table}
+
+\begin{itemize}
+\item \textbf{SNP (rsID)}: Identifier for the single nucleotide polymorphism, such as \texttt{rs12345} or \texttt{chr21:295472:G:A}.  
+\item \textbf{CHR}: Chromosome number where the SNP is located. Other common names: \texttt{chrom}, \texttt{chromosome}  
+\item \textbf{BP}: Genomic position of the SNP, specific to a reference genome assembly (e.g., GRCh37 or GRCh38). Other common names: \texttt{pos}, \texttt{position}  
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Example GWAS Summary Statistics Table -- part B}
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+SNP (rsID) & CHR & BP & A1 & A2 & MAF & BETA & SE & Z-score & P-value & N \\ \hline
+rs12345 & 1 & 10583 & A & G & 0.12 & 0.045 & 0.010 & 4.50 & 1.2e-06 & 100000 \\ \hline
+rs67890 & 2 & 20345 & C & T & 0.35 & -0.030 & 0.008 & -3.75 & 5.4e-04 & 95000 \\ \hline
+rs54321 & 18 & 45678 & G & A & 0.22 & 0.060 & 0.012 & 5.00 & 2.1e-07 & 102000 \\ \hline
+\end{tabular}}
+\end{table}
+
+\begin{itemize}
+\item \textbf{A1 and A2}: The two alleles at the variant site, with one designated as the effect allele. Other common names: \texttt{REF} and \texttt{ALT}, \texttt{Effect allele} and \texttt{Other allele}
+\begin{itemize}
+\item Note that one allele may be effect allele in one study but alternative allele in another.
+\end{itemize}
+\item \textbf{MAF}: The frequency of the less common allele for variant $j$ in the sample.
+\item \textbf{EAF}: The frequency of the effect allele for variant $j$ in the sample (note that this doesn't have to be the minor allele) (sometimes called \texttt{RAF}: risk allele frequency)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Example GWAS Summary Statistics Table -- part C}
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+SNP (rsID) & CHR & BP & A1 & A2 & MAF & BETA & SE & Z-score & P-value & N \\ \hline
+rs12345 & 1 & 10583 & A & G & 0.12 & 0.045 & 0.010 & 4.50 & 1.2e-06 & 100000 \\ \hline
+rs67890 & 2 & 20345 & C & T & 0.35 & -0.030 & 0.008 & -3.75 & 5.4e-04 & 95000 \\ \hline
+rs54321 & 18 & 45678 & G & A & 0.22 & 0.060 & 0.012 & 5.00 & 2.1e-07 & 102000 \\ \hline
+\end{tabular}}
+\end{table}
+
+\begin{itemize}
+\item \textbf{BETA}: Estimated effect size ($\hat{\beta}$), representing the association between the effect allele and the trait. Always check which allele it corresponds to.  
+\item \textbf{SE}: Standard error of the effect size estimat, reflecting the uncertainty in the effect size estimate. It is computed as $SE_j = \sqrt{\frac{\hat{\sigma}^2}{\mathbf{X}_j^T \mathbf{X}_j}}$, where $ \hat{\sigma}^2 $ is the estimated residual variance from the model.
+\item \textbf{Z}: Standardized test statistic, computed as $Z = \frac{\beta}{\text{SE}}$.  
+\item \textbf{P-value}: Significance of the association, testing whether the SNP has an effect on the trait, $p_j = 2 \times (1 - \Phi(|t_j|))$, where $ \Phi $ is the cumulative distribution function (CDF) of the standard normal distribution. Sometimes \texttt{LOG10P} is reported which is the $-\log_{10}P$.
+\item \textbf{N}: Number of individuals included in the analysis.  
+\item \textbf{N_cases}: Number of individuals with the trait (cases), relevant for case-control studies.  
+\item \textbf{N_ctrls}: Number of individuals without the trait (controls), relevant for case-control studies.  
+\end{itemize}
+
+\end{frame}
+

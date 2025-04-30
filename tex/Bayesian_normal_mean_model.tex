@@ -1,0 +1,151 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Bayesian Normal Mean Model}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+The Bayesian normal mean model combines \textbf{our prior belief} about a normal distribution's mean with \textbf{observed data}, resulting in a posterior mean that's a precision-weighted average of the prior mean and sample mean.
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/Bayesian_normal_mean_model.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+Given:
+\begin{itemize}
+\item Data points $Y_1, Y_2, \ldots, Y_n$ from $\mathcal{N}(\mu, \sigma^2)$ with sample mean $\bar{Y}$
+\item Prior $\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)$
+\end{itemize}
+
+The posterior distribution is:
+$$\mu | Y \sim \mathcal{N}\left(\frac{\sigma^2\mu_0 + n\sigma_0^2\bar{Y}}{\sigma^2 + n\sigma_0^2}, \frac{\sigma^2\sigma_0^2}{\sigma^2 + n\sigma_0^2}\right)$$
+\end{frame}
+
+
+\begin{frame}{Technical Details: Model Assumptions}
+
+In the Bayesian normal mean model, we assume the variable $Y$ follows uni-variate normal model $\mathcal{N}(\mu, \sigma^2)$
+
+$$
+Y \sim \mathcal{N}(\mu, \sigma^2)
+$$
+
+where:
+\begin{itemize}
+\item $ \mu $ is the unknown mean parameter.
+\item $ \sigma^2 $ is the known variance.
+\end{itemize}
+
+And the Bayesian Normal Mean Model is to see what we can learn about the unknown parameter $\mu$.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Prior Distribution}
+
+A common choice for the prior on $ \mu $ is a normal distribution:
+
+$$
+\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)
+$$
+
+where $ \mu_0 $ is the prior mean and $ \sigma_0^2 $ is the prior variance. 
+
+The precision is defined as $\tau_0 = \frac{1}{\sigma_0^2}$. In other words, the prior of $\mu$ can be rewritten as:
+
+$$
+\mu \sim \mathcal{N}(\mu_0, \frac{1}{\tau_0})
+$$
+
+Therefore, the probability density function (PDF) is 
+
+$$
+\begin{align}
+p(\mu)&\propto \exp\left(-\frac{1}{2}\tau_0\mu^2 + \tau_0\mu_0 \mu\right) \\
+       &\propto \exp\left(-\frac{1}{2}\tau_0 (\mu - \mu_0)^2\right)
+\end{align}
+$$
+
+(Here, the 0 subscript is used to indicate that $\mu_0$ and $\sigma_0$ are parameters in the prior.)
+
+\end{frame}
+
+\begin{frame}{Technical Details: Likelihood}
+
+The likelihood of the data given $\mu$ and $\sigma^2$ is:
+
+$$
+Y\mid\mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2)
+$$
+
+The probability density function (PDF) is:
+
+$$
+\begin{align}
+p(Y\mid\mu) &\propto \exp\left(-\frac{1}{2} \tau (Y^2 - 2\mu Y)\right)\\
+&\propto \exp\left(-\frac{1}{2} \tau (Y - \mu)^2\right)
+\end{align}
+$$
+
+where $\tau = \frac{1}{\sigma^2}$ is the precision.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Posterior Distribution}
+
+Using Bayes' theorem, the posterior distribution of $ \mu $ is given by:
+
+$$
+p(\mu|Y) \propto p(Y|\mu) p(\mu)
+$$
+
+Expanding the probability density functions:
+
+$$
+\begin{align}
+p(\mu \mid Y) &\propto \exp\left(-\frac{1}{2} \tau (Y - \mu)^2\right) \exp\left(-\frac{1}{2} \tau_0 (\mu - \mu_0)^2\right) \\
+&\propto \exp\left(-\frac{1}{2} \tau (Y^2 - 2Y\mu + \mu^2) - \frac{1}{2} \tau_0 (\mu^2 - 2\mu \mu_0 + \mu_0^2)\right) \\
+&\propto \exp\left(-\frac{1}{2} (\tau + \tau_0) \mu^2 + (\tau Y + \tau_0 \mu_0) \mu \right)
+\end{align}
+$$
+
+Recognizing the quadratic form, the posterior distribution follows a normal distribution:
+
+$$
+\mu \mid Y \sim \mathcal{N}\left( \mu_1, \sigma_1^2 \right)
+$$
+
+where
+
+$$
+\mu_1 = \frac{\tau Y + \tau_0 \mu_0}{\tau + \tau_0}, \quad \sigma_1^2 = \frac{1}{\tau + \tau_0}
+$$
+
+\end{frame}
+
+\begin{frame}{Technical Details: Characteristics}
+
+\begin{itemize}
+\item \textbf{Bayes' theorem} combines these components: $P(\mu|D) \propto P(D|\mu) P(\mu)$.
+\item The \textbf{prior} represents our belief about the parameter before seeing any data.
+\item The \textbf{likelihood} represents how likely we are to observe the data given the parameter.
+\item The \textbf{posterior} is the updated belief about the parameter after seeing the data.
+\begin{itemize}
+\item the \textbf{Posterior precision} ($\tau_1$) is the sum of the Data precision ($\tau$) and the Prior precision ($\tau_0$). This makes sense: the more precise your data, and the more precise your prior information, the more precise your posterior information. Also, this means that the data always improves your posterior precision compared with the prior: noisy data (small $\tau$) improves it only a little, whereas precise data improves it a lot.
+\item If we rewrite the \textbf{posterior mean} as:
+\end{itemize}
+\end{itemize}
+    $$
+    \mu_1=w\sum_i^n x_i+(1−w)\mu_0
+    $$
+    where $w=\tau/(\tau+\tau_0)$. Thus $\mu_1$ is a weighted average of the sum of the data $x_i$ and the prior mean $\mu_0$. And the weights depend on the relative precision of the data and the prior. If the data are precise compared with the prior ($\tau>>\tau_0$) then the weight w will be close to 1 and the posterior mean will be close to the data.
+\begin{itemize}
+\item Model comparison in Bayesian inference is performed using Bayes factors.
+\end{itemize}
+\end{frame}
+

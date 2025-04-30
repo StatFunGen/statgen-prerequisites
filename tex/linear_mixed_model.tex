@@ -1,0 +1,58 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Linear Mixed Model}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+The random effect model in statistical genetics allows us to \textbf{account for correlation between individuals} due to shared genetic background (like family relationships) by partitioning variance into \textbf{fixed effects} (specific genetic variants we're testing) and \textbf{random effects} (overall genetic similarity within groups). 
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/linear_mixed_model.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+In the linear mixed model (\textbf{mixed} because it incorporate both the \textbf{fixed} and the \textbf{random} effects), which accurately represent non-independent data structures,
+
+$$
+\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{Z}\mathbf{u} + \boldsymbol{\epsilon}
+$$
+
+where:
+\begin{itemize}
+\item $\mathbf{Y}$ is the $N \times 1$ vector of phenotypes
+\item $\mathbf{X}$ is the $N \times M$ design matrix for fixed effects (e.g., genotypes, covariates)
+\item $\boldsymbol{\beta}$ is the $M \times 1$ vector of fixed effect coefficients (unknown, to be estimated)
+\item $\mathbf{Z}$ is the $N \times M$ design matrix for random effects
+\item $\mathbf{u}$ is the $M \times 1$ vector of random effects, where $\mathbf{u} \sim N(0, \sigma^2_u\mathbf{G})$ (unknown)
+\item $\mathbf{G}$ is the relationship matrix between the $N$ individuals
+\item $\boldsymbol{\epsilon}$ is the $N \times 1$ vector of residual errors, where $\boldsymbol{\epsilon} \sim N(0, \sigma^2_e\mathbf{I})$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Technical Details}
+With the standard linear mixed model (LMM) defined as above, we can explicitly derive the following important results:
+
+1. Variance-Covariance Structure
+$$\mathbf{V} = \mathbf{Z}\mathbf{G}\mathbf{Z}' + \mathbf{R}$$
+
+2. Best Linear Unbiased Estimator (BLUE) for Fixed Effects
+
+Given known variance components, the solution for fixed effects is:
+
+$$\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{V}^{-1}\mathbf{X})^{-1}\mathbf{X}'\mathbf{V}^{-1}\mathbf{Y}$$
+
+3. Best Linear Unbiased Predictor (BLUP) for Random Effects
+
+Given known variance components and estimated fixed effects, the solution for random effects is:
+
+$$\hat{\mathbf{u}} = \mathbf{G}\mathbf{Z}'\mathbf{V}^{-1}(\mathbf{Y} - \mathbf{X}\hat{\boldsymbol{\beta}})$$
+
+\end{frame}
+

@@ -1,0 +1,62 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Maximum Likelihood Estimation}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Maximum likelihood estimation identifies the parameter values that maximize the probability of observing your actual data, essentially asking "which model settings would make what we actually saw most likely to occur?"
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/maximum_likelihood_estimation.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+In statistics, maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by maximizing the likelihood function ($L(\theta|\text{D}) = P(\theta|\text{D})$) so that, under the assumed statistical model, the observed data is most probable. 
+
+The goal of maximum likelihood estimation is to find the values of the model parameters (e.g., $\theta$) that maximize the likelihood function over the parameter space (e.g., $\Theta$), that is:
+$$
+\hat{\theta} = \underset{\theta \in \Theta}{\operatorname{argmax}} L(\theta|D) = \underset{\theta \in \Theta}{\operatorname{argmax}} P(D|\theta)
+$$
+\end{frame}
+
+
+\begin{frame}{Technical Details: Work with Log-Likelihood}
+
+In practice, it is often convenient to work with the natural logarithm of the likelihood function, called the log-likelihood:
+
+$$\ell (\theta \,;\mathbf{y})=\ln {\mathcal{L}}_{n}(\theta \,;\mathbf{y})~.$$
+
+Since the logarithm is a monotonic function, the maximum of $\ell (\theta \,;\mathbf{y})$ occurs at the same value of $\theta$ as does the maximum of ${\mathcal{L}}_{n}~.$.
+
+\end{frame}
+
+\begin{frame}{Technical Details: Likelihood equation}
+If $\ell (\theta \,;\mathbf{y})$ is differentiable in $\Theta$, sufficient conditions for the occurrence of a maximum (or a minimum) are
+
+$$
+\frac{\partial \ell}{\partial \theta}=0
+$$
+
+known as the likelihood equations.
+
+\end{frame}
+
+\begin{frame}{Technical Details: IID data}
+
+If the data are independent and identically distributed, then we have
+
+$${\widehat{\ell\,}}(\theta \,;D)=\sum_{i=1}^{n}\ln f(d_{i}\mid \theta),$$
+
+this being the sample analogue of the expected log-likelihood 
+
+$$\ell(\theta)=\operatorname{\mathbb{E}}[\,\ln f(d_{i}\mid \theta)\,],$$
+
+where this expectation is taken with respect to the true density.
+\end{frame}
+

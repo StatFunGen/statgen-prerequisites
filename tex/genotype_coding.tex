@@ -1,0 +1,103 @@
+% Generated slides for Genotype Coding
+% Include this file in your main Beamer presentation
+
+\begin{frame}{Section}
+\centering
+\Huge{Genotype Coding}
+\end{frame}
+
+
+\begin{frame}{Intuitional Description}
+Genotype coding converts DNA nucleotide pairs into numerical values for statistical analysis, with the additive model being particularly valuable because genetic effects often accumulate proportionally with each additional copy of a variant.
+
+\end{frame}
+
+\begin{frame}{Graphical Summary}
+\includesvg[width=0.8\textwidth]{./cartoons/genotype_coding.svg}
+\end{frame}
+
+
+\begin{frame}{Key Formula}
+We use $\mathbf{X}_\text{raw}$ to denote the \textbf{Raw Genotype Matrix} (an $N \times M$ matrix representing genotypes for $N$ individuals at $M$ variants)
+   
+For diploid organisms, using different coding models:
+\begin{itemize}
+\item Additive model: takes value from $\{0, 1, 2\}$ (count of alternative alleles)
+\item Dominant model: takes value from $\{0, 1\}$ (1: presence of alternative allele)
+\item Recessive model: takes value from $\{0, 1\}$ (two copies of alternative allele required for 1)
+\end{itemize}
+
+\textbf{Standardized Genotype Matrix} $\mathbf{X}$: Normalized version of $\mathbf{X}_\text{raw}$
+
+For each column $j$ (variant):
+   $$X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}$$
+   
+   Where:
+\begin{itemize}
+\item $\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}$ (mean of variant $j$)
+\item $\sigma_j = \sqrt{\frac{1}{N}\sum_{i=1}^{N} (X_{\text{raw},ij} - \mu_j)^2}$ (standard deviation of variant $j$)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Technical Details: Three models}
+
+For diploid organisms (with two copies of each chromosome, e.g., human), we use different coding models:
+
+\begin{itemize}
+\item \textbf{Additive model}: takes value from $\{0, 1, 2\}$
+\begin{itemize}
+\item 0: Homozygous for reference allele (AA)
+\item 1: Heterozygous (Aa)
+\item 2: Homozygous for alternative allele (aa)
+\item Represents the count of alternative alleles
+\end{itemize}
+\end{itemize}
+   
+\begin{itemize}
+\item \textbf{Dominant model}: takes value from $\{0, 1\}$
+\begin{itemize}
+\item 0: Homozygous for reference allele (AA)
+\item 1: Either heterozygous or homozygous for alternative allele (Aa or aa)
+\item Represents the presence of at least one copy of the alternative allele
+\end{itemize}
+\end{itemize}
+   
+\begin{itemize}
+\item \textbf{Recessive model}: takes value from $\{0, 1\}$
+\begin{itemize}
+\item 0: Either homozygous for reference allele or heterozygous (AA or Aa)
+\item 1: Homozygous for alternative allele (aa)
+\item Represents when both copies of the alternative allele are present
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Technical Details: Standardized Genotype Matrix}
+
+$\mathbf{X}$ is a normalized version of $\mathbf{X}_\text{raw}$ where each variant is scaled to have mean 0 and variance 1.
+
+For each column $j$ (variant):
+\begin{itemize}
+\item $\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}$ (mean of variant $j$)
+\begin{itemize}
+\item Represents the average number of alternative alleles at variant $j$ in the sample
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item $\sigma_j = \sqrt{\frac{1}{N}\sum_{i=1}^{N} (X_{\text{raw},ij} - \mu_j)^2}$ (standard deviation of variant $j$)
+\begin{itemize}
+\item Measures the variability in the number of alternative alleles at variant $j$
+\end{itemize}
+\end{itemize}
+
+This standardization ensures that:
+\begin{itemize}
+\item Each column of $\mathbf{X}$ has mean 0
+\item Each column of $\mathbf{X}$ has variance 1
+\item The standardized values reflect the deviation from the population mean in units of standard deviation
+\end{itemize}
+\end{frame}
+
