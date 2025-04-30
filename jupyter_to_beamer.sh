@@ -98,6 +98,7 @@ convert_table_to_latex() {
         # Apply formatting
         trimmed_cell=$(echo "$trimmed_cell" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')  # Bold
         trimmed_cell=$(echo "$trimmed_cell" | sed 's/`\([^`]*\)`/\\texttt{\1}/g')  # Code
+        trimmed_cell=$(echo "$trimmed_cell" | sed 's/%/\\%/g')  # Escape percent signs
         header_row="${header_row}${trimmed_cell} & "
     done
     # Remove the trailing " & " and add line ending
@@ -118,6 +119,7 @@ convert_table_to_latex() {
             # Apply formatting
             trimmed_cell=$(echo "$trimmed_cell" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')  # Bold
             trimmed_cell=$(echo "$trimmed_cell" | sed 's/`\([^`]*\)`/\\texttt{\1}/g')  # Code
+            trimmed_cell=$(echo "$trimmed_cell" | sed 's/%/\\%/g')  # Escape percent signs
             data_row="${data_row}${trimmed_cell} & "
         done
         # Remove the trailing " & " and add line ending
@@ -359,11 +361,13 @@ awk '
                 # Convert formatting
                 item_text=$(echo "$item_text" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')  # Convert bold
                 item_text=$(echo "$item_text" | sed 's/`\([^`]*\)`/\\texttt{\1}/g')  # Convert inline code
+                item_text=$(echo "$item_text" | sed 's/%/\\%/g')  # Escape percent signs
                 echo "\\item $item_text" >> "$OUTPUT_FILE"
             else
                 # Regular text - convert formatting
                 processed_line=$(echo "$line" | sed 's/\*\*\([^*]*\)\*\*/\\textbf{\1}/g')  # Convert bold
                 processed_line=$(echo "$processed_line" | sed 's/`\([^`]*\)`/\\texttt{\1}/g')  # Convert inline code
+                processed_line=$(echo "$processed_line" | sed 's/%/\\%/g')  # Escape percent signs
                 # Only output if not a subsection marker line
                 if [[ ! "$processed_line" =~ ^##[[:space:]]+ ]]; then
                     echo "$processed_line" >> "$OUTPUT_FILE"
