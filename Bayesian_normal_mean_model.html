@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Bayesian_normal_mean_model';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Bayesian_normal_mean_model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood">Likelihood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution">Posterior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics">Characteristics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-data-and-the-likelihood-function">Observed Data and the likelihood function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-prior-and-posterior-distribution">Plot the prior and posterior distribution</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-results">Explanation of Results</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>The Bayesian normal mean model combines <strong>our prior belief</strong> about a normal distribution’s mean with <strong>observed data</strong>, resulting in a posterior mean that’s a precision-weighted average of the prior mean and sample mean.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="fig" src="_images/Bayesian_normal_mean_model.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>Given:</p>
+<ul class="simple">
+<li><p>Data points <span class="math notranslate nohighlight">\(Y_1, Y_2, \ldots, Y_n\)</span> from <span class="math notranslate nohighlight">\(\mathcal{N}(\mu, \sigma^2)\)</span> with sample mean <span class="math notranslate nohighlight">\(\bar{Y}\)</span></p></li>
+<li><p>Prior <span class="math notranslate nohighlight">\(\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)\)</span></p></li>
+</ul>
+<p>The posterior distribution is:
+$<span class="math notranslate nohighlight">\(\mu | Y \sim \mathcal{N}\left(\frac{\sigma^2\mu_0 + n\sigma_0^2\bar{Y}}{\sigma^2 + n\sigma_0^2}, \frac{\sigma^2\sigma_0^2}{\sigma^2 + n\sigma_0^2}\right)\)</span>$</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="model-assumptions">
+<h2>Model Assumptions<a class="headerlink" href="#model-assumptions" title="Link to this heading">#</a></h2>
+<p>In the Bayesian normal mean model, we assume the variable <span class="math notranslate nohighlight">\(Y\)</span> follows uni-variate normal model <span class="math notranslate nohighlight">\(\mathcal{N}(\mu, \sigma^2)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+Y \sim \mathcal{N}(\mu, \sigma^2)
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \mu \)</span> is the unknown mean parameter.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \sigma^2 \)</span> is the known variance.</p></li>
+</ul>
+<p>And the Bayesian Normal Mean Model is to see what we can learn about the unknown parameter <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+</section>
+<section id="prior-distribution">
+<h2>Prior Distribution<a class="headerlink" href="#prior-distribution" title="Link to this heading">#</a></h2>
+<p>A common choice for the prior on <span class="math notranslate nohighlight">\( \mu \)</span> is a normal distribution:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( \mu_0 \)</span> is the prior mean and <span class="math notranslate nohighlight">\( \sigma_0^2 \)</span> is the prior variance.</p>
+<p>The precision is defined as <span class="math notranslate nohighlight">\(\tau_0 = \frac{1}{\sigma_0^2}\)</span>. In other words, the prior of <span class="math notranslate nohighlight">\(\mu\)</span> can be rewritten as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu \sim \mathcal{N}(\mu_0, \frac{1}{\tau_0})
+\]</div>
+<p>Therefore, the probability density function (PDF) is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+p(\mu)&amp;\propto \exp\left(-\frac{1}{2}\tau_0\mu^2 + \tau_0\mu_0 \mu\right) \\
+       &amp;\propto \exp\left(-\frac{1}{2}\tau_0 (\mu - \mu_0)^2\right)
+\end{align}
+\end{split}\]</div>
+<p>(Here, the 0 subscript is used to indicate that <span class="math notranslate nohighlight">\(\mu_0\)</span> and <span class="math notranslate nohighlight">\(\sigma_0\)</span> are parameters in the prior.)</p>
+</section>
+<section id="likelihood">
+<h2>Likelihood<a class="headerlink" href="#likelihood" title="Link to this heading">#</a></h2>
+<p>The likelihood of the data given <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+Y\mid\mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2)
+\]</div>
+<p>The probability density function (PDF) is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+p(Y\mid\mu) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y^2 - 2\mu Y)\right)\\
+&amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \mu)^2\right)
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tau = \frac{1}{\sigma^2}\)</span> is the precision.</p>
+</section>
+<section id="posterior-distribution">
+<h2>Posterior Distribution<a class="headerlink" href="#posterior-distribution" title="Link to this heading">#</a></h2>
+<p>Using Bayes’ theorem, the posterior distribution of <span class="math notranslate nohighlight">\( \mu \)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\mu|Y) \propto p(Y|\mu) p(\mu)
+\]</div>
+<p>Expanding the probability density functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+p(\mu \mid Y) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \mu)^2\right) \exp\left(-\frac{1}{2} \tau_0 (\mu - \mu_0)^2\right) \\
+&amp;\propto \exp\left(-\frac{1}{2} \tau (Y^2 - 2Y\mu + \mu^2) - \frac{1}{2} \tau_0 (\mu^2 - 2\mu \mu_0 + \mu_0^2)\right) \\
+&amp;\propto \exp\left(-\frac{1}{2} (\tau + \tau_0) \mu^2 + (\tau Y + \tau_0 \mu_0) \mu \right)
+\end{align}
+\end{split}\]</div>
+<p>Recognizing the quadratic form, the posterior distribution follows a normal distribution:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu \mid Y \sim \mathcal{N}\left( \mu_1, \sigma_1^2 \right)
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_1 = \frac{\tau Y + \tau_0 \mu_0}{\tau + \tau_0}, \quad \sigma_1^2 = \frac{1}{\tau + \tau_0}
+\]</div>
+</section>
+<section id="characteristics">
+<h2>Characteristics<a class="headerlink" href="#characteristics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Bayes’ theorem</strong> combines these components: <span class="math notranslate nohighlight">\(P(\mu|D) \propto P(D|\mu) P(\mu)\)</span>.</p></li>
+<li><p>The <strong>prior</strong> represents our belief about the parameter before seeing any data.</p></li>
+<li><p>The <strong>likelihood</strong> represents how likely we are to observe the data given the parameter.</p></li>
+<li><p>The <strong>posterior</strong> is the updated belief about the parameter after seeing the data.</p>
+<ul>
+<li><p>the <strong>Posterior precision</strong> (<span class="math notranslate nohighlight">\(\tau_1\)</span>) is the sum of the Data precision (<span class="math notranslate nohighlight">\(\tau\)</span>) and the Prior precision (<span class="math notranslate nohighlight">\(\tau_0\)</span>). This makes sense: the more precise your data, and the more precise your prior information, the more precise your posterior information. Also, this means that the data always improves your posterior precision compared with the prior: noisy data (small <span class="math notranslate nohighlight">\(\tau\)</span>) improves it only a little, whereas precise data improves it a lot.</p></li>
+<li><p>If we rewrite the <strong>posterior mean</strong> as:
+$<span class="math notranslate nohighlight">\(
+\mu_1=w\sum_i^n x_i+(1−w)\mu_0
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>w=\tau/(\tau+\tau_0)<span class="math notranslate nohighlight">\(. Thus \)</span>\mu_1<span class="math notranslate nohighlight">\( is a weighted average of the sum of the data \)</span>x_i<span class="math notranslate nohighlight">\( and the prior mean \)</span>\mu_0<span class="math notranslate nohighlight">\(. And the weights depend on the relative precision of the data and the prior. If the data are precise compared with the prior (\)</span>\tau&gt;&gt;\tau_0$) then the weight w will be close to 1 and the posterior mean will be close to the data.</p></li>
+</ul>
+</li>
+<li><p>Model comparison in Bayesian inference is performed using Bayes factors.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>We consider a scenario where we study the height (<span class="math notranslate nohighlight">\(Y\)</span>) of a group of individuals. We assume that height follows a univariate normal distribution within this genotype class:
+$<span class="math notranslate nohighlight">\(
+Y | \mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2)
+\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the unknown mean height, and <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the known variance within this genotype group. Our goal is to estimate <span class="math notranslate nohighlight">\(\mu\)</span> using Bayesian inference.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>Prior Distribution<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>We assume a normal prior for <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu\_0 = 160\)</span> cm (prior mean height),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_0^2 = 1 \text{cm}^2\)</span> (prior variance), leading to a precision <span class="math notranslate nohighlight">\(\tau_0 = 1/\sigma_0^2\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prior distribution of mu</span>
+<span class="n">mu_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">160</span><span class="w">  </span><span class="c1"># Prior mean</span>
+<span class="n">sigma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># Prior standard deviation</span>
+<span class="n">tau_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma_0</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Prior precision</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Prior mean (mu_0):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mu_0</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Prior standard deviation (sigma_0):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_0</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Prior precision (tau_0):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tau_0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Prior mean (mu_0): 160&quot;
+[1] &quot;Prior standard deviation (sigma_0): 1&quot;
+[1] &quot;Prior precision (tau_0): 1&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="observed-data-and-the-likelihood-function">
+<h2>Observed Data and the likelihood function<a class="headerlink" href="#observed-data-and-the-likelihood-function" title="Link to this heading">#</a></h2>
+<p>We observe heights of five individuals in this group, and we assume the likelihood follows:</p>
+<div class="math notranslate nohighlight">
+\[
+Y | \mu \sim \mathcal{N}(\mu, \sigma^2)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed height for the 5 individuals</span>
+<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Observed heights (Y):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">,</span><span class="w"> </span><span class="n">collapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Number of observations (n):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Observed heights (Y): 180, 160, 158, 155, 193&quot;
+[1] &quot;Number of observations (n): 5&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Likelihood: Assumption - Heights follow N(mu, sigma^2) with known variance</span>
+<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># Known standard deviation for heights within genotype class &quot;00&quot;</span>
+<span class="n">tau</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Precision</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Likelihood standard deviation (sigma):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Likelihood precision (tau):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tau</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Likelihood standard deviation (sigma): 1&quot;
+[1] &quot;Likelihood precision (tau): 1&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="posterior-distribution-update">
+<h2>Posterior Distribution Update<a class="headerlink" href="#posterior-distribution-update" title="Link to this heading">#</a></h2>
+<p>Using Bayesian updating, the posterior distribution is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu | Y \sim \mathcal{N}(\mu_1, \sigma_1^2)
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><strong>Posterior precision</strong>:
+<span class="math notranslate nohighlight">\(\tau_1 = \tau_0 + n \tau\)</span></p></li>
+<li><p><strong>Posterior mean</strong>:
+<span class="math notranslate nohighlight">\(\mu_1 = \frac{\tau_0 \mu_0 + \tau \sum Y}{\tau_1}\)</span></p></li>
+<li><p><strong>Posterior standard deviation</strong>:
+<span class="math notranslate nohighlight">\(\sigma_1 = \sqrt{\frac{1}{\tau_1}}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Posterior parameters update</span>
+<span class="n">tau_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tau_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tau</span><span class="w">  </span><span class="c1"># Posterior precision</span>
+<span class="n">sigma_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tau_1</span><span class="p">)</span><span class="w">  </span><span class="c1"># Posterior standard deviation</span>
+<span class="n">mu_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">tau_0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mu_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tau_1</span><span class="w">  </span><span class="c1"># Posterior mean</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Posterior mean (mu_1):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mu_1</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Posterior standard deviation (sigma_1):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_1</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Posterior precision (tau_1):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tau_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Posterior mean (mu_1): 167.666666666667&quot;
+[1] &quot;Posterior standard deviation (sigma_1): 0.408248290463863&quot;
+[1] &quot;Posterior precision (tau_1): 6&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-the-prior-and-posterior-distribution">
+<h2>Plot the prior and posterior distribution<a class="headerlink" href="#plot-the-prior-and-posterior-distribution" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the prior distribution</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mu_0</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_0</span><span class="p">),</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">mu</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="s">&quot;Prior vs Posterior Distribution of &quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">mu</span><span class="p">)),</span>
+<span class="w">     </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">500</span><span class="p">)</span>
+
+<span class="c1"># Add the posterior distribution</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mu_1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_1</span><span class="p">),</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">500</span><span class="p">)</span>
+
+<span class="c1"># Add three observations (data points)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+
+<span class="c1"># Add legend</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Posterior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Observed Data&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/5743c6aa83fc83f405d2b217b5767a1c62ac8e55782ca645e47dcf8e1840488d.png"><img alt="_images/5743c6aa83fc83f405d2b217b5767a1c62ac8e55782ca645e47dcf8e1840488d.png" src="_images/5743c6aa83fc83f405d2b217b5767a1c62ac8e55782ca645e47dcf8e1840488d.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="explanation-of-results">
+<h2>Explanation of Results<a class="headerlink" href="#explanation-of-results" title="Link to this heading">#</a></h2>
+<p>The posterior mean and variance have changed compared to the prior because the observed data are larger than the prior mean.</p>
+<ul class="simple">
+<li><p><strong>Posterior Mean (<span class="math notranslate nohighlight">\(\mu_1\)</span>):</strong> The observed data (168, 173, and 171) are larger than the prior mean of 160, so the posterior mean shifts towards the observed data, now estimated around 168. This shift reflects the new evidence provided by the data.</p></li>
+<li><p><strong>Posterior Variance (<span class="math notranslate nohighlight">\(\sigma_1\)</span>):</strong> The posterior variance is smaller than the prior variance because the observed data provides more information. With more data, we become more confident in our estimate, which narrows the distribution around the posterior mean.</p></li>
+</ul>
+<p>In summary, the posterior mean shifts towards the data, and the posterior variance decreases because we gain more evidence, increasing our certainty.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood">Likelihood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution">Posterior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics">Characteristics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-data-and-the-likelihood-function">Observed Data and the likelihood function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-prior-and-posterior-distribution">Plot the prior and posterior distribution</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-results">Explanation of Results</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

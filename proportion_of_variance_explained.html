@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'proportion_of_variance_explained';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/proportion_of_variance_explained.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-variance">Components of Variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broad-sense-heritability">Broad-sense Heritability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#narrow-sense-heritability">Narrow-sense Heritability</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>Proportion of variance explained (PVE) measures how much of the total variation in a trait (like height or disease risk) can be attributed to specific variables in your statistical model (e.g., genetic variants). Heritability is a specific application of this concept that measures how much of the variation in a trait across a population can be explained by genetic differences.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="PVE" src="_images/proportion_of_variance_explained.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>Any phenotype can be modeled as the sum of genetic and environmental effects, i.e., <span class="math notranslate nohighlight">\(\text{Phenotype}~(Y) = \text{Genotype}~(G) + \text{Environment}~(E)\)</span>, and under the assumption that G and E are independent from each other, the <strong>proportion of variance explained (PVE)</strong> by genetic effect alone (also called  broad-sense heritability <span class="math notranslate nohighlight">\(H^2\)</span>) can be derived as</p>
+<div class="math notranslate nohighlight">
+\[
+\text{PVE} = H^2 = \frac{\text{Var}(G)}{\text{Var}(Y)}
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{Var}(G)\)</span> is the genetic variance component</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Var}(E)\)</span> is the environmental variance component</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="components-of-variance">
+<h2>Components of Variance<a class="headerlink" href="#components-of-variance" title="Link to this heading">#</a></h2>
+<p>Any phenotype can be modeled as the sum of genetic and environmental effects:</p>
+<div class="math notranslate nohighlight">
+\[\text{Phenotype}~(P) = \text{Genotype}~(G) + \text{Environment}~(E)\]</div>
+<p>The phenotypic variance in the trait can then be partitioned as:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}(P) = \text{Var}(G) + \text{Var}(E) + 2\text{Cov}(G,E)\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{Var}(G)\)</span> is the genetic variance component</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Var}(E)\)</span> is the environmental variance component</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Cov}(G,E)\)</span> is the covariance between genetic and environmental effects</p></li>
+</ul>
+</section>
+<section id="broad-sense-heritability">
+<h2>Broad-sense Heritability<a class="headerlink" href="#broad-sense-heritability" title="Link to this heading">#</a></h2>
+<p>In controlled experimental settings, we can design studies where <span class="math notranslate nohighlight">\(\text{Cov}(G,E)\)</span> is minimized and effectively set to zero. In such cases, heritability is defined as the proportion of phenotypic variance attributable to all genetic effects:</p>
+<div class="math notranslate nohighlight">
+\[H^2 = \frac{\text{Var}(G)}{\text{Var}(P)}\]</div>
+<p>This represents the proportion of phenotypic variance attributable to genetic variance.</p>
+</section>
+<section id="narrow-sense-heritability">
+<h2>Narrow-sense Heritability<a class="headerlink" href="#narrow-sense-heritability" title="Link to this heading">#</a></h2>
+<p><strong>Narrow-sense heritability</strong> (<span class="math notranslate nohighlight">\(h^2\)</span>): The proportion attributable to only <strong>additive</strong> genetic effects:
+$<span class="math notranslate nohighlight">\(h^2 = \frac{\text{Var}(A)}{\text{Var}(P)}\)</span>$</p>
+<p>Where <span class="math notranslate nohighlight">\(\text{Var}(A)\)</span> is the additive genetic variance, a component of <span class="math notranslate nohighlight">\(\text{Var}(G)\)</span>.</p>
+<p>Other components of <span class="math notranslate nohighlight">\(\text{Var}(G)\)</span> includes <span class="math notranslate nohighlight">\(\text{Var}(D)\)</span> (dominance variance) and <span class="math notranslate nohighlight">\(\text{Var}(I)\)</span> (epistatic variance, i.e., gene-gene interaction)</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>This example calculates the PVE for each genetic variant in a mixed-effects model framework.</p>
+<p>For each variant, it fits a linear mixed model with the variant as a fixed effect and family structure as a random effect, then partitions the total phenotypic variance into three components:</p>
+<ul class="simple">
+<li><p>fixed effect variance (from the specific genetic variant)</p></li>
+<li><p>family variance (from shared genetic background)</p></li>
+<li><p>residual variance (unexplained variation)</p></li>
+</ul>
+<p>The code extracts variance components from the model, calculates the fixed effect variance by multiplying the variant data by its effect size, and then determines what percentage each component contributes to the total variance.</p>
+<p>We also compute the PVE of all variants in the joint model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="c1"># Load required packages</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">lme4</span><span class="p">)</span><span class="w">  </span><span class="c1"># For mixed-effect models</span>
+
+<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
+<span class="c1"># These represent actual alleles at each position</span>
+<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 1</span>
+<span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 2</span>
+<span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 3</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 4</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
+<span class="p">)</span>
+<span class="c1"># Reshape into a matrix</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># assign observed height for the 5 individuals</span>
+<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
+
+<span class="c1"># Add family information (individuals 1,2,3 are from family 1, and 4,5 from family 2)</span>
+<span class="n">family_info</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Create a data frame for analysis with scaled genotypes</span>
+<span class="n">genetic_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span>
+<span class="w">  </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">family_info</span><span class="p">,</span>
+<span class="w">  </span><span class="n">individual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">,</span>
+<span class="w">  </span><span class="n">X</span><span class="w">  </span><span class="c1"># This directly adds all columns of X to the dataframe</span>
+<span class="p">)</span>
+
+<span class="c1"># Rename the genotype columns for clarity</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">genetic_data</span><span class="p">)[</span><span class="m">4</span><span class="o">:</span><span class="p">(</span><span class="m">3</span><span class="o">+</span><span class="n">M</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">genetic_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 5 x 6</caption>
+<thead>
+	<tr><th></th><th scope=col>height</th><th scope=col>family</th><th scope=col>individual</th><th scope=col>variant1</th><th scope=col>variant2</th><th scope=col>variant3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Individual 1</th><td> 0.6528093</td><td>1</td><td>1</td><td>-0.6708204</td><td> 0.2390457</td><td> 0.4472136</td></tr>
+	<tr><th scope=row>Individual 2</th><td>-0.5560968</td><td>1</td><td>2</td><td> 1.5652476</td><td>-0.9561829</td><td>-0.6708204</td></tr>
+	<tr><th scope=row>Individual 3</th><td>-0.6769875</td><td>1</td><td>3</td><td> 0.4472136</td><td> 0.2390457</td><td>-0.6708204</td></tr>
+	<tr><th scope=row>Individual 4</th><td>-0.8583234</td><td>2</td><td>4</td><td>-0.6708204</td><td>-0.9561829</td><td>-0.6708204</td></tr>
+	<tr><th scope=row>Individual 5</th><td> 1.4385984</td><td>2</td><td>5</td><td>-0.6708204</td><td> 1.4342743</td><td> 1.5652476</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single variant analysis and PVE results</span>
+<span class="n">pve_results_single_variants</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">character</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">PVE_Fixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">PVE_Family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">PVE_Residual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">Fixed_Variance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">Family_Variance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">Residual_Variance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">Total_Variance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span>
+<span class="p">)</span>
+
+<span class="c1"># Calculate PVE for each variant individually</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">variant_col</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span>
+<span class="w">  </span><span class="n">formula</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.formula</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;height ~&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">variant_col</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;+ (1|family)&quot;</span><span class="p">))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Fit random effect model</span>
+<span class="w">  </span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmer</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genetic_data</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Extract variance components</span>
+<span class="w">  </span><span class="n">vc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="w">  </span><span class="n">family_variance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">vc</span><span class="o">$</span><span class="n">family</span><span class="p">)</span>
+<span class="w">  </span><span class="n">residual_variance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">attr</span><span class="p">(</span><span class="n">vc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sc&quot;</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate fixed effect variance</span>
+<span class="w">  </span><span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">fixef</span><span class="p">(</span><span class="n">model</span><span class="p">)[</span><span class="n">variant_col</span><span class="p">]</span>
+<span class="w">  </span><span class="n">X_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genetic_data</span><span class="p">[[</span><span class="n">variant_col</span><span class="p">]])</span>
+<span class="w">  </span><span class="n">fixed_variance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nf">as.vector</span><span class="p">(</span><span class="n">X_var</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span><span class="p">))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate total variance</span>
+<span class="w">  </span><span class="n">total_variance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fixed_variance</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">family_variance</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">residual_variance</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate PVE for each component</span>
+<span class="w">  </span><span class="n">pve_fixed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fixed_variance</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_variance</span>
+<span class="w">  </span><span class="n">pve_family</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">family_variance</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_variance</span>
+<span class="w">  </span><span class="n">pve_residual</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">residual_variance</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_variance</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Store results in the data frame</span>
+<span class="w">  </span><span class="n">pve_results_single_variants</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">pve_results_single_variants</span><span class="p">,</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">variant_col</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PVE_Fixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pve_fixed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PVE_Family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pve_family</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PVE_Residual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pve_residual</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Fixed_Variance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fixed_variance</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Family_Variance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">family_variance</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Residual_Variance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">residual_variance</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Total_Variance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_variance</span><span class="p">,</span>
+<span class="w">    </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span>
+<span class="w">  </span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="n">pve_results_single_variants</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>boundary (singular) fit: see help(&#39;isSingular&#39;)
+
+boundary (singular) fit: see help(&#39;isSingular&#39;)
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 8</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>PVE_Fixed</th><th scope=col>PVE_Family</th><th scope=col>PVE_Residual</th><th scope=col>Fixed_Variance</th><th scope=col>Family_Variance</th><th scope=col>Residual_Variance</th><th scope=col>Total_Variance</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>variant1</td><td>20.00779</td><td>0.000000</td><td>79.9922054</td><td>0.2500913</td><td>0.00000000</td><td>0.999878212</td><td>1.24997</td></tr>
+	<tr><td>variant2</td><td>66.60926</td><td>0.000000</td><td>33.3907386</td><td>0.7267603</td><td>0.00000000</td><td>0.364319641</td><td>1.09108</td></tr>
+	<tr><td>variant3</td><td>95.70867</td><td>3.655575</td><td> 0.6357522</td><td>1.1000658</td><td>0.04201681</td><td>0.007307271</td><td>1.14939</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate PVE for all variants together</span>
+<span class="c1"># Fit the full model with all variants</span>
+<span class="n">full_formula</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.formula</span><span class="p">(</span><span class="s">&quot;height ~ variant1 + variant2 + variant3 + (1|family)&quot;</span><span class="p">)</span>
+<span class="n">full_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmer</span><span class="p">(</span><span class="n">full_formula</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genetic_data</span><span class="p">)</span>
+
+<span class="c1"># Extract variance components</span>
+<span class="n">vc_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">full_model</span><span class="p">)</span>
+<span class="n">family_variance_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">vc_full</span><span class="o">$</span><span class="n">family</span><span class="p">)</span>
+<span class="n">residual_variance_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">attr</span><span class="p">(</span><span class="n">vc_full</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sc&quot;</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
+
+<span class="c1"># Calculate fixed effect variance for the full model</span>
+<span class="n">betas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">fixef</span><span class="p">(</span><span class="n">full_model</span><span class="p">)[</span><span class="m">2</span><span class="o">:</span><span class="p">(</span><span class="n">M</span><span class="m">+1</span><span class="p">)]</span><span class="w">  </span><span class="c1"># Skip intercept</span>
+<span class="n">X_design</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">genetic_data</span><span class="p">[,</span><span class="w"> </span><span class="m">4</span><span class="o">:</span><span class="p">(</span><span class="m">3</span><span class="o">+</span><span class="n">M</span><span class="p">)])</span>
+<span class="n">predicted_fixed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X_design</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">betas</span>
+<span class="n">fixed_variance_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nf">as.vector</span><span class="p">(</span><span class="n">predicted_fixed</span><span class="p">))</span>
+
+<span class="c1"># Calculate total variance</span>
+<span class="n">total_variance_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fixed_variance_full</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">family_variance_full</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">residual_variance_full</span>
+
+<span class="c1"># Calculate PVE for each component</span>
+<span class="n">pve_fixed_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fixed_variance_full</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_variance_full</span>
+<span class="n">pve_family_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">family_variance_full</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_variance_full</span>
+<span class="n">pve_residual_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">residual_variance_full</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_variance_full</span>
+
+<span class="c1"># Print out the results for all variants together</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\n---------- PVE Analysis for All Variants Together ----------\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Fixed effects (all variants) PVE:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pve_fixed_full</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Random effect (family) PVE:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pve_family_full</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Residual PVE:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pve_residual_full</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Total:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">((</span><span class="n">pve_fixed_full</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pve_family_full</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pve_residual_full</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%\n\n&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Variance components:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Fixed effects variance:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">fixed_variance_full</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Family variance:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">family_variance_full</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Residual variance:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">residual_variance_full</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Total variance:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">total_variance_full</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate heritability (proportion of variance due to family structure)</span>
+<span class="n">heritability</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">family_variance_full</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">family_variance_full</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">residual_variance_full</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nHeritability (proportion of variance due to family structure):&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">heritability</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, :
+&quot;unable to evaluate scaled gradient&quot;
+Warning message in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, :
+&quot; Hessian is numerically singular: parameters are not uniquely determined&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- PVE Analysis for All Variants Together ----------
+Fixed effects (all variants) PVE: 92.48 %
+Random effect (family) PVE: 1.41 %
+Residual PVE: 6.11 %
+Total: 100 %
+
+Variance components:
+Fixed effects variance: 1.0142 
+Family variance: 0.0155 
+Residual variance: 0.067 
+Total variance: 1.0967 
+
+Heritability (proportion of variance due to family structure): 18.77 %
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Zhu H, Zhou X. Statistical methods for SNP heritability estimation and partition: A review. Comput Struct Biotechnol J. 2020 Jun 18;18:1557-1568. doi: 10.1016/j.csbj.2020.06.011. PMID: 32637052; PMCID: PMC7330487.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-variance">Components of Variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broad-sense-heritability">Broad-sense Heritability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#narrow-sense-heritability">Narrow-sense Heritability</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

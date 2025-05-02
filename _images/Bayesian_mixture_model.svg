@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-anchor: middle; }
+    .subtitle { font-family: Arial, sans-serif; font-size: 18px; font-style: italic; text-anchor: middle; }
+    .label { font-family: Arial, sans-serif; font-size: 14px; }
+    .formula { font-family: 'Times New Roman', serif; font-size: 18px; font-style: italic; }
+    .axis { stroke: #333; stroke-width: 2; }
+    .axisLabel { font-family: Arial, sans-serif; font-size: 16px; text-anchor: middle; }
+    .comp1 { fill: rgba(70, 130, 180, 0.5); stroke: rgb(70, 130, 180); stroke-width: 2; }
+    .comp2 { fill: rgba(255, 99, 71, 0.5); stroke: rgb(255, 99, 71); stroke-width: 2; }
+    .mixture { fill: none; stroke: #333; stroke-width: 3; }
+    .point { stroke: #333; stroke-width: 1; }
+    .legend { font-family: Arial, sans-serif; font-size: 14px; }
+    .box { fill: white; stroke: #999; stroke-width: 1; rx: 5; ry: 5; }
+    .infoText { font-family: Arial, sans-serif; font-size: 12px; }
+    .infoTitle { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+  </style>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f8f8" />
+  
+  <!-- Title and Subtitle -->
+  <text x="400" y="40" class="title">Bayesian Mixture Model</text>
+  <text x="400" y="70" class="subtitle">Example: Modeling Height Data with Two distributions</text>
+  
+  <!-- Main Visualization Area -->
+  <g transform="translate(80, 120)">
+    <!-- Axes -->
+    <line x1="0" y1="300" x2="640" y2="300" class="axis" />
+    <line x1="0" y1="300" x2="0" y2="0" class="axis" />
+    
+    <!-- Component 1 Curve (Female Heights) -->
+    <path d="M0,299 C20,295 40,280 60,250 C80,215 100,160 120,110 
+             C140,70 160,50 180,45 C200,50 220,70 240,110 
+             C260,160 300,215 360,250 C420,280 440,295 560,299" 
+          class="comp1" />
+    
+    <!-- Component 2 Curve (Male Heights) -->
+    <path d="M50,299 C180,295 200,280 220,250 C240,215 260,160 280,110 
+             C300,60 320,50 340,45 C360,60 380,70 400,110 
+             C420,160 440,215 460,250 C480,280 500,295 620,299" 
+          class="comp2" />
+    
+    <!-- Mixture Curve -->
+    <path d="M0,299 C20,295 40,280 60,250 C80,220 100,190 120,160 
+             C140,130 160,100 180,80 C200,65 220,55 240,50 
+             C280,48 300,50 330,55 C340,65 344,80 365,100 
+             C380,125 400,155 420,185 C440,215 460,245 480,270 
+             C480,280 520,285 530,292 C540,296 560,298 580,299 C620,299 620,299 620,299" 
+          class="mixture" />
+    
+    <!-- Data Points -->
+    <circle cx="95" cy="280" r="5" class="point" fill="#4682B4" />
+    <circle cx="330" cy="290" r="5" class="point" fill="#4682B4" />
+    <circle cx="150" cy="260" r="5" class="point" fill="#4682B4" />
+    <circle cx="170" cy="240" r="5" class="point" fill="#4682B4" />
+    <circle cx="190" cy="270" r="5" class="point" fill="#4682B4" />
+    
+    <circle cx="390" cy="280" r="5" class="point" fill="#FF6347" />
+    <circle cx="420" cy="260" r="5" class="point" fill="#FF6347" />
+    <circle cx="450" cy="250" r="5" class="point" fill="#FF6347" />
+    <circle cx="280" cy="240" r="5" class="point" fill="#FF6347" />
+    <circle cx="510" cy="270" r="5" class="point" fill="#FF6347" />
+    
+    <!-- Axis Labels -->
+    <text x="620" y="320" class="axisLabel">Height (cm)</text>
+    <text x="-40" y="150" class="axisLabel" transform="rotate(-90, -40, 150)">Density</text>
+    
+    <!-- Tick Marks and Labels -->
+    <line x1="120" y1="300" x2="120" y2="310" stroke="#333" stroke-width="2" />
+    <text x="120" y="325" class="label" text-anchor="middle">165</text>
+    
+    <line x1="340" y1="300" x2="340" y2="310" stroke="#333" stroke-width="2" />
+    <text x="340" y="325" class="label" text-anchor="middle">175</text>
+    
+    <!-- Component Labels -->
+    <text x="120" y="100" class="label" fill="#4682B4" text-anchor="middle">Component 1</text>
+    <text x="120" y="120" class="label" fill="#4682B4" text-anchor="middle">pi1 = 0.6</text>
+    
+    <text x="440" y="100" class="label" fill="#FF6347" text-anchor="middle">Component 2</text>
+    <text x="440" y="120" class="label" fill="#FF6347" text-anchor="middle">pi2 = 0.4</text>
+    
+    <text x="280" y="30" class="label" fill="#333" text-anchor="middle">Mixture Distribution</text>
+  </g>
+  
+  <!-- Key Formula Box -->
+  <rect x="100" y="460" width="600" height="60" class="box" />
+  <text x="400" y="485" class="formula" text-anchor="middle">
+    f(y) = sum pik fk(y) = pi1 N(y|mu1,sigma12) + pi2 N(y|mu2,sigma22)
+  </text>
+  <text x="400" y="505" class="label" text-anchor="middle">
+    where pi1 + pi2 = 1, pi1,pi2 ≥ 0
+  </text>
+  
+  <!-- Legend -->
+  <rect x="630" y="120" width="160" height="100" class="box" />
+  <text x="640" y="140" class="infoTitle">Legend</text>
+  <rect x="650" y="155" width="15" height="15" class="comp1" />
+  <text x="675" y="168" class="legend">Component 1</text>
+  <rect x="650" y="180" width="15" height="15" class="comp2" />
+  <text x="675" y="193" class="legend">Component 2</text>
+  <line x1="650" y1="210" x2="665" y2="210" class="mixture" />
+  <text x="675" y="213" class="legend">Mixture Density</text>
+  
+  <!-- Bayesian Elements Box -->
+  <rect x="630" y="230" width="160" height="150" class="box" />
+  <text x="640" y="250" class="infoTitle">Bayesian Elements</text>
+  <text x="640" y="270" class="infoText">• Prior on proportions</text>
+  <text x="650" y="290" class="infoText">pi ~ Dirichlet(alpha)</text>
+  <text x="640" y="310" class="infoText">• Priors on parameters</text>
+  <text x="650" y="330" class="infoText">muk ~ N(mu0,sigma0^2)</text>
+  <text x="650" y="350" class="infoText">sigmak^2 ~ InvGamma(a,b)</text>
+  <text x="640" y="370" class="infoText">• Latent variables zi</text>
+  
+  <!-- Model Architecture Box -->
+  <rect x="100" y="545" width="600" height="40" class="box" />
+  <text x="400" y="570" class="infoText" text-anchor="middle">
+    Each observation is generated by: (1) selecting a component zi ~ Cat(pi), then (2) drawing from yi ~ N(muzi,sigma^2zi)
+  </text>
+</svg>

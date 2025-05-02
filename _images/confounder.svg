@@ -1,0 +1,63 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10" />
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Confounder</text>
+  <!-- Ancestry bubble (the confounder) -->
+  <ellipse cx="400" cy="180" rx="120" ry="90" fill="#e6f2ff" stroke="#3366cc" stroke-width="3" />
+  <text x="400" y="180" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold"
+    fill="#333">Confounder</text>
+  <text x="400" y="210" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">(Ancestry)</text>
+  <!-- Genotype and Trait boxes -->
+  <rect x="150" y="350" width="160" height="80" fill="#ffe6e6" stroke="#cc3366" stroke-width="3" rx="10" ry="10" />
+  <text x="230" y="390" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">Genetic</text>
+  <text x="230" y="415" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">Variant</text>
+  <rect x="490" y="350" width="160" height="80" fill="#e6ffe6" stroke="#33cc66" stroke-width="3" rx="10" ry="10" />
+  <text x="570" y="390" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">Trait</text>
+  <text x="570" y="415" font-family="Arial" font-size="22" text-anchor="middle" font-weight="bold"
+    fill="#333">(Height)</text>
+  <!-- Connecting arrows from ancestry to genotype and trait -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  <!-- Arrow from ancestry to genotype -->
+  <line x1="320" y1="260" x2="245" y2="335" stroke="#3366cc" stroke-width="3" marker-end="url(#arrowhead)" />
+  <!-- Arrow from ancestry to trait -->
+  <line x1="480" y1="260" x2="560" y2="335" stroke="#3366cc" stroke-width="3" marker-end="url(#arrowhead)" />
+  <!-- Spurious association: dashed line between genotype and trait -->
+  <line x1="320" y1="390" x2="480" y2="390" stroke="#cc3366" stroke-width="3" stroke-dasharray="10,5" />
+  <text x="400" y="380" font-family="Arial" font-size="18" text-anchor="middle" fill="#cc3366"
+    font-style="italic">Spurious Association</text>
+  <!-- True causal pathway annotation -->
+  <text x="234" y="280" font-family="Arial" font-size="12" text-anchor="middle" fill="#3366cc"
+    transform="rotate(-45, 250, 260)">Affects</text>
+  <text x="270" y="300" font-family="Arial" font-size="12" text-anchor="middle" fill="#3366cc"
+    transform="rotate(-45, 260, 300)">allele frequency</text>
+
+  <text x="510" y="300" font-family="Arial" font-size="12" text-anchor="middle" fill="#3366cc"
+    transform="rotate(45, 535, 330)">Affects height</text>
+  <!-- Legend -->
+  <rect x="50" y="50" width="20" height="20" fill="#e6f2ff" stroke="#3366cc" stroke-width="2" />
+  <text x="80" y="65" font-family="Arial" font-size="16" fill="#333">Confounder</text>
+  <rect x="50" y="90" width="20" height="20" fill="#ffe6e6" stroke="#cc3366" stroke-width="2" />
+  <text x="80" y="105" font-family="Arial" font-size="16" fill="#333">X (Genetic Variant)</text>
+  <!-- <text x="85" y="110" font-family="Arial" font-size="16" fill="#333"> (Instrumental Variable)</text> -->
+  <rect x="50" y="130" width="20" height="20" fill="#e6ffe6" stroke="#33cc66" stroke-width="2" />
+  <text x="80" y="145" font-family="Arial" font-size="16" fill="#333">Y (Trait)</text>
+  <line x1="50" y1="180" x2="70" y2="180" stroke="#cc3366" stroke-width="2" stroke-dasharray="4,2" />
+  <text x="80" y="185" font-family="Arial" font-size="16" fill="#333">Spurious Association</text>
+  <!-- Bottom caption -->
+  <text x="400" y="460" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">
+    When ancestry is not controlled for in the analysis,
+  </text>
+  <text x="400" y="480" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">
+    it might create a misleading association between genotype and
+    trait.
+  </text>
+</svg>

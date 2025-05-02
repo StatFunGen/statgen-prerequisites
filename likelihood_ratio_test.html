@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'likelihood_ratio_test';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/likelihood_ratio_test.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-log-instead-of-the-ratio-directly">Why <span class="math notranslate nohighlight">\(\log\)</span> instead of the ratio directly?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null-and-alternative">Null and Alternative</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary-materials">Supplementary Materials</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-allele-frequency">Example 1 – allele frequency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-lr">Calculate LR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-interpret-lr">How to interpret LR?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-concertration-of-protein-in-blood">Example 2 – concertration of protein in blood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Calculate LR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading">Recommended Reading</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>In statistics, the <strong>likelihood-ratio test (LRT)</strong> is a hypothesis test that involves comparing the goodness of fit of two competing statistical models, based on the ratio of their likelihoods (<strong>LR</strong>).</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="likelihood ratio test" src="_images/likelihood_ratio_test.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>If the first hypothesis (<span class="math notranslate nohighlight">\(H_1\)</span>) believes that the parameter <span class="math notranslate nohighlight">\(\theta\)</span> lies in a specified subset <span class="math notranslate nohighlight">\(\Theta_1\)</span> of <span class="math notranslate nohighlight">\(\Theta\)</span> and the second hypothesis (<span class="math notranslate nohighlight">\(H_2\)</span>) believes that <span class="math notranslate nohighlight">\(\theta\)</span> lies in the <span class="math notranslate nohighlight">\(\Theta_2\)</span>, the likelihood ratio test statistic (<strong>LRT</strong>) between those two hypothesis is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_{\text{LR}}=-2\ln \left[{\frac {~\sup_{\theta \in \Theta_1}{\mathcal{L}}(\theta)~}{~\sup_{\theta \in \Theta_2}{\mathcal{L}}(\theta)~}}\right] = -2 \left[ \ln \left( ~\sup_{\theta \in \Theta_1}{\mathcal{L}}(\theta)~\right) -\ln \left( ~\sup_{\theta \in \Theta_2}{\mathcal{L}}(\theta)~\right) \right]
+\]</div>
+<p>Where the <span class="math notranslate nohighlight">\(\sup\)</span> notation refers to the supremum.</p>
+<p>[FIXME]– here do we use the general H0 and H1 (null and alternative) or stick to H1 and H2?</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="why-log-instead-of-the-ratio-directly">
+<h2>Why <span class="math notranslate nohighlight">\(\log\)</span> instead of the ratio directly?<a class="headerlink" href="#why-log-instead-of-the-ratio-directly" title="Link to this heading">#</a></h2>
+<p>In practice, we often work with the log-likelihood ratio for several reasons:</p>
+<ul class="simple">
+<li><p>Likelihoods can be extremely small numbers (e.g., <span class="math notranslate nohighlight">\(10^{-300}\)</span>) that may cause numerical underflow</p></li>
+<li><p>The log transformation converts multiplications into additions, which is computationally more stable</p></li>
+<li><p>The resulting statistic has better-understood statistical properties</p></li>
+</ul>
+</section>
+<section id="null-and-alternative">
+<h2>Null and Alternative<a class="headerlink" href="#null-and-alternative" title="Link to this heading">#</a></h2>
+<p>A null hypothesis is often stated by saying that the parameter <span class="math notranslate nohighlight">\(\Theta_0\)</span> of <span class="math notranslate nohighlight">\(\Theta\)</span>, while the alternative hypothesis is thus that <span class="math notranslate nohighlight">\(\theta\)</span> lies in the complement of <span class="math notranslate nohighlight">\(\Theta_0\)</span>, i.e., in <span class="math notranslate nohighlight">\(\Theta \backslash \Theta_0\)</span>, which is denoted by <span class="math notranslate nohighlight">\(\Theta_0^{\text{c}}\)</span>. The likelihood ratio test statistic for the null hypothesis <span class="math notranslate nohighlight">\(H_0: \theta \in \Theta_0\)</span> (versus the whole space <span class="math notranslate nohighlight">\(\Theta\)</span>) is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_{\text{LR}}=-2\ln \left[{\frac {~\sup_{\theta \in \Theta_0}{\mathcal{L}}(\theta)~}{~\sup_{\theta \in \Theta}{\mathcal{L}}(\theta)~}}\right]
+\]</div>
+<p>where the quantity inside the brackets is called the likelihood ratio. Here, the <span class="math notranslate nohighlight">\(\sup\)</span> notation refers to the supremum. As all likelihoods are positive, and as the constrained maximum cannot exceed the unconstrained maximum, the likelihood ratio here is bounded between zero and one and therefore the <span class="math notranslate nohighlight">\(\lambda\)</span> here would always be positive.</p>
+</section>
+<section id="interpretation">
+<h2>Interpretation<a class="headerlink" href="#interpretation" title="Link to this heading">#</a></h2>
+<p>For the likelihood ratio (LRT):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda &lt; 0\)</span>: Model 1 better explains the data (higher likelihood)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span>: Model 2 better explains the data (higher likelihood)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda = 0\)</span>: Both models explain the data equally well</p></li>
+</ul>
+<p>The magnitude of <span class="math notranslate nohighlight">\(\lambda\)</span> indicates the strength of evidence:</p>
+<ul class="simple">
+<li><p>Larger absolute values of <span class="math notranslate nohighlight">\(\lambda\)</span> indicate stronger evidence in favor of one model over the other</p></li>
+</ul>
+</section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The likelihood ratio (LR) is always non-negative: <span class="math notranslate nohighlight">\(\text{LR} \geq 0\)</span></p></li>
+<li><p>The log-likelihood ratio test statistic (LRT) can be positive or negative</p></li>
+<li><p>The factor of -2 in <span class="math notranslate nohighlight">\(\lambda\)</span> is chosen for theoretical reasons relating to chi-squared distributions</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>Here we continue the example used in the <code class="docutils literal notranslate"><span class="pre">likelihood</span></code> notebook and <code class="docutils literal notranslate"><span class="pre">likelihood_ratio</span></code> notebook, and perform the likelihood ratio test to determine which genetic variants are associated with height in a small genetic association study. Using the same data from 5 individuals at 3 genetic variants, we compare two competing models:</p>
+<ul class="simple">
+<li><p>Model 1 (<span class="math notranslate nohighlight">\(\beta=0\)</span>) assuming no genetic effect</p></li>
+<li><p>Model 2 (<span class="math notranslate nohighlight">\(\beta=0.5\)</span>) assuming a mediate genetic effect.</p></li>
+</ul>
+<p>After calculating the likelihood for each model across all variants, we compute the likelihood ratio test statistic (LRT) and its log-transformed version (<span class="math notranslate nohighlight">\(\lambda\)</span>) to quantify the relative support for each model. This approach allows us to identify which genetic variants, if any, show evidence of association with the height phenotype, providing a statistical framework for genetic association testing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
+<span class="c1"># These represent actual alleles at each position</span>
+<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 1</span>
+<span class="w">    </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 2</span>
+<span class="w">    </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 3</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 4</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w"> </span><span class="c1"># Individual 5</span>
+<span class="p">)</span>
+<span class="c1"># Reshape into a matrix</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
+<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">ref_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">        </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># assign observed height for the 5 individuals</span>
+<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Likelihood function for normal distribution</span>
+<span class="n">likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># beta: effect size parameter</span>
+<span class="w">    </span><span class="c1"># sd: standard deviation of residuals</span>
+<span class="w">    </span><span class="c1"># X: genotype values</span>
+<span class="w">    </span><span class="c1"># Y: observed phenotype values</span>
+
+<span class="w">    </span><span class="c1"># Calculate expected values under the model</span>
+<span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
+
+<span class="w">    </span><span class="c1"># Calculate likelihood (product of normal densities)</span>
+<span class="w">    </span><span class="nf">prod</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply the likelihood function to three models for each variant</span>
+<span class="n">sd_assumed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># Assume standard deviation of 1 for our standardized data</span>
+
+<span class="c1"># Initialize results table</span>
+<span class="n">likelihood_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">L_Model1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">L_Model2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">L_Model3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">LogL_Model1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">LogL_Model2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">LogL_Model3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Test all 3 variants</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">variant_idx</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">variant_idx</span><span class="p">]</span><span class="w"> </span><span class="c1"># Genotypes for variant j</span>
+
+<span class="w">    </span><span class="c1"># Calculate likelihoods</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model2&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model3&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># Calculate log-likelihoods</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model2&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model3&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="p">}</span>
+<span class="n">likelihood_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 7</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>L_Model1</th><th scope=col>L_Model2</th><th scope=col>L_Model3</th><th scope=col>LogL_Model1</th><th scope=col>LogL_Model2</th><th scope=col>LogL_Model3</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Variant 1</td><td>0.001367607</td><td>0.0003050987</td><td>2.503945e-05</td><td>-6.594693</td><td>-8.094875</td><td>-10.595058</td></tr>
+	<tr><td>Variant 2</td><td>0.001367607</td><td>0.0045633971</td><td>5.601711e-03</td><td>-6.594693</td><td>-5.389688</td><td> -5.184683</td></tr>
+	<tr><td>Variant 3</td><td>0.001367607</td><td>0.0059679052</td><td>9.580496e-03</td><td>-6.594693</td><td>-5.121359</td><td> -4.648026</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Now let’s compute the <strong>likelihood ratio test</strong> between <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span> as an example (the same procedure also applies to any other pair of models).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># add new columns for LRT between model 1 and model 2</span>
+<span class="n">likelihood_table</span><span class="o">$</span><span class="n">LRT_Model1_vs_Model2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">likelihood_table</span><span class="o">$</span><span class="n">L_Model1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">likelihood_table</span><span class="o">$</span><span class="n">L_Model2</span>
+<span class="n">likelihood_table</span><span class="o">$</span><span class="n">lambda_Model1_vs_Model2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">likelihood_table</span><span class="o">$</span><span class="n">LogL_Model1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">likelihood_table</span><span class="o">$</span><span class="n">LogL_Model2</span><span class="p">)</span>
+
+<span class="c1"># Display results</span>
+<span class="n">likelihood_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 9</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>L_Model1</th><th scope=col>L_Model2</th><th scope=col>L_Model3</th><th scope=col>LogL_Model1</th><th scope=col>LogL_Model2</th><th scope=col>LogL_Model3</th><th scope=col>LRT_Model1_vs_Model2</th><th scope=col>lambda_Model1_vs_Model2</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Variant 1</td><td>0.001367607</td><td>0.0003050987</td><td>2.503945e-05</td><td>-6.594693</td><td>-8.094875</td><td>-10.595058</td><td>4.4825078</td><td>-3.000365</td></tr>
+	<tr><td>Variant 2</td><td>0.001367607</td><td>0.0045633971</td><td>5.601711e-03</td><td>-6.594693</td><td>-5.389688</td><td> -5.184683</td><td>0.2996906</td><td> 2.410009</td></tr>
+	<tr><td>Variant 3</td><td>0.001367607</td><td>0.0059679052</td><td>9.580496e-03</td><td>-6.594693</td><td>-5.121359</td><td> -4.648026</td><td>0.2291603</td><td> 2.946667</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Based on the observed data from the five individuals, the likelihood ratio test results indicate that Variant 1 favors Model 1 more than Model 2 (<span class="math notranslate nohighlight">\(\lambda = -3.00\)</span>), while Variants 2 and 3 show some level of evidence of association with height (<span class="math notranslate nohighlight">\(\lambda \geq 0\)</span>, favoring Model 2) compared to Model 1. Variant 2 demonstrates the strongest association (<span class="math notranslate nohighlight">\(\lambda = 2.410\)</span>), suggesting it has the most significant genetic effect on height among the three variants tested.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>The <strong>“likelihood ratio”</strong> that compares two fully-specified (discrete) models is simply the ratio of the likelihood for the two models given data <span class="math notranslate nohighlight">\(D\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+LR(M_2, M_1) := \frac{L(M_2)}{L(M_1)} = \frac{p(D|M_2)}{p(D|M_1)}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(L(M)\)</span> denotes the likelihood for model <span class="math notranslate nohighlight">\(M\)</span> under data <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<ul class="simple">
+<li><p>The <strong>“log-likelihood ratio”</strong> is defined as the logarithm of the likelihood ratio:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+LLR(M_2, M_1) := - 2 \log \left( \frac{L(M_1)}{L(M_2)} \right) = - 2 \left[ \log L(M_1) - \log L(M_2) \right] = - 2 \left[ l(M_1) - l(M_2) \right]
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(l(M_i)\)</span> denotes the log-likelihood for model <span class="math notranslate nohighlight">\(M_i\)</span> under data <span class="math notranslate nohighlight">\(x\)</span>. The log-likelihood ratio measures the relative support for model <span class="math notranslate nohighlight">\(M_2\)</span> over model <span class="math notranslate nohighlight">\(M_1\)</span> on a <strong>logarithmic scale</strong>.</p>
+<ul class="simple">
+<li><p>A natural question is,  <strong>what value of the LR (or LLR) should we treat as “convincing” evidence for one model vs another</strong>? The short answer here is that this is <strong>context dependent</strong>, which depends on the relative plausibility of the models we are comparing. For more discussions, refer to this <a class="reference external" href="https://stephens999.github.io/fiveMinuteStats/LR_and_BF.html">notes</a> by Matthew Stephens.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary-materials">
+<h1>Supplementary Materials<a class="headerlink" href="#supplementary-materials" title="Link to this heading">#</a></h1>
+<section id="example-1-allele-frequency">
+<h2>Example 1 – allele frequency<a class="headerlink" href="#example-1-allele-frequency" title="Link to this heading">#</a></h2>
+<p>Here we use the same example 1 in the <code class="docutils literal notranslate"><span class="pre">6_1_likelihood.ipynb</span></code> notebook, and we have calculated the likelihood for the two models <span class="math notranslate nohighlight">\(M_S\)</span> and <span class="math notranslate nohighlight">\(M_F\)</span>.</p>
+<section id="calculate-lr">
+<h3>Calculate LR<a class="headerlink" href="#calculate-lr" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+
+<span class="n">fS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.40</span><span class="p">,</span><span class="w"> </span><span class="m">0.12</span><span class="p">,</span><span class="m">0.21</span><span class="p">,</span><span class="m">0.12</span><span class="p">,</span><span class="m">0.02</span><span class="p">,</span><span class="m">0.32</span><span class="p">)</span>
+<span class="n">fF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.8</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.11</span><span class="p">,</span><span class="m">0.17</span><span class="p">,</span><span class="m">0.23</span><span class="p">,</span><span class="m">0.25</span><span class="p">)</span>
+
+<span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">){</span><span class="w"> </span><span class="nf">prod</span><span class="p">(</span><span class="n">f</span><span class="o">^</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">L</span><span class="p">(</span><span class="n">fS</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">L</span><span class="p">(</span><span class="n">fF</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.02039955456</div><div class="output text_html">0.01124816</div></div>
+</div>
+<p>The <strong>likelihood ratio (LR)</strong> is simply the ratio of those two values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">L</span><span class="p">(</span><span class="n">fS</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="nf">L</span><span class="p">(</span><span class="n">fF</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1.81359036144578</div></div>
+</div>
+</section>
+<section id="how-to-interpret-lr">
+<h3>How to interpret LR?<a class="headerlink" href="#how-to-interpret-lr" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>So <span class="math notranslate nohighlight">\(LR(M_S,M_F;x)\)</span> is 1.8135904. This means that the data favor the tusk coming from a savanna elephant by a factor of about 1.8. This is a fairly modest factor – not large enough to draw a convincing conclusion. We will have more to say about interpreting LRs, and what values might be considered “convincing” later.</p>
+<p>Note that we have deliberately focused on the likelihood ratio, and not the actual likelihood values themselves. This is because actual likelihood values are generally not useful - it is only the ratios that matter when comparing the models. One way of thinking about this is that the actual likelihood values are very context dependent, and so likelihoods from different data sets are not comparable with one another. However, the meaning of the likelihood ratio is in some sense consistent across contexts: LR =1.8 means that the data favour the first model by a factor of 1.8 whatever the context.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="example-2-concertration-of-protein-in-blood">
+<h2>Example 2 – concertration of protein in blood<a class="headerlink" href="#example-2-concertration-of-protein-in-blood" title="Link to this heading">#</a></h2>
+<p>Here we use the same example 2 in the <code class="docutils literal notranslate"><span class="pre">6_1_likelihood.ipynb</span></code> notebook, and we have calculated the likelihood for the two models <span class="math notranslate nohighlight">\(M_0\)</span> (normal individual group) and <span class="math notranslate nohighlight">\(M_1\)</span> (diseased individual group).</p>
+<section id="id1">
+<h3>Calculate LR<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X_val</span><span class="o">=</span><span class="m">4.02</span>
+<span class="c1"># dgamma(x, shape, rate = 1, scale = 1/rate, log = FALSE) returns the Density for the Gamma distribution with parameters shape and scale at x</span>
+<span class="n">y0_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">y1_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">y0_val</span>
+<span class="n">y1_val</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.00518272791791383</div><div class="output text_html">0.0721709190568015</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y1_val</span><span class="o">/</span><span class="n">y0_val</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">13.9252764566989</div></div>
+</div>
+</section>
+<section id="id2">
+<h3>Interpretation<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\(LR(M_1,M_0;x)\)</span> is 13.9, i.e., the data favours the individual being diseased (<span class="math notranslate nohighlight">\(M_1\)</span>) over being normal (<span class="math notranslate nohighlight">\(M_0\)</span>) by a factor of approximately 14.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="recommended-reading">
+<h1>Recommended Reading<a class="headerlink" href="#recommended-reading" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Section <em>Likelihood Ratio and Likehood</em> in <a class="reference external" href="http://stephens999.github.io/fiveMinuteStats/index.html">FiveMinuteStats</a> by Matthew Stephens</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-log-instead-of-the-ratio-directly">Why <span class="math notranslate nohighlight">\(\log\)</span> instead of the ratio directly?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null-and-alternative">Null and Alternative</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary-materials">Supplementary Materials</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-allele-frequency">Example 1 – allele frequency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-lr">Calculate LR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-interpret-lr">How to interpret LR?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-concertration-of-protein-in-blood">Example 2 – concertration of protein in blood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Calculate LR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading">Recommended Reading</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

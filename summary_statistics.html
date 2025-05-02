@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'summary_statistics';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/summary_statistics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-marker-linear-regression-model">Single Marker Linear Regression Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-staistics">From OLS to Summary Staistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-and-p-value">Z-score and P-value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-a">Example GWAS Summary Statistics Table – part A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-b">Example GWAS Summary Statistics Table – part B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-c">Example GWAS Summary Statistics Table – part C</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-mixed-models-lmm"><strong>Linear Mixed Models (LMM)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>Summary statistics in genetics capture <strong>the association between genetic variants and traits</strong>, allowing researchers to share and analyze meaningful associations <strong>without requiring access to the complete individual-level genotype and phenotype data</strong>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="fig" src="_images/summary_statistics.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<div class="math notranslate nohighlight">
+\[
+Z = \frac{\beta}{\text{SE}(\beta)}
+\]</div>
+<p>This Z-score formula represents the most fundamental calculation in statistical genetics summary statistics. It standardizes the effect size (<span class="math notranslate nohighlight">\(\beta\)</span>) of a genetic variant by its standard error (<span class="math notranslate nohighlight">\(\text{SE}\)</span>), creating a normalized measure of association strength. The importance of this formula lies in its ability to quantify statistical significance while accounting for estimation precision. This single value determines p-values, enables cross-variant comparison, and forms the foundation for downstream analyses including meta-analysis, polygenic risk scoring, and genetic correlation estimation.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="single-marker-linear-regression-model">
+<h2>Single Marker Linear Regression Model<a class="headerlink" href="#single-marker-linear-regression-model" title="Link to this heading">#</a></h2>
+<p>Assuming that we use the single marker linear regression model (and everything is applicable to logistic regression or multiple markers models etc.), then for a trait vector <span class="math notranslate nohighlight">\( \mathbf{y} \)</span> and a genetic variant <span class="math notranslate nohighlight">\( \mathbf{X}_j \)</span> across <span class="math notranslate nohighlight">\( N \)</span> individuals:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y} = \mathbf{X}_j \beta_j + \boldsymbol{\epsilon}, \quad \boldsymbol{\epsilon} \sim N(0, \sigma^2)
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \mathbf{Y} \)</span> is the <span class="math notranslate nohighlight">\( N \times 1 \)</span> vector of trait values for <span class="math notranslate nohighlight">\( N \)</span> individuals.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbf{X}_j \)</span> is the <span class="math notranslate nohighlight">\( N \times 1 \)</span> vector of genotypes for variant <span class="math notranslate nohighlight">\( j \)</span> across all individuals.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \beta_j \)</span> is the effect size of the genetic variant <span class="math notranslate nohighlight">\( j \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \boldsymbol{\epsilon} \)</span> is the <span class="math notranslate nohighlight">\( N \times 1 \)</span> vector of error terms (residuals), assumed to follow a normal distribution with mean 0 and variance <span class="math notranslate nohighlight">\( \sigma^2 \)</span>.</p></li>
+</ul>
+</section>
+<section id="from-ols-to-summary-staistics">
+<h2>From OLS to Summary Staistics<a class="headerlink" href="#from-ols-to-summary-staistics" title="Link to this heading">#</a></h2>
+<p>And using <strong>Ordinary Least Squares (OLS)</strong> method (mentioned in Section [FIXME – refer to the section label]), which minimizes the residual sum of squares (RSS) between the observed and predicted trait values, and both <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> are scaled to have mean 0 and variance 1, we get the following formula for the OLS estimator of <span class="math notranslate nohighlight">\( \beta_j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_j = \frac{\mathbf{X}_j^T \mathbf{Y}}{\mathbf{X}_j^T \mathbf{X}_j} = \mathbf{X}_j^T \mathbf{Y} = \text{Cov}(\mathbf{X}_j, \mathbf{Y}) = r_{\mathbf{X_j}, \mathbf{Y}} 
+\]</div>
+<p>And the variance of <span class="math notranslate nohighlight">\( \hat{\beta}_j \)</span> can be calculated as:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Var}(\hat{\beta}_j) = \frac{\sigma^2}{\mathbf{X}_j^T \mathbf{X}_j} = \sigma^2
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\( \sigma^2 \)</span> is the residual variance, which is typically estimated from the residuals of the model.</p>
+</section>
+<section id="z-score-and-p-value">
+<h2>Z-score and P-value<a class="headerlink" href="#z-score-and-p-value" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Z-score</p>
+<ul>
+<li><p>Z-score is the standardized effect size</p>
+<div class="math notranslate nohighlight">
+\[
+    Z_j = \frac{\hat{\beta}_j}{SE(\hat{\beta}_j)} = \frac{\hat{\beta}_j}{\sqrt{\text{Var}(\hat{\beta}_j)}} = \frac{\hat{\beta}_j}{\sigma}
+    \]</div>
+<ul class="simple">
+<li><p>Under the null hypothesis of no association (<span class="math notranslate nohighlight">\(\beta_j = 0\)</span>), <span class="math notranslate nohighlight">\(Z_j\)</span> follows a standard normal distribution, which forms the basis for statistical testing.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>P-value</p>
+<ul class="simple">
+<li><p>Two-sided p-value:
+$<span class="math notranslate nohighlight">\(
+P = 2 \times (1 - \Phi(|Z|))
+\)</span>$</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi\)</span> is the cumulative distribution function of the standard normal distribution</p></li>
+<li><p>Represents the probability of observing an effect as extreme as β by chance</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="example-gwas-summary-statistics-table-part-a">
+<h2>Example GWAS Summary Statistics Table – part A<a class="headerlink" href="#example-gwas-summary-statistics-table-part-a" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>SNP (rsID)</p></th>
+<th class="head"><p>CHR</p></th>
+<th class="head"><p>BP</p></th>
+<th class="head"><p>A1</p></th>
+<th class="head"><p>A2</p></th>
+<th class="head"><p>MAF</p></th>
+<th class="head"><p>BETA</p></th>
+<th class="head"><p>SE</p></th>
+<th class="head"><p>Z-score</p></th>
+<th class="head"><p>P-value</p></th>
+<th class="head"><p>N</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rs12345</p></td>
+<td><p>1</p></td>
+<td><p>10583</p></td>
+<td><p>A</p></td>
+<td><p>G</p></td>
+<td><p>0.12</p></td>
+<td><p>0.045</p></td>
+<td><p>0.010</p></td>
+<td><p>4.50</p></td>
+<td><p>1.2e-06</p></td>
+<td><p>100000</p></td>
+</tr>
+<tr class="row-odd"><td><p>rs67890</p></td>
+<td><p>2</p></td>
+<td><p>20345</p></td>
+<td><p>C</p></td>
+<td><p>T</p></td>
+<td><p>0.35</p></td>
+<td><p>-0.030</p></td>
+<td><p>0.008</p></td>
+<td><p>-3.75</p></td>
+<td><p>5.4e-04</p></td>
+<td><p>95000</p></td>
+</tr>
+<tr class="row-even"><td><p>rs54321</p></td>
+<td><p>18</p></td>
+<td><p>45678</p></td>
+<td><p>G</p></td>
+<td><p>A</p></td>
+<td><p>0.22</p></td>
+<td><p>0.060</p></td>
+<td><p>0.012</p></td>
+<td><p>5.00</p></td>
+<td><p>2.1e-07</p></td>
+<td><p>102000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>SNP (rsID)</strong>: Identifier for the single nucleotide polymorphism, such as <code class="docutils literal notranslate"><span class="pre">rs12345</span></code> or <code class="docutils literal notranslate"><span class="pre">chr21:295472:G:A</span></code>.</p></li>
+<li><p><strong>CHR</strong>: Chromosome number where the SNP is located. Other common names: <code class="docutils literal notranslate"><span class="pre">chrom</span></code>, <code class="docutils literal notranslate"><span class="pre">chromosome</span></code></p></li>
+<li><p><strong>BP</strong>: Genomic position of the SNP, specific to a reference genome assembly (e.g., GRCh37 or GRCh38). Other common names: <code class="docutils literal notranslate"><span class="pre">pos</span></code>, <code class="docutils literal notranslate"><span class="pre">position</span></code></p></li>
+</ul>
+</section>
+<section id="example-gwas-summary-statistics-table-part-b">
+<h2>Example GWAS Summary Statistics Table – part B<a class="headerlink" href="#example-gwas-summary-statistics-table-part-b" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>SNP (rsID)</p></th>
+<th class="head"><p>CHR</p></th>
+<th class="head"><p>BP</p></th>
+<th class="head"><p>A1</p></th>
+<th class="head"><p>A2</p></th>
+<th class="head"><p>MAF</p></th>
+<th class="head"><p>BETA</p></th>
+<th class="head"><p>SE</p></th>
+<th class="head"><p>Z-score</p></th>
+<th class="head"><p>P-value</p></th>
+<th class="head"><p>N</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rs12345</p></td>
+<td><p>1</p></td>
+<td><p>10583</p></td>
+<td><p>A</p></td>
+<td><p>G</p></td>
+<td><p>0.12</p></td>
+<td><p>0.045</p></td>
+<td><p>0.010</p></td>
+<td><p>4.50</p></td>
+<td><p>1.2e-06</p></td>
+<td><p>100000</p></td>
+</tr>
+<tr class="row-odd"><td><p>rs67890</p></td>
+<td><p>2</p></td>
+<td><p>20345</p></td>
+<td><p>C</p></td>
+<td><p>T</p></td>
+<td><p>0.35</p></td>
+<td><p>-0.030</p></td>
+<td><p>0.008</p></td>
+<td><p>-3.75</p></td>
+<td><p>5.4e-04</p></td>
+<td><p>95000</p></td>
+</tr>
+<tr class="row-even"><td><p>rs54321</p></td>
+<td><p>18</p></td>
+<td><p>45678</p></td>
+<td><p>G</p></td>
+<td><p>A</p></td>
+<td><p>0.22</p></td>
+<td><p>0.060</p></td>
+<td><p>0.012</p></td>
+<td><p>5.00</p></td>
+<td><p>2.1e-07</p></td>
+<td><p>102000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>A1 and A2</strong>: The two alleles at the variant site, with one designated as the effect allele. Other common names: <code class="docutils literal notranslate"><span class="pre">REF</span></code> and <code class="docutils literal notranslate"><span class="pre">ALT</span></code>, <code class="docutils literal notranslate"><span class="pre">Effect</span> <span class="pre">allele</span></code> and <code class="docutils literal notranslate"><span class="pre">Other</span> <span class="pre">allele</span></code></p>
+<ul>
+<li><p>Note that one allele may be effect allele in one study but alternative allele in another.</p></li>
+</ul>
+</li>
+<li><p><strong>MAF</strong>: The frequency of the less common allele for variant <span class="math notranslate nohighlight">\(j\)</span> in the sample.</p></li>
+<li><p><strong>EAF</strong>: The frequency of the effect allele for variant <span class="math notranslate nohighlight">\(j\)</span> in the sample (note that this doesn’t have to be the minor allele) (sometimes called <code class="docutils literal notranslate"><span class="pre">RAF</span></code>: risk allele frequency)</p></li>
+</ul>
+</section>
+<section id="example-gwas-summary-statistics-table-part-c">
+<h2>Example GWAS Summary Statistics Table – part C<a class="headerlink" href="#example-gwas-summary-statistics-table-part-c" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>SNP (rsID)</p></th>
+<th class="head"><p>CHR</p></th>
+<th class="head"><p>BP</p></th>
+<th class="head"><p>A1</p></th>
+<th class="head"><p>A2</p></th>
+<th class="head"><p>MAF</p></th>
+<th class="head"><p>BETA</p></th>
+<th class="head"><p>SE</p></th>
+<th class="head"><p>Z-score</p></th>
+<th class="head"><p>P-value</p></th>
+<th class="head"><p>N</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rs12345</p></td>
+<td><p>1</p></td>
+<td><p>10583</p></td>
+<td><p>A</p></td>
+<td><p>G</p></td>
+<td><p>0.12</p></td>
+<td><p>0.045</p></td>
+<td><p>0.010</p></td>
+<td><p>4.50</p></td>
+<td><p>1.2e-06</p></td>
+<td><p>100000</p></td>
+</tr>
+<tr class="row-odd"><td><p>rs67890</p></td>
+<td><p>2</p></td>
+<td><p>20345</p></td>
+<td><p>C</p></td>
+<td><p>T</p></td>
+<td><p>0.35</p></td>
+<td><p>-0.030</p></td>
+<td><p>0.008</p></td>
+<td><p>-3.75</p></td>
+<td><p>5.4e-04</p></td>
+<td><p>95000</p></td>
+</tr>
+<tr class="row-even"><td><p>rs54321</p></td>
+<td><p>18</p></td>
+<td><p>45678</p></td>
+<td><p>G</p></td>
+<td><p>A</p></td>
+<td><p>0.22</p></td>
+<td><p>0.060</p></td>
+<td><p>0.012</p></td>
+<td><p>5.00</p></td>
+<td><p>2.1e-07</p></td>
+<td><p>102000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>BETA</strong>: Estimated effect size (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>), representing the association between the effect allele and the trait. Always check which allele it corresponds to.</p></li>
+<li><p><strong>SE</strong>: Standard error of the effect size estimat, reflecting the uncertainty in the effect size estimate. It is computed as <span class="math notranslate nohighlight">\(SE_j = \sqrt{\frac{\hat{\sigma}^2}{\mathbf{X}_j^T \mathbf{X}_j}}\)</span>, where <span class="math notranslate nohighlight">\( \hat{\sigma}^2 \)</span> is the estimated residual variance from the model.</p></li>
+<li><p><strong>Z</strong>: Standardized test statistic, computed as <span class="math notranslate nohighlight">\(Z = \frac{\beta}{\text{SE}}\)</span>.</p></li>
+<li><p><strong>P-value</strong>: Significance of the association, testing whether the SNP has an effect on the trait, <span class="math notranslate nohighlight">\(p_j = 2 \times (1 - \Phi(|t_j|))\)</span>, where <span class="math notranslate nohighlight">\( \Phi \)</span> is the cumulative distribution function (CDF) of the standard normal distribution. Sometimes <code class="docutils literal notranslate"><span class="pre">LOG10P</span></code> is reported which is the <span class="math notranslate nohighlight">\(-\log_{10}P\)</span>.</p></li>
+<li><p><strong>N</strong>: Number of individuals included in the analysis.</p></li>
+<li><p><strong>N_cases</strong>: Number of individuals with the trait (cases), relevant for case-control studies.</p></li>
+<li><p><strong>N_ctrls</strong>: Number of individuals without the trait (controls), relevant for case-control studies.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>In this example, we simulate a simple genome-wide association study (GWAS) by testing the relationship between three genetic variants and height across five individuals. We convert genetic sequences into numerical representations, then calculate key summary statistics including effect sizes, standard errors, p-values, and allele frequencies. These summary statistics capture the essential information about genetic associations while providing a privacy-preserving and computationally efficient alternative to sharing the complete individual-level genetic and phenotypic data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
+<span class="c1"># These represent actual alleles at each position</span>
+<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 1</span>
+<span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 2</span>
+<span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 3</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 4</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
+<span class="p">)</span>
+<span class="c1"># Reshape into a matrix</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">ref_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed height for the 5 individuals</span>
+<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate minor allele frequencies</span>
+<span class="n">MAF</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colMeans</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span>
+
+<span class="c1"># Perform GWAS-style analysis: Test each SNP independently using OLS</span>
+<span class="n">sumstats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">SNP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;rs&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
+<span class="w">  </span><span class="n">CHR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w">  </span><span class="c1"># Example chromosome assignments</span>
+<span class="w">  </span><span class="n">BP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="m">2000</span><span class="p">,</span><span class="w"> </span><span class="m">5000</span><span class="p">),</span><span class="w">  </span><span class="c1"># Example base pair positions</span>
+<span class="w">  </span><span class="n">ALT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">,</span><span class="w">  </span><span class="c1"># Effect allele</span>
+<span class="w">  </span><span class="n">REF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ref_alleles</span><span class="p">,</span><span class="w">  </span><span class="c1"># Reference allele</span>
+<span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">),</span><span class="w">  </span><span class="c1"># Sample size</span>
+<span class="w">  </span><span class="n">BETA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">  </span><span class="c1"># Effect size</span>
+<span class="w">  </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">  </span><span class="c1"># Standard error</span>
+<span class="w">  </span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">  </span><span class="c1"># Z-score</span>
+<span class="w">  </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">  </span><span class="c1"># P-value</span>
+<span class="w">  </span><span class="n">EAF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MAF</span><span class="w">  </span><span class="c1"># Effect allele frequency</span>
+<span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">SNP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w">  </span><span class="c1"># Extract genotype for SNP j</span>
+<span class="w">  </span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="p">)</span><span class="w">  </span><span class="c1"># OLS regression: Trait ~ SNP</span>
+<span class="w">  </span><span class="n">summary_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Store results in standard format</span>
+<span class="w">  </span><span class="n">sumstats</span><span class="o">$</span><span class="n">BETA</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># Effect size</span>
+<span class="w">  </span><span class="n">sumstats</span><span class="o">$</span><span class="n">SE</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w">    </span><span class="c1"># Standard error</span>
+<span class="w">  </span><span class="n">sumstats</span><span class="o">$</span><span class="n">Z</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">]</span><span class="w">     </span><span class="c1"># t-statistic (equivalent to Z-score)</span>
+<span class="w">  </span><span class="n">sumstats</span><span class="o">$</span><span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">     </span><span class="c1"># P-value</span>
+<span class="p">}</span>
+
+<span class="c1"># Print summary statistics in standard format</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;GWAS Summary Statistics:&quot;</span><span class="p">)</span>
+<span class="n">sumstats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;GWAS Summary Statistics:&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 11</caption>
+<thead>
+	<tr><th></th><th scope=col>SNP</th><th scope=col>CHR</th><th scope=col>BP</th><th scope=col>ALT</th><th scope=col>REF</th><th scope=col>N</th><th scope=col>BETA</th><th scope=col>SE</th><th scope=col>Z</th><th scope=col>P</th><th scope=col>EAF</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Variant 1</th><td>rs1</td><td>1</td><td>1000</td><td>T</td><td>C</td><td>5</td><td>-0.5000913</td><td>0.49996955</td><td>-1.000244</td><td>0.390901513</td><td>0.3</td></tr>
+	<tr><th scope=row>Variant 2</th><td>rs2</td><td>1</td><td>2000</td><td>C</td><td>T</td><td>5</td><td> 0.8525024</td><td>0.30179448</td><td> 2.824778</td><td>0.066475513</td><td>0.4</td></tr>
+	<tr><th scope=row>Variant 3</th><td>rs3</td><td>2</td><td>5000</td><td>T</td><td>A</td><td>5</td><td> 0.9866667</td><td>0.09396605</td><td>10.500246</td><td>0.001844466</td><td>0.3</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="linear-mixed-models-lmm">
+<h2><strong>Linear Mixed Models (LMM)</strong><a class="headerlink" href="#linear-mixed-models-lmm" title="Link to this heading">#</a></h2>
+<p>LMMs account for relatedness between individuals by modeling both fixed and random effects. These models control for population structure and relatedness, reducing bias in association studies. Many new GWAS softwares includes REGENIE, BOLT-LMM, fastGWA and SAIGE. <strong>[FIXME add references here]</strong></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="todo">
+<h1>TODO<a class="headerlink" href="#todo" title="Link to this heading">#</a></h1>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> what about LD here? Do we want to include fine-mapping?</p></li>
+</ul>
+<blockquote>
+<div><p>slide 206-207 from GW</p>
+</div></blockquote>
+<blockquote>
+<div><p>slide 86-90 from GW</p>
+<p>slide 197-202 from GW</p>
+</div></blockquote>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-marker-linear-regression-model">Single Marker Linear Regression Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-staistics">From OLS to Summary Staistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-and-p-value">Z-score and P-value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-a">Example GWAS Summary Statistics Table – part A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-b">Example GWAS Summary Statistics Table – part B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-c">Example GWAS Summary Statistics Table – part C</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-mixed-models-lmm"><strong>Linear Mixed Models (LMM)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

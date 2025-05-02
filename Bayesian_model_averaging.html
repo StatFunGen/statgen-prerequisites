@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Bayesian_model_averaging';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Bayesian_model_averaging.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weights-in-model-averaging">Weights in Model Averaging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-model-averaging-works">Why Model Averaging Works</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observe-the-data">Observe the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-likelihoods">Calculate Likelihoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-bayes-factors-and-posterior-probabilities">Calculate Bayes Factors and Posterior Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-model-averaging-bma">Bayesian Model Averaging (BMA)</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>Bayesian Model Averaging improves predictions by combining multiple models weighted by their posterior probabilities, acknowledging uncertainty in model selection rather than relying on a single “best” model.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="figure" src="_images/Bayesian_model_averaging.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>Let’s assume we have a set of models <span class="math notranslate nohighlight">\(M_1, M_2, \dots, M_K\)</span> and we want to predict a value for a new observation <span class="math notranslate nohighlight">\(y^*\)</span> based on the models. For each model <span class="math notranslate nohighlight">\(M_k\)</span>, we calculate a prediction, denoted as <span class="math notranslate nohighlight">\(\hat{y}^*_k\)</span>.</p>
+<p>The <strong>model-averaged prediction</strong> is typically given by the weighted sum of the predictions from each model:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{y}^*_{\text{avg}} = \sum_{k=1}^{K} w_k \hat{y}^*_k
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_k\)</span> is the weight associated with model <span class="math notranslate nohighlight">\(M_k\)</span>, which reflects how likely or good the model is at describing the data.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{y}^*_k\)</span> is the prediction made by model <span class="math notranslate nohighlight">\(M_k\)</span> for the new data point.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="weights-in-model-averaging">
+<h2>Weights in Model Averaging<a class="headerlink" href="#weights-in-model-averaging" title="Link to this heading">#</a></h2>
+<p>The weights <span class="math notranslate nohighlight">\(w_k\)</span> can be assigned based on various criteria:</p>
+<ol class="arabic">
+<li><p><strong>Bayesian Model Averaging (BMA)</strong>: In the Bayesian framework, the weights correspond to the posterior model probabilities, i.e., the probability of each model given the data:</p>
+<div class="math notranslate nohighlight">
+\[ 
+   w_k = P(M_k | D) 
+   \]</div>
+<p>Where <span class="math notranslate nohighlight">\(P(M_k | D)\)</span> is the posterior probability of model <span class="math notranslate nohighlight">\(M_k\)</span> given the observed data <span class="math notranslate nohighlight">\(D\)</span>.</p>
+</li>
+<li><p><strong>[Do we want to include AIC and BIC???]</strong></p></li>
+</ol>
+<p><strong>Akaike Information Criterion (AIC) or Bayesian Information Criterion (BIC)</strong>: In a frequentist context, the weights are often computed based on the relative likelihood of each model, using information criteria like AIC or BIC. The models with lower AIC/BIC values are considered to be more likely and receive higher weights.</p>
+<div class="math notranslate nohighlight">
+\[ 
+   w_k = \frac{e^{-\frac{1}{2} \Delta \text{AIC}_k}}{\sum_{j=1}^K e^{-\frac{1}{2} \Delta \text{AIC}_j}} 
+   \]</div>
+<p>Where <span class="math notranslate nohighlight">\(\Delta \text{AIC}_k = \text{AIC}_k - \min(\text{AIC})\)</span>, and <span class="math notranslate nohighlight">\(\text{AIC}_k\)</span> is the AIC of model <span class="math notranslate nohighlight">\(k\)</span>.</p>
+</section>
+<section id="why-model-averaging-works">
+<h2>Why Model Averaging Works<a class="headerlink" href="#why-model-averaging-works" title="Link to this heading">#</a></h2>
+<p>BMA accounts for the uncertainty involved in selecting the model, <strong>preserving the uncertainty about models</strong>.</p>
+<ol class="arabic simple">
+<li><p><strong>Reduced Risk of Overfitting</strong>: By averaging over multiple models, we avoid overfitting to any one model. Even if one model fits the training data well but fails to generalize, other models can provide complementary information, reducing the overall risk of overfitting.</p></li>
+<li><p><strong>Improved Accuracy</strong>: If models make different types of errors, combining their predictions can reduce the variance and bias, leading to more accurate predictions.</p></li>
+<li><p><strong>Incorporating Model Uncertainty</strong>: In cases where model uncertainty is high, model averaging incorporates this uncertainty by using multiple models and averaging their predictions, rather than relying on a single model.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Advantages of BMA</strong></p>
+<ul>
+<li><p>Accounts for model uncertainty, leading to more robust inference.</p></li>
+<li><p>Prevents overconfidence in a single model when multiple models have similar posterior probabilities.</p></li>
+<li><p>Helps mitigate overfitting, especially with limited data.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>We will introduce the concept of Bayesian Model Averaging (BMA) by considering a situation with a single SNP and two traits: height and weight. We define four models, where the SNP may or may not affect height and/or weight:</p>
+<p>Here we are trying to average the estimated effect sizes of the SNP on both height and weight across multiple possible models where the SNP may:</p>
+<ul class="simple">
+<li><p>Have no effect on either trait (<code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">1</span></code>).</p></li>
+<li><p>Affect height only (<code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">2</span></code>).</p></li>
+<li><p>Affect weight only (<code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">3</span></code>).</p></li>
+<li><p>Affect both height and weight (<code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">4</span></code>), capturing pleiotropy.</p></li>
+</ul>
+<p>Specifically, it’s calculating:</p>
+<ul class="simple">
+<li><p>A weighted average of the SNP’s effect on height across four different models (no effect, height only, weight only, both traits)</p></li>
+<li><p>A weighted average of the SNP’s effect on weight across these same four models</p></li>
+</ul>
+<p>The weights used for this averaging are the posterior probabilities of each model - how likely each model is given the observed data. This means that models with higher posterior probabilities contribute more to the final averaged estimate.</p>
+<p>We’ll first randomly assign priors to these models. For simplicity, we assume equal priors for all models in the beginning.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up model priors (randomly assign)</span>
+<span class="n">model_priors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">)</span><span class="w"> </span><span class="c1"># Equal priors for simplicity</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="observe-the-data">
+<h2>Observe the data<a class="headerlink" href="#observe-the-data" title="Link to this heading">#</a></h2>
+<p>Assume we have summary statistics for the SNP with respect to both height and weight. We can simulate some data for the effect sizes (betas) and standard errors (SE).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulated summary statistics (effect sizes and standard errors)</span>
+<span class="n">observed_beta_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.2</span><span class="w">  </span><span class="c1"># Observed effect size for height</span>
+<span class="n">observed_se_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.05</span><span class="w">   </span><span class="c1"># Standard error for height</span>
+<span class="n">observed_beta_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.1</span><span class="w">  </span><span class="c1"># Observed effect size for weight</span>
+<span class="n">observed_se_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.05</span><span class="w">   </span><span class="c1"># Standard error for weight</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-likelihoods">
+<h2>Calculate Likelihoods<a class="headerlink" href="#calculate-likelihoods" title="Link to this heading">#</a></h2>
+<p>Now we calculate the likelihood of observing the data under each model. In the context of summary statistics, the likelihood for a model is typically modeled as a normal distribution where the mean is the effect size and the variance is the standard error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Likelihood function based on normal distribution</span>
+<span class="n">likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">observed_beta</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se</span><span class="p">,</span><span class="w"> </span><span class="n">model_beta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Likelihood is the probability of observing observed_beta given model_beta and observed_se</span>
+<span class="w">  </span><span class="c1"># We use the normal density function (dnorm) to calculate this</span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">observed_beta</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">model_beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">observed_se</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define likelihood for each model</span>
+<span class="n">likelihoods</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="c1"># Model 1: No effect (beta = 0 for both height and weight)</span>
+<span class="w">  </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">observed_beta_height</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se_height</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">observed_beta_weight</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se_weight</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">  </span><span class="c1"># SNP has no effect</span>
+
+<span class="w">  </span><span class="c1"># Model 2: SNP affects height (beta for height = observed, beta for weight = 0)</span>
+<span class="w">  </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">observed_beta_height</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se_height</span><span class="p">,</span><span class="w"> </span><span class="n">observed_beta_height</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">observed_beta_weight</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se_weight</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">  </span><span class="c1"># SNP affects height only</span>
+
+<span class="w">  </span><span class="c1"># Model 3: SNP affects weight (beta for weight = observed, beta for height = 0)</span>
+<span class="w">  </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">observed_beta_height</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se_height</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">observed_beta_weight</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se_weight</span><span class="p">,</span><span class="w"> </span><span class="n">observed_beta_weight</span><span class="p">),</span><span class="w">  </span><span class="c1"># SNP affects weight only</span>
+
+<span class="w">  </span><span class="c1"># Model 4: SNP affects both height and weight (pleiotropy)</span>
+<span class="w">  </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">observed_beta_height</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se_height</span><span class="p">,</span><span class="w"> </span><span class="n">observed_beta_height</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">observed_beta_weight</span><span class="p">,</span><span class="w"> </span><span class="n">observed_se_weight</span><span class="p">,</span><span class="w"> </span><span class="n">observed_beta_weight</span><span class="p">)</span><span class="w">  </span><span class="c1"># SNP affects both traits</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-bayes-factors-and-posterior-probabilities">
+<h2>Calculate Bayes Factors and Posterior Probabilities<a class="headerlink" href="#calculate-bayes-factors-and-posterior-probabilities" title="Link to this heading">#</a></h2>
+<p>The Bayes factor for each model is the ratio of the likelihood under that model to the likelihood under a null model (Model 1). We calculate the posterior probabilities for each model using Bayes’ theorem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate Bayes factors (relative likelihood to Model 1)</span>
+<span class="n">bayes_factors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">likelihoods</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">likelihoods</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+
+<span class="c1"># Posterior probabilities (using priors and likelihoods)</span>
+<span class="n">posterior_probabilities</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">likelihoods</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">model_priors</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">likelihoods</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">model_priors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">posterior_probabilities</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3.99747154521025e-05</li><li>0.119162947306665</li><li>0.000295375415014376</li><li>0.880501702562868</li></ol>
+</div></div>
+</div>
+</section>
+<section id="bayesian-model-averaging-bma">
+<h2>Bayesian Model Averaging (BMA)<a class="headerlink" href="#bayesian-model-averaging-bma" title="Link to this heading">#</a></h2>
+<p>We perform Bayesian model averaging by computing a weighted average of the effects across all models, where the weights are the posterior probabilities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now, we can calculate the Bayesian Model Averaging (BMA) estimate</span>
+<span class="c1"># For each model, we calculate the weighted average of the effect sizes (betas)</span>
+
+<span class="c1"># Effect sizes (betas) for each model:</span>
+<span class="n">betas_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">observed_beta_height</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">observed_beta_height</span><span class="p">)</span><span class="w">  </span><span class="c1"># Height betas for each model</span>
+<span class="n">betas_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">observed_beta_weight</span><span class="p">,</span><span class="w"> </span><span class="n">observed_beta_weight</span><span class="p">)</span><span class="w">  </span><span class="c1"># Weight betas for each model</span>
+
+<span class="c1"># Compute BMA estimates for height and weight</span>
+<span class="n">bma_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">posterior_probabilities</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">betas_height</span><span class="p">)</span>
+<span class="n">bma_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">posterior_probabilities</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">betas_weight</span><span class="p">)</span>
+
+<span class="c1"># Print the BMA estimates</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Bayesian Model Averaging (BMA) Estimates:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;BMA Estimate for Height Effect: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bma_height</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;BMA Estimate for Weight Effect: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bma_weight</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bayesian Model Averaging (BMA) Estimates:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BMA Estimate for Height Effect:  0.1999329 
+BMA Estimate for Weight Effect:  0.08807971 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weights-in-model-averaging">Weights in Model Averaging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-model-averaging-works">Why Model Averaging Works</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observe-the-data">Observe the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-likelihoods">Calculate Likelihoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-bayes-factors-and-posterior-probabilities">Calculate Bayes Factors and Posterior Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-model-averaging-bma">Bayesian Model Averaging (BMA)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

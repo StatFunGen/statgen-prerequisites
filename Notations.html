@@ -1,0 +1,736 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Notation Table &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Notations';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="statgen-prerequisites" href="README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Notations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Notation Table</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="notation-table">
+<h1><strong>Notation Table</strong><a class="headerlink" href="#notation-table" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Example Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{raw}\)</span></p></td>
+<td><p>Raw genotype matrix (without centering or standardization)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span></p></td>
+<td><p>Genotype matrix after normalization</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{i,\cdot}\)</span></p></td>
+<td><p>Genotype for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>Genotype (e.g., number of risk alleles) of individual <span class="math notranslate nohighlight">\(i\)</span>, when considering one variant</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{i,j}\)</span></p></td>
+<td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> of individual <span class="math notranslate nohighlight">\(i\)</span>, when considering multiple variants</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{j}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{X}_{\cdot,j}\)</span></p></td>
+<td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for all individuals</p></td>
+<td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for all individuals</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>Index for individual</p></td>
+<td><p><span class="math notranslate nohighlight">\(i=1,2,...,N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p>Index for genetic variant</p></td>
+<td><p><span class="math notranslate nohighlight">\(j=1,2,...,M\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p>Index for study</p></td>
+<td><p><span class="math notranslate nohighlight">\(k=1,2,...,K\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+<td><p>Number of samples</p></td>
+<td><p>Number of individuals in the dataset</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td><p>Number of variants</p></td>
+<td><p>Number of variants in the genotype data</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A\)</span></p></td>
+<td><p>Major allele</p></td>
+<td><p>Major allele</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td><p>Minor allele</p></td>
+<td><p>Minor allele</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f_j\)</span></p></td>
+<td><p>Frequency for genetic variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
+<td><p>LD score of genetic variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Phi_{ij}\)</span></p></td>
+<td><p>The kinship coefficient between two individuals, <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span></p></td>
+<td><p>Genetic relatedness matrix (GRM)</p></td>
+<td><p><span class="math notranslate nohighlight">\(N\)</span> by <span class="math notranslate nohighlight">\(N\)</span> matrix</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span></p></td>
+<td><p>Random variable (trait)</p></td>
+<td><p>Trait (e.g., height <span class="math notranslate nohighlight">\(Y_1\)</span> and weight <span class="math notranslate nohighlight">\(Y_2\)</span> when bi-variate)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(y_i\)</span></p></td>
+<td><p>Trait value for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>Height of individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\beta_0\)</span></p></td>
+<td><p>Baseline level in the regression model, intercept</p></td>
+<td><p>170cm for height</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\beta\)</span></p></td>
+<td><p>Marginal effect size of a variant in GWAS study</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\sigma^2\)</span></p></td>
+<td><p>Variance of a random variable</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span></p></td>
+<td><p>Covariate matrix after normalization</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span></p></td>
+<td><p>A vector of the <strong>fixed</strong> effects of covariates</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Q\)</span></p></td>
+<td><p>The Cochran’s Q statistic</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(I^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(I^2\)</span> statistic</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Example Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>$\text{M}</p></td>
+<td><p>Model</p></td>
+<td><p><span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( M_1 \)</span></p></td>
+<td><p>Model 1 (no genetic effect)</p></td>
+<td><p>Model assuming no association between genotype and trait</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
+<td><p>Model 2 (genetic effect)</p></td>
+<td><p>Model assuming an association between genotype and trait</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \text{D} \)</span></p></td>
+<td><p>Observed data <span class="math notranslate nohighlight">\(d_i\)</span> (observation i)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\{(x_1,y_1), (x_2, y_2), \dots, (x_n, y_n)\}\)</span>, Collected genotype-trait pairs</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \lambda \)</span></p></td>
+<td><p>Likelihood ratio test</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \mu \)</span></p></td>
+<td><p>Mean of the normal distribution (unknown)</p></td>
+<td><p>Mean of the normal distribution in the population  (e.g., <span class="math notranslate nohighlight">\(\mu_1\)</span> for height and <span class="math notranslate nohighlight">\(\mu_2\)</span> for weight when bi-variate)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \theta \)</span></p></td>
+<td><p>Mean of the normal distribution (unknown)</p></td>
+<td><p>Causal effect of genetic variant on the trait</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \theta_0 \)</span></p></td>
+<td><p>Prior mean</p></td>
+<td><p>Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \theta_1 \)</span></p></td>
+<td><p>Posterior mean</p></td>
+<td><p>Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_0^2 \)</span></p></td>
+<td><p>Variance of the normal distribution (known)</p></td>
+<td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \sigma_1^2 \)</span></p></td>
+<td><p>Posterior variance</p></td>
+<td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> after observing data</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \tau_0 \)</span></p></td>
+<td><p>Prior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_0^2}\)</span>)</p></td>
+<td><p>Inverse of prior variance</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_1 \)</span></p></td>
+<td><p>Posterior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_1^2}\)</span>)</p></td>
+<td><p>Inverse of posterior variance</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \Sigma \)</span></p></td>
+<td><p>Variance-covariance matrix</p></td>
+<td><p>variance-covariance matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \Omega \)</span></p></td>
+<td><p>Precision matrix</p></td>
+<td><p>Precision matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( n \)</span></p></td>
+<td><p>Number of samples</p></td>
+<td><p>Number of individuals in the dataset</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( L(M) \)</span></p></td>
+<td><p>Likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
+<td><p>Probability of observing the data under model <span class="math notranslate nohighlight">\(M\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( l(M) \)</span></p></td>
+<td><p>Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
+<td><p>Log-transformed likelihood for numerical stability</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Importance</p></th>
+<th class="head"><p>Rui’s notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Kinship</p></td>
+<td><p>Statistical measure of relatedness between individuals based on shared genetic material</p></td>
+<td><p>Fundamental for understanding genetic relationships and forms the basis for many statistical methods in genetics</p></td>
+<td><p>It’s essentially just random sampling in meiosis across many generations —  X~Bernoulli(1/2) for single locus, Binomial(n,1/2) for multiple loci  per generation,   with power <span class="math notranslate nohighlight">\(n\)</span> for <span class="math notranslate nohighlight">\(n\)</span> generations . So the statistical background is random variable and binommial distribution with kinship and IBD being examples</p></td>
+</tr>
+<tr class="row-odd"><td><p>Identity by Descent (IBD)</p></td>
+<td><p>Probability that alleles in two individuals are identical because they were inherited from a common ancestor</p></td>
+<td><p>Essential for relatedness inference and forms the basis for many genetic analyses</p></td>
+<td><p>Follow from above, expected number of IBD loci can be computed from that Binomial distribution</p></td>
+</tr>
+<tr class="row-even"><td><p>Haplotypes</p></td>
+<td><p>Combination of alleles at different loci that are inherited together</p></td>
+<td><p>Critical for understanding inheritance patterns and LD structure</p></td>
+<td><p>Nothing mathy here</p></td>
+</tr>
+<tr class="row-odd"><td><p>Effective Population Size (Ne)</p></td>
+<td><p>The size of an idealized population that would experience the same amount of genetic drift as the observed population</p></td>
+<td><p>Crucial for understanding how genetic variation changes over time in populations</p></td>
+<td><p>popgen.  I think it is just a harmonic mean of population sizes over time? if you wantto talk about this in statistical setting I think the related concept is just harmonic mean and Ne is an example for that.</p></td>
+</tr>
+<tr class="row-even"><td><p>Allele/Genotype Coding</p></td>
+<td><p>Numerical representation of genetic variants (additive, dominant, recessive models)</p></td>
+<td><p>Basic requirement for any genetic analysis involving regression models</p></td>
+<td><p>Numerical modeling of genetic data</p></td>
+</tr>
+<tr class="row-odd"><td><p>Assortative Mating</p></td>
+<td><p>Non-random mating based on phenotypic similarity</p></td>
+<td><p>Affects genetic structure and can bias heritability estimates</p></td>
+<td><p>It’s just conditional expectation — the mates phenotype is dependent on each other: cute boys for cute girls where cuteness is phenotype</p></td>
+</tr>
+<tr class="row-even"><td><p>Ascertainment Bias</p></td>
+<td><p>Systematic error due to non-random sampling</p></td>
+<td><p>Critical for understanding limitations in genetic studies</p></td>
+<td><p>It’s more like study design or epidemology, not statitical modeling. As a statistical concept, alternatively you may want to discuss Winner’s Curse …</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genetic Distance</p></td>
+<td><p>Measures of genetic dissimilarity between individuals or populations</p></td>
+<td><p>Basic concept for population genetic analyses</p></td>
+<td><p>covered in GRM</p></td>
+</tr>
+<tr class="row-even"><td><p>Threshold Models</p></td>
+<td><p>Statistical models linking continuous genetic liability to categorical phenotypes</p></td>
+<td><p>Essential for analyzing binary and categorical traits</p></td>
+<td><p>I think it should be in LM/GLM. All notebooks must be statistical concepts or models</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cross-Validation</p></td>
+<td><p>Method to assess how genetic models generalize to independent data</p></td>
+<td><p>Fundamental for evaluating predictive models</p></td>
+<td><p>too pure stat? Pure stat is not a problem. The problem is that it’s not the fundamental. It is rather derivative and thus uninteresting.</p></td>
+</tr>
+<tr class="row-even"><td><p>Genomic Control / Inflation Factor</p></td>
+<td><p>Measure of inflation or deflation in test statistics, often visualized with QQ plots, indicating population stratification or other confounding effects</p></td>
+<td><p>Critical for detecting and correcting systematic biases in association studies, ensuring valid p-value interpretation</p></td>
+<td><p>Intuition is really simple: p-values under the null are uniform</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genetic Heterogeneity</p></td>
+<td><p>Different genetic variants producing similar phenotypes</p></td>
+<td><p>Essential for understanding why multiple genes can cause similar diseases or traits</p></td>
+<td><p>This is biology, almost nothing statistical</p></td>
+</tr>
+<tr class="row-even"><td><p>Genetic Load</p></td>
+<td><p>Total quantity of deleterious genetic material in a population or individual</p></td>
+<td><p>Fundamental for understanding the accumulation of harmful mutations</p></td>
+<td><p>Biology or popgen, nothing statistical</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genotype-Environment Correlation</p></td>
+<td><p>Association between genotypes and the environments individuals experience</p></td>
+<td><p>Critical for distinguishing genetic effects from environmental factors</p></td>
+<td><p>No really a valid or popular problem — GxE interaction maybe. But I don’t feel this is mainstream statgen anyways.</p></td>
+</tr>
+<tr class="row-even"><td><p>Genotype Imputation</p></td>
+<td><p>Statistical inference of unmeasured genotypes based on known haplotype patterns</p></td>
+<td><p>Fundamental for increasing statistical power in genetic studies</p></td>
+<td><p>Hidden Markov model</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genetic Anticipation</p></td>
+<td><p>Phenomenon where genetic disorders manifest at earlier ages in successive generations</p></td>
+<td><p>Important concept for understanding intergenerational disease patterns</p></td>
+<td><p>popgen?</p></td>
+</tr>
+<tr class="row-even"><td><p>Genomic Inflation Factor</p></td>
+<td><p>Measure of systematic bias in test statistics from a genetic association study</p></td>
+<td><p>Essential quality control metric in genetic association studies</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Regression to the Mean</p></td>
+<td><p>The tendency for extreme phenotypic values to produce offspring with less extreme values</p></td>
+<td><p>Fundamental concept for prediction and breeding applications</p></td>
+<td><p>?                  LM</p></td>
+</tr>
+<tr class="row-even"><td><p>Parentage Analysis</p></td>
+<td><p>Statistical methods to assign parents based on genetic data</p></td>
+<td><p>Fundamental for pedigree verification and relationship testing</p></td>
+<td><p>LRT with recombination coef being a parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genetic Background Effects</p></td>
+<td><p>Influence of overall genetic makeup on the phenotypic expression of specific variants</p></td>
+<td><p>Important for understanding variant effect heterogeneity across populations</p></td>
+<td><p>?                       LM when p&gt;n</p></td>
+</tr>
+<tr class="row-even"><td><p>Synthetic Association</p></td>
+<td><p>Phenomenon where common variants tag effects of multiple rare causal variants</p></td>
+<td><p>Critical concept for interpreting GWAS findings</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nested Association Mapping</p></td>
+<td><p>Design combining advantages of linkage analysis and association mapping</p></td>
+<td><p>Powerful approach for dissecting complex trait genetics, especially in plants</p></td>
+<td><p>?   No longer that popular but essentially, just yet another LRT</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">statgen-prerequisites</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

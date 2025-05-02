@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Bayesian_model_comparison';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Bayesian_model_comparison.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-fine-mapping">Example 1 – fine mapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-multivariate-regression">Example 2 – multivariate regression</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>Bayesian model comparison evaluates competing models by measuring how well they predict observed data while accounting for model complexity, which is reflected in how broadly the prior distribution spreads probability across the parameter space.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="fig" src="_images/Bayesian_model_comparison.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>When comparing two models <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span>, we calculate the <strong>posterior odds</strong> for each model. The <strong>posterior odds</strong> represent the ratio of the posterior probabilities for the two models. This can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{P(M_1|D)}{P(M_2|D)} = \frac{P(D|M_1)P(M_1)}{P(D|M_2)P(M_2)}
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(M_1|D)\)</span> is the <strong>posterior</strong> probability of model <span class="math notranslate nohighlight">\(M_1\)</span> given the data <span class="math notranslate nohighlight">\(D\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(M_2|D)\)</span> is the <strong>posterior</strong> probability of model <span class="math notranslate nohighlight">\(M_2\)</span> given the data <span class="math notranslate nohighlight">\(D\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{P(D|M_1)}{P(D|M_2)}\)</span> is the <strong>bayes factor</strong> of <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(M_1)\)</span> and <span class="math notranslate nohighlight">\(P(M_2)\)</span> are the <strong>prior probabilities</strong> of models <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span>, respectively.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<p>Recall that the <strong>Bayes Factor (BF)</strong> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{BF}_{1,2} = \frac{L(\text{D}|\text{M}_1)}{L(\text{D}|\text{M}_2)} ={\frac {\int \Pr(\gamma _{1}|M_{1})\Pr(D|\gamma _{1},M_{1})\,d\gamma _{1}}{\int \Pr(\gamma _{2}|M_{2})\Pr(D|\gamma _{2},M_{2})\,d\gamma _{2}}} = \frac{\frac{Pr(M_1|D)Pr(D)}{Pr(M_1)} }{\frac{Pr(M_2|D)Pr(D)}{Pr(M_2)}} = \frac{Pr(M_1|D)}{Pr(M_2|D)} \times \frac{Pr(M_2)}{Pr(M_1)}
+\]</div>
+<p>This ratio here, <span class="math notranslate nohighlight">\(\frac{P(M_1|D)}{P(M_2|D)}\)</span>, simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Posterior Odds} = \text{Prior Odds} \times \text{Bayes Factor (BF)}
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><strong>Prior Odds</strong> = <span class="math notranslate nohighlight">\(\frac{P(M_1)}{P(M_2)}\)</span> is the ratio of prior probabilities of the models.</p></li>
+<li><p><strong>Bayes Factor (BF)</strong> = <span class="math notranslate nohighlight">\(\frac{P(D|M_1)}{P(D|M_2)}\)</span> is the Bayes Factor of the two models given data <span class="math notranslate nohighlight">\(\text{D}\)</span>.</p></li>
+</ul>
+<p>Thus, the <strong>posterior odds</strong> can be updated by multiplying the <strong>prior odds</strong> by the <strong>Bayes Factor</strong>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<section id="example-1-fine-mapping">
+<h2>Example 1 – fine mapping<a class="headerlink" href="#example-1-fine-mapping" title="Link to this heading">#</a></h2>
+<p>This example demonstrates Bayesian fine mapping in genetics, which is used to identify causal genetic variants associated with a trait or disease. The code simulates a scenario with three correlated SNPs (Single Nucleotide Polymorphisms) where at least one has a strong signal (Z-score of 5.1).</p>
+<p>The analysis:</p>
+<ol class="arabic simple">
+<li><p>compares seven possible causal configurations (from zero to two causal SNPs) by calculating approximate Bayes factors for each model</p></li>
+<li><p>combines these with prior probabilities to compute posterior probabilities</p></li>
+<li><p>calculates the Posterior Inclusion Probability (PIP) for each SNP, which represents the probability that each SNP is causal, and visualizes these results.</p></li>
+</ol>
+<p>We’ll first simulate a scenario with 3 SNPs that have Z-scores (association statistics) and are in linkage disequilibrium (LD):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span><span class="w"> </span><span class="c1"># Clear the workspace</span>
+<span class="c1"># Load necessary libraries</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">      </span><span class="c1"># for multivariate normal</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">   </span><span class="c1"># for plots</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span><span class="w">    </span><span class="c1"># for tidy tables</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">     </span><span class="c1"># for data manipulation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate Z-scores for 3 SNPs</span>
+<span class="n">Z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5.1</span><span class="p">,</span><span class="w"> </span><span class="m">2.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.8</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;SNP_A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SNP_B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SNP_C&quot;</span><span class="p">)</span>
+
+<span class="c1"># Simulate LD matrix</span>
+<span class="n">R</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span>
+<span class="w">  </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span>
+<span class="w">  </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span>
+<span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">Z</span>
+<span class="n">R</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>SNP_A</dt><dd>5.1</dd><dt>SNP_B</dt><dd>2</dd><dt>SNP_C</dt><dd>1.8</dd></dl>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A matrix: 3 x 3 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>SNP_A</th><th scope=col>SNP_B</th><th scope=col>SNP_C</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>SNP_A</th><td>1.0</td><td>0.8</td><td>0.6</td></tr>
+	<tr><th scope=row>SNP_B</th><td>0.8</td><td>1.0</td><td>0.7</td></tr>
+	<tr><th scope=row>SNP_C</th><td>0.6</td><td>0.7</td><td>1.0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>We’re considering 7 possible models:</p>
+<ul class="simple">
+<li><p>null model (no causal SNPs)</p></li>
+<li><p>3 single-SNP models</p></li>
+<li><p>3 two-SNP models
+This represents all possible combinations of up to 2 causal SNPs.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Possible causal configurations (max 2 causal SNPs)</span>
+<span class="n">configs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">  </span><span class="nf">c</span><span class="p">(),</span><span class="w">                 </span><span class="c1"># M0: null</span>
+<span class="w">  </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">),</span><span class="w">    </span><span class="c1"># Single SNP</span>
+<span class="w">  </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">  </span><span class="c1"># Pairs</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we’ll calculate the Approximate Bayes Factor (ABF) for each configuration:</p>
+<p>We assume:</p>
+<ul class="simple">
+<li><p>Effect sizes <span class="math notranslate nohighlight">\(\sim N(0, \sigma^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Z \sim N(R\beta, R)\)</span></p></li>
+</ul>
+<p>ABF Explanation:</p>
+<ul class="simple">
+<li><p>The ABF measures how well each model explains the observed Z-scores</p></li>
+<li><p>Higher ABF indicates stronger evidence for that model</p></li>
+<li><p>The sigma2 parameter (0.05) represents our prior belief about effect sizes</p></li>
+</ul>
+<p>The ABF calculation accounts for:</p>
+<ul class="simple">
+<li><p>The strength of association (Z-scores)</p></li>
+<li><p>The correlation structure between SNPs (LD matrix)</p></li>
+<li><p>The complexity of the model (number of causal SNPs)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">compute_abf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">causal_idx</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">causal_idx</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">  </span><span class="c1"># model with no causal SNPs</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1"># Subset R and Z</span>
+<span class="w">  </span><span class="n">R_c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">causal_idx</span><span class="p">,</span><span class="w"> </span><span class="n">causal_idx</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">]</span>
+<span class="w">  </span><span class="n">Z_c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Z</span><span class="p">[</span><span class="n">causal_idx</span><span class="p">]</span>
+<span class="w">  </span><span class="n">V</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R_c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">causal_idx</span><span class="p">))</span>
+<span class="w">  </span><span class="n">exponent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">Z_c</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">Z_c</span>
+<span class="w">  </span><span class="n">abf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">det</span><span class="p">(</span><span class="n">R_c</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">det</span><span class="p">(</span><span class="n">V</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="m">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">exponent</span><span class="p">)</span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">abf</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">abfs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span><span class="w"> </span><span class="n">compute_abf</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Z</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We combine the ABFs with prior probabilities to compute posterior probabilities:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set prior p(causal SNP) = 0.01</span>
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.01</span>
+<span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+
+<span class="c1"># Prior on each model</span>
+<span class="n">model_priors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="w">  </span><span class="n">p</span><span class="o">^</span><span class="n">k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Posterior probabilities</span>
+<span class="n">unnorm_posteriors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">abfs</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">model_priors</span>
+<span class="n">posteriors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unnorm_posteriors</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">unnorm_posteriors</span><span class="p">)</span>
+<span class="n">posteriors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.000275087664736681</li><li>0.649065672735477</li><li>1.82166643771154e-05</li><li>1.2685150258698e-05</li><li>0.335622074243419</li><li>0.0150060561799783</li><li>2.07361753517139e-07</li></ol>
+</div></div>
+</div>
+<p>Finally, we calculate the Posterior Inclusion Probability (PIP) for each SNP:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># PIP for each SNP</span>
+<span class="n">pip</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">setNames</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">),</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">Z</span><span class="p">))</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nf">seq_along</span><span class="p">(</span><span class="n">configs</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cfg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">configs</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pip</span><span class="p">[</span><span class="n">cfg</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pip</span><span class="p">[</span><span class="n">cfg</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">posteriors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pip_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tibble</span><span class="p">(</span>
+<span class="w">  </span><span class="n">SNP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">pip</span><span class="p">),</span>
+<span class="w">  </span><span class="n">PIP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pip</span>
+<span class="p">)</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">pip_df</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SNP</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PIP</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SNP</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;identity&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ylim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Posterior Inclusion Probabilities (PIP)&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PIP&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Set2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ce348083d715b7753b1503cf2d83e3b98b7e7c7ce8eb98f9d7e54160fa027be3.png"><img alt="_images/ce348083d715b7753b1503cf2d83e3b98b7e7c7ce8eb98f9d7e54160fa027be3.png" src="_images/ce348083d715b7753b1503cf2d83e3b98b7e7c7ce8eb98f9d7e54160fa027be3.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="example-2-multivariate-regression">
+<h2>Example 2 – multivariate regression<a class="headerlink" href="#example-2-multivariate-regression" title="Link to this heading">#</a></h2>
+<p>This document demonstrates Bayesian model comparison for multivariate regression in the context of genetics. We’ll analyze genetic variants (SNPs) that may affect multiple traits simultaneously, determining which model best explains the observed associations.</p>
+<p>The key aspects we’ll explore:</p>
+<ol class="arabic simple">
+<li><p>Modeling correlations between genetic variants (LD structure)</p></li>
+<li><p>Handling multiple traits simultaneously</p></li>
+<li><p>Evaluating different causal models using Bayes Factors</p></li>
+<li><p>Calculating posterior probabilities for model comparison</p></li>
+</ol>
+<p>We start by defining the correlation structure between 3 SNPs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span><span class="w">  </span><span class="c1"># Clear workspace</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">     </span><span class="c1"># For multivariate normal distribution</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span><span class="w">   </span><span class="c1"># For tidy data</span>
+
+<span class="c1"># --- 1. Define LD matrix for 3 SNPs ---</span>
+<span class="n">R</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
+<span class="w">  </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span>
+<span class="w">  </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span>
+<span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;SNP_A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SNP_B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SNP_C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll simulate Z-scores for 2 traits across our 3 SNPs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- 2. Simulate Z-scores for 2 traits ---</span>
+<span class="n">Z_trait1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5.0</span><span class="p">,</span><span class="w"> </span><span class="m">2.5</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w">  </span><span class="c1"># Signal in SNP_A, others due to LD</span>
+<span class="n">Z_trait2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">-0.1</span><span class="p">)</span><span class="w"> </span><span class="c1"># No signal</span>
+
+<span class="n">Z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">Z_trait1</span><span class="p">,</span><span class="w"> </span><span class="n">Z_trait2</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;SNP_A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SNP_B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SNP_C&quot;</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Trait1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Trait2&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       SNP_A SNP_B SNP_C
+Trait1   5.0   2.5   1.5
+Trait2   0.5   0.2  -0.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll define 4 possible models for how SNP_A might affect the two traits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- 3. Define models ---</span>
+<span class="n">models</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">  </span><span class="n">M0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">),</span><span class="w">  </span><span class="c1"># No effect</span>
+<span class="w">  </span><span class="n">M1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">),</span><span class="w">   </span><span class="c1"># Effect on Trait1 only</span>
+<span class="w">  </span><span class="n">M2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">   </span><span class="c1"># Effect on Trait2 only</span>
+<span class="w">  </span><span class="n">M3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">     </span><span class="c1"># Effect on both traits</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need a function to calculate how well each model explains the observed Z-scores:</p>
+<p>Explanation:</p>
+<ul class="simple">
+<li><p>The following function calculates the log-likelihood under a multivariate normal distribution:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">z_vec</span></code> contains the observed Z-scores for SNP_A across both traits</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mu_vec</span></code> contains the expected effect sizes under a given model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Sigma</span></code> is the covariance matrix (here we use an identity matrix, assuming independence between traits)</p></li>
+<li><p>Higher log-likelihood indicates better fit to the observed data</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- 4. Define log-likelihood function ---</span>
+<span class="n">log_likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">z_vec</span><span class="p">,</span><span class="w"> </span><span class="n">mu_vec</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">z_vec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mu_vec</span>
+<span class="w">  </span><span class="n">ll</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">dist</span><span class="w">  </span><span class="c1"># Multivariate normal log-likelihood</span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">ll</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll calculate the log marginal likelihood for each model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- 5. Compute log-likelihoods for each model ---</span>
+<span class="n">log_marg_liks</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">models</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">effect_mask</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Initial effect sizes (set to zero)</span>
+<span class="w">  </span><span class="c1"># Use a normal prior for the effect sizes, not hardcoded to 5</span>
+<span class="w">  </span><span class="n">mu</span><span class="p">[</span><span class="n">effect_mask</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">effect_mask</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">  </span><span class="c1"># Sampling effect size from normal prior</span>
+<span class="w">  </span><span class="nf">log_likelihood</span><span class="p">(</span><span class="n">Z</span><span class="p">[,</span><span class="w"> </span><span class="s">&quot;SNP_A&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="m">2</span><span class="p">))</span><span class="w">  </span><span class="c1"># Use diagonal covariance (independence across traits)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Explanation:</p>
+<ul class="simple">
+<li><p>For each model, we calculate how well it explains the Z-scores for SNP_A across both traits</p></li>
+<li><p>We use a normal prior with mean 0 and SD 1 for the effect sizes</p></li>
+<li><p>We assume independence between traits (diagonal covariance matrix)</p></li>
+<li><p>The log-likelihoods give us a measure of model fit, but we need to convert them to Bayes Factors for proper comparison</p></li>
+</ul>
+<p>Now we’ll calculate Bayes Factors and posterior probabilities:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- 6. Calculate Bayes Factors and Posterior ---</span>
+<span class="n">log_BFs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_marg_liks</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">log_marg_liks</span><span class="p">[</span><span class="s">&quot;M0&quot;</span><span class="p">]</span><span class="w">  </span><span class="c1"># Compare to null model</span>
+<span class="n">BFs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">log_BFs</span><span class="p">)</span>
+<span class="n">posterior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">BFs</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">BFs</span><span class="p">)</span><span class="w">  </span><span class="c1"># Normalize to get posterior probabilities</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Explanation:</p>
+<ul class="simple">
+<li><p>Bayes Factors (BFs) quantify the evidence for each model compared to the null model (M0)</p></li>
+<li><p>BF &gt; 1 indicates evidence in favor of the model over the null</p></li>
+<li><p>BF &lt; 1 indicates evidence against the model compared to the null</p></li>
+<li><p>Posterior probabilities give us the probability of each model being correct, given the data</p></li>
+<li><p>The model with the highest posterior probability is our best model</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- 7. Output results ---</span>
+<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tibble</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">models</span><span class="p">),</span>
+<span class="w">  </span><span class="n">logLik</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">log_marg_liks</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">  </span><span class="n">BF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">BFs</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">  </span><span class="n">PostProb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># A tibble: 4 x 4
+  Model logLik    BF PostProb
+  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+1 M0     -<span class=" -Color -Color-Red">12.6</span>  1       0.068
+2 M1     -<span class=" -Color -Color-Red">10.1</span> 12.8     0.87 
+3 M2     -<span class=" -Color -Color-Red">12.7</span>  0.91    0.062
+4 M3     -<span class=" -Color -Color-Red">21.1</span>  0       0    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize posterior probabilities</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">reorder</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">PostProb</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PostProb</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;identity&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Posterior Probabilities for Each Model&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Model&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Posterior Probability&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ylim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/cfb787f2301dd3bd8606d240ba40e378640c6783d78e4da189222234d3bac6bc.png"><img alt="_images/cfb787f2301dd3bd8606d240ba40e378640c6783d78e4da189222234d3bac6bc.png" src="_images/cfb787f2301dd3bd8606d240ba40e378640c6783d78e4da189222234d3bac6bc.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-fine-mapping">Example 1 – fine mapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-multivariate-regression">Example 2 – multivariate regression</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

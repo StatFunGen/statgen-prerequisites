@@ -1,0 +1,50 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10" />
+  <!-- Title -->
+<text x="400" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">Bayesian Model Comparison: The Balance of Evidence</text>
+  <!-- Scale/Balance -->
+  <line x1="400" y1="150" x2="400" y2="300" stroke="#555" stroke-width="8" />
+  <path d="M 250 300 Q 400 350 550 300" stroke="#555" stroke-width="5" fill="none" />
+  <!-- Base of the scale -->
+  <rect x="350" y="300" width="100" height="20" fill="#555" rx="5" ry="5" />
+  <path d="M 375 320 L 350 380 L 450 380 L 425 320 Z" fill="#555" />
+  <!-- Model 1 Side - Prior and Likelihood -->
+  <rect x="200" y="240" width="100" height="60" rx="10" ry="10" fill="#4285f4" opacity="0.7" />
+  <text x="250" y="275" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Model 1</text>
+  <!-- Model 2 Side - Prior and Likelihood -->
+  <rect x="500" y="240" width="100" height="60" rx="10" ry="10" fill="#ea4335" opacity="0.7" />
+  <text x="550" y="275" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Model 2</text>
+  <!-- Prior weights -->
+  <circle cx="200" cy="240" r="25" fill="#4285f4" opacity="0.9" />
+  <text x="200" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">P(M₁)</text>
+  <circle cx="500" cy="240" r="25" fill="#ea4335" opacity="0.9" />
+  <text x="500" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">P(M₂)</text>
+  <!-- Data Evidence/Likelihood -->
+  <rect x="150" y="180" width="100" height="40" rx="5" ry="5" fill="#34a853" opacity="0.9" />
+  <text x="200" y="205" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">P(D|M₁)</text>
+  <rect x="550" y="180" width="100" height="40" rx="5" ry="5" fill="#34a853" opacity="0.9" />
+  <text x="600" y="205" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">P(D|M₂)</text>
+  <!-- Data Icon -->
+  <circle cx="400" cy="100" r="40" fill="#fbbc05" stroke="#333" stroke-width="2" />
+  <text x="400" y="105" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#333">Data D</text>
+  <!-- Arrows from Data to Likelihoods -->
+  <path d="M 370 120 L 220 180" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 430 120 L 580 180" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <!-- Markers definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  <!-- Posterior Result -->
+  <path d="M 250 300 Q 400 400 550 300" stroke="#555" stroke-width="3" stroke-dasharray="5,5" fill="none" />
+  <!-- Formulas and Labels -->
+<text x="400" y="420" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#333">Posterior Odds = Prior Odds × Bayes Factor</text>
+<text x="400" y="450" font-family="Arial" font-size="18" text-anchor="middle" fill="#333">P(M₁|D)/P(M₂|D) = [P(M₁)/P(M₂)] × [P(D|M₁)/P(D|M₂)]</text>
+  <!-- Descriptive Labels -->
+<text x="250" y="340" font-family="Arial" font-size="16" text-anchor="middle" fill="#4285f4" font-style="italic">If balance tilts left,</text>
+<text x="250" y="360" font-family="Arial" font-size="16" text-anchor="middle" fill="#4285f4" font-style="italic">evidence favors Model 1</text>
+<text x="550" y="340" font-family="Arial" font-size="16" text-anchor="middle" fill="#ea4335" font-style="italic">If balance tilts right,</text>
+<text x="550" y="360" font-family="Arial" font-size="16" text-anchor="middle" fill="#ea4335" font-style="italic">evidence favors Model 2</text>
+</svg>

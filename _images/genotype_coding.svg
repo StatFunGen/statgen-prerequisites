@@ -1,0 +1,184 @@
+<svg width="800" height="680" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 680">
+    <!-- Background -->
+    <rect width="800" height="680" fill="#f9f9f9"/>
+    
+    <!-- Title -->
+    <text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold">Genotype Coding</text>
+    
+    <!-- Raw DNA Section -->
+    <rect x="50" y="60" width="700" height="100" fill="#e6f2ff" stroke="#0066cc" stroke-width="2" rx="10"/>
+    <text x="400" y="80" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold">DNA Sequences at a SNP Position (T is risk allele)</text>
+    
+    <!-- Individual labels -->
+    <text x="150" y="110" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Individual 1</text>
+    <text x="270" y="110" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Individual 2</text>
+    <text x="390" y="110" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Individual 3</text>
+    <text x="510" y="110" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Individual 4</text>
+    <text x="630" y="110" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Individual 5</text>
+    
+    <!-- Genotypes -->
+    <text x="150" y="140" text-anchor="middle" font-family="Arial" font-size="16" fill="#1b249b">CC</text>
+    <text x="270" y="140" text-anchor="middle" font-family="Arial" font-size="16" fill="#1b249b">CT</text>
+    <text x="390" y="140" text-anchor="middle" font-family="Arial" font-size="16" fill="#1b249b">TT</text>
+    <text x="510" y="140" text-anchor="middle" font-family="Arial" font-size="16" fill="#1b249b">CC</text>
+    <text x="630" y="140" text-anchor="middle" font-family="Arial" font-size="16" fill="#1b249b">CT</text>
+    
+    <!-- Arrow 1: DNA to Coding Models with description -->
+    <path d="M 400 170 L 400 220" stroke="#666666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    <text x="450" y="190" text-anchor="start" font-family="Arial" font-size="14" fill="#444444">Converting DNA nucleotide pairs into</text>
+    <text x="450" y="210" text-anchor="start" font-family="Arial" font-size="14" fill="#444444">numerical values for statistical analysis</text>
+    
+    <!-- Define arrowhead marker -->
+    <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="15" refX="8" refY="3.5" orient="auto">
+            <polygon points="0 0, 9 3.5, 0 7" fill="#666666"/>
+        </marker>
+    </defs>
+    
+    <!-- Coding Models Section -->
+    <rect x="50" y="230" width="700" height="240" fill="#fff2e6" stroke="#ff9933" stroke-width="2" rx="10"/>
+    <text x="400" y="255" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold">Genotype Coding Models (T is risk allele)</text>
+    
+    <!-- Coding Models Table -->
+    <rect x="100" y="270" width="600" height="180" fill="none" stroke="#666" stroke-width="1"/>
+    
+    <!-- Table Headers -->
+    <rect x="100" y="270" width="120" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="220" y="270" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="300" y="270" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="380" y="270" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="460" y="270" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="540" y="270" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="620" y="270" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    
+    <text x="160" y="290" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Coding Model</text>
+    <text x="260" y="290" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 1 (CC)</text>
+    <text x="340" y="290" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 2 (CT)</text>
+    <text x="420" y="290" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 3 (TT)</text>
+    <text x="500" y="290" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 4 (CC)</text>
+    <text x="580" y="290" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 5 (CT)</text>
+    <text x="660" y="290" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="grey">Mean</text>
+    
+    <rect x="100" y="300" width="120" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="220" y="300" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="300" y="300" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="380" y="300" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="460" y="300" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="540" y="300" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="620" y="300" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    
+    <text x="160" y="320" text-anchor="middle" font-family="Arial" font-size="14">Additive (0,1,2)</text>
+    <text x="160" y="338" text-anchor="middle" font-family="Arial" font-size="10" fill="#666666">Count risk alleles</text>
+    <text x="260" y="325" text-anchor="middle" font-family="Arial" font-size="14">0</text>
+    <text x="340" y="325" text-anchor="middle" font-family="Arial" font-size="14">1</text>
+    <text x="420" y="325" text-anchor="middle" font-family="Arial" font-size="14">2</text>
+    <text x="500" y="325" text-anchor="middle" font-family="Arial" font-size="14">0</text>
+    <text x="580" y="325" text-anchor="middle" font-family="Arial" font-size="14">1</text>
+    <text x="660" y="325" text-anchor="middle" font-family="Arial" font-size="14" fill="grey">0.8</text>
+    
+    
+
+    <!-- Dominant Model Row -->
+    <rect x="100" y="350" width="120" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="220" y="350" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="300" y="350" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="380" y="350" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="460" y="350" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="540" y="350" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="620" y="350" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    
+    <text x="160" y="370" text-anchor="middle" font-family="Arial" font-size="14">Dominant (0,1,1)</text>
+    <text x="160" y="388" text-anchor="middle" font-family="Arial" font-size="10" fill="#666666">1 if any risk allele</text>
+    <text x="260" y="375" text-anchor="middle" font-family="Arial" font-size="14">0</text>
+    <text x="340" y="375" text-anchor="middle" font-family="Arial" font-size="14">1</text>
+    <text x="420" y="375" text-anchor="middle" font-family="Arial" font-size="14">1</text>
+    <text x="500" y="375" text-anchor="middle" font-family="Arial" font-size="14">0</text>
+    <text x="580" y="375" text-anchor="middle" font-family="Arial" font-size="14">1</text>
+    <text x="660" y="375" text-anchor="middle" font-family="Arial" font-size="14" fill="grey" >0.6</text>
+    
+    <!-- Recessive Model Row -->
+    <rect x="100" y="400" width="120" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="220" y="400" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="300" y="400" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="380" y="400" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="460" y="400" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="540" y="400" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="620" y="400" width="80" height="50" fill="white" stroke="#666" stroke-width="1"/>
+    
+    <text x="160" y="420" text-anchor="middle" font-family="Arial" font-size="14">Recessive (0,0,1)</text>
+    <text x="160" y="438" text-anchor="middle" font-family="Arial" font-size="10" fill="#666666">1 for both risk alleles</text>
+    <text x="260" y="425" text-anchor="middle" font-family="Arial" font-size="14">0</text>
+    <text x="340" y="425" text-anchor="middle" font-family="Arial" font-size="14">0</text>
+    <text x="420" y="425" text-anchor="middle" font-family="Arial" font-size="14">1</text>
+    <text x="500" y="425" text-anchor="middle" font-family="Arial" font-size="14">0</text>
+    <text x="580" y="425" text-anchor="middle" font-family="Arial" font-size="14">0</text>
+    <text x="660" y="425" text-anchor="middle" font-family="Arial" font-size="14" fill="grey">0.2</text>
+    
+    <!-- Arrow from dashed box to Standardization with description -->
+    <path d="M 70 325 L 70 510" stroke="#006600" stroke-width="2" fill="none" marker-end="url(#arrowhead2)"/>
+    <line x1="69" y1="325" x2="95" y2="325" stroke="#006600" stroke-width="2" />
+    <text x="110" y="490" text-anchor="start" font-family="Arial" font-size="14" fill="#006600">The additive model is particularly valuable as</text>
+    <text x="110" y="510" text-anchor="start" font-family="Arial" font-size="14" fill="#006600">genetic effects often scale with the number of variant alleles</text>
+    
+    <!-- Define green arrowhead marker -->
+    <defs>
+        <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#006600"/>
+        </marker>
+    </defs>
+    
+    <!-- Standardization Section -->
+    <rect x="50" y="520" width="700" height="140" fill="#e6ffe6" stroke="#009900" stroke-width="2" rx="10"/>
+    <text x="400" y="540" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold">Standardized Genotypes</text>
+    <text x="400" y="568" text-anchor="middle" font-family="Arial" font-size="14">X = 
+    <tspan dx="8">
+        <tspan dy="-12">X<tspan baseline-shift="sub" font-size="10">raw</tspan> - mean</tspan>
+        <tspan x="415" dy="22">sd</tspan>
+        <tspan x="420" y="568" stroke="black" stroke-width="1">—-------------</tspan>
+    </tspan>
+    </text>
+    
+    <!-- Standardization Table -->
+    <rect x="115" y="580" width="597" height="60" fill="none" stroke="#666" stroke-width="1"/>
+    
+    <!-- Table Headers -->
+    <rect x="100" y="580" width="120" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="220" y="580" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="300" y="580" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="380" y="580" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="460" y="580" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="540" y="580" width="80" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="620" y="580" width="56" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    <rect x="672" y="580" width="40" height="30" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+    
+    <text x="160" y="600" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Model</text>
+    <text x="260" y="600" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 1 (CC)</text>
+    <text x="340" y="600" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 2 (CT)</text>
+    <text x="420" y="600" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 3 (TT)</text>
+    <text x="500" y="600" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 4 (CC)</text>
+    <text x="580" y="600" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Ind. 5 (CT)</text>
+    <text x="666" y="600" text-anchor="end" font-family="Arial" font-size="14" font-weight="bold" fill="grey" >Mean</text>
+    <text x="692" y="600" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="grey">sd</text>
+    
+    <!-- Additive Standardized Row -->
+    <rect x="100" y="610" width="120" height="30" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="220" y="610" width="80" height="30" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="300" y="610" width="80" height="30" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="380" y="610" width="80" height="30" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="460" y="610" width="80" height="30" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="540" y="610" width="80" height="30" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="620" y="610" width="80" height="30" fill="white" stroke="#666" stroke-width="1"/>
+    <rect x="672" y="610" width="40" height="30" fill="white" stroke="#666" stroke-width="1"/>
+    
+    <text x="160" y="630" text-anchor="middle" font-family="Arial" font-size="14">Additive</text>
+    <text x="260" y="630" text-anchor="middle" font-family="Arial" font-size="14">-0.96</text>
+    <text x="340" y="630" text-anchor="middle" font-family="Arial" font-size="14">0.24</text>
+    <text x="420" y="630" text-anchor="middle" font-family="Arial" font-size="14">1.43</text>
+    <text x="500" y="630" text-anchor="middle" font-family="Arial" font-size="14">-0.96</text>
+    <text x="580" y="630" text-anchor="middle" font-family="Arial" font-size="14">0.24</text>
+    <text x="656" y="630" text-anchor="end" font-family="Arial" font-size="14" fill="grey">0.8</text>
+    <text x="692" y="630" text-anchor="middle" font-family="Arial" font-size="14" fill="grey"> 0.84</text>
+    <!-- Additive Model Row with dashed highlight box -->
+    <rect x="99" y="299" width="602" height="52" fill="none" stroke="#006600" stroke-width="3" stroke-dasharray="5,5"/>
+    
+</svg>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">Maximum Likelihood Estimation (MLE)</text>
+  
+  <!-- Main concept box -->
+  <rect x="250" y="75" width="300" height="80" rx="8" ry="8" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+  <text x="400" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#0d47a1">Core Concept</text>
+  <text x="400" y="125" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Find parameter values that maximize the</text>
+  <text x="400" y="145" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">probability of observing your data</text>
+  
+  <!-- Graph section -->
+  <rect x="50" y="205" width="700" height="200" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  
+  <!-- Axes -->
+  <line x1="100" y1="380" x2="700" y2="380" stroke="#666" stroke-width="2"/>
+  <line x1="100" y1="380" x2="100" y2="220" stroke="#666" stroke-width="2"/>
+  
+  <!-- Axis labels -->
+  <text x="400" y="400" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#666">Parameter Value (θ)</text>
+  <text x="50" y="295" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#666" transform="rotate(-90 70 275)">Likelihood L(θ|data)</text>
+  
+  <!-- Likelihood curves -->
+  <path d="M100,370 Q180,360 220,340 T270,300 T320,250 T400,230 T480,250 T530,300 T580,340 T700,370" fill="none" stroke="#ff9800" stroke-width="3"/>
+  
+  <!-- MLE point -->
+  <circle cx="400" cy="230" r="8" fill="#e91e63"/>
+  <line x1="400" y1="230" x2="400" y2="380" stroke="#e91e63" stroke-dasharray="5,5" stroke-width="2"/>
+  <text x="400" y="220" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#e91e63">θ̂ (MLE)</text>
+  
+  <!-- Key steps box -->
+  <rect x="50" y="420" width="320" height="160" rx="8" ry="8" fill="#f1f8e9" stroke="#8bc34a" stroke-width="2"/>
+  <text x="210" y="445" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#33691e">Key Steps</text>
+  
+  <text x="70" y="475" font-family="Arial, sans-serif" font-size="14" fill="#333">1. Define likelihood function L(θ|data)</text>
+  <text x="70" y="505" font-family="Arial, sans-serif" font-size="14" fill="#333">2. Take log to get log-likelihood ℓ(θ|data)</text>
+  <text x="70" y="535" font-family="Arial, sans-serif" font-size="14" fill="#333">3. Find where derivative equals zero: ∂ℓ/∂θ = 0</text>
+  <text x="70" y="565" font-family="Arial, sans-serif" font-size="14" fill="#333">4. Solve for θ̂ (the MLE estimator)</text>
+  
+  <!-- Properties box -->
+  <rect x="430" y="420" width="320" height="160" rx="8" ry="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+  <text x="590" y="445" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#e65100">Properties</text>
+  
+  <text x="450" y="475" font-family="Arial, sans-serif" font-size="14" fill="#333">• Consistent (converges to true value)</text>
+  <text x="450" y="505" font-family="Arial, sans-serif" font-size="14" fill="#333">• Asymptotically efficient</text>
+  <text x="450" y="535" font-family="Arial, sans-serif" font-size="14" fill="#333">• Asymptotically normal</text>
+  <text x="450" y="565" font-family="Arial, sans-serif" font-size="14" fill="#333">• Invariant to parameter transformations</text>
+  
+  <!-- Formula -->
+  <rect x="150" y="160" width="500" height="30" rx="5" ry="5" fill="#e8eaf6" stroke="#3f51b5" stroke-width="1"/>
+  <text x="400" y="182" font-family="Arial, sans-serif" font-size="14" font-style="italic" text-anchor="middle" fill="#3f51b5">θ̂ = argmax L(θ|data) = argmax ∑ log f(xi|θ)</text>
+</svg>

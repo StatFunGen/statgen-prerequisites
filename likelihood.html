@@ -1,0 +1,970 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'likelihood';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/likelihood.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-sample">Single Sample</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-samples-independence-assumption">Multiple Samples (Independence Assumption)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood">Log-Likelihood</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-for-genetic-effect">Likelihood for genetic effect</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary-materials">Supplementary Materials</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-allele-frequency-of-elephant">Example 1 – allele frequency of elephant</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-question">Description of the question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-concentration-of-protein-in-the-blood">Example 2 – concentration of protein in the blood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading">Recommended Reading</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>Likelihood is the plausibility of observing your data given a specific model or parameter value.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="likelihood" src="_images/likelihood.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>The likelihood for a model <span class="math notranslate nohighlight">\(\text{M}\)</span> based on data <span class="math notranslate nohighlight">\(\text{D}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(\text{M}|\text{D}) = P(\text{D}|\text{M})
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p>(\text{M})<span class="math notranslate nohighlight">\( is the likelihood function for model \)</span>\text{M}<span class="math notranslate nohighlight">\( under data \)</span>\text{D}$</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{M}\)</span> represents the model</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{D}\)</span> represents the observed data</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\text{D}|\text{M})\)</span> is the probability of observing data <span class="math notranslate nohighlight">\(\text{D}\)</span> given the model <span class="math notranslate nohighlight">\(\text{M}\)</span></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="single-sample">
+<h2>Single Sample<a class="headerlink" href="#single-sample" title="Link to this heading">#</a></h2>
+<p>For a single observation <span class="math notranslate nohighlight">\(d\)</span>:
+<span class="math notranslate nohighlight">\(\mathcal{L}(d|\text{M}) = P(d|\text{M})\)</span></p>
+</section>
+<section id="multiple-samples-independence-assumption">
+<h2>Multiple Samples (Independence Assumption)<a class="headerlink" href="#multiple-samples-independence-assumption" title="Link to this heading">#</a></h2>
+<p>For multiple independent observations <span class="math notranslate nohighlight">\(\text{D} = \{d_1, d_2, ..., d_n\}\)</span>:
+$<span class="math notranslate nohighlight">\(
+\mathcal{L}(\text{D}|\text{M}) = \prod_{i=1}^{n} P(d_i|\text{M})
+\)</span>$</p>
+<p>Under the assumption of independence, the joint probability of multiple independent samples is the product of their individual probabilities.</p>
+</section>
+<section id="log-likelihood">
+<h2>Log-Likelihood<a class="headerlink" href="#log-likelihood" title="Link to this heading">#</a></h2>
+<p>We often work with log-likelihood for computational stability:</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{L}(\text{D}|\text{M}) = \log \mathcal{L}(\text{D}|\text{M}) = \sum_{i=1}^{n} \log P(d_i|\text{M})\)</span></p>
+<p>The log transformation converts products to sums, making calculations easier and preventing numerical underflow with very small probabilities.</p>
+<p>In <span class="math notranslate nohighlight">\(\log\)</span>, unless otherwise specified, we use log base e.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<section id="likelihood-for-genetic-effect">
+<h2>Likelihood for genetic effect<a class="headerlink" href="#likelihood-for-genetic-effect" title="Link to this heading">#</a></h2>
+<p>This example demonstrates the core concept of likelihood using a simplified genetic association study. We have genetic data from 5 individuals, where each individual has been genotyped at 3 DNA variants, and we’ve measured their heights. Our goal is to understand which genetic model best explains the relationship between a specific variant and height.</p>
+<p>The key steps in this example include:</p>
+<ol class="arabic simple">
+<li><p>generate the scaled genotype matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and phenotype vector <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> (which is the data we observe)</p></li>
+<li><p>define three models and the likelihood function:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{M}_1\)</span>: the variant has no effect on the trait (<span class="math notranslate nohighlight">\(\beta=0\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{M}_2\)</span>: the variant has mediate effect on the trait (<span class="math notranslate nohighlight">\(\beta=0.5\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{M}_3\)</span>: the variant has strong effect on the trait (<span class="math notranslate nohighlight">\(\beta=1\)</span>)</p></li>
+</ul>
+</li>
+<li><p>compute the likelihood for each model to determine which makes our observed data most probable</p></li>
+<li><p>visualizing the relationship between genotype and height to understand which model fits best.</p></li>
+</ol>
+<p>This example illustrates how likelihood helps us choose between competing scientific models by quantifying how well each model explains our observed data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
+<span class="c1"># These represent actual alleles at each position</span>
+<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 1</span>
+<span class="w">    </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 2</span>
+<span class="w">    </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 3</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 4</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w"> </span><span class="c1"># Individual 5</span>
+<span class="p">)</span>
+<span class="c1"># Reshape into a matrix</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
+<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">ref_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">        </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># assign observed height for the 5 individuals</span>
+<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s create a function to compute the likelihood under different models for the effect of a genetic variant on height:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Likelihood function for normal distribution</span>
+<span class="n">likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># beta: effect size parameter</span>
+<span class="w">    </span><span class="c1"># sd: standard deviation of residuals</span>
+<span class="w">    </span><span class="c1"># X: genotype values</span>
+<span class="w">    </span><span class="c1"># Y: observed phenotype values</span>
+
+<span class="w">    </span><span class="c1"># Calculate expected values under the model</span>
+<span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
+
+<span class="w">    </span><span class="c1"># Calculate likelihood (product of normal densities)</span>
+<span class="w">    </span><span class="nf">prod</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s apply this function to our three models:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply the likelihood function to three models for each variant</span>
+<span class="n">sd_assumed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># Assume standard deviation of 1 for our standardized data</span>
+
+<span class="c1"># Initialize results table</span>
+<span class="n">likelihood_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nco</span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">X</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">L_Model1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nco</span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">L_Model2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nco</span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">L_Model3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nco</span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">LogL_Model1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nco</span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">LogL_Model2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nco</span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">X</span><span class="p">),</span>
+<span class="w">    </span><span class="n">LogL_Model3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nco</span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">X</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Test all 3 variants</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">variant_idx</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nco</span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">X</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">variant_idx</span><span class="p">]</span><span class="w"> </span><span class="c1"># Genotypes for variant j</span>
+
+<span class="w">    </span><span class="c1"># Calculate likelihoods</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model2&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model3&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># Calculate log-likelihoods</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model2&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="n">likelihood_table</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model3&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="p">}</span>
+<span class="n">likelihood_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 7</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>L_Model1</th><th scope=col>L_Model2</th><th scope=col>L_Model3</th><th scope=col>LogL_Model1</th><th scope=col>LogL_Model2</th><th scope=col>LogL_Model3</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Variant 1</td><td>0.001367607</td><td>0.0003050987</td><td>2.503945e-05</td><td>-6.594693</td><td>-8.094875</td><td>-10.595058</td></tr>
+	<tr><td>Variant 2</td><td>0.001367607</td><td>0.0045633971</td><td>5.601711e-03</td><td>-6.594693</td><td>-5.389688</td><td> -5.184683</td></tr>
+	<tr><td>Variant 3</td><td>0.001367607</td><td>0.0059679052</td><td>9.580496e-03</td><td>-6.594693</td><td>-5.121359</td><td> -4.648026</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Let’s visualize the relationship between genotype and phenotype to understand which model fits best:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, let&#39;s create a plot to compare likelihoods across models for each variant</span>
+<span class="c1"># Plot 1: Likelihoods for all models and variants</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">likelihood_table</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;L_Model1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model3&quot;</span><span class="p">)]),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">beside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">names.arg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;β=0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;β=0.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;β=1.0&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#5549b6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#f1b246&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#df6b59&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Likelihoods by Model and Variant&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Model&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Likelihood&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">likelihood_table</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;L_Model1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;L_Model3&quot;</span><span class="p">)])))</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topleft&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#5549b6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#f1b246&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#df6b59&quot;</span><span class="p">),</span>
+<span class="w">       </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/75989f651712ea9d0aa084a209b450f1844c777ed699b5fbcbaf42f504cc69b3.png"><img alt="_images/75989f651712ea9d0aa084a209b450f1844c777ed699b5fbcbaf42f504cc69b3.png" src="_images/75989f651712ea9d0aa084a209b450f1844c777ed699b5fbcbaf42f504cc69b3.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot 2: Log-likelihoods for all models and variants</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">likelihood_table</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;LogL_Model1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model3&quot;</span><span class="p">)]),</span>
+<span class="w">    </span><span class="n">beside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">names.arg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;β=0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;β=0.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;β=1.0&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#5549b6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#f1b246&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#df6b59&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log-Likelihoods by Model and Variant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Model&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log-Likelihood&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">likelihood_table</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;LogL_Model1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LogL_Model3&quot;</span><span class="p">)]),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">),</span>
+<span class="w">    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#5549b6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#f1b246&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#df6b59&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1d3483b7410b0bb52bb38711ccb943847b9fc47b2545fdda32acf1434e19c377.png"><img alt="_images/1d3483b7410b0bb52bb38711ccb943847b9fc47b2545fdda32acf1434e19c377.png" src="_images/1d3483b7410b0bb52bb38711ccb943847b9fc47b2545fdda32acf1434e19c377.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>This code visualizes the likelihood values of three competing genetic models (<span class="math notranslate nohighlight">\(\beta=0\)</span>, <span class="math notranslate nohighlight">\(\beta=0.5\)</span>, and <span class="math notranslate nohighlight">\(\beta=1\)</span>) at individual 1 ‘s observed height, showing which model best explains the phenotype data for variant 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up parameters for Variant 2</span>
+<span class="n">variant_idx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
+<span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">variant_idx</span><span class="p">]</span>
+
+<span class="c1"># Let&#39;s use the last individual as an example</span>
+<span class="n">ind_idx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">height_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="n">ind_idx</span><span class="p">]</span>
+<span class="n">genotype</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X_j</span><span class="p">[</span><span class="n">ind_idx</span><span class="p">]</span>
+
+<span class="c1"># Set up parameters</span>
+<span class="n">baseline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="c1"># For standardized data, baseline is 0</span>
+
+<span class="c1"># Create a sequence of x values for plotting the density</span>
+<span class="n">x_vals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="n">height_value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">height_value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+
+<span class="c1"># Compute the likelihood densities for three models</span>
+<span class="n">likelihood_1_curve</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseline</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">)</span>
+<span class="n">likelihood_2_curve</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">genotype</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">)</span>
+<span class="n">likelihood_3_curve</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">genotype</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">)</span>
+
+<span class="c1"># Plot the likelihood curves</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="w"> </span><span class="n">likelihood_1_curve</span><span class="p">,</span>
+<span class="w">    </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Standardized Height&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Likelihoods for Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;- Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ind_idx</span><span class="p">),</span>
+<span class="w">    </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">likelihood_1_curve</span><span class="p">,</span><span class="w"> </span><span class="n">likelihood_2_curve</span><span class="p">,</span><span class="w"> </span><span class="n">likelihood_3_curve</span><span class="p">)))</span>
+<span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="w"> </span><span class="n">likelihood_2_curve</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="w"> </span><span class="n">likelihood_3_curve</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;green&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Add vertical dashed line to show the observed height value</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">height_value</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Add labels for the likelihood values at the height value for all models</span>
+<span class="n">y_label_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">height_value</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseline</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">)</span>
+<span class="n">y_label_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">height_value</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">genotype</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">)</span>
+<span class="n">y_label_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">height_value</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">genotype</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd_assumed</span><span class="p">)</span>
+
+<span class="c1"># Offset the text positions to avoid overlap</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">height_value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">y_label_1</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;\mathcal{L}(M1) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">y_label_1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)),</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">height_value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">y_label_2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;\mathcal{L}(M2) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">y_label_2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)),</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">height_value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">y_label_3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;\mathcal{L}(M3) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">y_label_3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)),</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;green&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add points at the intersection of the height value on all curves</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">height_value</span><span class="p">,</span><span class="w"> </span><span class="n">y_label_1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">height_value</span><span class="p">,</span><span class="w"> </span><span class="n">y_label_2</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">height_value</span><span class="p">,</span><span class="w"> </span><span class="n">y_label_3</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;green&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+
+<span class="c1"># Add a legend</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M1 (β=0)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M2 (β=0.5)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M3 (β=1.0)&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;green&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/739f322b6e8a1d41ff33a2e4c514f036249555fda67766fbed7fc8f344e5d4da.png"><img alt="_images/739f322b6e8a1d41ff33a2e4c514f036249555fda67766fbed7fc8f344e5d4da.png" src="_images/739f322b6e8a1d41ff33a2e4c514f036249555fda67766fbed7fc8f344e5d4da.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary-materials">
+<h1>Supplementary Materials<a class="headerlink" href="#supplementary-materials" title="Link to this heading">#</a></h1>
+<p>We borrow some code and explanation from <a class="reference external" href="http://stephens999.github.io/fiveMinuteStats/likelihood_function.html">here</a> which uses elephant as an example.</p>
+<p>Here we provide more examples to help you understand the likelihood.</p>
+<section id="example-1-allele-frequency-of-elephant">
+<h2>Example 1 – allele frequency of elephant<a class="headerlink" href="#example-1-allele-frequency-of-elephant" title="Link to this heading">#</a></h2>
+<section id="description-of-the-question">
+<h3>Description of the question<a class="headerlink" href="#description-of-the-question" title="Link to this heading">#</a></h3>
+<p>Here we use an example from <a class="reference external" href="http://stephens999.github.io/fiveMinuteStats/likelihood_ratio_simple_models.html">Matthew Stephen’s notes</a>.</p>
+<blockquote>
+<div><p>[Technical Note: to simplify this problem I have assumed that elephants are haploid, which they are not. If you do not know what this means you should simply ignore this comment.]</p>
+<p>There are two subspecies of African Elephant: savannah and forest elephants, which differ in their genetic makeup. Interpol have seized an illegally-smuggled elephant tusk, and they want to know which subspecies of elephant the tusk came from. To try to answer this they collect DNA from the tusk and measure it at a number of locations (“markers” in genetics jargon) along the elephant genome. At each marker the DNA can be one of two types (“alleles” in genetics jargon), which for simplicity we will label 0 and 1. So the available data on the tusk might look something like this.</p>
+<p>|Marker|Allele|
+|:–:|:–:|
+|1|	1|
+|2|0|
+|3|1|
+|4|0|
+|5|0|
+|6|1|</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Interpol also have information on the frequency of each allele in each of the two subspecies - this was obtained by measuring the DNA of a large number of savanna elephants and a large number of forest elephants. We will use <span class="math notranslate nohighlight">\(f_{S{j}}\)</span> and <span class="math notranslate nohighlight">\(f_{F{j}}\)</span> to denote the frequency of “1” allele at marker j in savanna and forest elephants respectively (and since there are only two alleles, the frequency of the 0 allele is <span class="math notranslate nohighlight">\(1−f_{S{j}}\)</span> and <span class="math notranslate nohighlight">\(1−f_{F{j}}\)</span>). Here is a table of this information.</p>
+<p>| marker | <span class="math notranslate nohighlight">\(f_S\)</span>  | <span class="math notranslate nohighlight">\(f_F\)</span>  |
+|:——–:|:—–:|:—–:|
+| 1      | 0.40 | 0.80 |
+| 2      | 0.52 | 0.20 |
+| 3      | 0.21 | 0.51 |
+| 4      | 0.52 | 0.57 |
+| 5      | 0.02 | 0.23 |
+| 6      | 0.32 | 0.25 |</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.40</span><span class="p">,</span><span class="w"> </span><span class="m">0.52</span><span class="p">,</span><span class="m">0.21</span><span class="p">,</span><span class="m">0.52</span><span class="p">,</span><span class="m">0.02</span><span class="p">,</span><span class="m">0.32</span><span class="p">)</span>
+<span class="n">fF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.8</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.51</span><span class="p">,</span><span class="m">0.57</span><span class="p">,</span><span class="m">0.23</span><span class="p">,</span><span class="m">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>The question before us is: <strong>Which subspecies of elephant did the tusk come from, and how confident should we be in this conclusion?</strong></p>
+</div></blockquote>
+</section>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>We can phrase this problem as a “model comparison” problem. We have data <span class="math notranslate nohighlight">\(X=x\)</span> from our tusk, and we have two different models for how those data might have arisen: it could have been sampled from a savanna elephant, or it could have been sampled from a forest elephant. We will use <span class="math notranslate nohighlight">\(M_S\)</span> and <span class="math notranslate nohighlight">\(M_F\)</span> as shorthand for these two models. A key point is that these two models imply different probability distributions for <span class="math notranslate nohighlight">\(X\)</span>: some values of <span class="math notranslate nohighlight">\(X\)</span> are more common under <span class="math notranslate nohighlight">\(M_S\)</span> and others are more common under <span class="math notranslate nohighlight">\(M_F\)</span>.</p>
+<p>Denoting the probability mass functions of these two distributions p(⋅|MS) and p(⋅|MF), and assuming the data at different markers are independent, these probability distributions are:
+$<span class="math notranslate nohighlight">\(
+p(x|M_S)=\prod_j f_{S_j}^{x_j}(1−f_{S_j})^{1−x_j}
+\)</span>$</p>
+<p>and
+$<span class="math notranslate nohighlight">\(
+p(x|M_F)=\prod_j f_{F_j}^{x_j}(1−f_{F_j})^{1−x_j}
+\)</span>$</p>
+<p>where the values of <span class="math notranslate nohighlight">\(f_S\)</span> and <span class="math notranslate nohighlight">\(f_F\)</span> are given in the table above.</p>
+<p>The key idea to introduce here is that a useful summary of how strongly the data <span class="math notranslate nohighlight">\(x\)</span> support one model vs another model is given by the “likelihood ratio” (LR).</p>
+</div></blockquote>
+<p><strong>So before we drive ourselves into the likelihood ratio of two methods, in this notebook, let’s focus on the likelihood:</strong></p>
+<p>The <strong>“likelihood”</strong> for a model is defined as the probability of the data under the model. That is, given data <span class="math notranslate nohighlight">\(x\)</span>, the likelihood for a fully-specified (discrete) model M is defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathcal{L}(M_S)=p(x|M_S)=\prod_j f_{S_j}^{x_j}(1−f_{S_j})^{1−x_j} \\
+\mathcal{L}(M_F)=p(x|M_F)=\prod_j f_{F_j}^{x_j}(1−f_{F_j})^{1−x_j}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p(⋅|M)\)</span> denotes the probability mass function for model <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">){</span><span class="w"> </span><span class="nf">prod</span><span class="p">(</span><span class="n">f</span><span class="o">^</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">fS</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>\<span class="n">mathcal</span><span class="p">{</span><span class="n">L</span><span class="p">}(</span><span class="n">fF</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-2-concentration-of-protein-in-the-blood">
+<h2>Example 2 – concentration of protein in the blood<a class="headerlink" href="#example-2-concentration-of-protein-in-the-blood" title="Link to this heading">#</a></h2>
+<section id="description">
+<h3>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>A medical screening test for a disease involves measuring the concentration (<span class="math notranslate nohighlight">\(X\)</span>) of a protein in the blood. In normal individuals <span class="math notranslate nohighlight">\(X\)</span> has a Gamma distribution with mean 1 and shape 2. In diseased individuals the protein becomes elevated, and <span class="math notranslate nohighlight">\(X\)</span> has a Gamma distribution with mean 2 and shape 2. Plotting the probability density functions of these distributions yields:</p>
+</div></blockquote>
+<p>Suppose that for a particular individual we observe <span class="math notranslate nohighlight">\(X=4.02\)</span>. Then the question is</p>
+<p><strong>Is this individual from the normal group or the diseased group?</strong></p>
+</section>
+<section id="id1">
+<h3>Solution<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>The likelihood for the two models – normal individual group (<span class="math notranslate nohighlight">\(M_0\)</span>) or diseased individual group (<span class="math notranslate nohighlight">\(M_1\)</span>) — can therefore be calculated as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathcal{L}(M_0)=p(x|M_0)= \frac{\beta_0^{\alpha_0} x^{\alpha_0 - 1} e^{-\beta_0 x}}{\Gamma(\alpha_0)} = \frac{2^2 \cdot 4.02^{2 - 1} e^{-2 \cdot 4.02}}{\Gamma(2)}\\
+\mathcal{L}(M_1)=p(x|M_1)= \frac{\beta_1^{\alpha_1} x^{\alpha_1 - 1} e^{-\beta_1 x}}{\Gamma(\alpha_1)} = \frac{1^2 \cdot 4.02^{2 - 1} e^{-1 \cdot 4.02}}{\Gamma(2)}
+\end{split}\]</div>
+<p>The difference here is that instead of the <strong>probability mass functions</strong> that we used in the first example, here we use the <strong>probability density functions (PDF)</strong> of Gamma distribution:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x; \alpha, \beta) = \frac{\beta^\alpha x^{\alpha - 1} e^{-\beta x}}{\Gamma(\alpha)}, \quad x &gt; 0
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the shape parameter,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the rate parameter (<span class="math notranslate nohighlight">\(\beta = \frac{1}{\theta}\)</span>, where <span class="math notranslate nohighlight">\(\theta\)</span> is the scale parameter),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Gamma(\alpha)\)</span> is the Gamma function.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X_val</span><span class="o">=</span><span class="m">4.02</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In R we can use the <a class="reference external" href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/GammaDist.html">dgamma</a> function to calculate the PDF of gamma function at data <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># dgamma(x, shape, rate = 1, scale = 1/rate, log = FALSE) returns the Density for the Gamma distribution with parameters shape and scale at x</span>
+<span class="n">y0_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">y1_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This can be visualized from the figure below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+
+<span class="c1"># Compute density values</span>
+<span class="n">y0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">y1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Plot the first Gamma density</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Protein Concentration&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">)))</span>
+
+<span class="c1"># Add the second Gamma density</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Add a vertical line at x = 4.02</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_val</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="c1"># Mark the corresponding points</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span><span class="w"> </span><span class="n">y0_val</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">)</span><span class="w"> </span><span class="c1"># normal group</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span><span class="w"> </span><span class="n">y1_val</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">)</span><span class="w"> </span><span class="c1"># diseased group</span>
+
+<span class="c1"># Add text labels near the points</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span><span class="w"> </span><span class="n">y0_val</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">y0_val</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span><span class="w"> </span><span class="n">y1_val</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">y1_val</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add legend</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Gamma(0.5, 2)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gamma(1, 2)&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="recommended-reading">
+<h1>Recommended Reading<a class="headerlink" href="#recommended-reading" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Statistical Rethinking, 2nd Edition, Section 2.1, 2.3, 2.4.</p></li>
+<li><p>Section <em>Likelihood Ratio and Likehood</em> in <a class="reference external" href="http://stephens999.github.io/fiveMinuteStats/index.html">FiveMinuteStats</a> by Matthew Stephens</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-sample">Single Sample</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-samples-independence-assumption">Multiple Samples (Independence Assumption)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood">Log-Likelihood</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-for-genetic-effect">Likelihood for genetic effect</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary-materials">Supplementary Materials</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-allele-frequency-of-elephant">Example 1 – allele frequency of elephant</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-question">Description of the question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-concentration-of-protein-in-the-blood">Example 2 – concentration of protein in the blood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading">Recommended Reading</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

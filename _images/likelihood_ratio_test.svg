@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700">
+    <!-- Background and title -->
+    <rect width="800" height="700" fill="#f8f9fa" />
+    <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle"
+        fill="#333">Likelihood Ratio Test (LRT) Summary</text>
+
+    <!-- Main sections with content -->
+    <g transform="translate(50, 90)">
+        <!-- Definition section -->
+        <rect x="0" y="0" width="700" height="80" rx="5" fill="#e3f2fd" stroke="#90caf9" stroke-width="2" />
+        <text x="350" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle"
+            fill="#0d47a1">Definition</text>
+        <text x="20" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">Test
+            statistic: λ = -2ln(L₀/L₁) = -2[ln(L₀) - ln(L₁)] where L₀ is likelihood under H₀ and L₁ under H₁</text>
+
+        <!-- Formula and distribution section -->
+        <rect x="0" y="100" width="340" height="120" rx="5" fill="#e8f5e9" stroke="#a5d6a7" stroke-width="2" />
+        <text x="170" y="125" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle"
+            fill="#1b5e20">Properties</text>
+        <text x="20" y="155" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">• λ
+            asymptotically follows χ² distribution</text>
+        <text x="20" y="180" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">• df =
+            dim(θ₁) - dim(θ₀)</text>
+        <text x="20" y="205" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">• Large λ
+            values lead to rejection of H₀</text>
+
+        <!-- Applications section -->
+        <rect x="360" y="100" width="340" height="120" rx="5" fill="#fff3e0" stroke="#ffcc80" stroke-width="2" />
+        <text x="530" y="125" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle"
+            fill="#e65100">Applications</text>
+        <text x="380" y="155" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">• Nested
+            model comparison</text>
+        <text x="380" y="180" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">• Parameter
+            significance testing</text>
+        <text x="380" y="205" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">• Goodness
+            of fit assessment</text>
+
+        <!-- Visual representation -->
+        <rect x="0" y="240" width="700" height="220" rx="5" fill="#f3e5f5" stroke="#ce93d8" stroke-width="2" />
+        <text x="350" y="265" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle"
+            fill="#4a148c">Visual Representation</text>
+
+        <!-- Chi-square distribution curve -->
+        <path d="M 100 400 
+             C 120 320, 150 300, 180 310
+             C 200 315, 230 340, 260 370
+             C 290 395, 330 410, 380 415
+             C 450 420, 520 415, 600 420" stroke="#6a1b9a" stroke-width="3" fill="none" />
+
+        <!-- Critical region -->
+        <path d="M 480 385 
+             L 480 430 
+             L 600 430
+             L 600 385 
+             Z" fill="#ce93d8" fill-opacity="0.5" stroke="#4a148c" stroke-width="1" />
+
+        <!-- Labels -->
+        <text x="350" y="440" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">λ</text>
+        <text x="480" y="450" font-family="Arial, sans-serif" font-size="14" text-anchor="middle"
+            fill="#4a148c">Critical value</text>
+        <text x="540" y="400" font-family="Arial, sans-serif" font-size="14" text-anchor="middle"
+            fill="#4a148c">Rejection region</text>
+        <text x="180" y="330" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4a148c">χ²
+            distribution</text>
+        <line x1="480" y1="440" x2="480" y2="310" stroke="#4a148c" stroke-width="1" stroke-dasharray="5,5" />
+
+        <!-- Steps in hypothesis testing -->
+        <rect x="0" y="480" width="700" height="100" rx="5" fill="#e1f5fe" stroke="#81d4fa" stroke-width="2" />
+        <text x="350" y="505" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle"
+            fill="#01579b">LRT Procedure</text>
+
+        <text x="20" y="535" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">1. Specify
+            H₀ (restricted) and H₁ (unrestricted) models</text>
+        <text x="20" y="560" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">2. Calculate
+            λ = -2[ln(L₀) - ln(L₁)]</text>
+        <text x="370" y="535" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">3. Compare
+            λ to χ²(df) critical value</text>
+        <text x="370" y="560" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">4. Reject
+            H₀ if λ is larger than critical value</text>
+    </g>
+</svg>

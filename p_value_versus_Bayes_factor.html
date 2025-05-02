@@ -1,0 +1,785 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'p_value_versus_Bayes_factor';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/p_value_versus_Bayes_factor.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">p-value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-factor">Bayes Factor</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-p-value">Frequentist – p-value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing-framework">Hypothesis Testing Framework</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-statistic-and-p-value">Test Statistic and p-value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bayes factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value-provides-an-upper-bound-of-bayes-factor">p-value provides an upper bound of Bayes factor</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>The Bayes factor provides a direct measure of the relative evidence supporting two competing models or hypotheses, while a p-value only measures the compatibility of observed data with a single null hypothesis, making Bayes factors more intuitive for comparing alternative explanations of the data.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="fig" src="_images/p_value_versus_Bayes_factor.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>Under certain conditions, p-values can be converted to minimum Bayes factors (see <a class="reference external" href="https://hannig.cloudapps.unc.edu/STOR654/handouts/SellkeBayarriBerger2001.pdf">Sellke et al., 2021</a> for more details).
+Specifically they show that, provided <span class="math notranslate nohighlight">\(p&lt;1/e\)</span>, the BF in favor of <span class="math notranslate nohighlight">\(H_1\)</span> is not larger than
+$<span class="math notranslate nohighlight">\(
+\text{BF}_\text{min} \approx −e\times p \times \log(p)
+\)</span>$</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="p-value">
+<h2>p-value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>P(data|H0) - probability of data given null hypothesis</p></li>
+<li><p>Measures compatibility of data with null hypothesis</p></li>
+<li><p>Does <strong>not</strong> directly measure evidence for alternative</p></li>
+</ul>
+</section>
+<section id="bayes-factor">
+<h2>Bayes Factor<a class="headerlink" href="#bayes-factor" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Directly compares evidence for alternative vs. null OR null vs alternative, or any other two models</p></li>
+<li><p>Tells you how much to update your beliefs</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>This example analyzes genetic variants for association with height using two statistical approaches:</p>
+<ul class="simple">
+<li><p>Frequentist approach (p-values):</p>
+<ul>
+<li><p>Tests null hypothesis <span class="math notranslate nohighlight">\(H_0: \beta = 0\)</span> (no genetic effect on height)</p></li>
+<li><p>Against alternative <span class="math notranslate nohighlight">\(H_1: \beta \neq 0\)</span> (genetic variant affects height)</p></li>
+<li><p>Calculates p-values from linear regression model <span class="math notranslate nohighlight">\(Y = X\beta + \epsilon\)</span></p></li>
+</ul>
+</li>
+<li><p>Bayesian approach (Bayes factors):</p>
+<ul>
+<li><p>Compares Model 1: <span class="math notranslate nohighlight">\(\beta = 0\)</span> (no genetic effect)</p></li>
+<li><p>Against Model 2: <span class="math notranslate nohighlight">\(\beta \sim N(0,\sigma^2)\)</span> (genetic effect follows normal distribution)</p></li>
+<li><p>Calculates Bayes factor as the ratio of evidence for each model</p></li>
+</ul>
+</li>
+</ul>
+<p>We also show that even when p-values indicate significance (p &lt; 0.05), the corresponding Bayes factors often provide only modest support for real genetic associations. The p-value, under certain conditions, is the upper bound of the Bayes Factor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
+<span class="c1"># These represent actual alleles at each position</span>
+<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 1</span>
+<span class="w">    </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 2</span>
+<span class="w">    </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 3</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 4</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w"> </span><span class="c1"># Individual 5</span>
+<span class="p">)</span>
+<span class="c1"># Reshape into a matrix</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
+<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">ref_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">        </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># assign observed height for the 5 individuals</span>
+<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="frequentist-p-value">
+<h2>Frequentist – p-value<a class="headerlink" href="#frequentist-p-value" title="Link to this heading">#</a></h2>
+<p>In the genetic association analysis, we’re testing whether genetic variants are associated with a phenotype (height). For each variant, we use a simple linear regression model:</p>
+<div class="math notranslate nohighlight">
+\[Y = X\beta + \epsilon\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> is our standardized phenotype (height)</p></li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> is our standardized genotype data (counts of alternative alleles)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the effect size we’re testing</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term, assumed to follow <span class="math notranslate nohighlight">\(N(0, \sigma^2)\)</span></p></li>
+</ul>
+<section id="hypothesis-testing-framework">
+<h3>Hypothesis Testing Framework<a class="headerlink" href="#hypothesis-testing-framework" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Null Hypothesis: The null hypothesis states that there is no association between the genetic variant and height (note that this is similar to the Model 1 we discussed in the <code class="docutils literal notranslate"><span class="pre">likelihood</span></code> notebook)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[H_0: \beta = 0\]</div>
+<ul class="simple">
+<li><p>Alternative Hypothesis: The alternative hypothesis states that there is an association between the genetic variant and height:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[H_1: \beta \neq 0\]</div>
+</section>
+<section id="test-statistic-and-p-value">
+<h3>Test Statistic and p-value<a class="headerlink" href="#test-statistic-and-p-value" title="Link to this heading">#</a></h3>
+<p>To test this hypothesis, we compute a test statistic from the data. In linear regression, we use the t-statistic:</p>
+<div class="math notranslate nohighlight">
+\[t = \frac{\hat{\beta}}{SE(\hat{\beta})}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\beta}\)</span> is the estimated effect size</p></li>
+<li><p><span class="math notranslate nohighlight">\(SE(\hat{\beta})\)</span> is the standard error of the estimate</p></li>
+</ul>
+<p>Under the null hypothesis, this t-statistic follows a t-distribution with <span class="math notranslate nohighlight">\(n-2\)</span> degrees of freedom, where <span class="math notranslate nohighlight">\(n\)</span> is the number of samples.</p>
+<p>The p-value is the probability of observing a test statistic as extreme as, or more extreme than, the one we actually observed, assuming the null hypothesis is true. Mathematically:</p>
+<div class="math notranslate nohighlight">
+\[p\text{-value} = P(|t| \geq |t_{obs}| \mid H_0 \text{ is true})\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(t_{obs}\)</span> is our observed t-statistic</p></li>
+<li><p><span class="math notranslate nohighlight">\(|t|\)</span> represents the absolute value of the t-statistic (for a two-sided test)</p></li>
+</ul>
+<p>For a two-sided test (which we’re using), the p-value is:</p>
+<div class="math notranslate nohighlight">
+\[p\text{-value} = 2 \times \min[P(t \leq t_{obs}), P(t \geq t_{obs})]\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to calculate p-value for the null hypothesis of no effect (beta = 0)</span>
+<span class="n">calculate_pvalue</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># For each variant, perform a simple linear regression</span>
+<span class="w">  </span><span class="n">p_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># Extract the genotype data for variant j</span>
+<span class="w">    </span><span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Fit linear model</span>
+<span class="w">    </span><span class="n">lm_result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">X_j</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Extract p-value for the coefficient (genotype effect)</span>
+<span class="w">    </span><span class="n">p_values</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">lm_result</span><span class="p">)</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">p_values</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Calculate p-values for each variant</span>
+<span class="n">p_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">calculate_pvalue</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="c1"># Create a data frame with results</span>
+<span class="n">results_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
+<span class="w">  </span><span class="n">p_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_values</span><span class="p">,</span>
+<span class="w">  </span><span class="n">significant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_values</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span>
+<span class="p">)</span>
+
+<span class="c1"># Print results</span>
+<span class="n">results_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 3</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>p_value</th><th scope=col>significant</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;lgl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Variant 1</td><td>0.390901513</td><td>FALSE</td></tr>
+	<tr><td>Variant 2</td><td>0.066475513</td><td>FALSE</td></tr>
+	<tr><td>Variant 3</td><td>0.001844466</td><td> TRUE</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>The fallacy for p-value here is that, <span class="math notranslate nohighlight">\(p&lt;0.05\)</span> means, “5 in 100 chance of seeing this data if no association exists”, but not “95 in 100 chance the association is real”.</p>
+<p>Key insight: With a realistic prior of 5/100, a “significant” p-value of 0.05 only gives ~26% posterior probability of true association:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters</span>
+<span class="n">prior_prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="o">/</span><span class="m">100</span><span class="w">  </span><span class="c1"># Prior probability of true association</span>
+<span class="n">p_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.05</span><span class="w">      </span><span class="c1"># Observed p-value</span>
+
+<span class="c1"># Convert p-value to z-score</span>
+<span class="n">z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">qnorm</span><span class="p">(</span><span class="n">p_value</span><span class="o">/</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lower.tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+
+<span class="c1"># Calculate Bayes factor (approximate)</span>
+<span class="n">bf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">z</span><span class="o">^</span><span class="m">2</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Calculate posterior probability</span>
+<span class="n">posterior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">prior_prob</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bf</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">prior_prob</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bf</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prior_prob</span><span class="p">))</span>
+
+<span class="c1"># Create data for visualization</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;p-value&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Posterior&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">                </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;p-value&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Posterior&quot;</span><span class="p">)),</span>
+<span class="w">  </span><span class="n">Probability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">prior_prob</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">-</span><span class="n">p_value</span><span class="p">,</span><span class="w"> </span><span class="n">posterior</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">prior_prob</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="nf">paste0</span><span class="p">(</span><span class="nf">round</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">p_value</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="nf">paste0</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">posterior</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 3</caption>
+<thead>
+	<tr><th scope=col>Stage</th><th scope=col>Probability</th><th scope=col>Label</th></tr>
+	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Prior    </td><td>0.0500000</td><td>5%   </td></tr>
+	<tr><td>p-value  </td><td>0.9500000</td><td>95%  </td></tr>
+	<tr><td>Posterior</td><td>0.2643055</td><td>26.4%</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>Bayes factor<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>We will translate the null <span class="math notranslate nohighlight">\(H_0\)</span> above to mean <span class="math notranslate nohighlight">\(\beta=0\)</span>. We will also make an assumption that the genetic effect is normally distributed <span class="math notranslate nohighlight">\(N(0,\sigma_2)\)</span>, where the value of <span class="math notranslate nohighlight">\(\sigma\)</span> determines how different the typical effect is from 0. (setting borrowed from <a class="reference external" href="https://stephens999.github.io/fiveMinuteStats/BF_and_pvalue.html">five minutes</a>)</p>
+<p>Thus we have:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_0\)</span>: <span class="math notranslate nohighlight">\(\beta = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_1\)</span>: <span class="math notranslate nohighlight">\(\beta ~ \sim N(0,\sigma^2)\)</span></p></li>
+</ul>
+<p>In addition we will assume that we have data (e.g. the results of a drug trial) that give us imperfect information about <span class="math notranslate nohighlight">\(\beta\)</span>. Specifically we assume that
+<span class="math notranslate nohighlight">\(d|\beta \sim N(\beta,1)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\epsilon \sim N(0,1)\)</span> (independent of <span class="math notranslate nohighlight">\(\beta\)</span>). This implies that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d|H_0 \sim N(0,1)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d|H_1 \sim N(0,1+\sigma^2)\)</span></p></li>
+</ul>
+<p>Consequently the Bayes Factor (BF) comparing H1 vs H0 can be computed as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">BF</span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">){</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">s</span><span class="o">^</span><span class="m">2+1</span><span class="p">))</span><span class="o">/</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course the BF depends both on the data D and the choice of <span class="math notranslate nohighlight">\(\sigma\)</span> (here <code class="docutils literal notranslate"><span class="pre">s</span></code> in the code).</p>
+<p>We can plot this BF for <span class="math notranslate nohighlight">\(d=1.96\)</span> (which is the value for which <span class="math notranslate nohighlight">\(p=0.05\)</span>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="m">100</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="nf">BF</span><span class="p">(</span><span class="m">1.96</span><span class="p">,</span><span class="n">s</span><span class="p">),</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;sigma&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;BF at p=0.05&quot;</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1916f2dcc3b4d6c32fa279604fab67da82e8f04db5107458c372de45a06d159d.png"><img alt="_images/1916f2dcc3b4d6c32fa279604fab67da82e8f04db5107458c372de45a06d159d.png" src="_images/1916f2dcc3b4d6c32fa279604fab67da82e8f04db5107458c372de45a06d159d.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="p-value-provides-an-upper-bound-of-bayes-factor">
+<h2>p-value provides an upper bound of Bayes factor<a class="headerlink" href="#p-value-provides-an-upper-bound-of-bayes-factor" title="Link to this heading">#</a></h2>
+<p>Here the horizontal line shows the bound on the Bayes Factor computed by Sellke et al.</p>
+<p>And here is the same plot for <span class="math notranslate nohighlight">\(d=2.58\)</span> (<span class="math notranslate nohighlight">\(p=0.01\)</span>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="m">100</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="nf">BF</span><span class="p">(</span><span class="m">1.96</span><span class="p">,</span><span class="n">s</span><span class="p">),</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;sigma&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;BF at p=0.05&quot;</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">4</span><span class="p">))</span>
+<span class="n">BFbound</span><span class="o">=</span><span class="kr">function</span><span class="p">(</span><span class="n">p</span><span class="p">){</span><span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="nf">exp</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="n">p</span><span class="p">))}</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="nf">BFbound</span><span class="p">(</span><span class="m">0.05</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/9b1f52cde6385053d25be3f8a13608b6e68a933bde0269bf5bad37e68163b423.png"><img alt="_images/9b1f52cde6385053d25be3f8a13608b6e68a933bde0269bf5bad37e68163b423.png" src="_images/9b1f52cde6385053d25be3f8a13608b6e68a933bde0269bf5bad37e68163b423.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="nf">BF</span><span class="p">(</span><span class="m">2.58</span><span class="p">,</span><span class="n">s</span><span class="p">),</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;sigma&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;BF at p=0.01&quot;</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">))</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="nf">BFbound</span><span class="p">(</span><span class="m">0.01</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e7a4e898aca8f98b5eedef2ecb06296089c33c43a683dd30e29b1cc1efeeef81.png"><img alt="_images/e7a4e898aca8f98b5eedef2ecb06296089c33c43a683dd30e29b1cc1efeeef81.png" src="_images/e7a4e898aca8f98b5eedef2ecb06296089c33c43a683dd30e29b1cc1efeeef81.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">p-value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-factor">Bayes Factor</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-p-value">Frequentist – p-value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing-framework">Hypothesis Testing Framework</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-statistic-and-p-value">Test Statistic and p-value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bayes factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value-provides-an-upper-bound-of-bayes-factor">p-value provides an upper bound of Bayes factor</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

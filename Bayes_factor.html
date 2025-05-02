@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intuitional Description &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Bayes_factor';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Bayes_factor.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuitional Description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effect-model">Fixed effect model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effect-model">Random effect model</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intuitional-description">
+<h1>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h1>
+<p>The Bayes factor is the ratio of two <strong>marginal</strong> likelihoods; that is, the likelihoods of two statistical models integrated over the prior probabilities of their parameters.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="fig" src="_images/Bayes_factor.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>Given a model selection problem in which one wishes to choose between two models on the basis of observed data <span class="math notranslate nohighlight">\(\text{D}\)</span>, the plausibility of the two different models <span class="math notranslate nohighlight">\(\text{M}_1\)</span> and <span class="math notranslate nohighlight">\(\text{M}_2\)</span>, parametrised by model parameter vectors <span class="math notranslate nohighlight">\(\gamma_1\)</span> and <span class="math notranslate nohighlight">\(\gamma_2\)</span>, is assessed by the Bayes factor <span class="math notranslate nohighlight">\(\text{BF}\)</span> given by:
+$<span class="math notranslate nohighlight">\(
+\text{BF}_{1,2} = \frac{L(\text{D}|\text{M}_1)}{L(\text{D}|\text{M}_2)} ={\frac {\int \Pr(\gamma _{1}|M_{1})\Pr(D|\gamma _{1},M_{1})\,d\gamma _{1}}{\int \Pr(\gamma _{2}|M_{2})\Pr(D|\gamma _{2},M_{2})\,d\gamma _{2}}}
+\)</span>$</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>If instead of the Bayes factor integral, the likelihood corresponding to the maximum likelihood estimate (MLE) of the parameter for each statistical model is used, then the test becomes a classical likelihood-ratio test. The likelihood at the MLE is just a point estimate of the Bayes factor numerator and denominator, respectively.</p></li>
+<li><p>Unlike a likelihood-ratio test (LRT), this Bayesian model comparison <strong>does not depend on any single set of parameters, as it integrates over all parameters in each model (with respect to the respective priors)</strong>.</p></li>
+<li><p>Therefore, <strong>likelihood ratio</strong> can be considered as a <strong>special case of Bayesian analysis</strong> with a contrived prior that’s hard to get at.</p></li>
+<li><p>An advantage of the use of Bayes factors is that it automatically, and quite naturally, includes a penalty for including too much model structure. It thus guards against overfitting. For models where an explicit version of the likelihood is not available or too costly to evaluate numerically, approximate Bayesian computation can be used for model selection in a Bayesian framework, with the caveat that approximate-Bayesian estimates of Bayes factors are often biased.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>In this example we compare two pairs of model:</p>
+<ul class="simple">
+<li><p>Model 1 and Model 2, both under fixed effect</p></li>
+<li><p>Model 4 and Model 5, both under random effect</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
+<span class="c1"># These represent actual alleles at each position</span>
+<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 1</span>
+<span class="w">    </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 2</span>
+<span class="w">    </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 3</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 4</span>
+<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w"> </span><span class="c1"># Individual 5</span>
+<span class="p">)</span>
+<span class="c1"># Reshape into a matrix</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
+<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">ref_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">        </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># assign observed height for the 5 individuals</span>
+<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="fixed-effect-model">
+<h2>Fixed effect model<a class="headerlink" href="#fixed-effect-model" title="Link to this heading">#</a></h2>
+<p>Let’s first compare two competing models with fixed effect sizes (same models as we discussed in <code class="docutils literal notranslate"><span class="pre">likelihood</span></code> and <code class="docutils literal notranslate"><span class="pre">likelihood_ratio</span></code>):</p>
+<ul class="simple">
+<li><p><strong>Model 1 (<span class="math notranslate nohighlight">\(M_1\)</span>)</strong>: The variant has no effect on height (<span class="math notranslate nohighlight">\(\beta=0\)</span>)</p></li>
+<li><p><strong>Model 2 (<span class="math notranslate nohighlight">\(M_2\)</span>)</strong>: The variant has moderate effect on height (<span class="math notranslate nohighlight">\(\beta=0.5\)</span>)</p></li>
+</ul>
+<p>For both models, we assume:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{X}\beta + \epsilon\)</span>, where <span class="math notranslate nohighlight">\(\epsilon \sim N(0, \sigma^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2\)</span> is the residual variance (fixed at 1 for standardized data)</p></li>
+</ul>
+<p>The Bayes Factor (<span class="math notranslate nohighlight">\(K_{1,2}\)</span>) (comparing model 1 and model 2) is the ratio of the marginal likelihoods of the two models:</p>
+<div class="math notranslate nohighlight">
+\[BF_{1,2} = \frac{p(Y|M_1)}{p(Y|M_2)}\]</div>
+<p>For models with <strong>fixed effect sizes</strong>, the marginal likelihood is simply the likelihood function evaluated at the fixed parameter value:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+p(Y|M_1) = p(Y|\beta=0, M_1)\\
+p(Y|M_2) = p(Y|\beta=1, M_2)
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to calculate the likelihood for a fixed effect model</span>
+<span class="c1"># assuming normal distribution for residuals</span>
+<span class="n">likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># beta: effect size parameter</span>
+<span class="w">    </span><span class="c1"># sd: standard deviation of residuals</span>
+<span class="w">    </span><span class="c1"># X: genotype values</span>
+<span class="w">    </span><span class="c1"># Y: observed phenotype values</span>
+
+<span class="w">    </span><span class="c1"># Calculate expected values under the model</span>
+<span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
+
+<span class="w">    </span><span class="c1"># Calculate likelihood (product of normal densities)</span>
+<span class="w">    </span><span class="nf">prod</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Function to calculate Bayes Factor between two fixed effect models</span>
+<span class="n">bayes_factor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># Calculate likelihoods</span>
+<span class="w">    </span><span class="n">likelihood_M1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">likelihood_M2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Calculate Bayes Factor (M1 vs M2)</span>
+<span class="w">    </span><span class="n">BF12</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">likelihood_M1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">likelihood_M2</span>
+<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">BF12</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize results table</span>
+<span class="n">bf_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Likelihood_M1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Likelihood for Model 1 (β=0)</span>
+<span class="w">    </span><span class="n">Likelihood_M2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Likelihood for Model 3 (β=1)</span>
+<span class="w">    </span><span class="n">BF12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Bayes Factor (M3 vs M1)</span>
+<span class="w">    </span><span class="n">log_BF12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># Log of Bayes Factor</span>
+<span class="p">)</span>
+
+<span class="c1"># Set parameters for models</span>
+<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># Standard deviation of residuals</span>
+<span class="n">beta1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="c1"># Effect size for Model 1</span>
+<span class="n">beta2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="c1"># Effect size for Model 2</span>
+
+<span class="c1"># Calculate Bayes Factors for each variant</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="c1"># Genotypes for variant j</span>
+
+<span class="w">    </span><span class="c1"># Calculate likelihoods</span>
+<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M2&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># Calculate Bayes Factor</span>
+<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF12&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M2&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;log_BF12&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF12&quot;</span><span class="p">])</span>
+<span class="p">}</span>
+<span class="n">bf_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 5</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>Likelihood_M1</th><th scope=col>Likelihood_M2</th><th scope=col>BF12</th><th scope=col>log_BF12</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Variant 1</td><td>0.001367607</td><td>0.0003050987</td><td>4.4825078</td><td> 1.500183</td></tr>
+	<tr><td>Variant 2</td><td>0.001367607</td><td>0.0045633971</td><td>0.2996906</td><td>-1.205005</td></tr>
+	<tr><td>Variant 3</td><td>0.001367607</td><td>0.0059679052</td><td>0.2291603</td><td>-1.473333</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Note that under the two full specific models, the Bayes factor is exactly the likelihood ratio that we get from <code class="docutils literal notranslate"><span class="pre">likelihood</span> <span class="pre">ratio</span></code> notebook [FIXME with link].</p>
+</section>
+<section id="random-effect-model">
+<h2>Random effect model<a class="headerlink" href="#random-effect-model" title="Link to this heading">#</a></h2>
+<p>Now let’s compare two competing models with random effect sizes:</p>
+<ul class="simple">
+<li><p><strong>Model 4 (<span class="math notranslate nohighlight">\(M_4\)</span>)</strong>: The effect size follows a normal distribution with smaller variance (<span class="math notranslate nohighlight">\(\beta \sim N(0, 0.1^2)\)</span>)</p></li>
+<li><p><strong>Model 5 (<span class="math notranslate nohighlight">\(M_5\)</span>)</strong>: The effect size follows a normal distribution with larger variance (<span class="math notranslate nohighlight">\(\beta \sim N(0, 0.5^2)\)</span>)</p></li>
+</ul>
+<p>For both models, we assume:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{X}\beta + \epsilon\)</span>, where <span class="math notranslate nohighlight">\(\epsilon \sim N(0, \sigma^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the random effect of the genetic variant on height</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is the genotype data (standardized)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> is the observed phenotype (standardized height)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2\)</span> is the residual variance (fixed at 1 for standardized data)</p></li>
+</ul>
+<p>The key difference between these models is the prior distribution of the effect size:</p>
+<ul class="simple">
+<li><p>Model 4 assumes a tighter prior distribution, strongly favoring small effect sizes</p></li>
+<li><p>Model 5 assumes a more diffuse prior distribution, allowing for larger effect sizes</p></li>
+</ul>
+<p>With normal priors and normal likelihood, this integration has a closed-form solution, which we’ve implemented in the <code class="docutils literal notranslate"><span class="pre">random_effect_marginal_likelihood</span></code> function:</p>
+<p>For a linear model <span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{X}\beta + \varepsilon\)</span> with:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> as an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of standardized heights</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> as an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of standardized genotypes</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta \sim N(0, \tau^2)\)</span> as the random effect</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon \sim N(0, \sigma^2\mathbf{I})\)</span> as the residual errors</p></li>
+</ul>
+<p>The marginal likelihood <span class="math notranslate nohighlight">\(p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2)\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \int p(\mathbf{Y}|\mathbf{X},\beta,\sigma^2)p(\beta|\tau^2)d\beta
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi)^{n/2}|\sigma^2\mathbf{I}+\tau^2\mathbf{XX'}|^{1/2}}\exp\left(-\frac{1}{2}\mathbf{Y}'(\sigma^2\mathbf{I}+\tau^2\mathbf{XX'})^{-1}\mathbf{Y}\right)
+\]</div>
+<p>Using the matrix inversion lemma and simplifying:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}(1+\tau^2\mathbf{X}'\mathbf{X}/\sigma^2)^{1/2}}\exp\left(-\frac{1}{2\sigma^2}\left(\mathbf{Y}'\mathbf{Y}-\frac{\tau^2(\mathbf{X}'\mathbf{Y})^2}{\sigma^2+\tau^2\mathbf{X}'\mathbf{X}}\right)\right)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">random_effect_marginal_likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># For random effect models, the marginal likelihood has a closed form</span>
+<span class="w">  </span><span class="c1"># when using normal priors and normal likelihood</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate posterior variance</span>
+<span class="w">  </span><span class="n">post_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="n">prior_var</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="n">residual_var</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate posterior mean</span>
+<span class="w">  </span><span class="n">post_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">post_var</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">residual_var</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate marginal likelihood</span>
+<span class="w">  </span><span class="n">log_ml</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="o">/</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kc">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>
+<span class="w">            </span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prior_var</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span><span class="w"> </span><span class="o">-</span>
+<span class="w">            </span><span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">Y</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">post_mean</span><span class="o">^</span><span class="m">2</span><span class="o">/</span><span class="n">post_var</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">exp</span><span class="p">(</span><span class="n">log_ml</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Function to calculate Bayes Factor between two random effect models</span>
+<span class="n">bayes_factor_random</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var1</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var2</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Calculate marginal likelihoods</span>
+<span class="w">  </span><span class="n">ml_model4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">random_effect_marginal_likelihood</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var1</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span>
+<span class="w">  </span><span class="n">ml_model5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">random_effect_marginal_likelihood</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var2</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate Bayes Factor (Model 4 vs Model 5)</span>
+<span class="w">  </span><span class="n">BF45</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ml_model4</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ml_model5</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">BF45</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define model parameters</span>
+<span class="n">prior_var_model4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.1</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Smaller variance for Model 4</span>
+<span class="n">prior_var_model5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Larger variance for Model 5</span>
+<span class="n">residual_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">          </span><span class="c1"># Residual variance (fixed)</span>
+
+<span class="c1"># Initialize results table</span>
+<span class="n">bf_random_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
+<span class="w">  </span><span class="n">ML_Model4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">    </span><span class="c1"># Marginal likelihood for Model 4</span>
+<span class="w">  </span><span class="n">ML_Model5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">    </span><span class="c1"># Marginal likelihood for Model 5</span>
+<span class="w">  </span><span class="n">BF45</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">         </span><span class="c1"># Bayes Factor (Model 4 vs Model 5)</span>
+<span class="w">  </span><span class="n">log_BF45</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">      </span><span class="c1"># Log of Bayes Factor</span>
+<span class="p">)</span>
+
+<span class="c1"># Calculate Bayes Factors for each variant</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w">  </span><span class="c1"># Genotypes for variant j</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate marginal likelihoods</span>
+<span class="w">  </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ML_Model4&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">random_effect_marginal_likelihood</span><span class="p">(</span>
+<span class="w">    </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var_model4</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ML_Model5&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">random_effect_marginal_likelihood</span><span class="p">(</span>
+<span class="w">    </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var_model5</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate Bayes Factor</span>
+<span class="w">  </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF45&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ML_Model4&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>
+<span class="w">                               </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ML_Model5&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;log_BF45&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF45&quot;</span><span class="p">])</span>
+<span class="p">}</span>
+<span class="n">bf_random_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 5</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>ML_Model4</th><th scope=col>ML_Model5</th><th scope=col>BF45</th><th scope=col>log_BF45</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Variant 1</td><td>0.001367098</td><td>0.001241823</td><td>1.1008798</td><td> 0.09610969</td></tr>
+	<tr><td>Variant 2</td><td>0.001418155</td><td>0.002000204</td><td>0.7090052</td><td>-0.34389240</td></tr>
+	<tr><td>Variant 3</td><td>0.001445330</td><td>0.002559982</td><td>0.5645861</td><td>-0.57166244</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load required libraries</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+
+<span class="c1"># Plot the prior distributions for effect sizes in both models</span>
+<span class="n">beta_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">)</span>
+<span class="n">prior_model4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">prior_var_model4</span><span class="p">))</span>
+<span class="n">prior_model5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">prior_var_model5</span><span class="p">))</span>
+
+<span class="n">prior_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">prior_model4</span><span class="p">,</span><span class="w"> </span><span class="n">prior_model5</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Model 4 (narrow prior)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Model 5 (wide prior)&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">beta_range</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="n">prior_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">prior_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Beta</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Density</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior Distributions for Effect Size&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Effect Size (β)&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
+
+<span class="c1"># Plot log Bayes factors</span>
+<span class="n">bf_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">bf_random_table</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Variant</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log_BF45</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;identity&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steelblue&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log Bayes Factors (Model 4 vs Model 5)&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;log(BF45) &gt; 0 favors Model 4 (narrow prior), log(BF45) &lt; 0 favors Model 5 (wide prior)&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;log(BF45)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
+
+<span class="c1"># Arrange plots</span>
+<span class="nf">grid.arrange</span><span class="p">(</span><span class="n">prior_plot</span><span class="p">,</span><span class="w"> </span><span class="n">bf_plot</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+<span class=" -Color -Color-Cyan">i</span> Please use `linewidth` instead.&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/023ae744ff1d49dddccf84e3516d03d173ca5fda16e9cbbe49c02126607436bc.png"><img alt="_images/023ae744ff1d49dddccf84e3516d03d173ca5fda16e9cbbe49c02126607436bc.png" src="_images/023ae744ff1d49dddccf84e3516d03d173ca5fda16e9cbbe49c02126607436bc.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>Random effect models offer a more flexible approach than fixed effect models by allowing the effect size to vary according to a probability distribution. This is particularly useful when:</p>
+<ol class="arabic simple">
+<li><p>We are uncertain about the exact effect size</p></li>
+<li><p>We believe effects may vary across different contexts or populations</p></li>
+<li><p>We want to account for heterogeneity in genetic effects</p></li>
+</ol>
+<p>The Bayes factor between two random effect models (<span class="math notranslate nohighlight">\(\text{BF}_{45}\)</span>) quantifies the relative evidence for different prior distributions on the effect size. A <span class="math notranslate nohighlight">\(\text{BF}_{45} &gt; 1\)</span> indicates that Model 4 (with narrower prior) is more supported by the data, while <span class="math notranslate nohighlight">\(\text{BF}_{45} &lt; 1\)</span> favors Model 5 (with wider prior).</p>
+<p>When comparing fixed and random effect models, we’re essentially testing whether the data supports a specific effect size or a distribution of possible effect sizes. These comparisons can help identify the most appropriate modeling approach for genetic association studies.</p>
+<p>The key formula for the Bayes factor between two random effect models is:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{BF}_{45} = \frac{p(D|M_4)}{p(D|M_5)} = \frac{\int p(D|\beta,M_4)p(\beta|M_4)d\beta}{\int p(D|\beta,M_5)p(\beta|M_5)d\beta}
+\]</div>
+<p>This approach provides a principled way to incorporate prior knowledge about effect sizes while allowing for uncertainty in genetic association studies.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuitional Description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effect-model">Fixed effect model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effect-model">Random effect model</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
