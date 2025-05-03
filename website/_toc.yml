@@ -7,50 +7,59 @@ parts:
     chapters:
       - file: Notations
 
-  - caption: Basic Quantities in Statistical Genetics
+  - caption: Basic Concepts
     chapters:
       - file: genotype_coding
       - file: minor_allele_frequency
       - file: Hardy_Weinberg_equilibrium
+  
+  - caption: Correlation Between Variants
+    chapters:
       - file: linkage_disequilibrium
       - file: linkage_disequilibrium_score
+  
+  - caption: Correlation Between Individuals
+    chapters:
       - file: genetic_relationship_matrix
 
-  - caption: Single Marker Linear Regression
+  - caption: Regression Models
     chapters:
       - file: ordinary_least_squares
-      - file: proportion_of_variance_explained
-
-  - caption: Summary Statistics and Meta-Analysis
-    chapters:
       - file: summary_statistics
-      - file: meta_analysis
-
-  - caption: Logistic Regression, Odds Ratio, and Mixed Models
-    chapters:
       - file: odds_ratio
       - file: linear_mixed_model
+      - file: proportion_of_variance_explained
       - file: marginal_joint_effects
-
+  
   - caption: Covariates in Genetic Studies
     chapters:
       - file: confounder
       - file: collider
       - file: mediator
+  
+  - caption: From One Study to Multiple Studies
+    chapters:
+      - file: meta_analysis
 
-  - caption: Likelihood Methods
+  - caption: Statistical Inference
     chapters:
       - file: likelihood
       - file: maximum_likelihood_estimation
       - file: likelihood_ratio
       - file: likelihood_ratio_test
 
-  - caption: Bayesian Methods
-    chapters:
-      - file: Bayesian_normal_mean_model
-      - file: Bayesian_multivariate_normal_mean_model
-      - file: p_value_versus_Bayes_factor
+  - caption: Bayes Factor
+    chapters: 
       - file: Bayes_factor
-      - file: Bayesian_model_comparison
-      - file: Bayesian_mixture_model
-      - file: Bayesian_model_averaging
+      - file: p_value_versus_Bayes_factor
+
+  - caption: Bayes Models
+    chapters:
+        - file: Bayesian_normal_mean_model
+        - file: Bayesian_multivariate_normal_mean_model
+        - file: Bayesian_mixture_model
+  
+  - caption: Model Comparison and Averaging
+    chapters:
+        - file: Bayesian_model_comparison
+        - file: Bayesian_model_averaging
