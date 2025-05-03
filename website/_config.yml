@@ -21,5 +21,6 @@ html:
 # Add navigation depth configuration to show one level expanded by default
 sphinx:
   config:
+    html_theme: cloud
     html_theme_options:
       show_navbar_depth: 2
