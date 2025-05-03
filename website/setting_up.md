@@ -10,26 +10,14 @@ Install Jupyter Book and related tools
 pixi global install jupyter-book ghp-import
 ```
 
-## 2. Initialize A Jupyter Book
-
-Create a new Jupyter Book in the root directory of this project:
-
-```bash
-jupyter-book create website
-```
-
-## 3. Set Up Book Structure
+## 2. Set Up Book Structure
 
 The created template will have:
 - `_config.yml`: Configuration for the book
 - `_toc.yml`: Table of contents structure
 - Sample content files
 
-## 4. Create Index Markdown Files
-
-You'll need to create index.md files for each section ... 
-
-## 5. Build the Book
+## 3. Build the Book
 
 
 ```bash
@@ -38,7 +26,7 @@ jupyter-book build . --config website/_config.yml --toc website/_toc.yml
 
 This will generate the HTML files in the `_build/html` directory.
 
-## 6. Deploy to GitHub Pages
+## 4. Deploy to GitHub Pages
 
 Use `ghp-import` to publish your book:
 
@@ -51,7 +39,7 @@ This will:
 - Push this branch to GitHub
 - Configure it as a GitHub Pages source
 
-## 7. Set Up GitHub Pages in Repository Settings
+## 5. Set Up GitHub Pages in Repository Settings
 
 1. Go to your repository on GitHub
 2. Navigate to Settings > Pages
@@ -60,7 +48,7 @@ This will:
 
 The site should be live at: https://gaow.github.io/statgen-prerequisites/
 
-## 8. Optional: Set Up GitHub Actions for Automatic Deployment
+## 6. Optional: Set Up GitHub Actions for Automatic Deployment
 
 Create a file `.github/workflows/deploy-book.yml`:
 
