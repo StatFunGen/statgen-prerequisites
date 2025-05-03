@@ -57,4 +57,4 @@ rethinking_stats_youtube.ipynb
 _build/
 
 .DS_Store
-unfinished*.ipynb
+./unfinished_*.ipynb
