@@ -1,45 +1,18 @@
-
 <!DOCTYPE html>
 
-
-<html lang="en" data-content_root="./" >
-
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Bayesian Multivariate Normal Mean Model &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pyramid.css?v=310c80ee" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
-
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -58,676 +31,50 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Bayesian_multivariate_normal_mean_model';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Bayesian Mixture Model" href="Bayesian_mixture_model.html" />
     <link rel="prev" title="Bayesian Normal Mean Model" href="Bayesian_normal_mean_model.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  </head><body>
 
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Bayesian_mixture_model.html" title="Bayesian Mixture Model"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Bayesian_normal_mean_model.html" title="Bayesian Normal Mean Model"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="README.html">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bayesian Multivariate Normal Mean Model</a></li> 
+      </ul>
+    </div>  
 
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-<div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
-    <span class="fa-solid fa-bars"></span>
-  </button>
-  
-  
-  <div class="col-lg-3 navbar-header-items__start">
-    
-      <div class="navbar-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="README.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
-  
-</a></div>
-    
-  </div>
-  
-  <div class="col-lg-9 navbar-header-items">
-    
-    <div class="me-auto navbar-header-items__center">
-      
-        <div class="navbar-item">
-<nav>
-  <ul class="bd-navbar-elements navbar-nav">
-    
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Notations.html">
-    Notation Table
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="genotype_coding.html">
-    Genotype Coding
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="minor_allele_frequency.html">
-    Minor Allele Frequency
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Hardy_Weinberg_equilibrium.html">
-    Hardy-Weinberg Equilibrium
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="linkage_disequilibrium.html">
-    Linkage Disequilibrium
-  </a>
-</li>
-
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="linkage_disequilibrium_score.html">
-    Linkage Disequilibrium Score
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="genetic_relationship_matrix.html">
-    Genetic Relationship Matrix
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="ordinary_least_squares.html">
-    Ordinary Least Squares
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="summary_statistics.html">
-    Summary Statistics
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="odds_ratio.html">
-    Odds Ratio
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="linear_mixed_model.html">
-    Linear Mixed Model
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="proportion_of_variance_explained.html">
-    Proportion of Variance Explained and Heritability
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="marginal_joint_effects.html">
-    Marginal and Joint Effects
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="confounder.html">
-    Confounder
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="collider.html">
-    Collider
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="mediator.html">
-    Mediator
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="meta_analysis.html">
-    Meta Analysis
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="likelihood.html">
-    Likelihood
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="maximum_likelihood_estimation.html">
-    Maximum Likelihood Estimation
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="likelihood_ratio.html">
-    Likelihood Ratio
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="likelihood_ratio_test.html">
-    Likelihood Ratio Test
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="Bayes_factor.html">
-    Bayes Factor
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="p_value_versus_Bayes_factor.html">
-    P-value vs. Bayes Factor
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="Bayesian_normal_mean_model.html">
-    Bayesian Normal Mean Model
-  </a>
-</li>
-
-
-<li class=" current active">
-  <a class="nav-link dropdown-item nav-internal" href="#">
-    Bayesian Multivariate Normal Mean Model
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="Bayesian_mixture_model.html">
-    Bayesian Mixture Model
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="Bayesian_model_comparison.html">
-    Bayesian Model Comparison
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="Bayesian_model_averaging.html">
-    Bayesian Model Averaging
-  </a>
-</li>
-
-                </ul>
-            </li>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
-  </ul>
-</nav></div>
-      
-    </div>
-    
-    
-    <div class="navbar-header-items__end">
-      
-        <div class="navbar-item navbar-persistent--container">
-          
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
-        </div>
-      
-      
-        <div class="navbar-item">
-
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
-      
-    </div>
-    
-  </div>
-  
-  
-    <div class="navbar-persistent--mobile">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
-    </div>
-  
-
-  
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
-</div>
-
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-      <div class="sidebar-header-items__center">
-        
-          
-          
-            <div class="navbar-item">
-<nav>
-  <ul class="bd-navbar-elements navbar-nav">
-    
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Notations.html">
-    Notation Table
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="genotype_coding.html">
-    Genotype Coding
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="minor_allele_frequency.html">
-    Minor Allele Frequency
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Hardy_Weinberg_equilibrium.html">
-    Hardy-Weinberg Equilibrium
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="linkage_disequilibrium.html">
-    Linkage Disequilibrium
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="linkage_disequilibrium_score.html">
-    Linkage Disequilibrium Score
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="genetic_relationship_matrix.html">
-    Genetic Relationship Matrix
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="ordinary_least_squares.html">
-    Ordinary Least Squares
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="summary_statistics.html">
-    Summary Statistics
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="odds_ratio.html">
-    Odds Ratio
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="linear_mixed_model.html">
-    Linear Mixed Model
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="proportion_of_variance_explained.html">
-    Proportion of Variance Explained and Heritability
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="marginal_joint_effects.html">
-    Marginal and Joint Effects
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="confounder.html">
-    Confounder
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="collider.html">
-    Collider
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="mediator.html">
-    Mediator
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="meta_analysis.html">
-    Meta Analysis
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="likelihood.html">
-    Likelihood
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="maximum_likelihood_estimation.html">
-    Maximum Likelihood Estimation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="likelihood_ratio.html">
-    Likelihood Ratio
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="likelihood_ratio_test.html">
-    Likelihood Ratio Test
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Bayes_factor.html">
-    Bayes Factor
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="p_value_versus_Bayes_factor.html">
-    P-value vs. Bayes Factor
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Bayesian_normal_mean_model.html">
-    Bayesian Normal Mean Model
-  </a>
-</li>
-
-
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
-    Bayesian Multivariate Normal Mean Model
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Bayesian_mixture_model.html">
-    Bayesian Mixture Model
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Bayesian_model_comparison.html">
-    Bayesian Model Comparison
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="Bayesian_model_averaging.html">
-    Bayesian Model Averaging
-  </a>
-</li>
-
-  </ul>
-</nav></div>
-          
-        
-      </div>
-    
-    
-    
-      <div class="sidebar-header-items__end">
-        
-          <div class="navbar-item">
-
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
-        
-      </div>
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item">
-
-
-
-<nav aria-label="Breadcrumb" class="d-print-none">
-  <ul class="bd-breadcrumbs">
-    
-    <li class="breadcrumb-item breadcrumb-home">
-      <a href="README.html" class="nav-link" aria-label="Home">
-        <i class="fa-solid fa-home"></i>
-      </a>
-    </li>
-    <li class="breadcrumb-item active" aria-current="page">Bayesian...</li>
-  </ul>
-</nav>
-</div>
-      
-    </div>
-  
-  
-</div>
-</div>
-              
-              
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-multivariate-normal-mean-model">
-<h1>Bayesian Multivariate Normal Mean Model<a class="headerlink" href="#bayesian-multivariate-normal-mean-model" title="Link to this heading">#</a></h1>
+<h1>Bayesian Multivariate Normal Mean Model<a class="headerlink" href="#bayesian-multivariate-normal-mean-model" title="Link to this heading">¶</a></h1>
 <p>The Bayesian multivariate normal mean model extends the univariate case by accounting for relationships between multiple parameters, allowing information from one variable to influence our beliefs about others through their correlation structure, which results in more precise posterior estimates than if we had treated each parameter independently.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
-<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">¶</a></h1>
 <p><img alt="fig" src="_images/Bayesian_multivariate_normal_mean_model.svg" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
-<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">¶</a></h1>
 <p>The posterior distribution of the bivariate normal model is still multivariate normal, where the posterior precision matrix is the sum of the prior precision and the likelihood precision, and the posterior mean is a precision-weighted average of the prior mean and the observed data.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -765,9 +112,9 @@ document.write(`
 \end{split}\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
-<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">¶</a></h1>
 <section id="model-assumptions">
-<h2>Model Assumptions<a class="headerlink" href="#model-assumptions" title="Link to this heading">#</a></h2>
+<h2>Model Assumptions<a class="headerlink" href="#model-assumptions" title="Link to this heading">¶</a></h2>
 <p>In the Bayesian normal mean model, we assume the variables <span class="math notranslate nohighlight">\(Y_1\)</span> and <span class="math notranslate nohighlight">\(Y_2\)</span> follow a bivariate normal model:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -797,7 +144,7 @@ Y_2
 <p>The Bayesian Normal Mean Model aims to infer what we can learn about the unknown parameters <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span>.</p>
 </section>
 <section id="prior-distribution">
-<h2>Prior Distribution<a class="headerlink" href="#prior-distribution" title="Link to this heading">#</a></h2>
+<h2>Prior Distribution<a class="headerlink" href="#prior-distribution" title="Link to this heading">¶</a></h2>
 <p>A common choice for the prior on <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> is a bivariate normal distribution:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -836,7 +183,7 @@ $<span class="math notranslate nohighlight">\(
 <p>where <span class="math notranslate nohighlight">\(\tau_{1,0} = \frac{1}{\sigma_{1,0}^2}\)</span> and <span class="math notranslate nohighlight">\(\tau_{2,0} = \frac{1}{\sigma_{2,0}^2}\)</span>.</p>
 </section>
 <section id="likelihood">
-<h2>Likelihood<a class="headerlink" href="#likelihood" title="Link to this heading">#</a></h2>
+<h2>Likelihood<a class="headerlink" href="#likelihood" title="Link to this heading">¶</a></h2>
 <p>The likelihood of the data given <span class="math notranslate nohighlight">\(\mu_1\)</span>, <span class="math notranslate nohighlight">\(\mu_2\)</span>, <span class="math notranslate nohighlight">\(\sigma_1^2\)</span>, <span class="math notranslate nohighlight">\(\sigma_2^2\)</span>, and <span class="math notranslate nohighlight">\(\rho\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -873,7 +220,7 @@ p(\mathbf{Y} \mid \mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \rho) \propto \exp\left(
 \end{split}\]</div>
 </section>
 <section id="posterior-distribution">
-<h2>Posterior Distribution<a class="headerlink" href="#posterior-distribution" title="Link to this heading">#</a></h2>
+<h2>Posterior Distribution<a class="headerlink" href="#posterior-distribution" title="Link to this heading">¶</a></h2>
 <p>Using Bayes’ theorem, the posterior distribution of <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -926,7 +273,7 @@ p(\mu_1, \mu_2 \mid \mathbf{Y}) \propto \exp\left( -\frac{1}{2} (\mathbf{Y} - \b
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
-<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h1>
 <p>In this document, we explore the bivariate Bayesian normal mean model using height (<span class="math notranslate nohighlight">\(Y_1\)</span>) and weight (<span class="math notranslate nohighlight">\(Y_2\)</span>) as our two correlated variables. Unlike the univariate case where we estimate a single mean parameter, here we simultaneously estimate the means of two related variables while accounting for their correlation structure.</p>
 <p>We assume that these measurements follow a bivariate normal distribution:</p>
 <div class="math notranslate nohighlight">
@@ -955,7 +302,7 @@ p(\mu_1, \mu_2 \mid \mathbf{Y}) \propto \exp\left( -\frac{1}{2} (\mathbf{Y} - \b
 </div>
 </div>
 <section id="id1">
-<h2>Prior Distribution<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h2>Prior Distribution<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>We assume a bivariate normal prior for <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1002,7 +349,7 @@ Prior precision matrix (Precision_0):
 </div>
 </section>
 <section id="observed-data-and-likelihood-function">
-<h2>Observed Data and Likelihood Function<a class="headerlink" href="#observed-data-and-likelihood-function" title="Link to this heading">#</a></h2>
+<h2>Observed Data and Likelihood Function<a class="headerlink" href="#observed-data-and-likelihood-function" title="Link to this heading">¶</a></h2>
 <p>We observe height and weight measurements for five individuals, and we assume the likelihood follows:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1075,7 +422,7 @@ Likelihood precision matrix (Precision):
 </div>
 </section>
 <section id="posterior-distribution-update">
-<h2>Posterior Distribution Update<a class="headerlink" href="#posterior-distribution-update" title="Link to this heading">#</a></h2>
+<h2>Posterior Distribution Update<a class="headerlink" href="#posterior-distribution-update" title="Link to this heading">¶</a></h2>
 <p>Using Bayesian updating for the multivariate normal, the posterior distribution is given by:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1127,7 +474,7 @@ Posterior precision matrix (Precision_1):
 </div>
 </section>
 <section id="visualizing-prior-and-posterior-distributions">
-<h2>Visualizing Prior and Posterior Distributions<a class="headerlink" href="#visualizing-prior-and-posterior-distributions" title="Link to this heading">#</a></h2>
+<h2>Visualizing Prior and Posterior Distributions<a class="headerlink" href="#visualizing-prior-and-posterior-distributions" title="Link to this heading">¶</a></h2>
 <p>We’ll visualize both the prior and posterior bivariate normal distributions, along with the observed data points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1192,7 +539,7 @@ Posterior precision matrix (Precision_1):
 </div>
 </section>
 <section id="d-visualization-of-prior-and-posterior-distributions">
-<h2>3D Visualization of Prior and Posterior Distributions<a class="headerlink" href="#d-visualization-of-prior-and-posterior-distributions" title="Link to this heading">#</a></h2>
+<h2>3D Visualization of Prior and Posterior Distributions<a class="headerlink" href="#d-visualization-of-prior-and-posterior-distributions" title="Link to this heading">¶</a></h2>
 <p>Let’s also create 3D plots to better visualize the bivariate normal distributions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1253,134 +600,86 @@ Posterior precision matrix (Precision_1):
     </script>
     <script>kernelName = 'ir'</script>
 
-                </article>
-              
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="Bayesian_normal_mean_model.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bayesian Normal Mean Model</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="Bayesian_mixture_model.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bayesian Mixture Model</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> 
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayesian Multivariate Normal Mean Model</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood">Likelihood</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution">Posterior Distribution</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-data-and-likelihood-function">Observed Data and Likelihood Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-prior-and-posterior-distributions">Visualizing Prior and Posterior Distributions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-visualization-of-prior-and-posterior-distributions">3D Visualization of Prior and Posterior Distributions</a></li>
-</ul>
-</li>
-</ul>
-
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="_sources/Bayesian_multivariate_normal_mean_model.ipynb">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
-
-</div></div>
-              
-            
+            <div class="clearer"></div>
           </div>
-          <footer class="bd-footer-content">
-            
-          </footer>
-        
-      </main>
-    </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="README.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Bayesian Multivariate Normal Mean Model</a></li>
+<li><a class="reference internal" href="#graphical-summary">Graphical Summary</a></li>
+<li><a class="reference internal" href="#key-formula">Key Formula</a></li>
+<li><a class="reference internal" href="#technical-details">Technical Details</a><ul>
+<li><a class="reference internal" href="#model-assumptions">Model Assumptions</a></li>
+<li><a class="reference internal" href="#prior-distribution">Prior Distribution</a></li>
+<li><a class="reference internal" href="#likelihood">Likelihood</a></li>
+<li><a class="reference internal" href="#posterior-distribution">Posterior Distribution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example">Example</a><ul>
+<li><a class="reference internal" href="#id1">Prior Distribution</a></li>
+<li><a class="reference internal" href="#observed-data-and-likelihood-function">Observed Data and Likelihood Function</a></li>
+<li><a class="reference internal" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
+<li><a class="reference internal" href="#visualizing-prior-and-posterior-distributions">Visualizing Prior and Posterior Distributions</a></li>
+<li><a class="reference internal" href="#d-visualization-of-prior-and-posterior-distributions">3D Visualization of Prior and Posterior Distributions</a></li>
+</ul>
+</li>
+</ul>
+
   </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-  <footer class="bd-footer">
-<div class="bd-footer__inner bd-page-width">
-  
-    <div class="footer-items__start">
-      
-        <div class="footer-item">
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
-</div>
-      
-        <div class="footer-item">
-
-  <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
-    <br/>
-  </p>
-</div>
-      
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Bayesian_normal_mean_model.html"
+                          title="previous chapter">Bayesian Normal Mean Model</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Bayesian_mixture_model.html"
+                          title="next chapter">Bayesian Mixture Model</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Bayesian_multivariate_normal_mean_model.ipynb"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
     </div>
-  
-  
-  
-    <div class="footer-items__end">
-      
-        <div class="footer-item">
-<p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
-</p></div>
-      
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
     </div>
-  
-</div>
-
-  </footer>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Bayesian_mixture_model.html" title="Bayesian Mixture Model"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Bayesian_normal_mean_model.html" title="Bayesian Normal Mean Model"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="README.html">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bayesian Multivariate Normal Mean Model</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    </div>
   </body>
 </html>
