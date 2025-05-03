@@ -491,13 +491,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-and-environment-setup">1. Installation and Environment Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-a-jupyter-book">2. Initialize A Jupyter Book</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-book-structure">3. Set Up Book Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-index-markdown-files">4. Create Index Markdown Files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-book">5. Build the Book</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-to-github-pages">6. Deploy to GitHub Pages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-github-pages-in-repository-settings">7. Set Up GitHub Pages in Repository Settings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-set-up-github-actions-for-automatic-deployment">8. Optional: Set Up GitHub Actions for Automatic Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-book-structure">2. Set Up Book Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-book">3. Build the Book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-to-github-pages">4. Deploy to GitHub Pages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-github-pages-in-repository-settings">5. Set Up GitHub Pages in Repository Settings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-set-up-github-actions-for-automatic-deployment">6. Optional: Set Up GitHub Actions for Automatic Deployment</a></li>
 </ul>
             </nav>
         </div>
@@ -518,15 +516,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="initialize-a-jupyter-book">
-<h2>2. Initialize A Jupyter Book<a class="headerlink" href="#initialize-a-jupyter-book" title="Link to this heading">#</a></h2>
-<p>Create a new Jupyter Book in the root directory of this project:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-book<span class="w"> </span>create<span class="w"> </span>website
-</pre></div>
-</div>
-</section>
 <section id="set-up-book-structure">
-<h2>3. Set Up Book Structure<a class="headerlink" href="#set-up-book-structure" title="Link to this heading">#</a></h2>
+<h2>2. Set Up Book Structure<a class="headerlink" href="#set-up-book-structure" title="Link to this heading">#</a></h2>
 <p>The created template will have:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>: Configuration for the book</p></li>
@@ -534,19 +525,15 @@ document.write(`
 <li><p>Sample content files</p></li>
 </ul>
 </section>
-<section id="create-index-markdown-files">
-<h2>4. Create Index Markdown Files<a class="headerlink" href="#create-index-markdown-files" title="Link to this heading">#</a></h2>
-<p>You’ll need to create <a class="reference external" href="http://index.md">index.md</a> files for each section …</p>
-</section>
 <section id="build-the-book">
-<h2>5. Build the Book<a class="headerlink" href="#build-the-book" title="Link to this heading">#</a></h2>
+<h2>3. Build the Book<a class="headerlink" href="#build-the-book" title="Link to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-book<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>--config<span class="w"> </span>website/_config.yml<span class="w"> </span>--toc<span class="w"> </span>website/_toc.yml
 </pre></div>
 </div>
 <p>This will generate the HTML files in the <code class="docutils literal notranslate"><span class="pre">_build/html</span></code> directory.</p>
 </section>
 <section id="deploy-to-github-pages">
-<h2>6. Deploy to GitHub Pages<a class="headerlink" href="#deploy-to-github-pages" title="Link to this heading">#</a></h2>
+<h2>4. Deploy to GitHub Pages<a class="headerlink" href="#deploy-to-github-pages" title="Link to this heading">#</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">ghp-import</span></code> to publish your book:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ghp-import<span class="w"> </span>-n<span class="w"> </span>-p<span class="w"> </span>-f<span class="w"> </span>_build/html
 </pre></div>
@@ -559,7 +546,7 @@ document.write(`
 </ul>
 </section>
 <section id="set-up-github-pages-in-repository-settings">
-<h2>7. Set Up GitHub Pages in Repository Settings<a class="headerlink" href="#set-up-github-pages-in-repository-settings" title="Link to this heading">#</a></h2>
+<h2>5. Set Up GitHub Pages in Repository Settings<a class="headerlink" href="#set-up-github-pages-in-repository-settings" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Go to your repository on GitHub</p></li>
 <li><p>Navigate to Settings &gt; Pages</p></li>
@@ -569,7 +556,7 @@ document.write(`
 <p>The site should be live at: <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/">https://gaow.github.io/statgen-prerequisites/</a></p>
 </section>
 <section id="optional-set-up-github-actions-for-automatic-deployment">
-<h2>8. Optional: Set Up GitHub Actions for Automatic Deployment<a class="headerlink" href="#optional-set-up-github-actions-for-automatic-deployment" title="Link to this heading">#</a></h2>
+<h2>6. Optional: Set Up GitHub Actions for Automatic Deployment<a class="headerlink" href="#optional-set-up-github-actions-for-automatic-deployment" title="Link to this heading">#</a></h2>
 <p>Create a file <code class="docutils literal notranslate"><span class="pre">.github/workflows/deploy-book.yml</span></code>:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy-book</span>
 
@@ -656,13 +643,11 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-and-environment-setup">1. Installation and Environment Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-a-jupyter-book">2. Initialize A Jupyter Book</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-book-structure">3. Set Up Book Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-index-markdown-files">4. Create Index Markdown Files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-book">5. Build the Book</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-to-github-pages">6. Deploy to GitHub Pages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-github-pages-in-repository-settings">7. Set Up GitHub Pages in Repository Settings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-set-up-github-actions-for-automatic-deployment">8. Optional: Set Up GitHub Actions for Automatic Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-book-structure">2. Set Up Book Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-book">3. Build the Book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-to-github-pages">4. Deploy to GitHub Pages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-github-pages-in-repository-settings">5. Set Up GitHub Pages in Repository Settings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-set-up-github-actions-for-automatic-deployment">6. Optional: Set Up GitHub Actions for Automatic Deployment</a></li>
 </ul>
   </nav></div>
 
