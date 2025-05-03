@@ -14,10 +14,12 @@ parts:
       - file: Hardy_Weinberg_equilibrium
   
   - caption: Correlation Between Variants
+    chapters:
       - file: linkage_disequilibrium
       - file: linkage_disequilibrium_score
   
   - caption: Correlation Between Individuals
+    chapters:
       - file: genetic_relationship_matrix
 
   - caption: Regression Models
@@ -36,6 +38,7 @@ parts:
       - file: mediator
   
   - caption: From One Study to Multiple Studies
+    chapters:
       - file: meta_analysis
 
   - caption: Statistical Inference
@@ -50,12 +53,13 @@ parts:
       - file: Bayes_factor
       - file: p_value_versus_Bayes_factor
 
-- caption: Bayes Models
-  chapters:
-      - file: Bayesian_normal_mean_model
-      - file: Bayesian_multivariate_normal_mean_model
-      - file: Bayesian_mixture_model
-
-- caption: Model Comparison and Averaging
-      - file: Bayesian_model_comparison
-      - file: Bayesian_model_averaging
+  - caption: Bayes Models
+    chapters:
+        - file: Bayesian_normal_mean_model
+        - file: Bayesian_multivariate_normal_mean_model
+        - file: Bayesian_mixture_model
+  
+  - caption: Model Comparison and Averaging
+    chapters:
+        - file: Bayesian_model_comparison
+        - file: Bayesian_model_averaging
