@@ -1,0 +1,56 @@
+# Table of contents
+format: jb-book
+root: README
+
+parts:
+  - caption: Notations and References
+    chapters:
+      - file: Notations
+
+  - caption: Basic Quantities in Statistical Genetics
+    chapters:
+      - file: genotype_coding
+      - file: minor_allele_frequency
+      - file: Hardy_Weinberg_equilibrium
+      - file: linkage_disequilibrium
+      - file: linkage_disequilibrium_score
+      - file: genetic_relationship_matrix
+
+  - caption: Single Marker Linear Regression
+    chapters:
+      - file: ordinary_least_squares
+      - file: proportion_of_variance_explained
+
+  - caption: Summary Statistics and Meta-Analysis
+    chapters:
+      - file: summary_statistics
+      - file: meta_analysis
+
+  - caption: Logistic Regression, Odds Ratio, and Mixed Models
+    chapters:
+      - file: odds_ratio
+      - file: linear_mixed_model
+      - file: marginal_joint_effects
+
+  - caption: Covariates in Genetic Studies
+    chapters:
+      - file: confounder
+      - file: collider
+      - file: mediator
+
+  - caption: Likelihood Methods
+    chapters:
+      - file: likelihood
+      - file: maximum_likelihood_estimation
+      - file: likelihood_ratio
+      - file: likelihood_ratio_test
+
+  - caption: Bayesian Methods
+    chapters:
+      - file: Bayesian_normal_mean_model
+      - file: Bayesian_multivariate_normal_mean_model
+      - file: p_value_versus_Bayes_factor
+      - file: Bayes_factor
+      - file: Bayesian_model_comparison
+      - file: Bayesian_mixture_model
+      - file: Bayesian_model_averaging

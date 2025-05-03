@@ -1,0 +1,25 @@
+# Book settings
+title: Statistical backgrounds for the Summer Program in Statistical Functional Genomics
+author: Gao Wang
+logo: logo.png  # Add a logo file to your repo if you have one
+copyright: "2025"
+execute:
+  execute_notebooks: false
+latex:
+  latex_documents:
+    targetname: book.tex
+bibtex_bibfiles:
+  - references.bib
+repository:
+  url: https://github.com/gaow/statgen-prerequisites
+  path_to_book: ""
+  branch: main
+html:
+  use_issues_button: true
+  use_repository_button: true
+  use_edit_page_button: true
+# Add navigation depth configuration to show one level expanded by default
+sphinx:
+  config:
+    html_theme_options:
+      show_navbar_depth: 2
