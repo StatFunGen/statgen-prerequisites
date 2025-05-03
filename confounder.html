@@ -544,11 +544,12 @@ Where:</p>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <p>Confounding can cause bias in the estimation of the relationship between the genotype and the trait. To avoid this bias, confounders <strong>must be controlled</strong> in the analysis, typically by including them as covariates in regression models.</p>
-<p>In formal causal inference terminology, a confounder creates a situation where:
-$<span class="math notranslate nohighlight">\(
+<p>In formal causal inference terminology, a confounder creates a situation where:</p>
+<div class="math notranslate nohighlight">
+\[
 P(Y|X) \neq P(Y|\text{do}(X))
-\)</span>$
-Where do(X) represents an intervention to set X to a specific value. This inequality shows that the observed association differs from the true causal effect due to the confounding variable.</p>
+\]</div>
+<p>Where do(X) represents an intervention to set X to a specific value. This inequality shows that the observed association differs from the true causal effect due to the confounding variable.</p>
 <p>When adjusting for confounders in statistical models:</p>
 <ol class="arabic simple">
 <li><p>Stratification: Analyzing the <span class="math notranslate nohighlight">\(X\)</span>-<span class="math notranslate nohighlight">\(Y\)</span> relationship separately within strata of C</p></li>
