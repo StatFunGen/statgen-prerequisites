@@ -334,7 +334,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -546,11 +545,12 @@ X \rightarrow C \leftarrow Y
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <p>Conditioning on a collider can introduce bias in the estimation of the relationship between its causes. This is often called <strong>collider bias</strong> or <strong>selection bias</strong>.</p>
-<p>In formal causal inference terminology, conditioning on a collider creates a situation where:
-$<span class="math notranslate nohighlight">\(
+<p>In formal causal inference terminology, conditioning on a collider creates a situation where:</p>
+<div class="math notranslate nohighlight">
+\[
 P(Y|X) \neq P(Y|X, C)
-\)</span><span class="math notranslate nohighlight">\(
-Where conditioning on \)</span>C<span class="math notranslate nohighlight">\( creates a non-causal association between \)</span>X<span class="math notranslate nohighlight">\( and \)</span>Y<span class="math notranslate nohighlight">\(. This inequality shows that the association between \)</span>X<span class="math notranslate nohighlight">\( and \)</span>Y$ differs when we condition on the collider.</p>
+\]</div>
+<p>Where conditioning on <span class="math notranslate nohighlight">\(C\)</span> creates a non-causal association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. This inequality shows that the association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> differs when we condition on the collider.</p>
 <p>Key characteristics of collider bias:</p>
 <ol class="arabic simple">
 <li><p><strong>Induced Association</strong>: Conditioning on a collider can create an association between variables that are causally independent</p></li>

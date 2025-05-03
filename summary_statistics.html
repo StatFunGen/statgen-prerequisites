@@ -334,7 +334,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -509,8 +508,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-staistics">From OLS to Summary Staistics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-and-p-value">Z-score and P-value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-a">Example GWAS Summary Statistics Table – part A</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-b">Example GWAS Summary Statistics Table – part B</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-c">Example GWAS Summary Statistics Table – part C</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
@@ -667,66 +664,6 @@ P = 2 \times (1 - \Phi(|Z|))
 <li><p><strong>SNP (rsID)</strong>: Identifier for the single nucleotide polymorphism, such as <code class="docutils literal notranslate"><span class="pre">rs12345</span></code> or <code class="docutils literal notranslate"><span class="pre">chr21:295472:G:A</span></code>.</p></li>
 <li><p><strong>CHR</strong>: Chromosome number where the SNP is located. Other common names: <code class="docutils literal notranslate"><span class="pre">chrom</span></code>, <code class="docutils literal notranslate"><span class="pre">chromosome</span></code></p></li>
 <li><p><strong>BP</strong>: Genomic position of the SNP, specific to a reference genome assembly (e.g., GRCh37 or GRCh38). Other common names: <code class="docutils literal notranslate"><span class="pre">pos</span></code>, <code class="docutils literal notranslate"><span class="pre">position</span></code></p></li>
-</ul>
-</section>
-<section id="example-gwas-summary-statistics-table-part-b">
-<h2>Example GWAS Summary Statistics Table – part B<a class="headerlink" href="#example-gwas-summary-statistics-table-part-b" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>SNP (rsID)</p></th>
-<th class="head"><p>CHR</p></th>
-<th class="head"><p>BP</p></th>
-<th class="head"><p>A1</p></th>
-<th class="head"><p>A2</p></th>
-<th class="head"><p>MAF</p></th>
-<th class="head"><p>BETA</p></th>
-<th class="head"><p>SE</p></th>
-<th class="head"><p>Z-score</p></th>
-<th class="head"><p>P-value</p></th>
-<th class="head"><p>N</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>rs12345</p></td>
-<td><p>1</p></td>
-<td><p>10583</p></td>
-<td><p>A</p></td>
-<td><p>G</p></td>
-<td><p>0.12</p></td>
-<td><p>0.045</p></td>
-<td><p>0.010</p></td>
-<td><p>4.50</p></td>
-<td><p>1.2e-06</p></td>
-<td><p>100000</p></td>
-</tr>
-<tr class="row-odd"><td><p>rs67890</p></td>
-<td><p>2</p></td>
-<td><p>20345</p></td>
-<td><p>C</p></td>
-<td><p>T</p></td>
-<td><p>0.35</p></td>
-<td><p>-0.030</p></td>
-<td><p>0.008</p></td>
-<td><p>-3.75</p></td>
-<td><p>5.4e-04</p></td>
-<td><p>95000</p></td>
-</tr>
-<tr class="row-even"><td><p>rs54321</p></td>
-<td><p>18</p></td>
-<td><p>45678</p></td>
-<td><p>G</p></td>
-<td><p>A</p></td>
-<td><p>0.22</p></td>
-<td><p>0.060</p></td>
-<td><p>0.012</p></td>
-<td><p>5.00</p></td>
-<td><p>2.1e-07</p></td>
-<td><p>102000</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul class="simple">
 <li><p><strong>A1 and A2</strong>: The two alleles at the variant site, with one designated as the effect allele. Other common names: <code class="docutils literal notranslate"><span class="pre">REF</span></code> and <code class="docutils literal notranslate"><span class="pre">ALT</span></code>, <code class="docutils literal notranslate"><span class="pre">Effect</span> <span class="pre">allele</span></code> and <code class="docutils literal notranslate"><span class="pre">Other</span> <span class="pre">allele</span></code></p>
 <ul>
 <li><p>Note that one allele may be effect allele in one study but alternative allele in another.</p></li>
@@ -734,66 +671,6 @@ P = 2 \times (1 - \Phi(|Z|))
 </li>
 <li><p><strong>MAF</strong>: The frequency of the less common allele for variant <span class="math notranslate nohighlight">\(j\)</span> in the sample.</p></li>
 <li><p><strong>EAF</strong>: The frequency of the effect allele for variant <span class="math notranslate nohighlight">\(j\)</span> in the sample (note that this doesn’t have to be the minor allele) (sometimes called <code class="docutils literal notranslate"><span class="pre">RAF</span></code>: risk allele frequency)</p></li>
-</ul>
-</section>
-<section id="example-gwas-summary-statistics-table-part-c">
-<h2>Example GWAS Summary Statistics Table – part C<a class="headerlink" href="#example-gwas-summary-statistics-table-part-c" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>SNP (rsID)</p></th>
-<th class="head"><p>CHR</p></th>
-<th class="head"><p>BP</p></th>
-<th class="head"><p>A1</p></th>
-<th class="head"><p>A2</p></th>
-<th class="head"><p>MAF</p></th>
-<th class="head"><p>BETA</p></th>
-<th class="head"><p>SE</p></th>
-<th class="head"><p>Z-score</p></th>
-<th class="head"><p>P-value</p></th>
-<th class="head"><p>N</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>rs12345</p></td>
-<td><p>1</p></td>
-<td><p>10583</p></td>
-<td><p>A</p></td>
-<td><p>G</p></td>
-<td><p>0.12</p></td>
-<td><p>0.045</p></td>
-<td><p>0.010</p></td>
-<td><p>4.50</p></td>
-<td><p>1.2e-06</p></td>
-<td><p>100000</p></td>
-</tr>
-<tr class="row-odd"><td><p>rs67890</p></td>
-<td><p>2</p></td>
-<td><p>20345</p></td>
-<td><p>C</p></td>
-<td><p>T</p></td>
-<td><p>0.35</p></td>
-<td><p>-0.030</p></td>
-<td><p>0.008</p></td>
-<td><p>-3.75</p></td>
-<td><p>5.4e-04</p></td>
-<td><p>95000</p></td>
-</tr>
-<tr class="row-even"><td><p>rs54321</p></td>
-<td><p>18</p></td>
-<td><p>45678</p></td>
-<td><p>G</p></td>
-<td><p>A</p></td>
-<td><p>0.22</p></td>
-<td><p>0.060</p></td>
-<td><p>0.012</p></td>
-<td><p>5.00</p></td>
-<td><p>2.1e-07</p></td>
-<td><p>102000</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul class="simple">
 <li><p><strong>BETA</strong>: Estimated effect size (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>), representing the association between the effect allele and the trait. Always check which allele it corresponds to.</p></li>
 <li><p><strong>SE</strong>: Standard error of the effect size estimat, reflecting the uncertainty in the effect size estimate. It is computed as <span class="math notranslate nohighlight">\(SE_j = \sqrt{\frac{\hat{\sigma}^2}{\mathbf{X}_j^T \mathbf{X}_j}}\)</span>, where <span class="math notranslate nohighlight">\( \hat{\sigma}^2 \)</span> is the estimated residual variance from the model.</p></li>
 <li><p><strong>Z</strong>: Standardized test statistic, computed as <span class="math notranslate nohighlight">\(Z = \frac{\beta}{\text{SE}}\)</span>.</p></li>
@@ -1008,8 +885,6 @@ P = 2 \times (1 - \Phi(|Z|))
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-staistics">From OLS to Summary Staistics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-and-p-value">Z-score and P-value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-a">Example GWAS Summary Statistics Table – part A</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-b">Example GWAS Summary Statistics Table – part B</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table-part-c">Example GWAS Summary Statistics Table – part C</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>

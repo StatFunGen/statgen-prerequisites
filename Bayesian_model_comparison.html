@@ -334,7 +334,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -550,7 +549,11 @@ document.write(`
 <p>Recall that the <strong>Bayes Factor (BF)</strong> is defined as:</p>
 <div class="math notranslate nohighlight">
 \[
-\text{BF}_{1,2} = \frac{L(\text{D}|\text{M}_1)}{L(\text{D}|\text{M}_2)} ={\frac {\int \Pr(\gamma _{1}|M_{1})\Pr(D|\gamma _{1},M_{1})\,d\gamma _{1}}{\int \Pr(\gamma _{2}|M_{2})\Pr(D|\gamma _{2},M_{2})\,d\gamma _{2}}} = \frac{\frac{Pr(M_1|D)Pr(D)}{Pr(M_1)} }{\frac{Pr(M_2|D)Pr(D)}{Pr(M_2)}} = \frac{Pr(M_1|D)}{Pr(M_2|D)} \times \frac{Pr(M_2)}{Pr(M_1)}
+\text{BF}_{1,2} = \frac{L(\text{D}|\text{M}_1)}{L(\text{D}|\text{M}_2)} ={\frac {\int \Pr(\gamma _{1}|M_{1})\Pr(D|\gamma _{1},M_{1})\,d\gamma _{1}}{\int \Pr(\gamma _{2}|M_{2})\Pr(D|\gamma _{2},M_{2})\,d\gamma _{2}}} 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \frac{\frac{Pr(M_1|D)Pr(D)}{Pr(M_1)} }{\frac{Pr(M_2|D)Pr(D)}{Pr(M_2)}} = \frac{Pr(M_1|D)}{Pr(M_2|D)} \times \frac{Pr(M_2)}{Pr(M_1)}
 \]</div>
 <p>This ratio here, <span class="math notranslate nohighlight">\(\frac{P(M_1|D)}{P(M_2|D)}\)</span>, simplifies to:</p>
 <div class="math notranslate nohighlight">

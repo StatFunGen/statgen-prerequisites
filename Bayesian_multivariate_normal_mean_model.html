@@ -334,7 +334,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -504,12 +503,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayesian Multivariate Normal Mean Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#where-begin-pmatrix-mu-1-1-mu-2-1-end-pmatrix">where:
-$$
-\begin{pmatrix}
-\mu_{1,1} \
-\mu_{2,1}
-\end{pmatrix}</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>
@@ -566,16 +559,16 @@ $$
 \end{pmatrix}
 \right)
 \end{split}\]</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="where-begin-pmatrix-mu-1-1-mu-2-1-end-pmatrix">
-<h1>where:
-$$
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{pmatrix}
-\mu_{1,1} \
+\mu_{1,1} \\
 \mu_{2,1}
-\end{pmatrix}<a class="headerlink" href="#where-begin-pmatrix-mu-1-1-mu-2-1-end-pmatrix" title="Link to this heading">#</a></h1>
-<p>\boldsymbol{\Sigma} \left( \boldsymbol{\Sigma_0}^{-1} \boldsymbol{\mu_0} + \boldsymbol{\Sigma}^{-1} \mathbf{Y} \right)
-$$</p>
+\end{pmatrix}
+= 
+\boldsymbol{\Sigma} \left( \boldsymbol{\Sigma_0}^{-1} \boldsymbol{\mu_0} + \boldsymbol{\Sigma}^{-1} \mathbf{Y} \right)
+\end{split}\]</div>
 <p>and:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -735,10 +728,13 @@ p(\mu_1, \mu_2 \mid \mathbf{Y}) \propto \exp\left( -\frac{1}{2} (\mathbf{Y} - \b
 \end{split}\]</div>
 <p>and:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\boldsymbol{\Sigma_1}^{-1} = \boldsymbol{\Sigma_0}^{-1} + \boldsymbol{\Sigma}^{-1} \\
+\[
+\boldsymbol{\Sigma_1}^{-1} = \boldsymbol{\Sigma_0}^{-1} + \boldsymbol{\Sigma}^{-1}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 \boldsymbol{\Omega_1} = \boldsymbol{\Omega_0} + \boldsymbol{\Omega}
-\end{split}\]</div>
+\]</div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
@@ -1116,12 +1112,6 @@ Posterior precision matrix (Precision_1):
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayesian Multivariate Normal Mean Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#where-begin-pmatrix-mu-1-1-mu-2-1-end-pmatrix">where:
-$$
-\begin{pmatrix}
-\mu_{1,1} \
-\mu_{2,1}
-\end{pmatrix}</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>

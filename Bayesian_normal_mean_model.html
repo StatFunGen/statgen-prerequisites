@@ -334,7 +334,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -550,8 +549,11 @@ document.write(`
 <li><p>Data points <span class="math notranslate nohighlight">\(Y_1, Y_2, \ldots, Y_n\)</span> from <span class="math notranslate nohighlight">\(\mathcal{N}(\mu, \sigma^2)\)</span> with sample mean <span class="math notranslate nohighlight">\(\bar{Y}\)</span></p></li>
 <li><p>Prior <span class="math notranslate nohighlight">\(\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)\)</span></p></li>
 </ul>
-<p>The posterior distribution is:
-$<span class="math notranslate nohighlight">\(\mu | Y \sim \mathcal{N}\left(\frac{\sigma^2\mu_0 + n\sigma_0^2\bar{Y}}{\sigma^2 + n\sigma_0^2}, \frac{\sigma^2\sigma_0^2}{\sigma^2 + n\sigma_0^2}\right)\)</span>$</p>
+<p>The posterior distribution is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu | Y \sim \mathcal{N}\left(\frac{\sigma^2\mu_0 + n\sigma_0^2\bar{Y}}{\sigma^2 + n\sigma_0^2}, \frac{\sigma^2\sigma_0^2}{\sigma^2 + n\sigma_0^2}\right)
+\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>

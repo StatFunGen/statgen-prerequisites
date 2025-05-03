@@ -334,7 +334,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -542,17 +541,18 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
 <p>Under certain conditions, p-values can be converted to minimum Bayes factors (see <a class="reference external" href="https://hannig.cloudapps.unc.edu/STOR654/handouts/SellkeBayarriBerger2001.pdf">Sellke et al., 2021</a> for more details).
-Specifically they show that, provided <span class="math notranslate nohighlight">\(p&lt;1/e\)</span>, the BF in favor of <span class="math notranslate nohighlight">\(H_1\)</span> is not larger than
-$<span class="math notranslate nohighlight">\(
+Specifically they show that, provided <span class="math notranslate nohighlight">\(p&lt;1/e\)</span>, the BF in favor of <span class="math notranslate nohighlight">\(H_1\)</span> is not larger than</p>
+<div class="math notranslate nohighlight">
+\[
 \text{BF}_\text{min} \approx −e\times p \times \log(p)
-\)</span>$</p>
+\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="p-value">
 <h2>p-value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>P(data|H0) - probability of data given null hypothesis</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\text{D}|H_0)\)</span> - probability of data given null hypothesis</p></li>
 <li><p>Measures compatibility of data with null hypothesis</p></li>
 <li><p>Does <strong>not</strong> directly measure evidence for alternative</p></li>
 </ul>

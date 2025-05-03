@@ -334,7 +334,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -538,11 +537,11 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>In statistics, maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by maximizing the likelihood function (<span class="math notranslate nohighlight">\(L(\theta|\text{D}) = P(\theta|\text{D})\)</span>) so that, under the assumed statistical model, the observed data is most probable.</p>
-<p>The goal of maximum likelihood estimation is to find the values of the model parameters (e.g., <span class="math notranslate nohighlight">\(\theta\)</span>) that maximize the likelihood function over the parameter space (e.g., <span class="math notranslate nohighlight">\(\Theta\)</span>), that is:
-$<span class="math notranslate nohighlight">\(
+<p>In statistics, maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by finding the values of the model parameters (e.g., <span class="math notranslate nohighlight">\(\theta\)</span>) that maximize the likelihood function (<span class="math notranslate nohighlight">\(L(\theta|\text{D}) = P(\theta|\text{D})\)</span>) over the parameter space (e.g., <span class="math notranslate nohighlight">\(\Theta\)</span>), so that, under the assumed statistical model, the observed data <span class="math notranslate nohighlight">\(\text{D}\)</span> is most probable.</p>
+<div class="math notranslate nohighlight">
+\[
 \hat{\theta} = \underset{\theta \in \Theta}{\operatorname{argmax}} L(\theta|D) = \underset{\theta \in \Theta}{\operatorname{argmax}} P(D|\theta)
-\)</span>$</p>
+\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
@@ -550,8 +549,10 @@ $<span class="math notranslate nohighlight">\(
 <h2>Work with Log-Likelihood<a class="headerlink" href="#work-with-log-likelihood" title="Link to this heading">#</a></h2>
 <p>In practice, it is often convenient to work with the natural logarithm of the likelihood function, called the log-likelihood:</p>
 <div class="math notranslate nohighlight">
-\[\ell (\theta \,;\mathbf{y})=\ln {\mathcal{L}}_{n}(\theta \,;\mathbf{y})~.\]</div>
-<p>Since the logarithm is a monotonic function, the maximum of <span class="math notranslate nohighlight">\(\ell (\theta \,;\mathbf{y})\)</span> occurs at the same value of <span class="math notranslate nohighlight">\(\theta\)</span> as does the maximum of <span class="math notranslate nohighlight">\({\mathcal{L}}_{n}~.\)</span>.</p>
+\[
+\ell (\theta \,;\mathbf{y})=\ln {\mathcal{L}}_{n}(\theta \,;\mathbf{y})
+\]</div>
+<p>Since the logarithm is a monotonic function, the maximum of <span class="math notranslate nohighlight">\(\ell (\theta \,;\mathbf{y})\)</span> occurs at the same value of <span class="math notranslate nohighlight">\(\theta\)</span> as does the maximum of <span class="math notranslate nohighlight">\({\mathcal{L}}_{n}\)</span>.</p>
 </section>
 <section id="likelihood-equation">
 <h2>Likelihood equation<a class="headerlink" href="#likelihood-equation" title="Link to this heading">#</a></h2>
@@ -566,10 +567,14 @@ $<span class="math notranslate nohighlight">\(
 <h2>IID data<a class="headerlink" href="#iid-data" title="Link to this heading">#</a></h2>
 <p>If the data are independent and identically distributed, then we have</p>
 <div class="math notranslate nohighlight">
-\[{\widehat{\ell\,}}(\theta \,;D)=\sum_{i=1}^{n}\ln f(d_{i}\mid \theta),\]</div>
+\[
+{\widehat{\ell\,}}(\theta \,;D)=\sum_{i=1}^{n}\ln f(d_{i}\mid \theta)
+\]</div>
 <p>this being the sample analogue of the expected log-likelihood</p>
 <div class="math notranslate nohighlight">
-\[\ell(\theta)=\operatorname{\mathbb{E}}[\,\ln f(d_{i}\mid \theta)\,],\]</div>
+\[
+\ell(\theta)=\operatorname{\mathbb{E}}[\,\ln f(d_{i}\mid \theta)\,]
+\]</div>
 <p>where this expectation is taken with respect to the true density.</p>
 </section>
 </section>

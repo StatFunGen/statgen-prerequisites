@@ -334,7 +334,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -557,7 +556,7 @@ document.write(`
 \]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p>(\text{M})<span class="math notranslate nohighlight">\( is the likelihood function for model \)</span>\text{M}<span class="math notranslate nohighlight">\( under data \)</span>\text{D}$</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{M}\)</span> is the likelihood function for model <span class="math notranslate nohighlight">\(\text{M}\)</span> under data <span class="math notranslate nohighlight">\(\text{D}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{M}\)</span> represents the model</p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{D}\)</span> represents the observed data</p></li>
 <li><p><span class="math notranslate nohighlight">\(P(\text{D}|\text{M})\)</span> is the probability of observing data <span class="math notranslate nohighlight">\(\text{D}\)</span> given the model <span class="math notranslate nohighlight">\(\text{M}\)</span></p></li>
@@ -567,23 +566,30 @@ document.write(`
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="single-sample">
 <h2>Single Sample<a class="headerlink" href="#single-sample" title="Link to this heading">#</a></h2>
-<p>For a single observation <span class="math notranslate nohighlight">\(d\)</span>:
-<span class="math notranslate nohighlight">\(\mathcal{L}(d|\text{M}) = P(d|\text{M})\)</span></p>
+<p>For a single observation <span class="math notranslate nohighlight">\(d\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(d|\text{M}) = P(d|\text{M})
+\]</div>
 </section>
 <section id="multiple-samples-independence-assumption">
 <h2>Multiple Samples (Independence Assumption)<a class="headerlink" href="#multiple-samples-independence-assumption" title="Link to this heading">#</a></h2>
-<p>For multiple independent observations <span class="math notranslate nohighlight">\(\text{D} = \{d_1, d_2, ..., d_n\}\)</span>:
-$<span class="math notranslate nohighlight">\(
+<p>For multiple independent observations <span class="math notranslate nohighlight">\(\text{D} = \{d_1, d_2, ..., d_n\}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
 \mathcal{L}(\text{D}|\text{M}) = \prod_{i=1}^{n} P(d_i|\text{M})
-\)</span>$</p>
+\]</div>
 <p>Under the assumption of independence, the joint probability of multiple independent samples is the product of their individual probabilities.</p>
 </section>
 <section id="log-likelihood">
 <h2>Log-Likelihood<a class="headerlink" href="#log-likelihood" title="Link to this heading">#</a></h2>
 <p>We often work with log-likelihood for computational stability:</p>
-<p><span class="math notranslate nohighlight">\(\mathcal{L}(\text{D}|\text{M}) = \log \mathcal{L}(\text{D}|\text{M}) = \sum_{i=1}^{n} \log P(d_i|\text{M})\)</span></p>
-<p>The log transformation converts products to sums, making calculations easier and preventing numerical underflow with very small probabilities.</p>
-<p>In <span class="math notranslate nohighlight">\(\log\)</span>, unless otherwise specified, we use log base e.</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(\text{D}|\text{M}) = \log \mathcal{L}(\text{D}|\text{M}) = \sum_{i=1}^{n} \log P(d_i|\text{M})
+\]</div>
+<p>The <span class="math notranslate nohighlight">\(\log\)</span> transformation converts products to sums, making calculations easier and preventing numerical underflow with very small probabilities.</p>
+<p>In <span class="math notranslate nohighlight">\(\log\)</span>, unless otherwise specified, we use <strong>log base e</strong>.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
