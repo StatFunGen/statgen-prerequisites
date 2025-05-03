@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Genotype Coding 1234567890dgfysah,.jifko,a &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+    <title>Genotype Coding &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
   
   
   
@@ -173,8 +173,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Genotype Coding 1234567890dgfysah,.jifko,a</a></li>
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Genotype Coding</a></li>
 
 
 
@@ -492,7 +491,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Genotype Coding 1234567890dgfysah,.jifko,a</h1>
+    <h1>Genotype Coding</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -502,8 +501,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Genotype Coding 1234567890dgfysah,.jifko,a</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#genotype-coding">Genotype Coding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Genotype Coding</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
@@ -528,10 +526,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="genotype-coding-1234567890dgfysah-jifko-a">
-<h1>Genotype Coding 1234567890dgfysah,.jifko,a<a class="headerlink" href="#genotype-coding-1234567890dgfysah-jifko-a" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="genotype-coding">
+  <section class="tex2jax_ignore mathjax_ignore" id="genotype-coding">
 <h1>Genotype Coding<a class="headerlink" href="#genotype-coding" title="Link to this heading">#</a></h1>
 <p>Genotype coding converts DNA nucleotide pairs into numerical values for statistical analysis, with the additive model being particularly valuable because genetic effects often accumulate proportionally with each additional copy of a variant.</p>
 </section>
@@ -549,10 +544,13 @@ document.write(`
 <li><p>Recessive model: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> (two copies of alternative allele required for 1)</p></li>
 </ul>
 <p><strong>Standardized Genotype Matrix</strong> <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>: Normalized version of <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span></p>
-<p>For each column <span class="math notranslate nohighlight">\(j\)</span> (variant):
-$<span class="math notranslate nohighlight">\(
+<p>For each column <span class="math notranslate nohighlight">\(j\)</span> (variant):</p>
+<div class="math notranslate nohighlight">
+\[
 X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
-\)</span>$</p>
+\]</div>
+<div class="math notranslate nohighlight">
+\[\text{MAF}_j = \frac{\mathbb{E}[X_{\text{additive},j}]}{2} = \frac{1}{2N}\sum_{i=1}^{N} X_{\text{additive},ij}\]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}\)</span> (mean of variant <span class="math notranslate nohighlight">\(j\)</span>)</p></li>
@@ -952,8 +950,7 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Genotype Coding 1234567890dgfysah,.jifko,a</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#genotype-coding">Genotype Coding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Genotype Coding</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
