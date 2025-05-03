@@ -170,6 +170,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Notation Table</strong></a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -477,7 +478,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -493,6 +496,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Notation Table</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-in-statistical-genetics-and-related-topics">Concepts in statistical genetics and related topics</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -612,92 +625,84 @@ document.write(`
 <td><p><span class="math notranslate nohighlight">\(I^2\)</span> statistic</p></td>
 <td><p></p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Symbol</p></th>
-<th class="head"><p>Meaning</p></th>
-<th class="head"><p>Example Meaning</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>$\text{M}</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\text{M}\)</span></p></td>
 <td><p>Model</p></td>
 <td><p><span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( M_1 \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( M_1 \)</span></p></td>
 <td><p>Model 1 (no genetic effect)</p></td>
 <td><p>Model assuming no association between genotype and trait</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
 <td><p>Model 2 (genetic effect)</p></td>
 <td><p>Model assuming an association between genotype and trait</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \text{D} \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \text{D} \)</span></p></td>
 <td><p>Observed data <span class="math notranslate nohighlight">\(d_i\)</span> (observation i)</p></td>
 <td><p><span class="math notranslate nohighlight">\(\{(x_1,y_1), (x_2, y_2), \dots, (x_n, y_n)\}\)</span>, Collected genotype-trait pairs</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \lambda \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \lambda \)</span></p></td>
 <td><p>Likelihood ratio test</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \mu \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \mu \)</span></p></td>
 <td><p>Mean of the normal distribution (unknown)</p></td>
 <td><p>Mean of the normal distribution in the population  (e.g., <span class="math notranslate nohighlight">\(\mu_1\)</span> for height and <span class="math notranslate nohighlight">\(\mu_2\)</span> for weight when bi-variate)</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \theta \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \theta \)</span></p></td>
 <td><p>Mean of the normal distribution (unknown)</p></td>
 <td><p>Causal effect of genetic variant on the trait</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \theta_0 \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \theta_0 \)</span></p></td>
 <td><p>Prior mean</p></td>
 <td><p>Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \theta_1 \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \theta_1 \)</span></p></td>
 <td><p>Posterior mean</p></td>
 <td><p>Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_0^2 \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \sigma_0^2 \)</span></p></td>
 <td><p>Variance of the normal distribution (known)</p></td>
 <td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \sigma_1^2 \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_1^2 \)</span></p></td>
 <td><p>Posterior variance</p></td>
 <td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> after observing data</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \tau_0 \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_0 \)</span></p></td>
 <td><p>Prior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_0^2}\)</span>)</p></td>
 <td><p>Inverse of prior variance</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_1 \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \tau_1 \)</span></p></td>
 <td><p>Posterior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_1^2}\)</span>)</p></td>
 <td><p>Inverse of posterior variance</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \Sigma \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \Sigma \)</span></p></td>
 <td><p>Variance-covariance matrix</p></td>
 <td><p>variance-covariance matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \Omega \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \Omega \)</span></p></td>
 <td><p>Precision matrix</p></td>
 <td><p>Precision matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( n \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( n \)</span></p></td>
 <td><p>Number of samples</p></td>
 <td><p>Number of individuals in the dataset</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( L(M) \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( L(M) \)</span></p></td>
 <td><p>Likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
 <td><p>Probability of observing the data under model <span class="math notranslate nohighlight">\(M\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( l(M) \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( l(M) \)</span></p></td>
 <td><p>Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
 <td><p>Log-transformed likelihood for numerical stability</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="concepts-in-statistical-genetics-and-related-topics">
+<h1>Concepts in statistical genetics and related topics<a class="headerlink" href="#concepts-in-statistical-genetics-and-related-topics" title="Link to this heading">#</a></h1>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Concept</p></th>
@@ -876,6 +881,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Notation Table</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-in-statistical-genetics-and-related-topics">Concepts in statistical genetics and related topics</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

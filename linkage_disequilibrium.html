@@ -170,6 +170,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -671,6 +672,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Then we scale the genotype matrix so that each <strong>column (variant)</strong> has mean 0 and variance 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
@@ -700,6 +702,7 @@ document.write(`
 </table>
 </div></div>
 </div>
+<p>We use the <code class="docutils literal notranslate"><span class="pre">cor</span></code> function in R to calculate the correlation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -721,6 +724,7 @@ document.write(`
 </table>
 </div></div>
 </div>
+<p>We also verify that the correlation matrix is identical to the covariance matrix:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cov</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>

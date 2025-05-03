@@ -170,6 +170,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -599,17 +600,14 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 </div>
 </div>
 </div>
+<p>The LD matrix is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The LD matrix is:\n&quot;</span><span class="p">)</span>
-<span class="n">R</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The LD matrix is:
-</pre></div>
-</div>
 <div class="output text_html"><table class="dataframe">
 <caption>A matrix: 3 x 3 of type dbl</caption>
 <thead>
@@ -625,65 +623,79 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the squared correlation matrix to represent pairwise variant correlations</span>
-<span class="c1"># R^2 provides the proportion of variance explained by each pair of variants</span>
-<span class="n">R_squared</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Element-wise square to get r^2 (squared correlation coefficients)</span>
-
-<span class="c1"># Get sample size and number of variants</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get sample size and number of variants</span>
 <span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w">  </span><span class="c1"># Number of individuals/samples</span>
 <span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w">  </span><span class="c1"># Number of genetic variants</span>
-
-<span class="c1"># Calculate raw LD scores:</span>
-<span class="c1"># 1. Sum squared correlations across each column</span>
-<span class="c1"># 2. Subtract the diagonal (variant&#39;s correlation with itself)</span>
-<span class="c1"># This gives the total genetic connectivity for each variant</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The original LD scores are:\n&quot;</span><span class="p">)</span>
-<span class="n">ld_scores_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">R_squared</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="n">R_squared</span><span class="p">)</span>
-<span class="n">ld_scores_raw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To calculate raw LD scores:</p>
+<ol class="arabic simple">
+<li><p>Sum squared correlations across each column</p></li>
+<li><p>Subtract the diagonal (variant’s correlation with itself)</p></li>
+</ol>
+<p>This gives the total genetic connectivity for each variant</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R_sq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="o">^</span><span class="m">2</span>
+<span class="n">ld_scores_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">R_sq</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="n">R_sq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The original LD scores are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t</span><span class="p">(</span><span class="n">ld_scores_raw</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The original LD scores are:
-</pre></div>
-</div>
-<div class="output text_html"><style>
-.dl-inline {width: auto; margin:0; padding: 0}
-.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
-.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
-.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
-</style><dl class=dl-inline><dt>Variant 1</dt><dd>0.53515625</dd><dt>Variant 2</dt><dd>0.973214285714286</dd><dt>Variant 3</dt><dd>1.07087053571429</dd></dl>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 1 x 3 of type dbl</caption>
+<thead>
+	<tr><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
+</thead>
+<tbody>
+	<tr><td>0.5351562</td><td>0.9732143</td><td>1.070871</td></tr>
+</tbody>
+</table>
 </div></div>
 </div>
+<p>We then adjust the LD scores:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># First calculate the adjusted R² values for each pair</span>
-<span class="n">R_squared_adj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R_squared</span><span class="w">  </span><span class="c1"># Create a copy to modify</span>
-
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R_squared_adj_mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R_sq</span>
 <span class="c1"># Apply the adjustment formula to each non-diagonal element</span>
 <span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="c1">#   Apply the adjustment formula: r²_adj = r² - (1-r²)/(N-2)</span>
-<span class="w">    </span><span class="n">R_squared_adj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R_squared</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">R_squared</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R_squared_adj_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R_sq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">R_sq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
-<span class="c1"># Calculate adjusted LD scores by summing the adjusted r² values</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The adjusted LD scores are:\n&quot;</span><span class="p">)</span>
-<span class="n">ld_scores_adjusted</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">R_squared_adj</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="n">R_squared_adj</span><span class="p">)</span>
-<span class="n">ld_scores_adjusted</span>
+<span class="n">ld_scores_adjusted</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">R_squared_adj_mat</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="n">R_squared_adj_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The adjusted LD scores are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t</span><span class="p">(</span><span class="n">ld_scores_adjusted</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The adjusted LD scores are:
-</pre></div>
-</div>
-<div class="output text_html"><style>
-.dl-inline {width: auto; margin:0; padding: 0}
-.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
-.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
-.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
-</style><dl class=dl-inline><dt>Variant 1</dt><dd>0.046875</dd><dt>Variant 2</dt><dd>0.630952380952381</dd><dt>Variant 3</dt><dd>0.761160714285714</dd></dl>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 1 x 3 of type dbl</caption>
+<thead>
+	<tr><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
+</thead>
+<tbody>
+	<tr><td>0.046875</td><td>0.6309524</td><td>0.7611607</td></tr>
+</tbody>
+</table>
 </div></div>
 </div>
 </section>

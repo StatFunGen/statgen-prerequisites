@@ -170,6 +170,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -592,7 +593,7 @@ document.write(`
 <li><p>Create the genotype and phenotype data for 5 individuals across 3 genetic variants and scale the matrix</p></li>
 <li><p>Assign disease status to each individual (case/control)</p></li>
 <li><p>Perform univariate logistic regression for each variant</p></li>
-<li><p>Calculatie key statistical measures: beta coefficients, odds ratios, standard errors, z-scores, p-values</p></li>
+<li><p>Calculate key statistical measures: beta coefficients, odds ratios, standard errors, z-scores, p-values and generate the summary statistics results</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -635,46 +636,51 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Now instead of the continuous trait like we did before (e.g., height), now we observe if an individual is a case (1) or a control (0):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed disease status for the 5 individuals (1: case, 0: control)</span>
-<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a data frame for analysis</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+
+<span class="c1"># Create a data frame for analysis</span>
 <span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
 <span class="w">  </span><span class="n">disease</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span>
 <span class="w">  </span><span class="n">variant1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span>
 <span class="w">  </span><span class="n">variant2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span>
 <span class="w">  </span><span class="n">variant3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span>
 <span class="p">)</span>
-
-<span class="c1"># Display the data</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Genotype data and disease status:&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Genotype data and disease status:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Genotype data and disease status:&quot;
-             disease   variant1   variant2   variant3
-Individual 1       0 -0.6708204  0.2390457  0.4472136
-Individual 2       1  1.5652476 -0.9561829 -0.6708204
-Individual 3       0  0.4472136  0.2390457 -0.6708204
-Individual 4       0 -0.6708204 -0.9561829 -0.6708204
-Individual 5       0 -0.6708204  1.4342743  1.5652476
-</pre></div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 5 x 4</caption>
+<thead>
+	<tr><th></th><th scope=col>disease</th><th scope=col>variant1</th><th scope=col>variant2</th><th scope=col>variant3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Individual 1</th><td>0</td><td>-0.6708204</td><td> 0.2390457</td><td> 0.4472136</td></tr>
+	<tr><th scope=row>Individual 2</th><td>1</td><td> 1.5652476</td><td>-0.9561829</td><td>-0.6708204</td></tr>
+	<tr><th scope=row>Individual 3</th><td>0</td><td> 0.4472136</td><td> 0.2390457</td><td>-0.6708204</td></tr>
+	<tr><th scope=row>Individual 4</th><td>1</td><td>-0.6708204</td><td>-0.9561829</td><td>-0.6708204</td></tr>
+	<tr><th scope=row>Individual 5</th><td>0</td><td>-0.6708204</td><td> 1.4342743</td><td> 1.5652476</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
-</div>
-</div>
+<p>Then we fit a logistic regression model for each variant using all individuals:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit logistic regression models for each variant</span>
-<span class="c1"># Univariate Logistic Regression Model</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Univariate Logistic Regression Model</span>
 <span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 <span class="n">odds_ratios</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 <span class="n">se_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
@@ -695,7 +701,6 @@ Individual 5       0 -0.6708204  1.4342743  1.5652476
 <span class="p">}</span>
 <span class="c1"># Create results table</span>
 <span class="n">logistic_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="n">BETA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">OR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">odds_ratios</span><span class="p">,</span><span class="w"> </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se_beta</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_score</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_value</span><span class="p">)</span>
-<span class="n">logistic_results</span>
 </pre></div>
 </div>
 </div>
@@ -704,10 +709,18 @@ Individual 5       0 -0.6708204  1.4342743  1.5652476
 &quot;glm.fit: fitted probabilities numerically 0 or 1 occurred&quot;
 Warning message:
 &quot;glm.fit: fitted probabilities numerically 0 or 1 occurred&quot;
-Warning message:
-&quot;glm.fit: fitted probabilities numerically 0 or 1 occurred&quot;
 </pre></div>
 </div>
+</div>
+</div>
+<p>The logistic results are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">logistic_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
 <caption>A data.frame: 3 x 6</caption>
 <thead>
@@ -715,9 +728,9 @@ Warning message:
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>Variant 1</td><td> 41.80748</td><td>1.434685e+18</td><td>93363.456</td><td> 0.0004477927</td><td>0.9996</td></tr>
-	<tr><td>Variant 2</td><td>-16.38677</td><td>7.643945e-08</td><td> 6425.664</td><td>-0.0025502059</td><td>0.9980</td></tr>
-	<tr><td>Variant 3</td><td>-16.53777</td><td>6.572597e-08</td><td> 7941.816</td><td>-0.0020823666</td><td>0.9983</td></tr>
+	<tr><td>Variant 1</td><td>  0.9826287</td><td>2.671470e+00</td><td>    1.145783</td><td> 0.8576046390</td><td>0.3911</td></tr>
+	<tr><td>Variant 2</td><td>-39.4255886</td><td>7.545437e-18</td><td>67380.071390</td><td>-0.0005851224</td><td>0.9995</td></tr>
+	<tr><td>Variant 3</td><td>-17.6886034</td><td>2.079396e-08</td><td> 7555.904101</td><td>-0.0023410307</td><td>0.9981</td></tr>
 </tbody>
 </table>
 </div></div>
