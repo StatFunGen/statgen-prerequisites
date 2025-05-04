@@ -1,24 +1,52 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="./">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Intuition &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -31,34 +59,488 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'unfinished_Bayesian_frequentist';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
   
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
   
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  </head><body>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-          <div class="body" role="main">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html">Minor Allele Frequency</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Variants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html">Linkage Disequilibrium</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html">Marginal and Joint Effects</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Covariates in Genetic Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">From One Study to Multiple Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis.html">Meta Analysis</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Inference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="likelihood.html">Likelihood</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html">Maximum Likelihood Estimation</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Factor</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="p_value_versus_Bayes_factor.html">P-value vs. Bayes Factor</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison and Averaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_averaging.html">Bayesian Model Averaging</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/unfinished_Bayesian_frequentist.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intuition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuition</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notations">Notations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-factor-bf">Bayes Factor (BF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-bayesian-analysis-over-frequentist-methods">Advantages of Bayesian Analysis Over Frequentist Methods</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist">Frequentist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-lrt-to-reject-the-hypothesis-p-value">From LRT to reject the hypothesis (<em>p-value</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mle">MLE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian">Bayesian</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-we-have-the-prior-of-the-model-and-it-is-informative">When we have the prior of the model and it is informative …</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-the-model-is-not-fully-specific">When the model is not fully specific</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="intuition">
-<h1>Intuition<a class="headerlink" href="#intuition" title="Link to this heading">¶</a></h1>
+<h1>Intuition<a class="headerlink" href="#intuition" title="Link to this heading">#</a></h1>
 <p>Bayesian vs frequentist inference</p>
 <p><img alt="figure" src="_images/8.svg" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="notations">
-<h1>Notations<a class="headerlink" href="#notations" title="Link to this heading">¶</a></h1>
+<h1>Notations<a class="headerlink" href="#notations" title="Link to this heading">#</a></h1>
 <section id="bayes-factor-bf">
-<h2>Bayes Factor (BF)<a class="headerlink" href="#bayes-factor-bf" title="Link to this heading">¶</a></h2>
+<h2>Bayes Factor (BF)<a class="headerlink" href="#bayes-factor-bf" title="Link to this heading">#</a></h2>
 <p>The <strong>Bayes Factor (BF)</strong> (sometimes denoted as <span class="math notranslate nohighlight">\(K\)</span>) is defined as the ratio of the marginal likelihoods of two models, taking into account the prior distributions over the models’ parameters. It is calculated as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -79,7 +561,7 @@ BF(M_2, M_1) = \frac{p(D|M_2)}{p(D|M_1)} = \frac{Pr(M_2|D)}{Pr(M_1|D)} \times \f
 </ul>
 </section>
 <section id="advantages-of-bayesian-analysis-over-frequentist-methods">
-<h2>Advantages of Bayesian Analysis Over Frequentist Methods<a class="headerlink" href="#advantages-of-bayesian-analysis-over-frequentist-methods" title="Link to this heading">¶</a></h2>
+<h2>Advantages of Bayesian Analysis Over Frequentist Methods<a class="headerlink" href="#advantages-of-bayesian-analysis-over-frequentist-methods" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Incorporation of Prior Knowledge</strong></p>
 <ul>
@@ -109,7 +591,7 @@ BF(M_2, M_1) = \frac{p(D|M_2)}{p(D|M_1)} = \frac{Pr(M_2|D)}{Pr(M_1|D)} \times \f
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
-<h1>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h1>
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
 <p>In example 6.1 and 6.2, we compare two model <span class="math notranslate nohighlight">\(M_1\)</span> (<span class="math notranslate nohighlight">\(\theta=0\)</span>) and <span class="math notranslate nohighlight">\(M_2\)</span> (<span class="math notranslate nohighlight">\(\theta=2\)</span>) and calculate the LRT.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -181,9 +663,9 @@ Likelihood Ratio Test Statistic (LRT): 17.89114
 </div>
 </div>
 <section id="frequentist">
-<h2>Frequentist<a class="headerlink" href="#frequentist" title="Link to this heading">¶</a></h2>
+<h2>Frequentist<a class="headerlink" href="#frequentist" title="Link to this heading">#</a></h2>
 <section id="from-lrt-to-reject-the-hypothesis-p-value">
-<h3>From LRT to reject the hypothesis (<em>p-value</em>)<a class="headerlink" href="#from-lrt-to-reject-the-hypothesis-p-value" title="Link to this heading">¶</a></h3>
+<h3>From LRT to reject the hypothesis (<em>p-value</em>)<a class="headerlink" href="#from-lrt-to-reject-the-hypothesis-p-value" title="Link to this heading">#</a></h3>
 <p>Generally what a frequentist do next is to <strong>perform the likelihood ratio statistics</strong>. The likelihood ratio statistic can be compared to the <strong>chi-square distribution with 1 degree of freedom</strong>. If the test statistic is large enough (i.e., exceeds the critical value from the chi-square distribution at a chosen significance level, say 0.05), then we reject <span class="math notranslate nohighlight">\(H_1\)</span> in favor of <span class="math notranslate nohighlight">\(H_2\)</span>, indicating that the genetic variant has a significant effect on height.</p>
 <blockquote>
 <div><p>Then one would like to address the question: <strong>what value of the LR should we treat as “convincing” evidence for one model vs another?</strong> For example, in statistics there are many situations where we want to compare models that are not equally plausible. Suppose that model <span class="math notranslate nohighlight">\(M_2\)</span> is much less plausible than <span class="math notranslate nohighlight">\(M_1\)</span>. Then we must surely demand stronger evidence from the data (larger LR) to be “convinced” that it arose from model <span class="math notranslate nohighlight">\(M_2\)</span> rather than <span class="math notranslate nohighlight">\(M_1\)</span>, than in contexts where <span class="math notranslate nohighlight">\(M_2\)</span> and <span class="math notranslate nohighlight">\(M_1\)</span> are equally plausible.</p>
@@ -217,7 +699,7 @@ Reject H0: The genetic variant has a significant effect on height.
 </div>
 </section>
 <section id="mle">
-<h3>MLE<a class="headerlink" href="#mle" title="Link to this heading">¶</a></h3>
+<h3>MLE<a class="headerlink" href="#mle" title="Link to this heading">#</a></h3>
 <p>In statistics, maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by maximizing a likelihood function so that, under the assumed statistical model, the observed data is most probable. The point in the parameter space that maximizes the likelihood function is called the <strong>maximum likelihood estimate</strong>.</p>
 <p>Now let’s assume that <span class="math notranslate nohighlight">\(\theta\)</span> actually follows some distribution and for each value of <span class="math notranslate nohighlight">\(\theta\)</span> we can calculate the corresponding likelihood <span class="math notranslate nohighlight">\(L(\theta)\)</span>. Then what is the value when <span class="math notranslate nohighlight">\(L(\theta)\)</span> reaches the maximum? The value of <span class="math notranslate nohighlight">\(\theta\)</span> that maximizes the likelihood function is referred to as the <strong>maximum likelihood estimate</strong>, and usually denoted <span class="math notranslate nohighlight">\(\hat{\theta}\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
@@ -284,7 +766,7 @@ LRT(M_2, M_1) := - 2 \log \left( \frac{L(M_1)}{L(M_2)} \right) = - 2 \left[ \log
 </section>
 </section>
 <section id="bayesian">
-<h2>Bayesian<a class="headerlink" href="#bayesian" title="Link to this heading">¶</a></h2>
+<h2>Bayesian<a class="headerlink" href="#bayesian" title="Link to this heading">#</a></h2>
 <p>Now let’s see how a Bayesian statistician would handle this question.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -301,7 +783,7 @@ Likelihood for Model 2: 0.01183428
 </div>
 </div>
 <section id="when-we-have-the-prior-of-the-model-and-it-is-informative">
-<h3>When we have the prior of the model and it is informative …<a class="headerlink" href="#when-we-have-the-prior-of-the-model-and-it-is-informative" title="Link to this heading">¶</a></h3>
+<h3>When we have the prior of the model and it is informative …<a class="headerlink" href="#when-we-have-the-prior-of-the-model-and-it-is-informative" title="Link to this heading">#</a></h3>
 <p>If we don’t know anything about the probability of <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span>, then it is generally assumed that they are equally possible:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -343,7 +825,7 @@ Likelihood for Model 2: 0.01183428
 </div>
 </section>
 <section id="when-the-model-is-not-fully-specific">
-<h3>When the model is not fully specific<a class="headerlink" href="#when-the-model-is-not-fully-specific" title="Link to this heading">¶</a></h3>
+<h3>When the model is not fully specific<a class="headerlink" href="#when-the-model-is-not-fully-specific" title="Link to this heading">#</a></h3>
 <p>Unlike a likelihood-ratio test, this Bayesian model comparison does not depend on any single set of parameters, as it integrates over all parameters in each model (with respect to the respective priors). An advantage of the use of Bayes factors is that it automatically, and quite naturally, includes a penalty for including too much model structure</p>
 <p>For example, if we want to compare <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M^{'}_2\)</span>,</p>
 <ul class="simple">
@@ -418,253 +900,104 @@ Likelihood for Model 2: 0.01183428
     </script>
     <script>kernelName = 'ir'</script>
 
-          </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="README.html">Project name not set</a></h1>
+                </article>
+              
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Notations.html"><strong>Notation Table</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Notations.html#concepts-in-statistical-genetics-and-related-topics">Concepts in statistical genetics and related topics</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html#supplementary">Supplementary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html">Minor Allele Frequency</a></li>
-<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html#example">Example</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Correlation Between Variants</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html">Linkage Disequilibrium</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html#example">Example</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html#example">Example</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Regression Models</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html#supplementary">Supplementary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html#supplementary">Supplementary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html#todo">TODO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html#supplementary">Supplementary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html#supplementary">Supplementary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html">Marginal and Joint Effects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html#example">Example</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Covariates in Genetic Studies</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="confounder.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="confounder.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="confounder.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="confounder.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collider.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collider.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collider.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collider.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mediator.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mediator.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mediator.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mediator.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mediator.html#supplementary">Supplementary</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">From One Study to Multiple Studies</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis.html">Meta Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis.html#supplementary">Supplementary</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Statistical Inference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="likelihood.html">Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood.html#supplementary-materials">Supplementary Materials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood.html#recommended-reading">Recommended Reading</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html">Maximum Likelihood Estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html#supplementary">Supplementary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html#supplementary-materials">Supplementary Materials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html#recommended-reading">Recommended Reading</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html#supplementary">Supplementary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html#supplementary-materials">Supplementary Materials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html#recommended-reading">Recommended Reading</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Bayes Factor</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p_value_versus_Bayes_factor.html">P-value vs. Bayes Factor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p_value_versus_Bayes_factor.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p_value_versus_Bayes_factor.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p_value_versus_Bayes_factor.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p_value_versus_Bayes_factor.html#example">Example</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html#supplementary">Supplementary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html#example">Example</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Model Comparison and Averaging</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html#example">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_averaging.html">Bayesian Model Averaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_averaging.html#graphical-summary">Graphical Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_averaging.html#key-formula">Key Formula</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_averaging.html#technical-details">Technical Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_averaging.html#example">Example</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="README.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
 </div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Intuition</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notations">Notations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-factor-bf">Bayes Factor (BF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-bayesian-analysis-over-frequentist-methods">Advantages of Bayesian Analysis Over Frequentist Methods</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist">Frequentist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-lrt-to-reject-the-hypothesis-p-value">From LRT to reject the hypothesis (<em>p-value</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mle">MLE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian">Bayesian</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-we-have-the-prior-of-the-model-and-it-is-informative">When we have the prior of the model and it is informative …</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-the-model-is-not-fully-specific">When the model is not fully specific</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
+  </nav></div>
 
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
 
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &#169;2025.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
-      
-      |
-      <a href="_sources/unfinished_Bayesian_frequentist.ipynb"
-          rel="nofollow">Page source</a>
-    </div>
-
+  </div>
+  
+  <div class="footer-item">
     
 
+  <p class="copyright">
     
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
