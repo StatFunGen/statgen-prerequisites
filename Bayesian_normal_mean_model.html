@@ -7,12 +7,13 @@
 
     <title>Bayesian Normal Mean Model &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/haiku.css?v=dfa0e015" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=def86cc0" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -31,29 +32,34 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Bayesian Multivariate Normal Mean Model" href="Bayesian_multivariate_normal_mean_model.html" />
     <link rel="prev" title="P-value vs. Bayes Factor" href="p_value_versus_Bayes_factor.html" /> 
   </head><body>
-      <div class="header" role="banner"><h1 class="heading"><a href="README.html">
-          <span>Statistical backgrounds for the Summer Program in Statistical Functional Genomics</span></a></h1>
-        <h2 class="heading"><span>Bayesian Normal Mean Model</span></h2>
-      </div>
-      <div class="topnav" role="navigation" aria-label="Top">
-      
-        <p>
-        «&#160;&#160;<a href="p_value_versus_Bayes_factor.html">P-value vs. Bayes Factor</a>
-        &#160;&#160;::&#160;&#160;
-        <a class="uplink" href="README.html">Contents</a>
-        &#160;&#160;::&#160;&#160;
-        <a href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a>&#160;&#160;»
-        </p>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Bayesian_multivariate_normal_mean_model.html" title="Bayesian Multivariate Normal Mean Model"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="p_value_versus_Bayes_factor.html" title="P-value vs. Bayes Factor"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="README.html">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bayesian Normal Mean Model</a></li> 
+      </ul>
+    </div>  
 
-      </div>
-      <div class="content" role="main">
-        
-        
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-normal-mean-model">
 <h1>Bayesian Normal Mean Model<a class="headerlink" href="#bayesian-normal-mean-model" title="Link to this heading">¶</a></h1>
 <p>The Bayesian normal mean model combines <strong>our prior belief</strong> about a normal distribution’s mean with <strong>observed data</strong>, resulting in a posterior mean that’s a precision-weighted average of the prior mean and sample mean.</p>
@@ -365,19 +371,87 @@ Y | \mu \sim \mathcal{N}(\mu, \sigma^2)
     </script>
     <script>kernelName = 'ir'</script>
 
+            <div class="clearer"></div>
+          </div>
+        </div>
       </div>
-      <div class="bottomnav" role="navigation" aria-label="Bottom">
-      
-        <p>
-        «&#160;&#160;<a href="p_value_versus_Bayes_factor.html">P-value vs. Bayes Factor</a>
-        &#160;&#160;::&#160;&#160;
-        <a class="uplink" href="README.html">Contents</a>
-        &#160;&#160;::&#160;&#160;
-        <a href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a>&#160;&#160;»
-        </p>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="README.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Bayesian Normal Mean Model</a></li>
+<li><a class="reference internal" href="#graphical-summary">Graphical Summary</a></li>
+<li><a class="reference internal" href="#key-formula">Key Formula</a></li>
+<li><a class="reference internal" href="#technical-details">Technical Details</a><ul>
+<li><a class="reference internal" href="#model-assumptions">Model Assumptions</a></li>
+<li><a class="reference internal" href="#prior-distribution">Prior Distribution</a></li>
+<li><a class="reference internal" href="#likelihood">Likelihood</a></li>
+<li><a class="reference internal" href="#posterior-distribution">Posterior Distribution</a></li>
+<li><a class="reference internal" href="#characteristics">Characteristics</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example">Example</a><ul>
+<li><a class="reference internal" href="#id1">Prior Distribution</a></li>
+<li><a class="reference internal" href="#observed-data-and-the-likelihood-function">Observed Data and the likelihood function</a></li>
+<li><a class="reference internal" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
+<li><a class="reference internal" href="#plot-the-prior-and-posterior-distribution">Plot the prior and posterior distribution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#supplementary">Supplementary</a><ul>
+<li><a class="reference internal" href="#explanation-of-results">Explanation of Results</a></li>
+</ul>
+</li>
+</ul>
 
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="p_value_versus_Bayes_factor.html"
+                          title="previous chapter">P-value vs. Bayes Factor</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Bayesian_multivariate_normal_mean_model.html"
+                          title="next chapter">Bayesian Multivariate Normal Mean Model</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Bayesian_normal_mean_model.ipynb"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
       </div>
-
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Bayesian_multivariate_normal_mean_model.html" title="Bayesian Multivariate Normal Mean Model"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="p_value_versus_Bayes_factor.html" title="P-value vs. Bayes Factor"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="README.html">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bayesian Normal Mean Model</a></li> 
+      </ul>
+    </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
