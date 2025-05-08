@@ -647,7 +647,7 @@ Specifically they show that, provided <span class="math notranslate nohighlight"
 <section id="hypothesis-testing-framework">
 <h3>Hypothesis Testing Framework<a class="headerlink" href="#hypothesis-testing-framework" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Null Hypothesis: The null hypothesis states that there is no association between the genetic variant and height (note that this is similar to the Model 1 we discussed in the <code class="docutils literal notranslate"><span class="pre">likelihood</span></code> notebook)</p></li>
+<li><p>Null Hypothesis: The null hypothesis states that there is no association between the genetic variant and height (note that this is similar to the Model 1 we discussed in the []<code class="docutils literal notranslate"><span class="pre">likelihood</span></code> notebook](<a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">https://gaow.github.io/statgen-prerequisites/likelihood.html</a>))</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[H_0: \beta = 0\]</div>
@@ -670,15 +670,15 @@ Specifically they show that, provided <span class="math notranslate nohighlight"
 <p>Under the null hypothesis, this t-statistic follows a t-distribution with <span class="math notranslate nohighlight">\(n-2\)</span> degrees of freedom, where <span class="math notranslate nohighlight">\(n\)</span> is the number of samples.</p>
 <p>The p-value is the probability of observing a test statistic as extreme as, or more extreme than, the one we actually observed, assuming the null hypothesis is true. Mathematically:</p>
 <div class="math notranslate nohighlight">
-\[p\text{-value} = P(|t| \geq |t_{obs}| \mid H_0 \text{ is true})\]</div>
+\[p\text{-value} = P(|t| \geq |t_{\text{obs}}| \mid H_0 \text{ is true})\]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(t_{obs}\)</span> is our observed t-statistic</p></li>
+<li><p><span class="math notranslate nohighlight">\(t_\text{obs}\)</span> is our observed t-statistic</p></li>
 <li><p><span class="math notranslate nohighlight">\(|t|\)</span> represents the absolute value of the t-statistic (for a two-sided test)</p></li>
 </ul>
 <p>For a two-sided test (which we’re using), the p-value is:</p>
 <div class="math notranslate nohighlight">
-\[p\text{-value} = 2 \times \min[P(t \leq t_{obs}), P(t \geq t_{obs})]\]</div>
+\[p\text{-value} = 2 \times \min[P(t \leq t_\text{obs}), P(t \geq t_\text{obs})]\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to calculate p-value for the null hypothesis of no effect (beta = 0)</span>
