@@ -6,6 +6,10 @@ parts:
   - caption: Notations and References
     chapters:
       - file: Notations
+      
+  - caption: Popular Topics and Related Notebooks
+    chapters:
+      - file: popular_topics
 
   - caption: Basic Concepts
     chapters:
