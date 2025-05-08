@@ -648,23 +648,29 @@ p(\mu \mid Y) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \mu)^2\right) \exp\l
 <li><p>The <strong>posterior</strong> is the updated belief about the parameter after seeing the data.</p>
 <ul>
 <li><p>the <strong>Posterior precision</strong> (<span class="math notranslate nohighlight">\(\tau_1\)</span>) is the sum of the Data precision (<span class="math notranslate nohighlight">\(\tau\)</span>) and the Prior precision (<span class="math notranslate nohighlight">\(\tau_0\)</span>). This makes sense: the more precise your data, and the more precise your prior information, the more precise your posterior information. Also, this means that the data always improves your posterior precision compared with the prior: noisy data (small <span class="math notranslate nohighlight">\(\tau\)</span>) improves it only a little, whereas precise data improves it a lot.</p></li>
-<li><p>If we rewrite the <strong>posterior mean</strong> as:
-$<span class="math notranslate nohighlight">\(
-\mu_1=w\sum_i^n x_i+(1−w)\mu_0
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>w=\tau/(\tau+\tau_0)<span class="math notranslate nohighlight">\(. Thus \)</span>\mu_1<span class="math notranslate nohighlight">\( is a weighted average of the sum of the data \)</span>x_i<span class="math notranslate nohighlight">\( and the prior mean \)</span>\mu_0<span class="math notranslate nohighlight">\(. And the weights depend on the relative precision of the data and the prior. If the data are precise compared with the prior (\)</span>\tau&gt;&gt;\tau_0$) then the weight w will be close to 1 and the posterior mean will be close to the data.</p></li>
+<li><p>If we rewrite the <strong>posterior mean</strong> as:</p></li>
 </ul>
 </li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mu_1=w\sum_i^n x_i+(1−w)\mu_0
+\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    where $w=\tau(\tau+\tau_0)$. Thus $\mu_1$ is a weighted average of the sum of the data $x_i$ and the prior mean $\mu_0$. And the weights depend on the relative precision of the data and the prior. If the data are precise compared with the prior ($\tau&gt;&gt;\tau_0$) then the weight w will be close to 1 and the posterior mean will be close to the data.
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>Model comparison in Bayesian inference is performed using Bayes factors.</p></li>
 </ul>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>We consider a scenario where we study the height (<span class="math notranslate nohighlight">\(Y\)</span>) of a group of individuals. We assume that height follows a univariate normal distribution within this genotype class:
-$<span class="math notranslate nohighlight">\(
+<p>We consider a scenario where we study the height (<span class="math notranslate nohighlight">\(Y\)</span>) of a group of individuals. We assume that height follows a univariate normal distribution within this genotype class:</p>
+<div class="math notranslate nohighlight">
+\[
 Y | \mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2)
-\)</span>$</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the unknown mean height, and <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the known variance within this genotype group. Our goal is to estimate <span class="math notranslate nohighlight">\(\mu\)</span> using Bayesian inference.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
