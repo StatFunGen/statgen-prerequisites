@@ -26,36 +26,37 @@ parts:
     chapters:
       - file: genetic_relationship_matrix
 
-  - caption: Regression Models
+  - caption: Fixed Effects Models
     chapters:
       - file: ordinary_least_squares
-      - file: summary_statistics
-      - file: odds_ratio
-      - file: linear_mixed_model
-      - file: proportion_of_variance_explained
-      - file: marginal_joint_effects
-  
-  - caption: Covariates in Genetic Studies
-    chapters:
       - file: confounder
       - file: collider
       - file: mediator
-  
-  - caption: From One Study to Multiple Studies
-    chapters:
-      - file: meta_analysis
+      - file: summary_statistics
+      - file: odds_ratio
+      - file: marginal_joint_effects
 
-  - caption: Statistical Inference
+  - caption: Random Effects Models
+    chapters:
+      - file: random_effect
+      - file: proportion_of_variance_explained
+      - file: linear_mixed_model
+  
+  - caption: Meta-analysis
+    chapters:
+      - file: meta_analysis_fixed_effect
+      - file: meta_analysis_random_effect
+
+  - caption: Likelihood
     chapters:
       - file: likelihood
       - file: maximum_likelihood_estimation
       - file: likelihood_ratio
       - file: likelihood_ratio_test
 
-  - caption: Bayes Factor
+  - caption: Bayesian Versus Frequentist
     chapters: 
       - file: Bayes_factor
-      - file: p_value_versus_Bayes_factor
 
   - caption: Bayes Models
     chapters:
@@ -63,7 +64,6 @@ parts:
         - file: Bayesian_multivariate_normal_mean_model
         - file: Bayesian_mixture_model
   
-  - caption: Model Comparison and Averaging
+  - caption: Model Comparison
     chapters:
         - file: Bayesian_model_comparison
-        - file: Bayesian_model_averaging
