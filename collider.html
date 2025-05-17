@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Collider &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+    <title>Collider [FIXME] &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
   
   
   
@@ -225,12 +225,14 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
 
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Collider</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Collider [FIXME]</a></li>
+
 
 
 
@@ -497,7 +499,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Collider</h1>
+    <h1>Collider [FIXME]</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -507,7 +509,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collider</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collider [FIXME]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
@@ -524,9 +527,22 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="collider">
-<h1>Collider<a class="headerlink" href="#collider" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="collider-fixme">
+<h1>Collider [FIXME]<a class="headerlink" href="#collider-fixme" title="Link to this heading">#</a></h1>
 <p>A collider is a variable that is <strong>influenced by two other variables of interest</strong>, creating a <strong>spurious</strong> association between them when we condition on (select or control for) the collider in our analysis.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="todo">
+<h1>TODO<a class="headerlink" href="#todo" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>change the example into the following one:</p></li>
+</ul>
+<p>Imagine we’re studying two genetic variants (Gene A and Gene B) that are located on different chromosomes and are therefore inherited independently. In reality, these genes have no biological relationship to each other.
+However, both Gene A and Gene B independently increase the risk of a particular disease (Disease X). Here’s the causal structure:</p>
+<p>Gene A → Disease X ← Gene B</p>
+<p>Disease X is the collider because it’s influenced by both Gene A and Gene B.</p>
+<p>Now, let’s say you conduct a study where you only look at people who have Disease X (you’re conditioning on the collider). Within this group, if you find someone who doesn’t have Gene A, they’re more likely to have Gene B (because something had to cause their disease). Similarly, if someone doesn’t have Gene B, they’re more likely to have Gene A.</p>
+<p>This creates an artificial negative correlation between Gene A and Gene B in your study population, even though these genes are actually independent in the general population.</p>
+<p>This can lead to false conclusions like “Gene A protects against Gene B” or vice versa, when in reality, they have no relationship with each other - they just both happen to cause the same disease.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -816,7 +832,8 @@ P(Y|X) \neq P(Y|X, C)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collider</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collider [FIXME]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
