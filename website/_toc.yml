@@ -50,7 +50,7 @@ parts:
   - caption: Likelihood
     chapters:
       - file: likelihood
-      # - file: maximum_likelihood_estimation
+      - file: maximum_likelihood_estimation
       - file: likelihood_ratio
       - file: likelihood_ratio_test
   
@@ -60,7 +60,7 @@ parts:
   
   - caption: Bayes Models
     chapters:
-        # - file: Bayesian_normal_mean_model
+        - file: Bayesian_normal_mean_model
         - file: Bayesian_multivariate_normal_mean_model
         - file: Bayesian_mixture_model
   
