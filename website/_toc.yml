@@ -6,11 +6,11 @@ parts:
   - caption: Notations and References
     chapters:
       - file: Notations
-
-  # - caption: Popular Topics and Related Notebooks
-  #   chapters:
-  #     - file: popular_topics
-
+  
+  - caption: Popular Topics and Related Notebooks
+    chapters:
+      - file: popular_topics
+  
   - caption: Basic Concepts
     chapters:
       - file: genotype_coding
@@ -25,7 +25,7 @@ parts:
   - caption: Correlation Between Individuals
     chapters:
       - file: genetic_relationship_matrix
-
+  
   - caption: Fixed Effects Models
     chapters:
       - file: ordinary_least_squares
@@ -35,29 +35,29 @@ parts:
       - file: summary_statistics
       - file: odds_ratio
       - file: marginal_joint_effects
-
+  
   - caption: Random Effects Models
     chapters:
       - file: random_effect
       - file: proportion_of_variance_explained
       - file: linear_mixed_model
-  
+    
   - caption: Meta-analysis
     chapters:
       - file: meta_analysis_fixed_effect
       - file: meta_analysis_random_effect
-
+  
   - caption: Likelihood
     chapters:
       - file: likelihood
       # - file: maximum_likelihood_estimation
       - file: likelihood_ratio
       - file: likelihood_ratio_test
-
+  
   - caption: Bayesian Versus Frequentist
     chapters: 
       - file: Bayes_factor
-
+  
   - caption: Bayes Models
     chapters:
         # - file: Bayesian_normal_mean_model
