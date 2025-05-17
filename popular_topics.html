@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comprehensive Statistical Genetics Topics Table &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'popular_topics';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Genotype Coding" href="genotype_coding.html" />
+    <link rel="prev" title="Notation" href="Notations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html">Notation</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comprehensive Statistical Genetics Topics Table</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html">Minor Allele Frequency</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Variants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html">Linkage Disequilibrium</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fixed Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html">Marginal and Joint Effects</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="random_effect.html">template</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Meta Analysis</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta Analysis</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Likelihood</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="likelihood.html">Likelihood</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/popular_topics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Comprehensive Statistical Genetics Topics Table</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="comprehensive-statistical-genetics-topics-table">
+<h1>Comprehensive Statistical Genetics Topics Table<a class="headerlink" href="#comprehensive-statistical-genetics-topics-table" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Topic</p></th>
+<th class="head"><p>Popular Methods</p></th>
+<th class="head"><p>Keywords</p></th>
+<th class="head"><p>Key Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linkage Analysis</p></td>
+<td><p>• Parametric LOD Score Analysis<br>• Non-parametric Affected Sib-Pair Analysis<br>• Variance Components Linkage Analysis</p></td>
+<td><p>Recombination Fraction, Genetic Distance, Multipoint Analysis, Identity-by-Descent (IBD), Haplotype Reconstruction, Phase Determination, Penetrance, Disease Models, Genetic Heterogeneity</p></td>
+<td><p>Maps disease genes by tracking co-inheritance of genetic markers with disease phenotypes through family pedigrees. Parametric methods require specifying inheritance models, while non-parametric approaches are model-free but less powerful. Statistical evidence quantified by LOD scores (&gt;3 considered significant).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genome-Wide Association Studies (GWAS)</p></td>
+<td><p>• Single-SNP Association Testing<br>• Linear Mixed Models (BOLT-LMM, GCTA-GREML)<br>• Set-Based Association Tests (SKAT, MAGMA)<br>• Multi-phenotype Association Methods</p></td>
+<td><p>Minor Allele Frequency, Hardy-Weinberg Equilibrium, Genotype Imputation, Principal Component Analysis, Genomic Control, False Discovery Rate, Quantile-Quantile Plots, Manhattan Plots, Lead SNPs, Independent Signals, Conditional Analysis, Meta-analysis</p></td>
+<td><p>Tests statistical associations between genetic variants (typically SNPs) and traits/diseases across large populations, controlling for population structure and multiple testing. Modern GWAS encompasses various approaches beyond simple SNP-trait associations, including gene-based tests and multi-trait approaches.</p></td>
+</tr>
+<tr class="row-even"><td><p>Heritability Estimation</p></td>
+<td><p>• Twin/Family Studies (ACE Models)<br>• Genome-Wide Complex Trait Analysis (GCTA-GREML)<br>• Linkage Disequilibrium Score Regression (LDSC)<br>• Haseman-Elston Regression<br>• Restricted Maximum Likelihood (REML)</p></td>
+<td><p>Narrow-sense vs. Broad-sense Heritability, Additive Genetic Variance, Dominance Variance, Epistasis, Shared Environment, SNP-based Heritability, Missing Heritability, Assortative Mating, Genetic Correlation</p></td>
+<td><p>Quantifies the proportion of phenotypic variance attributable to genetic factors. Estimates inform genetic architecture of traits, guide power calculations, and reveal shared genetic basis across traits through genetic correlations.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantitative Trait Locus (QTL) Mapping</p></td>
+<td><p>• Interval Mapping<br>• Composite Interval Mapping<br>• Multiple QTL Mapping (MQM)<br>• Bayesian Interval Mapping</p></td>
+<td><p>Expression QTLs (eQTLs), Protein QTLs (pQTLs), Splicing QTLs (sQTLs), Methylation QTLs (meQTLs), Local vs. Distant QTLs, Cis vs. Trans Effects, Pleiotropy, QTL Hotspots, Genetic Regulatory Networks</p></td>
+<td><p>Identifies genomic loci influencing quantitative trait variation, particularly molecular traits like gene expression or protein levels. Modern QTL studies integrate multiple molecular layers to reconstruct genetic regulatory networks and identify molecular mediators of disease associations.</p></td>
+</tr>
+<tr class="row-even"><td><p>Population Genetics</p></td>
+<td><p>• F-statistics (FST, FIS, FIT)<br>• Site Frequency Spectrum Analysis<br>• Coalescent Modeling<br>• Selection Scans (iHS, XP-EHH, Fay &amp; Wu’s H)<br>• Demographic Inference (∂a∂i, MSMC)</p></td>
+<td><p>Genetic Drift, Gene Flow, Natural Selection, Mutation Rate, Effective Population Size, Selective Sweeps, Balancing Selection, Background Selection, Population Bottlenecks, Founder Effects, Isolation-by-Distance</p></td>
+<td><p>Analyzes the distribution and changes in genetic variation within and between populations, inferring evolutionary forces and demographic history. Modern approaches integrate machine learning and large genomic datasets to reconstruct complex population histories and identify selection signatures.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genetic Risk Prediction</p></td>
+<td><p>• Polygenic Risk Scores (PRS)<br>• Bayesian Approaches (LDpred, PRS-CS)<br>• Machine Learning Methods (Random Forests, SVMs)<br>• Deep Learning Approaches</p></td>
+<td><p>Clumping and Thresholding, Cross-validation, AUC-ROC, Calibration, Net Reclassification Index, Variable Thresholding, Ancestry-specific PRS, Trans-ancestry Prediction, Risk Stratification</p></td>
+<td><p>Develops statistical tools to predict disease risk or trait values from genetic data, primarily using the combined effects of many variants. Methods differ in how they account for linkage disequilibrium, effect size distribution, and population differences in genetic architecture.</p></td>
+</tr>
+<tr class="row-even"><td><p>Identity-By-Descent (IBD) Analysis</p></td>
+<td><p>• Hidden Markov Models (GERMLINE, BEAGLE)<br>• Haplotype-based Methods (RELATE, IBDseq)<br>• IBD Segment Detection (KING, PLINK)<br>• IBD Mapping (HomozygosityMapper, GIBDLD)</p></td>
+<td><p>Runs of Homozygosity (ROH), Autozygosity, Haplotype Sharing, Segment Length Distribution, Detection Thresholds, Identity-by-State, Pedigree Reconstruction, Consanguinity, Demographic Inference</p></td>
+<td><p>Detects genome segments shared between individuals that were inherited from a common ancestor without recombination. IBD segments inform on relatedness, population history, and can be used for mapping recessive disease variants through homozygosity mapping.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fine-mapping</p></td>
+<td><p>• Bayesian Statistical Approaches (CAVIAR, FINEMAP, PAINTOR)<br>• Functional Annotation Integration (CAVIARBF, fGWAS)<br>• Trans-ethnic Fine-mapping<br>• Statistical Colocalization (COLOC, eCAVIAR)</p></td>
+<td><p>Credible Sets, Posterior Inclusion Probability, Functional Annotation Enrichment, Linkage Disequilibrium, Conditional Analysis, Molecular QTL Colocalization, Causal Variants</p></td>
+<td><p>Refines association signals to identify likely causal variants, integrating statistical evidence with functional genomic annotations. Fine-mapping is critical for translating GWAS hits into biological mechanisms by pinpointing specific causal variants among many correlated SNPs.</p></td>
+</tr>
+<tr class="row-even"><td><p>Genetic Imputation</p></td>
+<td><p>• Reference Panel-based Methods (IMPUTE, Minimac)<br>• Phasing Algorithms (SHAPEIT, Eagle)<br>• Machine Learning Approaches (BEAGLE)<br>• Low-coverage Sequencing Imputation (STITCH)</p></td>
+<td><p>Haplotype Phasing, Reference Panels, Imputation Quality Score (R²), Rare Variant Imputation, Population-specific Reference Panels, Custom Reference Creation, Post-imputation QC</p></td>
+<td><p>Statistically infers untyped genetic variants based on haplotype patterns from reference populations, increasing genomic coverage of genotyping studies. Modern imputation methods enable accurate inference of variants down to ~0.1% frequency using large, diverse reference panels.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Admixture Analysis</p></td>
+<td><p>• Global Ancestry Estimation (ADMIXTURE, STRUCTURE)<br>• Local Ancestry Inference (RFMix, LAMP-LD)<br>• Ancestry-specific PCA<br>• Admixture Dating (ALDER, MALDER)</p></td>
+<td><p>Ancestry Proportions, Population Substructure, Ancestry Informative Markers (AIMs), Deconvolution, Admixture Mapping, Genetic Ancestry, Chromosomal Ancestry Segments, Ancestry-specific LD</p></td>
+<td><p>Estimates the proportion of an individual’s genome derived from different ancestral populations and identifies chromosome segments of specific ancestral origin. Applications include controlling for population structure in association studies, studying migration history, and mapping ancestry-specific disease risk loci.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mendelian Randomization</p></td>
+<td><p>• Two-Sample MR<br>• Multivariable MR<br>• Pleiotropy-robust Methods (MR-Egger, Weighted Median)<br>• MR-PRESSO (MR Pleiotropy RESidual Sum and Outlier)</p></td>
+<td><p>Instrumental Variables, Genetic Instruments, Horizontal Pleiotropy, Vertical Pleiotropy, Weak Instrument Bias, F-statistic, MR-Base, Two-stage Least Squares, Causal Inference</p></td>
+<td><p>Uses genetic variants as instrumental variables to assess causal relationships between exposures and outcomes, controlling for confounding. MR exploits the random assortment of alleles during meiosis as a natural randomization process, analogous to randomized controlled trials.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RNA-Seq Analysis</p></td>
+<td><p>• Differential Expression Analysis (DESeq2, edgeR, limma-voom)<br>• Expression Quantitative Trait Loci (eQTL) Mapping<br>• Alternative Splicing Analysis (rMATS, MAJIQ)<br>• RNA Co-expression Network Analysis (WGCNA)</p></td>
+<td><p>Read Counts, Normalization Methods, Batch Effects, Dispersions, FDR Control, Transcript Assembly, Isoform Quantification, Splice Junction Analysis, RNA Editing</p></td>
+<td><p>Analyzes gene expression patterns through next-generation sequencing of RNA, identifying differentially expressed genes, alternatively spliced transcripts, and expression networks. Integration with genetic variation data reveals regulatory genetic architecture.</p></td>
+</tr>
+<tr class="row-even"><td><p>Methylation Analysis</p></td>
+<td><p>• Epigenome-Wide Association Studies (EWAS)<br>• Methylation QTL Analysis<br>• Bisulfite Sequencing Analysis<br>• Differentially Methylated Region (DMR) Detection</p></td>
+<td><p>CpG Islands, Beta Values, M-values, Methylation Arrays, Cell-type Heterogeneity Correction, Age Acceleration, Epigenetic Clocks, Imprinting, X-inactivation</p></td>
+<td><p>Studies patterns of DNA methylation across the genome, identifying epigenetic marks associated with diseases, environmental exposures, or genetic variation. Methylation serves as a potential biomarker and mediator between genetics, environment, and disease.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gene-Environment Interaction</p></td>
+<td><p>• Regression Models with Interaction Terms<br>• Case-only Designs<br>• Two-step Testing Approaches<br>• Bayesian Mixture Models</p></td>
+<td><p>Effect Modification, Statistical Power, Stratified Analysis, Environmental Exposure Assessment, Exposure Timing, Scale-dependent Interactions, GxE Heritability</p></td>
+<td><p>Investigates how environmental factors modify genetic effects on traits or diseases, helping explain variable penetrance. Methodological challenges include limited statistical power, exposure measurement error, and appropriate statistical modeling.</p></td>
+</tr>
+<tr class="row-even"><td><p>Pathway and Network Analysis</p></td>
+<td><p>• Gene Set Enrichment Analysis (GSEA)<br>• Over-representation Analysis (ORA)<br>• Network Medicine Approaches<br>• Protein-Protein Interaction Analysis</p></td>
+<td><p>Biological Pathways, Gene Ontology, Canonical Pathways, Network Modules, Disease Networks, Functional Enrichment, Network Topology, Key Driver Analysis</p></td>
+<td><p>Examines whether groups of functionally related genes show collective association with traits, providing biological context for genetic findings. Advanced methods integrate protein interaction networks, regulatory information, and tissue-specific data.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genetic Architecture Modeling</p></td>
+<td><p>• Polygenic Models (Infinitesimal Model)<br>• Omnigenic Model Testing<br>• Genetic Architecture Parameter Estimation<br>• Bayesian Non-parametric Models</p></td>
+<td><p>Polygenicity, Effect Size Distribution, Core Genes, Peripheral Genes, Pleiotropy, Genetic Correlation, Cross-trait Architecture, Selection Pressure</p></td>
+<td><p>Characterizes the distribution of genetic effect sizes, number of causal variants, and relationships between genetic architecture and evolutionary forces. Models range from highly polygenic to more sparse architectures with larger effect sizes.</p></td>
+</tr>
+<tr class="row-even"><td><p>Rare Variant Association Analysis</p></td>
+<td><p>• Burden Tests (CAST, WSS)<br>• Variance-component Tests (SKAT)<br>• Combined Tests (SKAT-O)<br>• Bayesian Multiple Regression (BMR)</p></td>
+<td><p>Collapsing Methods, Sliding Window, Functional Weighting, De Novo Mutations, Transmission Disequilibrium, Trio Sequencing, VEP, Variant Aggregation</p></td>
+<td><p>Tests for association between rare genetic variants (MAF&lt;1%) and phenotypes by aggregating variants within functional units like genes or regulatory elements. Methods differ in how they handle protective vs. risk variants and variant weighting schemes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Copy Number Variation (CNV) Analysis</p></td>
+<td><p>• Hidden Markov Models for CNV Calling<br>• Read-depth Analysis<br>• CNV-GWAS Methods<br>• CNV Burden Analysis</p></td>
+<td><p>Structural Variants, Deletion, Duplication, Insertion, Copy Number Polymorphisms, Array-CGH, SNP-array CNV Detection, Segmental Duplications</p></td>
+<td><p>Identifies and analyzes genomic regions with non-diploid copy number, which can have large phenotypic effects. CNVs contribute significantly to genomic diversity and disease risk, particularly for neurodevelopmental disorders.</p></td>
+</tr>
+<tr class="row-even"><td><p>Haplotype Analysis</p></td>
+<td><p>• Haplotype Phasing Algorithms (SHAPEIT, Eagle)<br>• Haplotype Association Testing<br>• Ancestral Haplotype Reconstruction<br>• Haplotype Blocks and Tagging</p></td>
+<td><p>Phase Determination, LD Blocks, Tag SNPs, Haplotype Diversity, Extended Haplotype Homozygosity, Recombination Hotspots, Diplotype Analysis</p></td>
+<td><p>Analyzes combinations of alleles inherited together on the same chromosome, capturing multi-SNP effects and evolutionary history. Haplotype-based analyses can increase power for detecting associations and identifying selection signatures.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pharmacogenomics</p></td>
+<td><p>• Genome-wide PGx Association Studies<br>• Drug Response QTL Mapping<br>• Gene-Drug Interaction Testing<br>• Polygenic Drug Response Prediction</p></td>
+<td><p>Adverse Drug Reactions, Drug Metabolism, Drug Transporters, Clinical Implementation, PharmGKB, Drug Dosing Algorithms, Drug Efficacy, CPIC Guidelines</p></td>
+<td><p>Studies genetic influences on drug response, metabolism, and adverse effects, aiming to optimize drug selection and dosing based on genetic profile. Clinical implementation involves translating research findings into actionable prescribing guidelines.</p></td>
+</tr>
+<tr class="row-even"><td><p>Single-cell Genomics Analysis</p></td>
+<td><p>• Single-cell RNA-seq Analysis (Seurat, Monocle)<br>• Single-cell eQTL Analysis<br>• Cell-type Deconvolution<br>• Trajectory Inference</p></td>
+<td><p>Cell Clusters, Marker Genes, Pseudotime, Cell Lineage, Droplet-based Methods, UMIs, Cell-type Specific Expression, Spatial Transcriptomics</p></td>
+<td><p>Analyzes genetic and genomic variation at single-cell resolution, revealing cell-type specific effects and developmental trajectories. This resolves cellular heterogeneity masked in bulk tissue analyses and identifies rare cell populations.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pleiotropy Analysis</p></td>
+<td><p>• Multi-trait GWAS Methods (MTAG, CPASSOC)<br>• Genetic Correlation Analysis<br>• Mendelian Randomization Network Analysis<br>• Multivariate Decomposition Methods</p></td>
+<td><p>Horizontal Pleiotropy, Vertical Pleiotropy, Cross-Phenotype Association, Shared Genetic Architecture, Biobank-scale Phenome Analysis, PheWAS, Cross-trait Colocalization</p></td>
+<td><p>Studies genetic variants affecting multiple traits, revealing shared biological pathways and genetic architecture. Methods distinguish between direct pleiotropy (one variant affecting multiple traits) and mediated pleiotropy (one trait affecting another).</p></td>
+</tr>
+<tr class="row-even"><td><p>Epistasis and Gene-Gene Interaction</p></td>
+<td><p>• Regression-based Interaction Tests<br>• Machine Learning Methods (Random Forests, MDR)<br>• Exhaustive Search Methods (BOOST, BiForce)<br>• Network-based Approaches</p></td>
+<td><p>Statistical Epistasis, Biological Epistasis, Pairwise Interactions, Higher-order Interactions, Dimensionality Reduction, Functional Epistasis, Genetic Background Effects</p></td>
+<td><p>Investigates non-additive genetic effects where the influence of one genetic variant depends on others. Epistasis contributes to missing heritability and can reveal biological pathway interactions, though statistical detection is computationally and statistically challenging.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Evolutionary Genomics</p></td>
+<td><p>• dN/dS Ratio Analysis<br>• Phylogenetic Analysis<br>• Ancestral Sequence Reconstruction<br>• Molecular Clock Analysis</p></td>
+<td><p>Natural Selection, Positive Selection, Purifying Selection, Molecular Evolution, Adaptive Evolution, Species Divergence, Conserved Elements, Accelerated Regions</p></td>
+<td><p>Analyzes genomic data across species to infer evolutionary history, selection pressures, and functional importance of genomic regions. Comparative genomics provides context for understanding human genetic variation and identifying functionally important regions.</p></td>
+</tr>
+<tr class="row-even"><td><p>Chromatin Accessibility and Structure Analysis</p></td>
+<td><p>• ATAC-seq Analysis<br>• Hi-C/Chromosome Conformation Analysis<br>• DNase-seq Footprinting<br>• ChromHMM State Analysis</p></td>
+<td><p>Open Chromatin, Chromatin States, Topologically Associated Domains (TADs), Enhancer-Promoter Interactions, Chromatin QTLs, 3D Genome Organization, Regulatory Elements</p></td>
+<td><p>Investigates three-dimensional genome organization and chromatin accessibility, mapping regulatory elements and their interactions. Integration with genetic variation data reveals functional mechanisms underlying GWAS associations through effects on gene regulation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mitochondrial Genetics</p></td>
+<td><p>• Mitochondrial Haplogroup Analysis<br>• Heteroplasmy Detection and Quantification<br>• Mitochondrial-Nuclear Interaction Analysis<br>• Maternal Lineage Tracing</p></td>
+<td><p>mtDNA, Heteroplasmy, Maternal Inheritance, Mitochondrial Diseases, Homoplasmy, Haplogroups, Threshold Effects, Mutation Load</p></td>
+<td><p>Analyzes genetic variation in the mitochondrial genome and its interaction with nuclear genes, relevant for maternal lineage tracing, population history, and mitochondrial diseases. Special methods account for heteroplasmy (mixed mitochondrial populations) and maternal inheritance.</p></td>
+</tr>
+<tr class="row-even"><td><p>Sex Chromosome Analysis</p></td>
+<td><p>• X-inactivation Analysis<br>• Sex-stratified Association Testing<br>• Y-chromosome Haplogroup Analysis<br>• Dosage Compensation Analysis</p></td>
+<td><p>X-inactivation, Pseudo-autosomal Regions, Y-chromosome Haplogroups, Dosage Compensation, Sex-biased Expression, Sex-specific Effects, Turner/Klinefelter Syndromes</p></td>
+<td><p>Applies specialized methods for analyzing genetic variation on sex chromosomes, accounting for their unique inheritance patterns, gene dosage, and regulatory mechanisms. Sex chromosomes require specific analytical approaches distinct from autosomes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Genetic Clustering and Dimensionality Reduction</p></td>
+<td><p>• Principal Component Analysis (PCA)<br>• t-SNE and UMAP for Genetic Data<br>• ADMIXTURE/STRUCTURE Analysis<br>• K-means Clustering of Genetic Data</p></td>
+<td><p>Population Structure, Dimensionality Reduction, Visualization, Genetic Similarity, Outlier Detection, Ancestry Components, Sample Relatedness, Batch Effects</p></td>
+<td><p>Applies statistical techniques to visualize and identify patterns in high-dimensional genetic data, particularly useful for detecting population structure, sample relatedness, and outliers in large-scale genetic studies.</p></td>
+</tr>
+<tr class="row-even"><td><p>Parent-of-Origin Effects</p></td>
+<td><p>• Imprinting Analysis<br>• Parent-of-Origin Association Testing<br>• Methylation-based Imprinting Detection<br>• Trio-based Analysis</p></td>
+<td><p>Genomic Imprinting, Maternal Effects, Paternal Effects, Uniparental Disomy, Transmission Asymmetry, Polar Overdominance, Epigenetic Regulation</p></td>
+<td><p>Investigates genetic effects that depend on whether variants are inherited from the mother or father, primarily due to genomic imprinting (epigenetic silencing of one parental allele). These effects are important in development and certain disorders.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Somatic Mutation Analysis</p></td>
+<td><p>• Tumor-Normal Comparison<br>• Variant Allele Frequency Analysis<br>• Cancer Driver Gene Identification<br>• Mutational Signature Analysis</p></td>
+<td><p>Clonal Evolution, Tumor Heterogeneity, Driver vs. Passenger Mutations, Mosaicism, Cancer Genomics, Mutational Processes, Somatic Mutation Rate</p></td>
+<td><p>Identifies and characterizes genetic changes that occur after conception in specific tissues, particularly important in cancer genomics. Methods distinguish between germline and somatic variants and identify patterns of mutation that reflect underlying mutational processes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Notations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Notation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="genotype_coding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Genotype Coding</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

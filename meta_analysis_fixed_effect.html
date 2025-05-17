@@ -1,0 +1,1279 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Meta Analysis &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'meta_analysis_fixed_effect';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Meta Analysis" href="meta_analysis_random_effect.html" />
+    <link rel="prev" title="Linear Mixed Model" href="linear_mixed_model.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Notations.html">Notation</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Comprehensive Statistical Genetics Topics Table</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html">Minor Allele Frequency</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Variants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html">Linkage Disequilibrium</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fixed Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html">Marginal and Joint Effects</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="random_effect.html">template</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Meta Analysis</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta Analysis</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Likelihood</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="likelihood.html">Likelihood</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/meta_analysis_fixed_effect.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Meta Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Meta Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-fixed-effects-models">Multiple Fixed-Effects Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-random-effects-models">Multiple Random-Effects Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-in-genetic-studies">Meta-Analysis in Genetic Studies</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-perform-gwas-for-study-1">Generate and Perform GWAS for Study 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-perform-gwas-for-study-2">Generate and Perform GWAS for Study 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Meta-Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-estimate-of-effect-size">Combined Estimate of Effect Size</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation-mle-of-the-summary-effect">Maximum Likelihood Estimation (MLE) of the Summary Effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneity-assessment">Heterogeneity Assessment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cochran-s-q-statistic">Cochran’s Q Statistic:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-2-statistic-percentage-of-variation-due-to-heterogeneity"><span class="math notranslate nohighlight">\(I^2\)</span> Statistic (Percentage of Variation Due to Heterogeneity)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="meta-analysis">
+<h1>Meta Analysis<a class="headerlink" href="#meta-analysis" title="Link to this heading">#</a></h1>
+<p>Meta-analysis provides a systematic approach to <strong>combine results from multiple studies</strong>, increasing statistical power and precision of effect estimates by leveraging the larger aggregate sample size.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="fig" src="_images/meta_analysis.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>In meta-analysis, the weighted mean effect size for a fixed-effects model is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\beta} = \frac{\sum_{i=1}^{k} w_i \hat{\beta}_i}{\sum_{i=1}^{k} w_i}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\beta}\)</span> is the combined effect estimate across all studies</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span> is the effect estimate from study <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w_i\)</span> is the weight assigned to study <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> is the number of studies</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="multiple-fixed-effects-models">
+<h2>Multiple Fixed-Effects Models<a class="headerlink" href="#multiple-fixed-effects-models" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Weights for Fixed-Effects
+$<span class="math notranslate nohighlight">\(w_i = \frac{1}{v_i}\)</span><span class="math notranslate nohighlight">\(
+  Where \)</span>v_i<span class="math notranslate nohighlight">\( is the within-study variance for study \)</span>i$</p></li>
+<li><p>Variance of the Combined Estimate
+$<span class="math notranslate nohighlight">\(Var(\hat{\beta}) = \frac{1}{\sum_{i=1}^{k} w_i}\)</span>$</p></li>
+<li><p>Standard Error of the Combined Estimate
+$<span class="math notranslate nohighlight">\(SE(\hat{\beta}) = \sqrt{Var(\hat{\beta})} = \sqrt{\frac{1}{\sum_{i=1}^{k} w_i}}\)</span>$</p></li>
+</ul>
+</section>
+<section id="multiple-random-effects-models">
+<h2>Multiple Random-Effects Models<a class="headerlink" href="#multiple-random-effects-models" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Weighted Mean Effect Size
+$<span class="math notranslate nohighlight">\(\hat{\beta}^* = \frac{\sum_{i=1}^{k} w_i^* \hat{\beta}_i}{\sum_{i=1}^{k} w_i^*}\)</span>$</p></li>
+<li><p>Weights for Random-Effects
+$<span class="math notranslate nohighlight">\(w_i^* = \frac{1}{v_i + \tau^2}\)</span>$</p>
+<p>Where <span class="math notranslate nohighlight">\(\tau^2\)</span> is the between-study variance</p>
+</li>
+</ul>
+</section>
+<section id="meta-analysis-in-genetic-studies">
+<h2>Meta-Analysis in Genetic Studies<a class="headerlink" href="#meta-analysis-in-genetic-studies" title="Link to this heading">#</a></h2>
+<p>In genetic studies, meta-analysis often combines results from genome-wide association studies (GWAS) across different cohorts with weights either from the sample size or the inverse variance:</p>
+<ul>
+<li><p>Sample Size Weighting
+$<span class="math notranslate nohighlight">\(w_i = \sqrt{N_i}\)</span>$</p>
+<p>Where <span class="math notranslate nohighlight">\(N_i\)</span> is the sample size of study <span class="math notranslate nohighlight">\(i\)</span></p>
+</li>
+<li><p>Inverse Variance Weighting
+$<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2}\)</span>$</p>
+<p>Where <span class="math notranslate nohighlight">\(SE(\hat{\beta}_i)\)</span> is the standard error of the effect size estimate in study <span class="math notranslate nohighlight">\(i\)</span></p>
+</li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>This example demonstrates a meta-analysis of genetic variants across two European cohorts. We’ll analyze 3 genetic variants (SNPs) that have been genotyped in both cohorts and combine their effects using fixed-effects meta-analysis.</p>
+<p>We first generate the summary statistics for 3 variants from two independent European cohorts with different sample sizes (N=8000 and N=5500), and assuming that they are from the same genetic ancestry so they can be meta-analyzed.</p>
+<p>Then we perform fixed-effects meta-analysis combining results using:</p>
+<ul class="simple">
+<li><p>Sample size weighting (weight proportional to <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{N}}\)</span>)</p></li>
+<li><p>Inverse variance weighting (weight = <span class="math notranslate nohighlight">\(\frac{1}{\text{SE}^2}\)</span>)</p></li>
+</ul>
+<p>Lastly we plot the effect size and p-values for each variant and compare the results from separate cohorts and meta-analysis results. We also compare the variance based on the sample size and inverse variance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create summary statistics for two European cohorts</span>
+<span class="c1"># Cohort 1: European ancestry (N=8000)</span>
+<span class="n">cohort1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;rs1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rs2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rs3&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.18</span><span class="p">,</span><span class="w"> </span><span class="m">-0.09</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">),</span><span class="w">       </span><span class="c1"># Effect sizes</span>
+<span class="w">  </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.035</span><span class="p">,</span><span class="w"> </span><span class="m">0.028</span><span class="p">,</span><span class="w"> </span><span class="m">0.055</span><span class="p">),</span><span class="w">       </span><span class="c1"># Standard errors</span>
+<span class="w">  </span><span class="n">p_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2.5e-7</span><span class="p">,</span><span class="w"> </span><span class="m">1.3e-3</span><span class="p">,</span><span class="w"> </span><span class="m">5.4e-6</span><span class="p">),</span><span class="w"> </span><span class="c1"># P-values</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">8000</span><span class="p">,</span><span class="w"> </span><span class="m">8000</span><span class="p">,</span><span class="w"> </span><span class="m">8000</span><span class="p">)</span><span class="w">            </span><span class="c1"># Sample size</span>
+<span class="p">)</span>
+
+<span class="c1"># Cohort 2: European ancestry (N=5500)</span>
+<span class="n">cohort2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;rs1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rs2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rs3&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="m">-0.03</span><span class="p">,</span><span class="w"> </span><span class="m">0.29</span><span class="p">),</span><span class="w">       </span><span class="c1"># Effect sizes</span>
+<span class="w">  </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.042</span><span class="p">,</span><span class="w"> </span><span class="m">0.033</span><span class="p">,</span><span class="w"> </span><span class="m">0.063</span><span class="p">),</span><span class="w">       </span><span class="c1"># Standard errors</span>
+<span class="w">  </span><span class="n">p_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3.6e-4</span><span class="p">,</span><span class="w"> </span><span class="m">4.4e-1</span><span class="p">,</span><span class="w"> </span><span class="m">4.2e-6</span><span class="p">),</span><span class="w"> </span><span class="c1"># P-values</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5500</span><span class="p">,</span><span class="w"> </span><span class="m">5500</span><span class="p">,</span><span class="w"> </span><span class="m">5500</span><span class="p">)</span><span class="w">            </span><span class="c1"># Sample size</span>
+<span class="p">)</span>
+
+<span class="c1"># Display the summary statistics</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Cohort 1 (European, N=8000):&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">cohort1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Cohort 2 (European, N=5500):&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">cohort2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Cohort 1 (European, N=8000):&quot;
+  variant  beta    se p_value    n
+1     rs1  0.18 0.035 2.5e-07 8000
+2     rs2 -0.09 0.028 1.3e-03 8000
+3     rs3  0.25 0.055 5.4e-06 8000
+[1] &quot;Cohort 2 (European, N=5500):&quot;
+  variant  beta    se p_value    n
+1     rs1  0.15 0.042 3.6e-04 5500
+2     rs2 -0.03 0.033 4.4e-01 5500
+3     rs3  0.29 0.063 4.2e-06 5500
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define Function for sample size weighting</span>
+<span class="n">sample_size_meta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">n1</span><span class="p">,</span><span class="w"> </span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">n2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Calculate weights proportional to sample size</span>
+<span class="w">  </span><span class="n">w1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">n1</span>
+<span class="w">  </span><span class="n">w2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">n2</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Combined effect using sample size weights</span>
+<span class="w">  </span><span class="n">beta_meta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate the weight ratio</span>
+<span class="w">  </span><span class="n">weight_ratio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">w2</span><span class="o">/</span><span class="n">w1</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Return results</span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span>
+<span class="w">    </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_meta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">w1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">w2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">weight_ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight_ratio</span>
+<span class="w">  </span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Define Function for inverse variance weighting</span>
+<span class="n">inverse_variance_meta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">se1</span><span class="p">,</span><span class="w"> </span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">se2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Calculate weights as inverse of variance</span>
+<span class="w">  </span><span class="n">w1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">se1</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span><span class="n">w2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">se2</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Combined effect using inverse variance weights</span>
+<span class="w">  </span><span class="n">beta_meta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Standard error of combined estimate</span>
+<span class="w">  </span><span class="n">se_meta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="p">))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Z-score</span>
+<span class="w">  </span><span class="n">z_meta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta_meta</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">se_meta</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># P-value</span>
+<span class="w">  </span><span class="n">p_meta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pnorm</span><span class="p">(</span><span class="o">-</span><span class="nf">abs</span><span class="p">(</span><span class="n">z_meta</span><span class="p">))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate the weight ratio</span>
+<span class="w">  </span><span class="n">weight_ratio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">w2</span><span class="o">/</span><span class="n">w1</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Return results</span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span>
+<span class="w">    </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_meta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se_meta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_meta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_meta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">w1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">w2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">weight_ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight_ratio</span>
+<span class="w">  </span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform meta-analysis for each variant</span>
+<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort1</span><span class="o">$</span><span class="n">variant</span><span class="p">,</span>
+<span class="w">  </span><span class="n">beta1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort1</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span>
+<span class="w">  </span><span class="n">se1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort1</span><span class="o">$</span><span class="n">se</span><span class="p">,</span>
+<span class="w">  </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort1</span><span class="o">$</span><span class="n">p_value</span><span class="p">,</span>
+<span class="w">  </span><span class="n">n1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span>
+<span class="w">  </span><span class="n">beta2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort2</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span>
+<span class="w">  </span><span class="n">se2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort2</span><span class="o">$</span><span class="n">se</span><span class="p">,</span>
+<span class="w">  </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort2</span><span class="o">$</span><span class="n">p_value</span><span class="p">,</span>
+<span class="w">  </span><span class="n">n2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cohort2</span><span class="o">$</span><span class="n">n</span><span class="p">,</span>
+<span class="w">  </span><span class="n">beta_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">w1_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">w2_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">weight_ratio_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">beta_iv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">se_iv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">p_iv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">w1_iv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">w2_iv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">weight_ratio_iv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">results</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Sample size weighting</span>
+<span class="w">  </span><span class="n">ss_result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample_size_meta</span><span class="p">(</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">n1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">n2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Store sample size weighting results</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">beta_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ss_result</span><span class="o">$</span><span class="n">beta</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">w1_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ss_result</span><span class="o">$</span><span class="n">w1</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">w2_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ss_result</span><span class="o">$</span><span class="n">w2</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">weight_ratio_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ss_result</span><span class="o">$</span><span class="n">weight_ratio</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Inverse variance weighting</span>
+<span class="w">  </span><span class="n">iv_result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inverse_variance_meta</span><span class="p">(</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">se1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">se2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Store inverse variance weighting results</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">beta_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iv_result</span><span class="o">$</span><span class="n">beta</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">se_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iv_result</span><span class="o">$</span><span class="n">se</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">p_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iv_result</span><span class="o">$</span><span class="n">p</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">w1_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iv_result</span><span class="o">$</span><span class="n">w1</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">w2_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iv_result</span><span class="o">$</span><span class="n">w2</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">weight_ratio_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iv_result</span><span class="o">$</span><span class="n">weight_ratio</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 19</caption>
+<thead>
+	<tr><th scope=col>variant</th><th scope=col>beta1</th><th scope=col>se1</th><th scope=col>p1</th><th scope=col>n1</th><th scope=col>beta2</th><th scope=col>se2</th><th scope=col>p2</th><th scope=col>n2</th><th scope=col>beta_n</th><th scope=col>w1_n</th><th scope=col>w2_n</th><th scope=col>weight_ratio_n</th><th scope=col>beta_iv</th><th scope=col>se_iv</th><th scope=col>p_iv</th><th scope=col>w1_iv</th><th scope=col>w2_iv</th><th scope=col>weight_ratio_iv</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>rs1</td><td> 0.18</td><td>0.035</td><td>2.5e-07</td><td>8000</td><td> 0.15</td><td>0.042</td><td>3.6e-04</td><td>5500</td><td> 0.16777778</td><td>8000</td><td>5500</td><td>0.6875</td><td> 0.16770492</td><td>0.02688774</td><td>4.454007e-10</td><td> 816.3265</td><td>566.8934</td><td>0.6944444</td></tr>
+	<tr><td>rs2</td><td>-0.09</td><td>0.028</td><td>1.3e-03</td><td>8000</td><td>-0.03</td><td>0.033</td><td>4.4e-01</td><td>5500</td><td>-0.06555556</td><td>8000</td><td>5500</td><td>0.6875</td><td>-0.06488521</td><td>0.02135026</td><td>2.372990e-03</td><td>1275.5102</td><td>918.2736</td><td>0.7199265</td></tr>
+	<tr><td>rs3</td><td> 0.25</td><td>0.055</td><td>5.4e-06</td><td>8000</td><td> 0.29</td><td>0.063</td><td>4.2e-06</td><td>5500</td><td> 0.26629630</td><td>8000</td><td>5500</td><td>0.6875</td><td> 0.26730054</td><td>0.04143243</td><td>1.107624e-10</td><td> 330.5785</td><td>251.9526</td><td>0.7621567</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add visualization to compare individual cohort results with meta-analysis results</span>
+<span class="c1"># Set up the plotting area with multiple panels</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
+
+<span class="c1"># For each variant, create a forest plot</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">results</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">variant_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">variant</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Prepare data for plotting</span>
+<span class="w">  </span><span class="n">y_positions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">  </span><span class="c1"># Positions for Cohort 1, Cohort 2, Meta-analysis</span>
+<span class="w">  </span><span class="n">effect_sizes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">beta1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">beta2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">beta_iv</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="w">  </span><span class="n">lower_ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">se1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">se2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">se_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="n">upper_ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">se1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">se2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">results</span><span class="o">$</span><span class="n">beta_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">se_iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Set up empty plot with appropriate range</span>
+<span class="w">  </span><span class="n">x_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">range</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">lower_ci</span><span class="p">,</span><span class="w"> </span><span class="n">upper_ci</span><span class="p">))</span>
+<span class="w">  </span><span class="n">x_padding</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x_range</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x_range</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+<span class="w">  </span><span class="n">x_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x_range</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="o">-</span><span class="n">x_padding</span><span class="p">,</span><span class="w"> </span><span class="n">x_padding</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nf">plot</span><span class="p">(</span>
+<span class="w">    </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_range</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">3.5</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">yaxt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;n&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Effect Size (Beta)&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">variant_name</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Add horizontal reference line at x=0</span>
+<span class="w">  </span><span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Add the effect sizes and confidence intervals</span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># Point estimate</span>
+<span class="w">    </span><span class="nf">points</span><span class="p">(</span><span class="n">effect_sizes</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">y_positions</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">))</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Confidence interval</span>
+<span class="w">    </span><span class="nf">lines</span><span class="p">(</span>
+<span class="w">      </span><span class="nf">c</span><span class="p">(</span><span class="n">lower_ci</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">upper_ci</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">      </span><span class="nf">c</span><span class="p">(</span><span class="n">y_positions</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">y_positions</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">      </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Add y-axis labels</span>
+<span class="w">  </span><span class="nf">axis</span><span class="p">(</span>
+<span class="w">    </span><span class="m">2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_positions</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Cohort 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cohort 2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Meta-analysis&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">las</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Add legend for p-values at the bottom</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1"># Only for the first plot</span>
+<span class="w">    </span><span class="n">legend_text</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">      </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Cohort 1: p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">p1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span>
+<span class="w">      </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Cohort 2: p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">p2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span>
+<span class="w">      </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Meta: p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">p_iv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">legend_text</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">      </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">p1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span>
+<span class="w">      </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">p2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span>
+<span class="w">      </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">p_iv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nf">legend</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;bottomleft&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">legend_text</span><span class="p">,</span>
+<span class="w">    </span><span class="n">text.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;n&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Reset plotting parameters</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b366d8edf4227e7da989e90d565d3be02d39c761fa2dcf762472fc9ff34ea64f.png"><img alt="_images/b366d8edf4227e7da989e90d565d3be02d39c761fa2dcf762472fc9ff34ea64f.png" src="_images/b366d8edf4227e7da989e90d565d3be02d39c761fa2dcf762472fc9ff34ea64f.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a summary table to visualize weight ratios</span>
+<span class="nf">barplot</span><span class="p">(</span>
+<span class="w">  </span><span class="nf">rbind</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">weight_ratio_n</span><span class="p">,</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">weight_ratio_iv</span><span class="p">),</span>
+<span class="w">  </span><span class="n">beside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">names.arg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">variant</span><span class="p">,</span>
+<span class="w">  </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Weight Ratio (Cohort2/Cohort1)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Weight Ratio&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">weight_ratio_n</span><span class="p">,</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">weight_ratio_iv</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1.2</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Add a reference line at ratio = 1 (equal weights)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Add legend</span>
+<span class="nf">legend</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;topright&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Sample-size weighting&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Inverse-variance weighting&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;n&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Print a summary of the meta-analysis results</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nSummary of Meta-Analysis Results:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">results</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta_n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta_iv&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;p_iv&quot;</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Summary of Meta-Analysis Results:
+  variant      beta_n     beta_iv         p_iv
+1     rs1  0.16777778  0.16770492 4.454007e-10
+2     rs2 -0.06555556 -0.06488521 2.372990e-03
+3     rs3  0.26629630  0.26730054 1.107624e-10
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/4b4f5c532b412e945544a36a608c9c314fcb7f577677593d86f283d2f9064911.png"><img alt="_images/4b4f5c532b412e945544a36a608c9c314fcb7f577677593d86f283d2f9064911.png" src="_images/4b4f5c532b412e945544a36a608c9c314fcb7f577677593d86f283d2f9064911.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="generate-and-perform-gwas-for-study-1">
+<h2>Generate and Perform GWAS for Study 1<a class="headerlink" href="#generate-and-perform-gwas-for-study-1" title="Link to this heading">#</a></h2>
+<p>In this section, we generate the genotype matrix for Study 1, which consists of <strong>100 individuals and 3 variants (SNPs)</strong>. Each individual’s genotype is represented by values 0, 1, or 2. The matrix is then standardized, meaning each column (representing a variant) will have a mean of 0 and variance of 1. After that, we simulate the response variable and perform the GWAS analysis by <strong>running OLS regression for each SNP individually</strong>.</p>
+<p>Steps:</p>
+<ul class="simple">
+<li><p>Create a random genotype matrix for 100 individuals and 3 variants.</p></li>
+<li><p>Standardize the genotype matrix.</p></li>
+<li><p>Generate the response variable for 100 individuals.</p></li>
+<li><p>Perform OLS regression for each SNP to calculate the estimated effect sizes and standard errors.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ---- Study 1 (100 individuals) ----</span>
+<span class="n">N1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">  </span><span class="c1"># Number of individuals in study 1</span>
+<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w">     </span><span class="c1"># Number of SNPs (variants)</span>
+
+<span class="c1"># Create a random genotype matrix (0, 1, 2 values for each SNP)</span>
+<span class="n">X_raw1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N1</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span>
+
+<span class="c1"># Adding row and column names for Study 1</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">X_raw1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N1</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">X_raw1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="c1"># Standardize genotype matrix for Study 1</span>
+<span class="n">X1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">X_raw1</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Simulate phenotype with the true effect size on the causal SNP (SNP 2)</span>
+<span class="n">y1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">true_effect_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X1</span><span class="p">[,</span><span class="w"> </span><span class="n">true_causal_variant</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N1</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+
+<span class="c1"># Perform GWAS-style analysis for Study 1: Test each SNP independently using OLS</span>
+<span class="n">p_values1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">  </span><span class="c1"># Store p-values for Study 1</span>
+<span class="n">betas1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">     </span><span class="c1"># Store estimated effect sizes for Study 1</span>
+<span class="n">se1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">        </span><span class="c1"># Store standard errors for Study 1</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">SNP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X1</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w">  </span><span class="c1"># Extract genotype for SNP j</span>
+<span class="w">  </span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">y1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="p">)</span><span class="w">  </span><span class="c1"># OLS regression: Trait ~ SNP</span>
+<span class="w">  </span><span class="n">summary_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Store p-value, effect size (coefficient), and standard error</span>
+<span class="w">  </span><span class="n">p_values1</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">  </span><span class="c1"># p-value for SNP effect</span>
+<span class="w">  </span><span class="n">betas1</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">     </span><span class="c1"># Estimated beta coefficient</span>
+<span class="w">  </span><span class="n">se1</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w">        </span><span class="c1"># Standard error of beta</span>
+<span class="p">}</span>
+
+<span class="c1"># Create results table for Study 1</span>
+<span class="n">gwas_results1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X1</span><span class="p">),</span><span class="w"> </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betas1</span><span class="p">,</span><span class="w"> </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se1</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_values1</span><span class="p">)</span>
+<span class="n">gwas_results1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generate-and-perform-gwas-for-study-2">
+<h2>Generate and Perform GWAS for Study 2<a class="headerlink" href="#generate-and-perform-gwas-for-study-2" title="Link to this heading">#</a></h2>
+<p>In this section, we generate the genotype matrix for Study 2, which consists of <strong>500 individuals and 3 variants (SNPs)</strong>. Similar to Study 1, the genotype matrix is standardized. The response variable is also simulated, and we perform the GWAS analysis by running OLS regression for each SNP independently to obtain the effect sizes and standard errors.</p>
+<p>The steps are the same as Study 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ---- Study 2 (500 individuals) ----</span>
+<span class="n">N2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span><span class="w">  </span><span class="c1"># Number of individuals in study 2</span>
+
+<span class="c1"># Create a random genotype matrix (0, 1, 2 values for each SNP)</span>
+<span class="n">X_raw2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N2</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span>
+
+<span class="c1"># Adding row and column names for Study 2</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">X_raw2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N2</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">X_raw2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="c1"># Standardize genotype matrix for Study 2</span>
+<span class="n">X2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">X_raw2</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Simulate phenotype with the true effect size on the causal SNP (SNP 2)</span>
+<span class="n">y2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">true_effect_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X2</span><span class="p">[,</span><span class="w"> </span><span class="n">true_causal_variant</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N2</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+
+<span class="c1"># Perform GWAS-style analysis for Study 2: Test each SNP independently using OLS</span>
+<span class="n">p_values2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">  </span><span class="c1"># Store p-values for Study 2</span>
+<span class="n">betas2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">     </span><span class="c1"># Store estimated effect sizes for Study 2</span>
+<span class="n">se2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">        </span><span class="c1"># Store standard errors for Study 2</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">SNP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X2</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w">  </span><span class="c1"># Extract genotype for SNP j</span>
+<span class="w">  </span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">y2</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="p">)</span><span class="w">  </span><span class="c1"># OLS regression: Trait ~ SNP</span>
+<span class="w">  </span><span class="n">summary_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Store p-value, effect size (coefficient), and standard error</span>
+<span class="w">  </span><span class="n">p_values2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">  </span><span class="c1"># p-value for SNP effect</span>
+<span class="w">  </span><span class="n">betas2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">     </span><span class="c1"># Estimated beta coefficient</span>
+<span class="w">  </span><span class="n">se2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w">        </span><span class="c1"># Standard error of beta</span>
+<span class="p">}</span>
+
+<span class="c1"># Create results table for Study 2</span>
+<span class="n">gwas_results2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X2</span><span class="p">),</span><span class="w"> </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betas2</span><span class="p">,</span><span class="w"> </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se2</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_values2</span><span class="p">)</span>
+<span class="n">gwas_results2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Meta-Analysis<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>After performing the GWAS in both Study 1 and Study 2, we conduct a <strong>meta-analysis</strong> to combine the results from both studies and obtain a more robust estimate of the true effect size.</p>
+<p>The meta-analysis is performed using <strong>inverse variance weighting</strong>, where the effect size estimates from each study are weighted by the inverse of their squared standard errors. This ensures that studies with more precise estimates (smaller standard errors) contribute more to the combined estimate. The weighted average of the effect sizes from both studies is calculated, providing a summary effect size that incorporates data from both studies. This meta-analysis helps to obtain a more accurate and consistent estimate of the effect of each SNP on the trait across different sample sizes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ---- Meta-Analysis (Inverse Variance Weighting) ----</span>
+
+<span class="c1"># Calculate weights (inverse of variance)</span>
+<span class="n">w1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">se1</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Weights for Study 1</span>
+<span class="n">w2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">se2</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Weights for Study 2</span>
+
+<span class="c1"># Calculate combined effect size using inverse variance weighting</span>
+<span class="n">combined_betas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">betas1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">betas2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="p">)</span>
+
+<span class="c1"># Calculate variance of the combined effect size</span>
+<span class="n">combined_variance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="p">)</span>
+<span class="n">combined_se</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">combined_variance</span><span class="p">)</span>
+
+<span class="c1"># Calculate p-values for each study&#39;s effect size</span>
+<span class="n">p_value_study1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">pnorm</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">betas1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">se1</span><span class="p">)))</span><span class="w">  </span><span class="c1"># P-value for Study 1</span>
+<span class="n">p_value_study2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">pnorm</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">betas2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">se2</span><span class="p">)))</span><span class="w">  </span><span class="c1"># P-value for Study 2</span>
+
+<span class="c1"># Calculate p-value for the combined effect size</span>
+<span class="n">p_value_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">pnorm</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">combined_betas</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">combined_se</span><span class="p">)))</span>
+
+<span class="c1"># Combine the results</span>
+<span class="n">meta_analysis_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X1</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Beta_Study1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betas1</span><span class="p">,</span><span class="w"> </span><span class="n">SE_Study1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se1</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value_Study1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_value_study1</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Beta_Study2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betas2</span><span class="p">,</span><span class="w"> </span><span class="n">SE_Study2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se2</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value_Study2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_value_study2</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Combined_Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">combined_betas</span><span class="p">,</span><span class="w"> </span><span class="n">Combined_SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">combined_se</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Combined_P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_value_combined</span>
+<span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Meta-Analysis Results (Inverse Variance Weighting):&quot;</span><span class="p">)</span>
+<span class="n">meta_analysis_results</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The fixed effect model assumes that the true effect size of each variant is the same across all studies. For example, in Variant 2, the estimated effect sizes from both studies (0.4060 from Study 1 and 0.4289 from Study 2) are very similar, suggesting that the true effect size may be constant across studies. By using a fixed effect model, we can combine these estimates into a single, more precise effect size (0.4256 for Variant 2), taking into account the study precisions through inverse variance weighting.</p>
+<p>Meta-analysis is essential here because it allows us to combine results from multiple studies, adjusting for differences in sample sizes and precision. Study 2 has more individuals and therefore a more precise estimate of the effect size, so it contributes more to the combined estimate.</p>
+<p>The meta-analysis ensures that the combined effect size is not only a weighted average of the studies’ estimates but also accounts for the variability between studies, offering a more reliable and accurate estimate of the true effect size.</p>
+<blockquote>
+<div><p>slide 146 in Hailiang Huang’s slides</p>
+<p>slide 244-246 from GW</p>
+</div></blockquote>
+<p>When we move from one study to multiple studies (e.g., in a meta-analysis), you may want to test whether a particular SNP has the same effect across studies. This is where the idea of sharing a common effect size becomes relevant.</p>
+<p>In a meta-analysis of multiple studies, we often assume that the true effect size for each SNP is <strong>the same across all studies</strong> (but possibly with different observed effect sizes due to different sample sizes, populations, etc.). The meta-analysis combines results from multiple studies, and the fixed effect model in this context would assume that the SNP’s effect size is consistent across all the studies being analyzed.</p>
+<p><strong>[FIXME]</strong> should we introduce the concept of meta-analysis first before discussing about FEM and REM?</p>
+<hr class="docutils" />
+<p>In a fixed effect meta-analysis, we assume that the observed effect size <span class="math notranslate nohighlight">\(\hat{\beta}_k\)</span> from study <span class="math notranslate nohighlight">\(k\)</span> follows a normal distribution:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_k \sim N(\beta_j, s_k^2)
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta_j\)</span> is the <strong>true effect size</strong> for SNP <span class="math notranslate nohighlight">\(j\)</span>, assumed to be the same across all studies.</p></li>
+<li><p><span class="math notranslate nohighlight">\(s_k^2\)</span> is the <strong>variance</strong> of the observed effect size <span class="math notranslate nohighlight">\(\hat{\beta}_k\)</span> for study <span class="math notranslate nohighlight">\(k\)</span>, reflecting the precision of the estimate in study <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+</ul>
+</section>
+<section id="combined-estimate-of-effect-size">
+<h2>Combined Estimate of Effect Size<a class="headerlink" href="#combined-estimate-of-effect-size" title="Link to this heading">#</a></h2>
+<p>The goal of the meta-analysis is to estimate the true effect size <span class="math notranslate nohighlight">\(\beta_j\)</span> from the observed effect sizes <span class="math notranslate nohighlight">\(\hat{\beta}_k\)</span> across all studies. We do this by calculating a <strong>weighted average</strong> of the observed effect sizes, where the weights are proportional to the precision of each estimate (i.e., inversely proportional to the variance <span class="math notranslate nohighlight">\(s_k^2\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+   \hat{\beta}_j = \frac{\sum_{k=1}^{K} w_k \hat{\beta}_{k}}{\sum_{k=1}^{K} w_k}
+   \]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_k = \frac{1}{s_k^2}\)</span> is the weight for study <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+</ul>
+</section>
+<section id="maximum-likelihood-estimation-mle-of-the-summary-effect">
+<h2>Maximum Likelihood Estimation (MLE) of the Summary Effect<a class="headerlink" href="#maximum-likelihood-estimation-mle-of-the-summary-effect" title="Link to this heading">#</a></h2>
+<p>The MLE for the summary effect size <span class="math notranslate nohighlight">\(\beta_j\)</span> under the fixed effect model is equivalent to the <strong>inverse variance weighting</strong>. This is because we assume that the observed effect sizes <span class="math notranslate nohighlight">\(\hat{\beta}_k\)</span> are normally distributed with mean <span class="math notranslate nohighlight">\(\beta_j\)</span> and variance <span class="math notranslate nohighlight">\(s_k^2\)</span>. The likelihood function for the fixed effect model is maximized by weighting the observed effect sizes by the inverse of their variances:</p>
+<div class="math notranslate nohighlight">
+\[
+   \hat{\beta}_j = \frac{\sum_{k=1}^{K} \frac{\hat{\beta}_k}{s_k^2}}{\sum_{k=1}^{K} \frac{1}{s_k^2}}
+   \]</div>
+<p>This is the <strong>inverse variance weighting</strong> formula used to combine the effect sizes from different studies in a meta-analysis.</p>
+</section>
+<section id="heterogeneity-assessment">
+<h2>Heterogeneity Assessment<a class="headerlink" href="#heterogeneity-assessment" title="Link to this heading">#</a></h2>
+<p>Heterogeneity assessment is a crucial component of meta-analysis because it evaluates whether the observed effect sizes across different studies are more variable than would be expected by chance alone. This helps us understand if we’re truly measuring the same effect across studies or if there are underlying differences. Below are several ways to measure it.</p>
+<section id="cochran-s-q-statistic">
+<h3>Cochran’s Q Statistic:<a class="headerlink" href="#cochran-s-q-statistic" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[Q = \sum_{i=1}^{k} w_i(\hat{\beta}_i - \hat{\beta})^2\]</div>
+<p>This statistic follows a <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution with <span class="math notranslate nohighlight">\(k-1\)</span> degrees of freedom under the null hypothesis of homogeneity.</p>
+</section>
+<section id="i-2-statistic-percentage-of-variation-due-to-heterogeneity">
+<h3><span class="math notranslate nohighlight">\(I^2\)</span> Statistic (Percentage of Variation Due to Heterogeneity)<a class="headerlink" href="#i-2-statistic-percentage-of-variation-due-to-heterogeneity" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[I^2 = \max\left\{0, \frac{Q-(k-1)}{Q} \times 100\%\right\}\]</div>
+<ul class="simple">
+<li><p>Interpretation:</p>
+<ul>
+<li><p>0-25%: Might not be important</p></li>
+<li><p>25-50%: Moderate heterogeneity</p></li>
+<li><p>50-75%: Substantial heterogeneity</p></li>
+<li><p>75-100%: Considerable heterogeneity</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="linear_mixed_model.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Linear Mixed Model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="meta_analysis_random_effect.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Meta Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Meta Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-fixed-effects-models">Multiple Fixed-Effects Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-random-effects-models">Multiple Random-Effects Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-in-genetic-studies">Meta-Analysis in Genetic Studies</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-perform-gwas-for-study-1">Generate and Perform GWAS for Study 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-perform-gwas-for-study-2">Generate and Perform GWAS for Study 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Meta-Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-estimate-of-effect-size">Combined Estimate of Effect Size</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation-mle-of-the-summary-effect">Maximum Likelihood Estimation (MLE) of the Summary Effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneity-assessment">Heterogeneity Assessment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cochran-s-q-statistic">Cochran’s Q Statistic:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-2-statistic-percentage-of-variation-due-to-heterogeneity"><span class="math notranslate nohighlight">\(I^2\)</span> Statistic (Percentage of Variation Due to Heterogeneity)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

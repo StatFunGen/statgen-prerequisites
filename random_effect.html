@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Notations &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+    <title>template &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'unfinished_Bayesian_analysis';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'random_effect';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proportion of Variance Explained and Heritability" href="proportion_of_variance_explained.html" />
+    <link rel="prev" title="Marginal and Joint Effects" href="marginal_joint_effects.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +123,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -260,8 +258,8 @@
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="random_effect.html">template</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">template</a></li>
 
 
 
@@ -401,7 +399,7 @@
       
       
       
-      <li><a href="_sources/unfinished_Bayesian_analysis.ipynb" target="_blank"
+      <li><a href="_sources/random_effect.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -485,7 +483,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notations</h1>
+    <h1>template</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -495,8 +493,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">template</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuitional-description">Intuitional Description</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -507,81 +513,36 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notations">
-<h1>Notations<a class="headerlink" href="#notations" title="Link to this heading">#</a></h1>
-<section id="bayesian-inference">
-<h2>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Link to this heading">#</a></h2>
-<p>Bayesian inference is a method of statistical inference in which we update our beliefs about a parameter as new data becomes available. The key components are:</p>
-<ul class="simple">
-<li><p><strong>Prior</strong>: The initial belief or probability distribution about the parameter <span class="math notranslate nohighlight">\(\mu\)</span> before observing data.</p></li>
-<li><p><strong>Likelihood</strong>: The probability of observing the data given a particular value of the parameter <span class="math notranslate nohighlight">\(\mu\)</span>.</p></li>
-<li><p><strong>Posterior</strong>: The updated belief about the parameter <span class="math notranslate nohighlight">\(\mu\)</span> after incorporating the observed data.</p></li>
-</ul>
-<p>Bayes’ theorem provides the foundation for Bayesian inference:</p>
-<div class="math notranslate nohighlight">
-\[
-P(\mu|D) = \frac{P(D|\mu) P(\mu)}{P(D)}
-\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( P(\mu|D) \)</span> is the <strong>posterior</strong> distribution of the parameter <span class="math notranslate nohighlight">\( \mu \)</span> given the data <span class="math notranslate nohighlight">\( D \)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( P(D|\mu) \)</span> is the <strong>likelihood</strong> of the data given the parameter.</p></li>
-<li><p><span class="math notranslate nohighlight">\( P(\mu) \)</span> is the <strong>prior</strong> distribution of <span class="math notranslate nohighlight">\( \mu \)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( P(D) \)</span> is the <strong>marginal likelihood</strong>, which normalizes the posterior distribution.</p></li>
-</ul>
-<p>By ignoring the denominator (which does not depend on <span class="math notranslate nohighlight">\(\mu\)</span>), we can express this relationship as:</p>
-<div class="math notranslate nohighlight">
-\[
-P(\mu|D) \propto P(D|\mu) P(\mu)
-\]</div>
-<p><strong>(double click here for the version for multiple samples)</strong></p>
-<!-- ## Normal Mean Model
-
-Let’s now consider the normal mean model where we assume data points $z_1, z_2, \dots, z_n$ are drawn from a normal distribution with unknown mean $\mu$ and known variance $\sigma^2$:
-
-$$
-x_i \sim N(\mu, \sigma^2)
-$$
-
-In this case:
-
-1. **Prior**: The prior distribution for the mean $\mu$ is often assumed to be normal with mean $\mu_0$ and variance $\sigma_0^2$, and let's work with the precision $\tau=\frac{1}{\sigma^2}$ instead of the variance $\sigma^2$.
-
-$$
-P(\mu) = \frac{1}{\sqrt{2 \pi \sigma_0^2}} \exp\left(-\frac{(\mu - \mu_0)^2}{2 \sigma_0^2}\right)\\
-% \propto \exp\left(−0.5\tau_0\mu^2+\tau_0\mu_0\mu\right) \\
-\propto \exp\left(−0.5\tau_0(\mu-\mu_0)^2\right)
-$$
-
-In other words, the prior of $\mu \sim N(\mu_0, \frac{1}{\sigma_0^2})$ (i.e., $\sim N(\mu_0, \tau_0$).
-(Here the 0 subscript is being used to indicate that $\mu_0$, $\sigma_0$ are parameters in the prior.)
-
-
-2. **Likelihood**: The likelihood of observing the data given $\mu$ is:
-
-$$
-P(D|\mu) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left(-\frac{(x_i - \mu)^2}{2 \sigma^2}\right) \\
-\propto \prod_{i=1}^{n}\exp\left(-\frac{(x_i - \mu)^2}{2 \sigma^2}\right) \\
-% \propto \prod_{i=1}^{n}\exp\left(−0.5\tau x_i^2+\tau x_i\mu\right) \\
-\propto \prod_{i=1}^{n} \exp\left(−0.5 \tau (x_i - \mu)^2\right)
-$$
-
-3. **Posterior**: The posterior distribution of $\mu$ given the data $D = \{x_1, x_2, \dots, x_n\}$ combines the prior and likelihood using Bayes' theorem. The formula for the posterior is proportional to:
-
-$$
-P(\mu|D) \propto P(D|\mu) P(\mu) \\
-\propto \prod_{i=1}^{n} \exp\left(−0.5 \tau (x_i - \mu)^2\right) \times \exp\left(−0.5 \tau_0 (\mu - \mu_0)^2\right)\\
-\propto \exp\left[−0.5 \tau \sum_{i=1}^{n} (x_i - \mu)^2 − 0.5 \tau_0 (\mu - \mu_0)^2\right]\\
-\propto \exp\left[−0.5 (\tau + \tau_0) \mu^2 + \left( \sum_{i=1}^{n} x_i \tau + \mu_0 \tau_0 \right) \mu \right]
-$$
-
-From the result in “Preliminaries” above we see that
-$$
-\mu | X \sim N(\mu_1, \frac{1}{\tau_1})
-$$
-where:
-- $\tau_1 = \tau + \tau_0$ is the posterior precision (i.e., $\sigma_1^2 = \frac{1}{\frac{1}{\sigma_1^2} + \frac{n}{\sigma^2}}$ is the posterior variance.)
-- $\mu_1 = \frac{\sum_{i=1}^{n} x_i \tau + \mu_0 \tau_0}{\tau + \tau_0}$ is the posterior mean. --></section>
+  <section class="tex2jax_ignore mathjax_ignore" id="template">
+<h1>template<a class="headerlink" href="#template" title="Link to this heading">#</a></h1>
+<section id="intuitional-description">
+<h2>Intuitional Description<a class="headerlink" href="#intuitional-description" title="Link to this heading">#</a></h2>
+<p>Genotype coding converts DNA nucleotide pairs into numerical values for statistical analysis, with the additive model being particularly valuable because genetic effects often accumulate proportionally with each additional copy of a variant.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="fig" src="cartoons/fig.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>key formula sentence</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<p>techinical details here</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>Let’s illustrate how we encode genotypes using different models and standardize them. We’ll start with the raw allele counts and demonstrate the process step by step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -593,16 +554,16 @@ where:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "r"
         },
         kernelOptions: {
-            name: "python3",
+            name: "ir",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ir'</script>
 
                 </article>
               
@@ -614,6 +575,24 @@ where:
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="marginal_joint_effects.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Marginal and Joint Effects</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="proportion_of_variance_explained.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proportion of Variance Explained and Heritability</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -630,8 +609,16 @@ where:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">template</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuitional-description">Intuitional Description</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
