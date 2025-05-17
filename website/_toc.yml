@@ -32,14 +32,17 @@ parts:
       - file: confounder
       - file: collider
       - file: mediator
-      - file: summary_statistics
       - file: odds_ratio
       - file: marginal_joint_effects
+      - file: summary_statistics
   
   - caption: Random Effects Models
     chapters:
       - file: random_effect
       - file: proportion_of_variance_explained
+
+  - caption: Linear Mixed Model
+    chapters:
       - file: linear_mixed_model
     
   - caption: Meta-analysis
