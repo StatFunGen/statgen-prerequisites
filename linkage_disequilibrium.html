@@ -203,6 +203,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
 
 
@@ -219,8 +220,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fixed Effects Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares</a></li>
 
 
 
@@ -231,8 +231,7 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
 
 
 
@@ -254,9 +253,7 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics [FIXME]</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics</a></li>
 
 
 
@@ -265,14 +262,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect [FIXME]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
 
 
 
 
-
-<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
 
 
 
@@ -281,8 +276,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
 
 
 
@@ -290,15 +284,13 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis [FIXME]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis</a></li>
 
 
 
 
 
-
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Random Effects Meta-Analysis [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Random Effects Meta-Analysis</a></li>
 
 
 
@@ -533,6 +525,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
 </ul>
 
             </nav>
@@ -551,7 +544,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="LD" src="_images/linkage_disequilibrium.svg" /></p>
+<p><img alt="LD" src="_images/Slide4.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
@@ -768,6 +761,46 @@ document.write(`
 </div></div>
 </div>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load required library</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">corrplot</span><span class="p">)</span>
+
+<span class="c1"># Create correlation heatmap with reversed order</span>
+<span class="nf">corrplot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;color&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">))(</span><span class="m">200</span><span class="p">),</span>
+<span class="w">         </span><span class="n">addCoef.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Change coefficient color to white</span>
+<span class="w">         </span><span class="n">number.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w">       </span><span class="c1"># Make font bigger (default is 1)</span>
+<span class="w">         </span><span class="n">number.digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">      </span><span class="c1"># Keep 3 digits</span>
+<span class="w">         </span><span class="n">tl.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w">       </span><span class="c1"># Text label color</span>
+<span class="w">         </span><span class="n">tl.srt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w">             </span><span class="c1"># No angle (horizontal text)</span>
+<span class="w">         </span><span class="n">tl.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w">           </span><span class="c1"># Make variable labels larger</span>
+<span class="w">         </span><span class="n">tl.offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">        </span><span class="c1"># Move top labels further up</span>
+<span class="w">         </span><span class="n">is.corr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">         </span><span class="c1"># Set to TRUE for correlation matrix</span>
+<span class="w">         </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;original&quot;</span><span class="p">,</span><span class="w">     </span><span class="c1"># Keep original order</span>
+<span class="w">         </span><span class="n">cl.pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">,</span><span class="w">           </span><span class="c1"># Position color legend on right</span>
+<span class="w">         </span><span class="n">cl.ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w">         </span><span class="c1"># Make legend wider</span>
+<span class="w">         </span><span class="n">cl.offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w">        </span><span class="c1"># Move legend further from the plot</span>
+<span class="w">         </span><span class="n">addgrid.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">)</span><span class="w">        </span><span class="c1"># Set grid line width</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1357042c024da7a010daf294443ea28bcf11f63a17c480ea8176947a35c7f152.png"><img alt="_images/1357042c024da7a010daf294443ea28bcf11f63a17c480ea8176947a35c7f152.png" src="_images/1357042c024da7a010daf294443ea28bcf11f63a17c480ea8176947a35c7f152.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -843,6 +876,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
 </ul>
 
   </nav></div>
