@@ -29,9 +29,6 @@ parts:
   - caption: Fixed Effects Models
     chapters:
       - file: ordinary_least_squares
-      - file: confounder
-      - file: collider
-      - file: mediator
       - file: odds_ratio
       - file: marginal_joint_effects
       - file: summary_statistics
@@ -45,6 +42,12 @@ parts:
     chapters:
       - file: linear_mixed_model
     
+  - caption: Covariates
+    chapters:
+      - file: confounder
+      - file: collider
+      - file: mediator
+      
   - caption: Meta-analysis
     chapters:
       - file: meta_analysis_fixed_effect
