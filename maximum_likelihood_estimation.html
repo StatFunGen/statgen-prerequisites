@@ -226,22 +226,6 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
 
 
@@ -282,6 +266,25 @@
 
 
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Covariates</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis</a></li>
@@ -311,6 +314,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
 
 
@@ -330,7 +334,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor [FIXME]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
 
 
 
@@ -339,8 +343,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
 
 
 
@@ -530,6 +533,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-the-mle-of-frequency-analytically">Obtain the MLE of frequency analytically</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -548,7 +555,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="fig" src="_images/maximum_likelihood_estimation.svg" /></p>
+<p><img alt="MLE" src="_images/Slide20.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
@@ -629,7 +636,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 × 3 of type chr</caption>
+<caption>A matrix: 5 x 3 of type chr</caption>
 <thead>
 	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
 </thead>
@@ -664,7 +671,8 @@ L(q)= 2q^3(1−q)^7
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a138eb3b90422e8dc6afda035694e4178b324dedcee5b2c6370624df54927e29.png" src="_images/a138eb3b90422e8dc6afda035694e4178b324dedcee5b2c6370624df54927e29.png" />
+<a class="reference internal image-reference" href="_images/a0db86271b610e8ef6ececc99e07a7e223e8d74b09146725df4cf7826d4448a9.png"><img alt="_images/a0db86271b610e8ef6ececc99e07a7e223e8d74b09146725df4cf7826d4448a9.png" src="_images/a0db86271b610e8ef6ececc99e07a7e223e8d74b09146725df4cf7826d4448a9.png" style="width: 420px; height: 420px;" />
+</a>
 </div>
 </div>
 <p>Since the value of <span class="math notranslate nohighlight">\(q\)</span> that maximizes the likelihood function is referred to as the “maximum likelihood estimate”, and usually denoted <span class="math notranslate nohighlight">\(\hat{q}\)</span>. That is
@@ -687,7 +695,8 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10976827333bebdbca4008974e44d277493a00cf19a6fb960cea19d9264ed674.png" src="_images/10976827333bebdbca4008974e44d277493a00cf19a6fb960cea19d9264ed674.png" />
+<a class="reference internal image-reference" href="_images/a56f88c172b9eb084081f52137fc30410f2defb7532af5a1408fe0058234b495.png"><img alt="_images/a56f88c172b9eb084081f52137fc30410f2defb7532af5a1408fe0058234b495.png" src="_images/a56f88c172b9eb084081f52137fc30410f2defb7532af5a1408fe0058234b495.png" style="width: 420px; height: 420px;" />
+</a>
 </div>
 </div>
 <p>Changes in the log-likelihood function are referred to as “log-likelihood units”. For example the difference in the support for <code class="docutils literal notranslate"><span class="pre">q=0.3</span></code> and <code class="docutils literal notranslate"><span class="pre">q=0.35</span></code> is <code class="docutils literal notranslate"><span class="pre">l(0.3)-l(0.35)</span> <span class="pre">=</span> <span class="pre">0.5630377</span></code> log-likelihood units. Again, remember that it is differences in <code class="docutils literal notranslate"><span class="pre">l</span></code> that matter, not the actual values.</p>
@@ -711,6 +720,67 @@ $<span class="math notranslate nohighlight">\(\frac{d^2\ln L(q)}{dq^2} = -\frac{
 <p>This is always negative for <span class="math notranslate nohighlight">\(q \in (0,1)\)</span>, confirming we have a maximum.</p>
 </li>
 </ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Graphical Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+
+<span class="c1"># Likelihood function and evaluation</span>
+<span class="n">q_vals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+<span class="n">likelihood_vals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">q_vals</span><span class="o">^</span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q_vals</span><span class="p">)</span><span class="o">^</span><span class="m">7</span>
+<span class="n">df_lik</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q_vals</span><span class="p">,</span><span class="w"> </span><span class="n">Likelihood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">likelihood_vals</span><span class="p">)</span>
+
+<span class="c1"># Find peak location and value</span>
+<span class="n">q_peak</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">q_vals</span><span class="p">[</span><span class="nf">which.max</span><span class="p">(</span><span class="n">likelihood_vals</span><span class="p">)]</span>
+<span class="n">max_lik</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">likelihood_vals</span><span class="p">)</span>
+
+<span class="c1"># Create the MLE plot with no axis text and larger axis titles</span>
+<span class="n">p_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">df_lik</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Likelihood</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;darkblue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;segment&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q_peak</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q_peak</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max_lik</span><span class="p">,</span>
+<span class="w">           </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q_peak</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max_lik</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># Larger peak point</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="n">Parameter</span><span class="o">~</span><span class="p">(</span><span class="n">theta</span><span class="p">))),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="n">Likelihood</span><span class="o">~</span><span class="nf">L</span><span class="p">(</span><span class="n">Data</span><span class="o">~</span><span class="s">&#39;|&#39;</span><span class="o">~</span><span class="n">theta</span><span class="p">))))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">),</span><span class="w"> </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expansion</span><span class="p">(</span><span class="n">mult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span><span class="w">  </span><span class="c1"># Slightly larger</span>
+<span class="w">    </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span><span class="w">  </span><span class="c1"># Slightly larger</span>
+<span class="w">    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dotted&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span>
+<span class="w">    </span><span class="n">plot.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1"># Display and save the plot</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p_mle</span><span class="p">)</span>
+
+<span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;./cartoons/MLE.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_mle</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/6d6a5876db7cf444d9bbdb17d1531b8ce4d500d66324506a9444d6c70c51cddc.png"><img alt="_images/6d6a5876db7cf444d9bbdb17d1531b8ce4d500d66324506a9444d6c70c51cddc.png" src="_images/6d6a5876db7cf444d9bbdb17d1531b8ce4d500d66324506a9444d6c70c51cddc.png" style="width: 600px; height: 360px;" />
+</a>
+</div>
+</div>
 </section>
 </section>
 
@@ -791,6 +861,10 @@ $<span class="math notranslate nohighlight">\(\frac{d^2\ln L(q)}{dq^2} = -\frac{
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-the-mle-for-frequency-from-the-figure">Obtain the MLE for frequency from the figure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-likelihood-function-to-log-likelihood-function">From likelihood function to log-likelihood function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-the-mle-of-frequency-analytically">Obtain the MLE of frequency analytically</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>

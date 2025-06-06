@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ordinary_least_squares';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Confounder" href="confounder.html" />
+    <link rel="next" title="Odds Ratio" href="odds_ratio.html" />
     <link rel="prev" title="Genetic Relationship Matrix" href="genetic_relationship_matrix.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -226,22 +226,6 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
 
 
@@ -282,6 +266,25 @@
 
 
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Covariates</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis</a></li>
@@ -311,6 +314,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
 
 
@@ -330,7 +334,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor [FIXME]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
 
 
 
@@ -339,8 +343,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
 
 
 
@@ -519,7 +522,18 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-for-a-specific-individual">Formula for a specific individual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-form-for-single-marker">Simplified Form for Single Marker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-properties">Statistical Properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unbiasedness">Unbiasedness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-estimator">Variance of the Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error">Standard Error</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-requirements">Sample Size Requirements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-requirements">Mathematical Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-guidelines">Practical Guidelines</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
@@ -565,18 +579,65 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="formula-for-a-specific-individual">
-<h2>Formula for a specific individual<a class="headerlink" href="#formula-for-a-specific-individual" title="Link to this heading">#</a></h2>
-<p>For individual <span class="math notranslate nohighlight">\(i\)</span>, this model can be written as:</p>
+<section id="simplified-form-for-single-marker">
+<h2>Simplified Form for Single Marker<a class="headerlink" href="#simplified-form-for-single-marker" title="Link to this heading">#</a></h2>
+<p>For a single marker regression, the OLS estimator simplifies to:
+$<span class="math notranslate nohighlight">\(
+\hat{\beta}_{\text{OLS}} = \frac{\sum_{i=1}^N x_i y_i}{\sum_{i=1}^N x_i^2}
+\)</span>$</p>
+<p>If genotypes are centered (mean = 0), this becomes the sample covariance divided by sample variance:
+$<span class="math notranslate nohighlight">\(
+\hat{\beta}_{\text{OLS}} = \frac{\text{Cov}(X, Y)}{\text{Var}(X)}
+\)</span>$</p>
+</section>
+<section id="statistical-properties">
+<h2>Statistical Properties<a class="headerlink" href="#statistical-properties" title="Link to this heading">#</a></h2>
+<section id="unbiasedness">
+<h3>Unbiasedness<a class="headerlink" href="#unbiasedness" title="Link to this heading">#</a></h3>
+<p>Under the assumption that <span class="math notranslate nohighlight">\(E[\boldsymbol{\epsilon}|\mathbf{X}] = 0\)</span>:
+$<span class="math notranslate nohighlight">\(
+E[\hat{\beta}_{\text{OLS}}] = \beta
+\)</span>$</p>
+</section>
+<section id="variance-of-the-estimator">
+<h3>Variance of the Estimator<a class="headerlink" href="#variance-of-the-estimator" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-y_i =  \mathbf{X}_{i,j} \beta + \epsilon_i, \quad \epsilon_i \sim N(0, \sigma^2)
+\text{Var}(\hat{\beta}_{\text{OLS}}) = \sigma^2 (\mathbf{X}^T\mathbf{X})^{-1} = \frac{\sigma^2}{\sum_{i=1}^N x_i^2}
 \]</div>
+</section>
+<section id="standard-error">
+<h3>Standard Error<a class="headerlink" href="#standard-error" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\text{SE}(\hat{\beta}_{\text{OLS}}) = \sqrt{\frac{\hat{\sigma}^2}{\sum_{i=1}^N x_i^2}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = \frac{\sum_{i=1}^N (y_i - \hat{y}_i)^2}{N-1}\)</span> is the residual variance estimator.</p>
+</section>
+</section>
+<section id="sample-size-requirements">
+<h2>Sample Size Requirements<a class="headerlink" href="#sample-size-requirements" title="Link to this heading">#</a></h2>
+<section id="mathematical-requirements">
+<h3>Mathematical Requirements<a class="headerlink" href="#mathematical-requirements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Absolute minimum</strong>: <span class="math notranslate nohighlight">\(N \geq\)</span> number of parameters to estimate</p></li>
+<li><p>For single marker regression: <span class="math notranslate nohighlight">\(N \geq 2\)</span> (need at least 2 points to fit a line)</p></li>
+<li><p>Matrix <span class="math notranslate nohighlight">\(\mathbf{X}^T\mathbf{X}\)</span> must be invertible</p></li>
+</ul>
+</section>
+<section id="practical-guidelines">
+<h3>Practical Guidelines<a class="headerlink" href="#practical-guidelines" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Reliable estimates</strong>: <span class="math notranslate nohighlight">\(N \geq 30\)</span> (general rule of thumb)</p></li>
+<li><p><strong>Stable variance estimates</strong>: <span class="math notranslate nohighlight">\(N \geq 20-30\)</span></p></li>
+<li><p>Larger <span class="math notranslate nohighlight">\(N\)</span> improves estimate quality and reduces uncertainty</p></li>
+</ul>
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>In this example we demonstrate a basic genetic association analysis for height across 5 individuals with 3 genetic variants.</p>
+<p>In this example we demonstrate a basic genetic association analysis for height across 5 individuals with 3 genetic variants. (<strong>Note that in practice N&lt;10 is too small for OLS estimates to give reliable results, here is just for illustration.</strong>)</p>
 <p>Following the similar framework of simulating the genotype data and standardization, we further assign the phenotype (height) to each individual and standardize the trait value as well. Then we perform single-marker linear regression for each genetic variant using both the <code class="docutils literal notranslate"><span class="pre">lm</span></code> function and the explicit formula we obtained abouve to estimate the OLS effect size.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -873,11 +934,11 @@ Variant 3  1.05424659
       </div>
     </a>
     <a class="right-next"
-       href="confounder.html"
+       href="odds_ratio.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Confounder</p>
+        <p class="prev-next-title">Odds Ratio</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -901,7 +962,18 @@ Variant 3  1.05424659
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-for-a-specific-individual">Formula for a specific individual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-form-for-single-marker">Simplified Form for Single Marker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-properties">Statistical Properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unbiasedness">Unbiasedness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-estimator">Variance of the Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error">Standard Error</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-requirements">Sample Size Requirements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-requirements">Mathematical Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-guidelines">Practical Guidelines</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>

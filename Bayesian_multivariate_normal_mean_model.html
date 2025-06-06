@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Bayesian Mixture Model [FIXME]" href="Bayesian_mixture_model.html" />
-    <link rel="prev" title="Bayesian Normal Mean Model [FIXME]" href="Bayesian_normal_mean_model.html" />
+    <link rel="prev" title="Bayesian Normal Mean Model" href="Bayesian_normal_mean_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -226,22 +226,6 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
 
 
@@ -282,6 +266,25 @@
 
 
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Covariates</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis</a></li>
@@ -311,6 +314,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
 
 
@@ -330,7 +334,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor [FIXME]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
 
 
 
@@ -339,8 +343,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
 
 
 
@@ -574,51 +577,34 @@ $<span class="math notranslate nohighlight">\( \beta_{2\times 1} \sim N(\begin{p
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="fig" src="_images/Bayesian_multivariate_normal_mean_model.svg" /></p>
-</section>
+<!-- ![fig](./cartoons/Bayesian_multivariate_normal_mean_model.svg) --></section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
 <p>The posterior distribution of the bivariate normal model is still multivariate normal, where the posterior precision matrix is the sum of the prior precision and the likelihood precision, and the posterior mean is a precision-weighted average of the prior mean and the observed data.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
-\mu_1 \\
-\mu_2
+\theta_1 \\
+\theta_2
 \end{pmatrix}
-\mid \mathbf{Y} \sim \mathcal{N}
+ \sim \mathcal{N}
 \left( 
 \begin{pmatrix}
-\mu_{1,1} \\
-\mu_{2,1}
+0 \\
+0
 \end{pmatrix},
 \begin{pmatrix}
-\sigma_{1,1}^2 &amp; \rho_1 \sigma_{1,1} \sigma_{2,1} \\
-\rho_1 \sigma_{1,1} \sigma_{2,1} &amp; \sigma_{2,1}^2
+\sigma_{1}^2 &amp; \rho \sigma_{1} \sigma_{2} \\
+\rho_1 \sigma_{1} \sigma_{2} &amp; \sigma_{2}^2
 \end{pmatrix}
 \right)
-\end{split}\]</div>
-<p>where:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix}
-\mu_{1,1} \\
-\mu_{2,1}
-\end{pmatrix}
-= 
-\boldsymbol{\Sigma} \left( \boldsymbol{\Sigma_0}^{-1} \boldsymbol{\mu_0} + \boldsymbol{\Sigma}^{-1} \mathbf{Y} \right)
-\end{split}\]</div>
-<p>and:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\boldsymbol{\Sigma_1}^{-1} = \boldsymbol{\Sigma_0}^{-1} + \boldsymbol{\Sigma}^{-1} \\
-\boldsymbol{\Omega_1} = \boldsymbol{\Omega_0} + \boldsymbol{\Omega}
 \end{split}\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="model-assumptions">
 <h2>Model Assumptions<a class="headerlink" href="#model-assumptions" title="Link to this heading">#</a></h2>
-<p>In the Bayesian normal mean model, we assume the variables <span class="math notranslate nohighlight">\(Y_1\)</span> and <span class="math notranslate nohighlight">\(Y_2\)</span> follow a bivariate normal model:</p>
+<p>We assume the variables <span class="math notranslate nohighlight">\(Y_1\)</span> and <span class="math notranslate nohighlight">\(Y_2\)</span> follow a bivariate normal model (assume <span class="math notranslate nohighlight">\(X=1\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \mathbf{Y} = 
@@ -1120,7 +1106,7 @@ Posterior precision matrix (Precision_1):
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bayesian Normal Mean Model [FIXME]</p>
+        <p class="prev-next-title">Bayesian Normal Mean Model</p>
       </div>
     </a>
     <a class="right-next"
