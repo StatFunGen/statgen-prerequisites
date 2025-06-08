@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Bayesian_multivariate_normal_mean_model';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bayesian Mixture Model [FIXME]" href="Bayesian_mixture_model.html" />
+    <link rel="next" title="Bayesian Mixture Model" href="Bayesian_mixture_model.html" />
     <link rel="prev" title="Bayesian Normal Mean Model" href="Bayesian_normal_mean_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -334,8 +334,13 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_rule.html">Bayes Rule</a></li>
 
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
 
 
 
@@ -355,7 +360,8 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model [FIXME]</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
 
@@ -364,7 +370,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison [FIXME]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
 
 
 
@@ -527,14 +533,22 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood">Likelihood</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution">Posterior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-data-and-likelihood-function">Observed Data and Likelihood Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-prior-and-posterior-distributions">Visualizing Prior and Posterior Distributions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-visualization-of-prior-and-posterior-distributions">3D Visualization of Prior and Posterior Distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">Data Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-heritability">(optional) Heritability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-specification">Prior Specification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-specification">Likelihood Specification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-calculation">Posterior Calculation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -584,18 +598,18 @@ $<span class="math notranslate nohighlight">\( \beta_{2\times 1} \sim N(\begin{p
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
-\theta_1 \\
-\theta_2
+\beta_a \\
+\beta_b
 \end{pmatrix}
  \sim \mathcal{N}
 \left( 
 \begin{pmatrix}
-0 \\
-0
+\beta_{a,0}  \\
+\beta_{b,0}
 \end{pmatrix},
 \begin{pmatrix}
-\sigma_{1}^2 &amp; \rho \sigma_{1} \sigma_{2} \\
-\rho_1 \sigma_{1} \sigma_{2} &amp; \sigma_{2}^2
+\sigma_{a}^2 &amp; \rho \sigma_{a} \sigma_{b} \\
+\rho \sigma_{a} \sigma_{b} &amp; \sigma_{b}^2
 \end{pmatrix}
 \right)
 \end{split}\]</div>
@@ -604,469 +618,791 @@ $<span class="math notranslate nohighlight">\( \beta_{2\times 1} \sim N(\begin{p
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="model-assumptions">
 <h2>Model Assumptions<a class="headerlink" href="#model-assumptions" title="Link to this heading">#</a></h2>
-<p>We assume the variables <span class="math notranslate nohighlight">\(Y_1\)</span> and <span class="math notranslate nohighlight">\(Y_2\)</span> follow a bivariate normal model (assume <span class="math notranslate nohighlight">\(X=1\)</span>):</p>
+<p>We assume the bivariate response vector follows a multivariate normal distribution:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\mathbf{Y} = 
+\mathbf{Y}_i = 
 \begin{pmatrix}
-Y_1 \\
-Y_2
+Y_{i,a} \\
+Y_{i,b}
 \end{pmatrix}
 \sim \mathcal{N}
 \left( 
 \begin{pmatrix}
-\mu_1 \\
-\mu_2
+\beta_a \\
+\beta_b
 \end{pmatrix},
-\begin{pmatrix}
-\sigma_1^2 &amp; \rho \sigma_1 \sigma_2 \\
-\rho \sigma_1 \sigma_2 &amp; \sigma_2^2
-\end{pmatrix}
+\boldsymbol{\Sigma}
 \right)
 \end{split}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> are the unknown mean parameters.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_1^2\)</span> and <span class="math notranslate nohighlight">\(\sigma_2^2\)</span> are the known variances.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\rho\)</span> is the correlation between the two variables.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span> are the unknown mean parameters we want to estimate</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is the known covariance matrix:</p></li>
 </ul>
-<p>The Bayesian Normal Mean Model aims to infer what we can learn about the unknown parameters <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span>.</p>
-</section>
-<section id="prior-distribution">
-<h2>Prior Distribution<a class="headerlink" href="#prior-distribution" title="Link to this heading">#</a></h2>
-<p>A common choice for the prior on <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> is a bivariate normal distribution:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\boldsymbol{\mu} =
-\begin{pmatrix}
-\mu_1 \\
-\mu_2
-\end{pmatrix}
-\sim \mathcal{N}
-\left( 
-\begin{pmatrix}
-\mu_{10} \\
-\mu_{20}
-\end{pmatrix},
-\boldsymbol{\Sigma}_0
-\right)
-\end{split}\]</div>
-<p>where</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\boldsymbol{\Sigma}_0 = \begin{pmatrix}
-\sigma_{1,0}^2 &amp; \rho_0 \sigma_{1,0} \sigma_{2,0} \\
-\rho_0 \sigma_{1,0} \sigma_{2,0} &amp; \sigma_{2,0}^2
-\end{pmatrix}
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mu_{10}\)</span> and <span class="math notranslate nohighlight">\(\mu_{20}\)</span> are the prior means, and <span class="math notranslate nohighlight">\(\sigma_{1,0}^2\)</span> and <span class="math notranslate nohighlight">\(\sigma_{2,0}^2\)</span> are the prior variances, with <span class="math notranslate nohighlight">\(\rho_0\)</span> being the prior correlation.</p>
-<p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is called <strong>covariance matrix</strong> or <strong>variance-covariance matrix</strong>.</p>
-<p>The <strong>precision matrix</strong> is defined as:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\boldsymbol{\Omega}_0 := \boldsymbol{\Sigma}^{-1}_0 = 
-\begin{pmatrix}
-\tau_{1,0} &amp; \rho_0 \tau_{1,0} \tau_{2,0} \\
-\rho_0 \tau_{1,0} \tau_{2,0} &amp; \tau_{2,0}
-\end{pmatrix}
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\tau_{1,0} = \frac{1}{\sigma_{1,0}^2}\)</span> and <span class="math notranslate nohighlight">\(\tau_{2,0} = \frac{1}{\sigma_{2,0}^2}\)</span>.</p>
-</section>
-<section id="likelihood">
-<h2>Likelihood<a class="headerlink" href="#likelihood" title="Link to this heading">#</a></h2>
-<p>The likelihood of the data given <span class="math notranslate nohighlight">\(\mu_1\)</span>, <span class="math notranslate nohighlight">\(\mu_2\)</span>, <span class="math notranslate nohighlight">\(\sigma_1^2\)</span>, <span class="math notranslate nohighlight">\(\sigma_2^2\)</span>, and <span class="math notranslate nohighlight">\(\rho\)</span> is:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix}
-Y_1 \\
-Y_2
-\end{pmatrix}
-\mid \mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \rho
-\sim \mathcal{N}
-\left( 
-\begin{pmatrix}
-\mu_1 \\
-\mu_2
-\end{pmatrix},
-\begin{pmatrix}
-\sigma_1^2 &amp; \rho \sigma_1 \sigma_2 \\
-\rho \sigma_1 \sigma_2 &amp; \sigma_2^2
-\end{pmatrix}
-\right)
-\end{split}\]</div>
-<p>The probability density function (PDF) is:</p>
-<div class="math notranslate nohighlight">
-\[
-p(\mathbf{Y} \mid \mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \rho) \propto \exp\left( -\frac{1}{2} (\mathbf{Y} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{Y} - \boldsymbol{\mu}) \right)
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\mu} = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is the covariance matrix:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \boldsymbol{\Sigma} = 
 \begin{pmatrix}
-\sigma_1^2 &amp; \rho \sigma_1 \sigma_2 \\
-\rho \sigma_1 \sigma_2 &amp; \sigma_2^2
+\sigma_a^2 &amp; \rho \sigma_a \sigma_b \\
+\rho \sigma_a \sigma_b &amp; \sigma_b^2
 \end{pmatrix}
 \end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_a^2\)</span> and <span class="math notranslate nohighlight">\(\sigma_b^2\)</span> are the known variances, and <span class="math notranslate nohighlight">\(\rho\)</span> is the known correlation between the two variables.</p>
+<p>The Bayesian Normal Mean Model aims to infer the unknown parameters <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span>.</p>
+</section>
+<section id="prior-distribution">
+<h2>Prior Distribution<a class="headerlink" href="#prior-distribution" title="Link to this heading">#</a></h2>
+<p>We place a bivariate normal prior on the parameter vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{\beta} =
+\begin{pmatrix}
+\beta_a \\
+\beta_b
+\end{pmatrix}
+\sim \mathcal{N}
+\left( 
+\boldsymbol{\beta}_0,
+\boldsymbol{\Sigma}_0
+\right)
+\end{split}\]</div>
+<p>where the prior mean is:
+$<span class="math notranslate nohighlight">\(
+\boldsymbol{\beta}_0 = 
+\begin{pmatrix}
+\beta_{a,0} \\
+\beta_{b,0}
+\end{pmatrix}
+\)</span>$</p>
+<p>and the prior covariance matrix is:
+$<span class="math notranslate nohighlight">\(
+\boldsymbol{\Sigma}_0 = 
+\begin{pmatrix}
+\sigma_{a,0}^2 &amp; \rho_0 \sigma_{a,0} \sigma_{b,0} \\
+\rho_0 \sigma_{a,0} \sigma_{b,0} &amp; \sigma_{b,0}^2
+\end{pmatrix}
+\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(\beta_{a,0}\)</span> and <span class="math notranslate nohighlight">\(\beta_{b,0}\)</span> are the prior means, <span class="math notranslate nohighlight">\(\sigma_{a,0}^2\)</span> and <span class="math notranslate nohighlight">\(\sigma_{b,0}^2\)</span> are the prior variances, and <span class="math notranslate nohighlight">\(\rho_0\)</span> is the prior correlation.</p>
+<p>The <strong>prior precision matrix</strong> is:
+$<span class="math notranslate nohighlight">\(
+\boldsymbol{\Omega}_0 = \boldsymbol{\Sigma}_0^{-1}
+\)</span>$</p>
+</section>
+<section id="likelihood">
+<h2>Likelihood<a class="headerlink" href="#likelihood" title="Link to this heading">#</a></h2>
+<p>For <span class="math notranslate nohighlight">\(n\)</span> independent observations <span class="math notranslate nohighlight">\(\mathbf{Y}_1, \ldots, \mathbf{Y}_n\)</span>, the likelihood is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{Y}_i \mid \beta_a, \beta_b \sim \mathcal{N}
+\left( 
+\begin{pmatrix}
+\beta_a \\
+\beta_b
+\end{pmatrix},
+\boldsymbol{\Sigma}
+\right)
+\end{split}\]</div>
+<p>The joint likelihood for all observations is:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{Y}_1, \ldots, \mathbf{Y}_n \mid \beta_a, \beta_b) = \prod_{i=1}^n p(\mathbf{Y}_i \mid \beta_a, \beta_b)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\propto \exp\left( -\frac{1}{2} \sum_{i=1}^n (\mathbf{Y}_i - \boldsymbol{\beta})^T \boldsymbol{\Sigma}^{-1} (\mathbf{Y}_i - \boldsymbol{\beta}) \right)
+\]</div>
+<p>This can be rewritten using the sample mean <span class="math notranslate nohighlight">\(\overline{\mathbf{Y}} = \frac{1}{n}\sum_{i=1}^n \mathbf{Y}_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{Y}_1, \ldots, \mathbf{Y}_n \mid \beta_a, \beta_b) \propto \exp\left( -\frac{n}{2} (\overline{\mathbf{Y}} - \boldsymbol{\beta})^T \boldsymbol{\Sigma}^{-1} (\overline{\mathbf{Y}} - \boldsymbol{\beta}) \right)
+\]</div>
+<p>The <strong>likelihood precision matrix</strong> is:
+$<span class="math notranslate nohighlight">\(
+\boldsymbol{\Omega} = n \boldsymbol{\Sigma}^{-1}
+\)</span>$</p>
 </section>
 <section id="posterior-distribution">
 <h2>Posterior Distribution<a class="headerlink" href="#posterior-distribution" title="Link to this heading">#</a></h2>
-<p>Using Bayes’ theorem, the posterior distribution of <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> is:</p>
+<p>Using Bayes’ theorem and the conjugacy of the normal-normal model, the posterior distribution is:</p>
 <div class="math notranslate nohighlight">
 \[
-p(\mu_1, \mu_2 \mid \mathbf{Y}) \propto p(\mathbf{Y} \mid \mu_1, \mu_2, \sigma_1^2, \sigma_2^2) p(\mu_1, \mu_2)
+\boldsymbol{\beta} \mid \mathbf{Y}_1, \ldots, \mathbf{Y}_n \sim \mathcal{N}(\boldsymbol{\beta}_1, \boldsymbol{\Sigma}_1)
 \]</div>
-<p>Expanding the probability density functions:</p>
-<div class="math notranslate nohighlight">
-\[
-p(\mu_1, \mu_2 \mid \mathbf{Y}) \propto \exp\left( -\frac{1}{2} (\mathbf{Y} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{Y} - \boldsymbol{\mu}) \right)
-\exp\left( -\frac{1}{2} (\boldsymbol{\mu} - \boldsymbol{\mu_0})^T \boldsymbol{\Sigma_0}^{-1} (\boldsymbol{\mu} - \boldsymbol{\mu_0}) \right)
-\]</div>
-<p>Recognizing the quadratic form, the posterior distribution follows a bivariate normal distribution:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<p>where:</p>
+<p><strong>Posterior precision matrix:</strong>
+$<span class="math notranslate nohighlight">\(
+\boldsymbol{\Omega}_1 = \boldsymbol{\Omega}_0 + n\boldsymbol{\Sigma}^{-1}
+\)</span>$</p>
+<p><strong>Posterior covariance matrix:</strong>
+$<span class="math notranslate nohighlight">\(
+\boldsymbol{\Sigma}_1 = \boldsymbol{\Omega}_1^{-1}
+\)</span>$</p>
+<p><strong>Posterior mean:</strong>
+$<span class="math notranslate nohighlight">\(
+\boldsymbol{\beta}_1 = \boldsymbol{\Sigma}_1 \left( \boldsymbol{\Omega}_0 \boldsymbol{\beta}_0 + n\boldsymbol{\Sigma}^{-1} \overline{\mathbf{Y}} \right)
+\)</span>$</p>
+<p>This can be written component-wise as:
+$$
 \begin{pmatrix}
-\mu_1 \\
-\mu_2
+\beta_{a,1} \
+\beta_{b,1}
 \end{pmatrix}
-\mid \mathbf{Y} \sim \mathcal{N}
-\left( 
+= \boldsymbol{\Sigma}<em>1 \left( \boldsymbol{\Omega}<em>0
 \begin{pmatrix}
-\mu_{1,1} \\
-\mu_{2,1}
-\end{pmatrix},
+\beta</em>{a,0} \
+\beta</em>{b,0}
+\end{pmatrix}</p>
+<ul class="simple">
+<li><p>n\boldsymbol{\Sigma}^{-1}
 \begin{pmatrix}
-\sigma_{1,1}^2 &amp; \rho_1 \sigma_{1,1} \sigma_{2,1} \\
-\rho_1 \sigma_{1,1} \sigma_{2,1} &amp; \sigma_{2,1}^2
+\overline{Y}_a \
+\overline{Y}_b
 \end{pmatrix}
 \right)
-\end{split}\]</div>
-<p>where:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix}
-\mu_{1,1} \\
-\mu_{2,1}
-\end{pmatrix}
-= 
-\boldsymbol{\Sigma} \left( \boldsymbol{\Sigma_0}^{-1} \boldsymbol{\mu_0} + \boldsymbol{\Sigma}^{-1} \mathbf{Y} \right)
-\end{split}\]</div>
-<p>and:</p>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\Sigma_1}^{-1} = \boldsymbol{\Sigma_0}^{-1} + \boldsymbol{\Sigma}^{-1}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\Omega_1} = \boldsymbol{\Omega_0} + \boldsymbol{\Omega}
-\]</div>
+$$</p></li>
+</ul>
+</section>
+<section id="key-properties">
+<h2>Key Properties<a class="headerlink" href="#key-properties" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Conjugacy</strong>: The posterior has the same functional form as the prior (both multivariate normal)</p></li>
+<li><p><strong>Precision weighting</strong>: The posterior mean is a precision-weighted average of the prior mean and sample mean</p></li>
+<li><p><strong>Information accumulation</strong>: The posterior precision is the sum of prior precision and likelihood precision</p></li>
+<li><p><strong>Correlation preservation</strong>: The bivariate structure maintains correlations between parameters through the covariance matrices</p></li>
+</ol>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>In this document, we explore the bivariate Bayesian normal mean model using height (<span class="math notranslate nohighlight">\(Y_1\)</span>) and weight (<span class="math notranslate nohighlight">\(Y_2\)</span>) as our two correlated variables. Unlike the univariate case where we estimate a single mean parameter, here we simultaneously estimate the means of two related variables while accounting for their correlation structure.</p>
-<p>We assume that these measurements follow a bivariate normal distribution:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathbf{Y} | \boldsymbol{\mu}, \boldsymbol{\Sigma} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})
-\]</div>
-<p>where:</p>
+<p>This document demonstrates the Bayesian bivariate normal mean model for genetic effects on correlated traits (height <span class="math notranslate nohighlight">\(Y_a\)</span> and weight <span class="math notranslate nohighlight">\(Y_b\)</span>). Unlike the univariate case where we estimate a single mean parameter, here we simultaneously estimate the means of two related variables while accounting for their correlation structure.</p>
+<p>We model genetic effects as:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{Y} = (Y_1, Y_2)^T\)</span> is the vector of height and weight</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\mu} = (\mu_1, \mu_2)^T\)</span> is the unknown mean vector</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is the known covariance matrix</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_a\)</span>: genetic effect on height (cm per allele)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_b\)</span>: genetic effect on weight (kg per allele)</p></li>
+<li><p><strong>Prior</strong>:
+$<span class="math notranslate nohighlight">\(
+(\beta_a, \beta_b) \sim \mathcal{N}(\boldsymbol{\beta}_0, \boldsymbol{\Sigma}_0)
+\)</span>$</p></li>
+<li><p><strong>Likelihood</strong>:
+$<span class="math notranslate nohighlight">\(
+\mathbf{Y}_i | \boldsymbol{\beta} \sim \mathcal{N}(X_i \boldsymbol{\beta}, \boldsymbol{\Sigma})
+\)</span>$</p></li>
+<li><p><strong>Posterior</strong>:
+$<span class="math notranslate nohighlight">\(
+(\beta_a, \beta_b) | \text{data} \sim \mathcal{N}(\boldsymbol{\beta}_1, \boldsymbol{\Sigma}_1)
+\)</span>$</p></li>
 </ul>
-<p>Our goal is to estimate <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> using Bayesian inference.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
-<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
-
-<span class="c1"># Load necessary libraries</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">  </span><span class="c1"># For mvrnorm function</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+<span class="c1"># Load required libraries</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">  </span><span class="c1"># for multivariate normal sampling</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">mvtnorm</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">82</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="id1">
-<h2>Prior Distribution<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>We assume a bivariate normal prior for <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\mu} \sim \mathcal{N}(\boldsymbol{\mu}_0, \boldsymbol{\Sigma}_0)
-\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\mu}_0 = (170, 70)^T\)</span> cm and kg (prior mean for height and weight)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0\)</span> is the prior covariance matrix</p></li>
-</ul>
+<section id="data-generation">
+<h2>Data Generation<a class="headerlink" href="#data-generation" title="Link to this heading">#</a></h2>
+<p>We first generate the data using simulations.</p>
+<p>Let’s first define the true model parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prior distribution parameters</span>
-<span class="n">mu_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">170</span><span class="p">,</span><span class="w"> </span><span class="m">70</span><span class="p">)</span><span class="w">  </span><span class="c1"># Prior mean vector [height in cm, weight in kg]</span>
-<span class="n">Sigma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">36</span><span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Prior covariance matrix</span>
-<span class="n">Precision_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">)</span><span class="w">  </span><span class="c1"># Prior precision matrix</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># True parameters for genetic effects (beta_a, beta_b)</span>
+<span class="n">sigma_a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">     </span><span class="c1"># SD of genetic effect on height (cm per allele)</span>
+<span class="n">sigma_b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w">     </span><span class="c1"># SD of genetic effect on weight (kg per allele)</span>
+<span class="n">rho</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.7</span><span class="w">      </span><span class="c1"># correlation between height and weight genetic effects</span>
 
-<span class="c1"># Display prior parameters</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Prior mean vector (mu_0):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">mu_0</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPrior covariance matrix (Sigma_0):\n&quot;</span><span class="p">)</span>
+<span class="c1"># True prior mean (center at zero)</span>
+<span class="n">beta_true_prior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+
+<span class="c1"># True covariance matrix for genetic effects</span>
+<span class="n">Sigma_true</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="n">sigma_a</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">rho</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_b</span><span class="p">,</span>
+<span class="w">  </span><span class="n">rho</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_b</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_b</span><span class="o">^</span><span class="m">2</span>
+<span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">n_individuals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">    </span><span class="c1"># number of individuals</span>
+<span class="n">n_variants</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">          </span><span class="c1"># number of genetic variants (SINGLE VARIANT EXAMPLE)</span>
+
+<span class="c1"># Baseline trait values (population means)</span>
+<span class="n">height_baseline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">170</span><span class="w">   </span><span class="c1"># cm</span>
+<span class="n">weight_baseline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">70</span><span class="w">    </span><span class="c1"># kg</span>
+
+<span class="c1"># Independent error terms (epsilon)</span>
+<span class="n">height_epsilon_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">8</span><span class="w">   </span><span class="c1"># cm</span>
+<span class="n">weight_epsilon_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="w">  </span><span class="c1"># kg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we draw the <strong>true genetic effects</strong> (<span class="math notranslate nohighlight">\(\beta_a, \beta_b\)</span>) from the specified distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">genetic_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_variants</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_true_prior</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sigma_true</span><span class="p">)</span>
+
+<span class="c1"># Handle single variant case - ensure it&#39;s a matrix</span>
+<span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">n_variants</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">genetic_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genetic_effects</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">genetic_effects</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;beta_a_height&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta_b_weight&quot;</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Genetic effects for the single variant:&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">genetic_effects</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Genetic effects for the single variant:&quot;
+     beta_a_height beta_b_weight
+[1,]      6.268107      2.444654
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we also create <strong>genotype data</strong> for each individual (0, 1, or 2 copies of effect allele).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate genotypes assuming MAF = 0.3 (Hardy-Weinberg equilibrium)</span>
+<span class="n">maf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.3</span>
+<span class="n">p_genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">maf</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="o">*</span><span class="n">maf</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">maf</span><span class="p">),</span><span class="w"> </span><span class="n">maf</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># P(0), P(1), P(2)</span>
+
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span>
+<span class="w">  </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_individuals</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_variants</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_genotypes</span><span class="p">),</span>
+<span class="w">  </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_individuals</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_variants</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We compute the genetic effect for each individual by multiplying the genetic effect and the genotype data for each individual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># For single variant, this is just genotype * effect</span>
+<span class="n">genetic_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genotypes</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">genetic_effects</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta_a_height&quot;</span><span class="p">]</span>
+<span class="n">genetic_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genotypes</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">genetic_effects</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta_b_weight&quot;</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Genetic contribution statistics:&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Height genetic effects:&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">genetic_height</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Weight genetic effects:&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">genetic_weight</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Genetic contribution statistics:&quot;
+[1] &quot;Height genetic effects:&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   0.000   0.000   2.507   6.268   6.268 
+[1] &quot;Weight genetic effects:&quot;
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0000  0.0000  0.9779  2.4447  2.4447 
+</pre></div>
+</div>
+</div>
+</div>
+<p>We then add the independent epsilon terms to each trait.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add independent environmental effects (epsilon terms)</span>
+<span class="n">height_epsilon</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n_individuals</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">height_epsilon_sd</span><span class="p">)</span>
+<span class="n">weight_epsilon</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n_individuals</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight_epsilon_sd</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Error term statistics:&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Height epsilon SD:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">height_epsilon</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Weight epsilon SD:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">weight_epsilon</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)))</span>
+<span class="n">epsilon_corr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">height_epsilon</span><span class="p">,</span><span class="w"> </span><span class="n">weight_epsilon</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Epsilon correlation (should be ~0):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">epsilon_corr</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Error term statistics:&quot;
+[1] &quot;Height epsilon SD: 7.78&quot;
+[1] &quot;Weight epsilon SD: 10.44&quot;
+[1] &quot;Epsilon correlation (should be ~0): 0.275&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The final trait values are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate final trait values</span>
+<span class="n">final_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">height_baseline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">genetic_height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">height_epsilon</span>
+<span class="n">final_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">weight_baseline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">genetic_weight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">weight_epsilon</span>
+
+<span class="c1"># Create comprehensive dataset</span>
+<span class="n">individuals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_individuals</span><span class="p">,</span>
+<span class="w">  </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">final_height</span><span class="p">,</span>
+<span class="w">  </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">final_weight</span><span class="p">,</span>
+<span class="w">  </span><span class="n">genetic_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genetic_height</span><span class="p">,</span>
+<span class="w">  </span><span class="n">genetic_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genetic_weight</span><span class="p">,</span>
+<span class="w">  </span><span class="n">height_epsilon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">height_epsilon</span><span class="p">,</span>
+<span class="w">  </span><span class="n">weight_epsilon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight_epsilon</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optional-heritability">
+<h2>(optional) Heritability<a class="headerlink" href="#optional-heritability" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate heritabilities</span>
+<span class="n">height_var_genetic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">individuals</span><span class="o">$</span><span class="n">genetic_height</span><span class="p">)</span>
+<span class="n">height_var_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">individuals</span><span class="o">$</span><span class="n">height</span><span class="p">)</span>
+<span class="n">height_heritability</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">height_var_genetic</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">height_var_total</span>
+
+<span class="n">weight_var_genetic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">individuals</span><span class="o">$</span><span class="n">genetic_weight</span><span class="p">)</span>
+<span class="n">weight_var_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">individuals</span><span class="o">$</span><span class="n">weight</span><span class="p">)</span>
+<span class="n">weight_heritability</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">weight_var_genetic</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">weight_var_total</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nHeritability estimates:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Height heritability:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">height_heritability</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weight heritability:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">weight_heritability</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Heritability estimates:
+Height heritability: 0.267 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weight heritability: 0.014 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bayesian-inference">
+<h2>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Link to this heading">#</a></h2>
+<p>Now we perform Bayesian inference to recover the genetic effects from the generated data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select variant for detailed Bayesian analysis</span>
+<span class="n">variant_idx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="n">true_beta_a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genetic_effects</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta_a_height&quot;</span><span class="p">]</span>
+<span class="n">true_beta_b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genetic_effects</span><span class="p">[</span><span class="n">variant_idx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta_b_weight&quot;</span><span class="p">]</span>
+
+<span class="c1"># Extract data for this variant</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genotypes</span><span class="p">[,</span><span class="w"> </span><span class="n">variant_idx</span><span class="p">]</span><span class="w">  </span><span class="c1"># genotype vector </span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">individuals</span><span class="o">$</span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">individuals</span><span class="o">$</span><span class="n">weight</span><span class="p">)</span><span class="w">  </span><span class="c1"># observed traits</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="prior-specification">
+<h3>Prior Specification<a class="headerlink" href="#prior-specification" title="Link to this heading">#</a></h3>
+<p>Define the prior distribution for genetic effects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== PRIOR SPECIFICATION ===\n&quot;</span><span class="p">)</span>
+
+<span class="c1"># Prior mean (no prior knowledge, center at zero)</span>
+<span class="n">beta_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+
+<span class="c1"># Prior covariance matrix (using same parameters as data generation)</span>
+<span class="n">Sigma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="n">sigma_a</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">rho</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_b</span><span class="p">,</span>
+<span class="w">  </span><span class="n">rho</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_b</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_b</span><span class="o">^</span><span class="m">2</span>
+<span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Prior mean beta_0:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">beta_0</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Prior covariance matrix Sigma_0:\n&quot;</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPrior precision matrix (Precision_0):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">Precision_0</span><span class="p">)</span>
+
+<span class="c1"># Prior precision matrix</span>
+<span class="n">Omega_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Prior precision matrix Omega_0:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">Omega_0</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">))</span>
+
+<span class="n">prior_corr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sigma_0</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Sigma_0</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">])</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Prior correlation:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">prior_corr</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prior mean vector (mu_0):
-[1] 170  70
-
-Prior covariance matrix (Sigma_0):
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== PRIOR SPECIFICATION ===
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prior mean beta_0:
+[1] 0 0
+Prior covariance matrix Sigma_0:
      [,1] [,2]
-[1,]   25   15
-[2,]   15   36
-
-Prior precision matrix (Precision_0):
-            [,1]        [,2]
-[1,]  0.05333333 -0.02222222
-[2,] -0.02222222  0.03703704
+[1,] 25.0 10.5
+[2,] 10.5  9.0
+Prior precision matrix Omega_0:
+        [,1]    [,2]
+[1,]  0.0784 -0.0915
+[2,] -0.0915  0.2179
+Prior correlation: 0.7 
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="observed-data-and-likelihood-function">
-<h2>Observed Data and Likelihood Function<a class="headerlink" href="#observed-data-and-likelihood-function" title="Link to this heading">#</a></h2>
-<p>We observe height and weight measurements for five individuals, and we assume the likelihood follows:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathbf{Y} | \boldsymbol{\mu} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})
-\]</div>
+<section id="likelihood-specification">
+<h3>Likelihood Specification<a class="headerlink" href="#likelihood-specification" title="Link to this heading">#</a></h3>
+<p>Define the likelihood model for observed data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Observed data: height and weight measurements for 5 individuals</span>
-<span class="c1"># Format: matrix with each row representing an individual&#39;s [height, weight]</span>
-<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
-<span class="w">  </span><span class="m">175</span><span class="p">,</span><span class="w"> </span><span class="m">75</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 1</span>
-<span class="w">  </span><span class="m">168</span><span class="p">,</span><span class="w"> </span><span class="m">68</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 2</span>
-<span class="w">  </span><span class="m">182</span><span class="p">,</span><span class="w"> </span><span class="m">80</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 3</span>
-<span class="w">  </span><span class="m">165</span><span class="p">,</span><span class="w"> </span><span class="m">63</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 4</span>
-<span class="w">  </span><span class="m">178</span><span class="p">,</span><span class="w"> </span><span class="m">78</span><span class="w">   </span><span class="c1"># Individual 5</span>
-<span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== LIKELIHOOD SPECIFICATION ===\n&quot;</span><span class="p">)</span>
 
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span><span class="w">  </span><span class="c1"># Number of observations</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Weight&quot;</span><span class="p">)</span>
+<span class="c1"># Likelihood: Y_i | beta ~ MVN(X_i * beta, Sigma)</span>
+<span class="c1"># Independent error covariance matrix</span>
+<span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">height_epsilon_sd</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">weight_epsilon_sd</span><span class="o">^</span><span class="m">2</span><span class="p">))</span>
 
-<span class="c1"># Display the data</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Observed data (height in cm, weight in kg):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nNumber of observations:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-
-<span class="c1"># Calculate sample mean</span>
-<span class="n">Y_bar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colMeans</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nSample mean vector:\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">Y_bar</span><span class="p">)</span>
-
-<span class="c1"># Set the known covariance matrix for the likelihood</span>
-<span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">25</span><span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Known covariance matrix</span>
-<span class="n">Precision</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span><span class="w">  </span><span class="c1"># Precision matrix</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nLikelihood covariance matrix (Sigma):\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Residual covariance matrix Sigma:\n&quot;</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nLikelihood precision matrix (Precision):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">Precision</span><span class="p">)</span>
+
+<span class="c1"># Likelihood precision matrix</span>
+<span class="n">Omega</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Residual precision matrix Omega:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">Omega</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Model specification:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- Each individual i has genotype X_i and traits Y_i = (height_i, weight_i)\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- Y_i | beta ~ MVN(X_i * beta, Sigma)\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- X_i affects both traits through beta = (beta_a, beta_b)\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observed data (height in cm, weight in kg):
-     Height Weight
-[1,]    175     75
-[2,]    168     68
-[3,]    182     80
-[4,]    165     63
-[5,]    178     78
-
-Number of observations: 5 
-
-Sample mean vector:
-Height Weight 
- 173.6   72.8 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== LIKELIHOOD SPECIFICATION ===
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Likelihood covariance matrix (Sigma):
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Residual covariance matrix Sigma:
      [,1] [,2]
-[1,]   16   12
-[2,]   12   25
-
-Likelihood precision matrix (Precision):
-            [,1]      [,2]
-[1,]  0.09765625 -0.046875
-[2,] -0.04687500  0.062500
+[1,]   64    0
+[2,]    0  100
+Residual precision matrix Omega:
+         [,1] [,2]
+[1,] 0.015625 0.00
+[2,] 0.000000 0.01
+Model specification:
+- Each individual i has genotype X_i and traits Y_i = (height_i, weight_i)
+- Y_i | beta ~ MVN(X_i * beta, Sigma)
+- X_i affects both traits through beta = (beta_a, beta_b)
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="posterior-distribution-update">
-<h2>Posterior Distribution Update<a class="headerlink" href="#posterior-distribution-update" title="Link to this heading">#</a></h2>
-<p>Using Bayesian updating for the multivariate normal, the posterior distribution is given by:</p>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\mu} | \mathbf{Y} \sim \mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_1)
-\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><strong>Posterior precision matrix</strong>:
-<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_1^{-1} = \boldsymbol{\Sigma}_0^{-1} + n \boldsymbol{\Sigma}^{-1}\)</span></p></li>
-<li><p><strong>Posterior mean vector</strong>:
-<span class="math notranslate nohighlight">\(\boldsymbol{\mu}_1 = \boldsymbol{\Sigma}_1 (\boldsymbol{\Sigma}_0^{-1} \boldsymbol{\mu}_0 + n \boldsymbol{\Sigma}^{-1} \bar{\mathbf{Y}})\)</span></p></li>
-</ul>
-<p>where <span class="math notranslate nohighlight">\(\bar{\mathbf{Y}}\)</span> is the sample mean vector.</p>
+<section id="posterior-calculation">
+<h3>Posterior Calculation<a class="headerlink" href="#posterior-calculation" title="Link to this heading">#</a></h3>
+<p>Apply Bayesian updating using conjugate prior formulas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Precision_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Precision_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Precision</span><span class="w">  </span><span class="c1"># Posterior precision matrix</span>
-<span class="n">Sigma_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Precision_1</span><span class="p">)</span><span class="w">  </span><span class="c1"># Posterior covariance matrix</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== POSTERIOR CALCULATION ===\n&quot;</span><span class="p">)</span>
 
-<span class="c1"># Posterior mean calculation</span>
-<span class="n">mu_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sigma_1</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="p">(</span><span class="n">Precision_0</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">mu_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Precision</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">Y_bar</span><span class="p">)</span>
+<span class="c1"># For multivariate normal conjugate prior:</span>
+<span class="c1"># Posterior precision: Omega_1 = Omega_0 + sum(X_i^T Omega X_i)</span>
+<span class="c1"># Posterior mean: beta_1 = Sigma_1 * (Omega_0 * beta_0 + sum(X_i^T Omega Y_i))</span>
 
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior mean vector (mu_1):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">mu_1</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior covariance matrix (Sigma_1):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior precision matrix (Precision_1):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">Precision_1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior mean vector (mu_1):
-          [,1]
-[1,] 173.18335
-[2,]  72.42632
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Computing sufficient statistics...\n&quot;</span><span class="p">)</span>
 
-Posterior covariance matrix (Sigma_1):
-         [,1]     [,2]
-[1,] 2.830896 2.078178
-[2,] 2.078178 4.386530
+<span class="c1"># Initialize sufficient statistics</span>
+<span class="n">XtOmegaX</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">XtOmegaY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
 
-Posterior precision matrix (Precision_1):
-           [,1]       [,2]
-[1,]  0.5416146 -0.2565972
-[2,] -0.2565972  0.3495370
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="visualizing-prior-and-posterior-distributions">
-<h2>Visualizing Prior and Posterior Distributions<a class="headerlink" href="#visualizing-prior-and-posterior-distributions" title="Link to this heading">#</a></h2>
-<p>We’ll visualize both the prior and posterior bivariate normal distributions, along with the observed data points.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create grid for plotting</span>
-<span class="n">grid_points</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span>
-<span class="n">x_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">mu_0</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">mu_1</span><span class="p">[</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span>
-<span class="w">               </span><span class="nf">max</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">mu_0</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">mu_1</span><span class="p">[</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">)</span>
-<span class="n">y_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">mu_0</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">mu_1</span><span class="p">[</span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span>
-<span class="w">               </span><span class="nf">max</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">mu_0</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">mu_1</span><span class="p">[</span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">)</span>
-<span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span><span class="w"> </span><span class="n">y_range</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="p">)</span>
-
-<span class="c1"># Function to calculate bivariate normal density</span>
-<span class="n">bvn_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">xy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-<span class="w">  </span><span class="n">z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dmvnorm</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span>
-<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="c1"># Accumulate across all individuals</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_individuals</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">x_i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">  </span><span class="c1"># genotype for individual i</span>
+<span class="w">  </span><span class="n">y_i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">  </span><span class="c1"># traits for individual i</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Design matrix: genotype affects both traits</span>
+<span class="w">  </span><span class="n">X_i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span><span class="w"> </span><span class="n">x_i</span><span class="p">))</span><span class="w">  </span><span class="c1"># 2x2 diagonal matrix with genotype</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">XtOmegaX</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">XtOmegaX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">X_i</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">Omega</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">X_i</span>
+<span class="w">  </span><span class="n">XtOmegaY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">XtOmegaY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">X_i</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">Omega</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">y_i</span>
 <span class="p">}</span>
 
-<span class="c1"># Calculate densities for prior and posterior</span>
-<span class="n">grid</span><span class="o">$</span><span class="n">prior_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bvn_density</span><span class="p">(</span><span class="n">grid</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">mu_0</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma_0</span><span class="p">)</span>
-<span class="n">grid</span><span class="o">$</span><span class="n">posterior_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bvn_density</span><span class="p">(</span><span class="n">grid</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">mu_1</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma_1</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sufficient statistic X^T Omega X:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">XtOmegaX</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sufficient statistic X^T Omega Y:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">XtOmegaY</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
 
-<span class="c1"># Create contour plot</span>
-<span class="nf">plot</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">range</span><span class="p">(</span><span class="n">x_range</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">range</span><span class="p">(</span><span class="n">y_range</span><span class="p">),</span><span class="w"> </span>
-<span class="w">     </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Height (cm)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Weight (kg)&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">     </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior and Posterior Distributions with Observed Data&quot;</span><span class="p">,</span>
-<span class="w">     </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
-
-<span class="c1"># Add contours for prior (blue) and posterior (red)</span>
-<span class="nf">contour</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span><span class="w"> </span><span class="n">y_range</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="nf">matrix</span><span class="p">(</span><span class="n">grid</span><span class="o">$</span><span class="n">prior_density</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">),</span>
-<span class="w">        </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-<span class="nf">contour</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span><span class="w"> </span><span class="n">y_range</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="nf">matrix</span><span class="p">(</span><span class="n">grid</span><span class="o">$</span><span class="n">posterior_density</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">),</span>
-<span class="w">        </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-
-<span class="c1"># Add confidence ellipses</span>
-<span class="nf">lines</span><span class="p">(</span><span class="nf">ellipse</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">,</span><span class="w"> </span><span class="n">centre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu_0</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-<span class="nf">lines</span><span class="p">(</span><span class="nf">ellipse</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">,</span><span class="w"> </span><span class="n">centre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu_1</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-
-<span class="c1"># Add means</span>
-<span class="nf">points</span><span class="p">(</span><span class="n">mu_0</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">mu_0</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-<span class="nf">points</span><span class="p">(</span><span class="n">mu_1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">mu_1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-
-<span class="c1"># Add legend</span>
-<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">       </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior Mean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Posterior Mean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Prior Distribution&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">                 </span><span class="s">&quot;Posterior Distribution&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Observed Data&quot;</span><span class="p">),</span>
-<span class="w">       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">),</span>
-<span class="w">       </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
-<span class="w">       </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span>
-<span class="w">       </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span>
-<span class="w">       </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span>
+<span class="c1"># Calculate posterior parameters</span>
+<span class="n">Omega_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Omega_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XtOmegaX</span>
+<span class="n">Sigma_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Omega_1</span><span class="p">)</span>
+<span class="n">beta_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sigma_1</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="p">(</span><span class="n">Omega_0</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XtOmegaY</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6f48f8fe412fb2aa1c081761ded963c23cc8df1f9999ead953c8f76d9fb60a44.png"><img alt="_images/6f48f8fe412fb2aa1c081761ded963c23cc8df1f9999ead953c8f76d9fb60a44.png" src="_images/6f48f8fe412fb2aa1c081761ded963c23cc8df1f9999ead953c8f76d9fb60a44.png" style="width: 420px; height: 420px;" />
-</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== POSTERIOR CALCULATION ===
+Computing sufficient statistics...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sufficient statistic X^T Omega X:
+     [,1] [,2]
+[1,] 0.03 0.00
+[2,] 0.00 0.02
+Sufficient statistic X^T Omega Y:
+     [,1]
+[1,] 5.17
+[2,] 1.38
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here are the posterior results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== POSTERIOR RESULTS ===\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior mean beta_1:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  beta_a (height):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  beta_b (weight):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior covariance matrix Sigma_1:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">))</span>
+
+<span class="n">posterior_corr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sigma_1</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Sigma_1</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">])</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior correlation:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_corr</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="c1"># Posterior standard errors</span>
+<span class="n">posterior_se</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">diag</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">))</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior standard errors:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  SE(beta_a):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_se</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  SE(beta_b):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_se</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nComparison with true values:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;True beta_a:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">true_beta_a</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;True beta_b:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">true_beta_b</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== POSTERIOR RESULTS ===
+Posterior mean beta_1:
+  beta_a (height): 76.4961 
+  beta_b (weight): 35.2305 
+Posterior covariance matrix Sigma_1:
+          [,1]     [,2]
+[1,] 13.426178 5.164861
+[2,]  5.164861 6.190915
+Posterior correlation: 0.5665 
+Posterior standard errors:
+  SE(beta_a): 3.6642 
+  SE(beta_b): 2.4882 
+
+Comparison with true values:
+True beta_a: 6.2681 
+True beta_b: 2.4447 
+</pre></div>
+</div>
 </div>
 </div>
 </section>
-<section id="d-visualization-of-prior-and-posterior-distributions">
-<h2>3D Visualization of Prior and Posterior Distributions<a class="headerlink" href="#d-visualization-of-prior-and-posterior-distributions" title="Link to this heading">#</a></h2>
-<p>Let’s also create 3D plots to better visualize the bivariate normal distributions.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Graphical Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">z_prior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">grid</span><span class="o">$</span><span class="n">prior_density</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">)</span>
-<span class="n">z_posterior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">grid</span><span class="o">$</span><span class="n">posterior_density</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid_points</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">mvtnorm</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
 
-<span class="c1"># Set up the plotting area for two 3D plots</span>
-<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
+<span class="c1"># Suppress warnings for cleaner output</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">warn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">)</span>
 
-<span class="c1"># Prior distribution 3D plot</span>
-<span class="nf">persp</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span><span class="w"> </span><span class="n">y_range</span><span class="p">,</span><span class="w"> </span><span class="n">z_prior</span><span class="p">,</span>
-<span class="w">      </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">phi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lightblue&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="n">ticktype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;detailed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Height (cm)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Weight (kg)&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">      </span><span class="n">zlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior Distribution&quot;</span><span class="p">)</span>
+<span class="c1"># Set random seed for reproducibility</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
 
-<span class="c1"># Posterior distribution 3D plot</span>
-<span class="nf">persp</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span><span class="w"> </span><span class="n">y_range</span><span class="p">,</span><span class="w"> </span><span class="n">z_posterior</span><span class="p">,</span>
-<span class="w">      </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">phi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lightpink&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="n">ticktype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;detailed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Height (cm)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Weight (kg)&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">      </span><span class="n">zlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Posterior Distribution&quot;</span><span class="p">)</span>
+<span class="c1"># Function to create contour data for bivariate normal (improved)</span>
+<span class="n">create_contour_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">xlim</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">ylim</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate density and handle potential numerical issues</span>
+<span class="w">  </span><span class="n">density_vals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tryCatch</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">dmvnorm</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">rep</span><span class="p">(</span><span class="m">1e-10</span><span class="p">,</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Filter out very small densities and ensure positive values</span>
+<span class="w">  </span><span class="n">grid</span><span class="o">$</span><span class="n">density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pmax</span><span class="p">(</span><span class="n">density_vals</span><span class="p">,</span><span class="w"> </span><span class="m">1e-8</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Remove rows where density is essentially zero to avoid contour issues</span>
+<span class="w">  </span><span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grid</span><span class="p">[</span><span class="n">grid</span><span class="o">$</span><span class="n">density</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1e-6</span><span class="p">,</span><span class="w"> </span><span class="p">]</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Parameters for the Bayesian model</span>
+<span class="c1"># Prior parameters (less informative to make posterior more visible)</span>
+<span class="n">beta_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Prior mean</span>
+<span class="n">sigma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Prior covariance (larger)</span>
+
+<span class="c1"># True parameters (unknown in practice)</span>
+<span class="n">beta_true</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="n">sigma_true</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Larger covariance</span>
+
+<span class="c1"># Generate observed data</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">observed_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rmvnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_true</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma_true</span><span class="p">)</span>
+<span class="n">sample_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colMeans</span><span class="p">(</span><span class="n">observed_data</span><span class="p">)</span>
+
+<span class="c1"># Bayesian update (assuming known covariance for simplicity)</span>
+<span class="c1"># Posterior parameters</span>
+<span class="n">sigma_0_inv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">sigma_0</span><span class="p">)</span>
+<span class="n">sigma_true_inv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">sigma_true</span><span class="p">)</span>
+<span class="n">sigma_post_inv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sigma_0_inv</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_true_inv</span>
+<span class="n">sigma_post</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">sigma_post_inv</span><span class="p">)</span>
+<span class="n">beta_post</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sigma_post</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="p">(</span><span class="n">sigma_0_inv</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_true_inv</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">sample_mean</span><span class="p">)</span>
+
+<span class="c1"># Create contour data for all distributions</span>
+<span class="n">prior_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">create_contour_data</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_0</span><span class="p">)</span>
+<span class="n">likelihood_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">create_contour_data</span><span class="p">(</span><span class="n">sample_mean</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_true</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+<span class="n">posterior_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">create_contour_data</span><span class="p">(</span><span class="n">beta_post</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_post</span><span class="p">)</span>
+
+<span class="c1"># Create individual plots with consistent styling</span>
+<span class="n">base_theme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">    </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1"># Prior plot</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">prior_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">density</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_contour</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tomato&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_0</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_0</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">             </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tomato&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior Distribution&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; ~ N(&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">[</span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma</span><span class="p">[</span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">)),</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">a</span><span class="p">]),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">b</span><span class="p">]))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">xlim</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="n">base_theme</span>
+
+<span class="c1"># Likelihood plot  </span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">likelihood_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">density</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_contour</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;skyblue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dotted&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_mean</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_mean</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">             </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#000080&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">17</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Likelihood (Data)&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;n =&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;observations&quot;</span><span class="p">),</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">a</span><span class="p">]),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">b</span><span class="p">]))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">xlim</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="n">base_theme</span>
+
+<span class="c1"># Posterior plot</span>
+<span class="n">p3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">posterior_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">density</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_contour</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;solid&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_post</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_post</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">             </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_true</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_true</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">             </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">stroke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Posterior&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;|data ~ N(&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">)),</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">a</span><span class="p">]),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">b</span><span class="p">]))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">xlim</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="n">base_theme</span>
+
+<span class="c1"># Combined plot showing all three</span>
+<span class="n">combined_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span>
+<span class="w">  </span><span class="nf">cbind</span><span class="p">(</span><span class="n">prior_data</span><span class="p">,</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="nf">cbind</span><span class="p">(</span><span class="n">likelihood_data</span><span class="p">,</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Likelihood&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">cbind</span><span class="p">(</span><span class="n">posterior_data</span><span class="p">,</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Posterior&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">p4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">combined_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">density</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distribution</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distribution</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_contour</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tomato&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                               </span><span class="s">&quot;Likelihood&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#000080&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                               </span><span class="s">&quot;Posterior&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;darkgreen&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_linetype_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                  </span><span class="s">&quot;Likelihood&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dotted&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                  </span><span class="s">&quot;Posterior&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;solid&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_0</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_0</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">             </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tomato&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_mean</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_mean</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">             </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#000080&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">17</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_post</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_post</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">             </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_true</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_true</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">             </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">stroke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior * Likelihood = Posterior&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bayesian Update Process&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">a</span><span class="p">]),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">b</span><span class="p">]),</span>
+<span class="w">       </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">xlim</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">    </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">guides</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">guide_legend</span><span class="p">(</span><span class="n">override.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)),</span>
+<span class="w">         </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">guide_legend</span><span class="p">(</span><span class="n">override.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)))</span>
+
+<span class="c1"># Arrange the plots in 2x2 grid</span>
+<span class="n">final_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">p3</span><span class="p">,</span><span class="w"> </span><span class="n">p4</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Save the combined plot</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;./cartoons/Bayesian_multivariate_normal_mean_model.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">final_plot</span><span class="p">,</span>
+<span class="w">       </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
+
+<span class="c1"># Reset warnings</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">warn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+
+<span class="c1"># Print summary statistics</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Bayesian Bivariate Normal Mean Model Summary:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;============================================\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Prior mean:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sample mean:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">sample_mean</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span><span class="w"> </span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior mean:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_post</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;True mean:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_true</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sample size:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ebee94375c28ab2415db7a50425512aeadb0e7f0bdd1faccff9e493ab3518cf9.png"><img alt="_images/ebee94375c28ab2415db7a50425512aeadb0e7f0bdd1faccff9e493ab3518cf9.png" src="_images/ebee94375c28ab2415db7a50425512aeadb0e7f0bdd1faccff9e493ab3518cf9.png" style="width: 420px; height: 420px;" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bayesian Bivariate Normal Mean Model Summary:
+============================================
+Prior mean: 2 2 
+Sample mean: 5.36 3.188 
+Posterior mean: 5.053 3.062 
+True mean: 4 3 
+Sample size: 5 
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/ee6514d1d82fb1008e9e5c392443f9e89427c03b657c17531c52b68aac93f3da.png"><img alt="_images/ee6514d1d82fb1008e9e5c392443f9e89427c03b657c17531c52b68aac93f3da.png" src="_images/ee6514d1d82fb1008e9e5c392443f9e89427c03b657c17531c52b68aac93f3da.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
-<p>In this example, we’ve demonstrated Bayesian inference for a bivariate normal mean model, using height and weight as the two variables. We specified a bivariate normal prior, observed data from five individuals, and updated our beliefs to obtain the posterior distribution.</p>
-<p>The key differences from the univariate case are:</p>
-<ol class="arabic simple">
-<li><p>We work with vectors and matrices instead of scalars</p></li>
-<li><p>The covariance matrix captures the relationship between height and weight</p></li>
-<li><p>The posterior update formulas involve matrix operations</p></li>
-<li><p>Visualization becomes more complex, requiring 2D contours or 3D surfaces</p></li>
-</ol>
-<p>We’ve seen how the posterior distribution balances the prior beliefs with the observed data, resulting in updated estimates for the mean height and weight that reflect both our prior knowledge and the new information from our sample.</p>
 </section>
 </section>
 
@@ -1114,7 +1450,7 @@ Posterior precision matrix (Precision_1):
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bayesian Mixture Model [FIXME]</p>
+        <p class="prev-next-title">Bayesian Mixture Model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1143,14 +1479,22 @@ Posterior precision matrix (Precision_1):
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood">Likelihood</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution">Posterior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-data-and-likelihood-function">Observed Data and Likelihood Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-prior-and-posterior-distributions">Visualizing Prior and Posterior Distributions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-visualization-of-prior-and-posterior-distributions">3D Visualization of Prior and Posterior Distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">Data Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-heritability">(optional) Heritability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-specification">Prior Specification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-specification">Likelihood Specification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-calculation">Posterior Calculation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>

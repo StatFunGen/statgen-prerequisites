@@ -334,8 +334,13 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_rule.html">Bayes Rule</a></li>
 
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
 
 
 
@@ -355,7 +360,8 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model [FIXME]</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
 
@@ -364,7 +370,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison [FIXME]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
 
 
 
@@ -530,14 +536,18 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-data-and-the-likelihood-function">Observed Data and the likelihood function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-prior-and-posterior-distribution">Plot the prior and posterior distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-observed-data">Generate Observed Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Likelihood</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior">Posterior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-compare-with-mle">(optional) Compare with MLE</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graphical Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -564,105 +574,105 @@ document.write(`
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
 <p>Under the Bayesian regression setting, we have
 $<span class="math notranslate nohighlight">\(
-\mathbf{Y} = \mathbf{X} \theta + \boldsymbol{\varepsilon}, \quad \boldsymbol{\varepsilon} \sim \mathcal{N}(0, \sigma^2 \mathbf{I})
+\mathbf{Y} = \mathbf{X} \beta + \boldsymbol{\varepsilon}, \quad \boldsymbol{\varepsilon} \sim \mathcal{N}(0, \sigma^2 \mathbf{I})
 \)</span><span class="math notranslate nohighlight">\(
-where we place a **prior distribution** on the regression coefficients: \)</span>\theta \sim \mathcal{N}(\theta_0, \Sigma_0)$.</p>
+where we place a **prior distribution** on the regression coefficients: \)</span>\beta \sim \mathcal{N}(\beta_0, \Sigma_0)$.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( \mathbf{Y} \in \mathbb{R}^{N \times 1} \)</span>: phenotype vector</p></li>
 <li><p><span class="math notranslate nohighlight">\( \mathbf{X} \in \mathbb{R}^{N \times 1} \)</span>: genotype vector (e.g., 0, 1, 2 for additive coding)</p></li>
-<li><p><span class="math notranslate nohighlight">\( \theta \in \mathbb{R} \)</span>: a scalar, genetic effect size (regression coefficient)</p></li>
+<li><p><span class="math notranslate nohighlight">\( \beta \in \mathbb{R} \)</span>: a scalar, genetic effect size (regression coefficient)</p></li>
 <li><p><span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon} \in \mathbb{R}^{N \times 1} \)</span>: residual error, assumed i.i.d. Gaussian</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<p>Note that we switch from <span class="math notranslate nohighlight">\(\beta\)</span> to <span class="math notranslate nohighlight">\(\theta\)</span> as we now consider <span class="math notranslate nohighlight">\(\theta\)</span> a random variable to estimate, but conceptually they are the same thing – effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>Note that we switch from <span class="math notranslate nohighlight">\(\beta\)</span> to <span class="math notranslate nohighlight">\(\beta\)</span> as we now consider <span class="math notranslate nohighlight">\(\beta\)</span> a random variable to estimate, but conceptually they are the same thing – effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 <section id="model-assumptions">
 <h2>Model Assumptions<a class="headerlink" href="#model-assumptions" title="Link to this heading">#</a></h2>
-<p>In the Bayesian normal mean model, we assume the variable <span class="math notranslate nohighlight">\(Y\)</span> follows uni-variate normal model <span class="math notranslate nohighlight">\(\mathcal{N}(X\theta, \sigma^2)\)</span></p>
+<p>In the Bayesian normal mean model, we assume the variable <span class="math notranslate nohighlight">\(Y\)</span> follows uni-variate normal model <span class="math notranslate nohighlight">\(\mathcal{N}(X\beta, \sigma^2)\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-Y \sim \mathcal{N}(X\theta, \sigma^2)
+Y \sim \mathcal{N}(X\beta, \sigma^2)
 \]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( \theta \)</span> is the unknown mean parameter.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \beta \)</span> is the unknown mean parameter.</p></li>
 <li><p><span class="math notranslate nohighlight">\( \sigma^2 \)</span> is the known variance.</p></li>
 <li><p><span class="math notranslate nohighlight">\(X\)</span> is the genotype value (fixed) for each individual</p></li>
 </ul>
-<p>Since <span class="math notranslate nohighlight">\(X\)</span> is fixed, then the question becomes what can we learn about the unknown parameter <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Since <span class="math notranslate nohighlight">\(X\)</span> is fixed, then the question becomes what can we learn about the unknown parameter <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 </section>
 <section id="prior-distribution">
 <h2>Prior Distribution<a class="headerlink" href="#prior-distribution" title="Link to this heading">#</a></h2>
-<p>A common choice for the prior on <span class="math notranslate nohighlight">\( \theta \)</span> is a normal distribution:</p>
+<p>A common choice for the prior on <span class="math notranslate nohighlight">\( \beta \)</span> is a normal distribution:</p>
 <div class="math notranslate nohighlight">
 \[
-\theta \sim \mathcal{N}(\theta_0, \sigma_0^2)
+\beta \sim \mathcal{N}(\beta_0, \sigma_0^2)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\( \theta_0 \)</span> is the prior mean and <span class="math notranslate nohighlight">\( \sigma_0^2 \)</span> is the prior variance.</p>
-<p>The precision is defined as <span class="math notranslate nohighlight">\(\tau_0 = \frac{1}{\sigma_0^2}\)</span>. In other words, the prior of <span class="math notranslate nohighlight">\(\theta\)</span> can be rewritten as:</p>
+<p>where <span class="math notranslate nohighlight">\( \beta_0 \)</span> is the prior mean and <span class="math notranslate nohighlight">\( \sigma_0^2 \)</span> is the prior variance.</p>
+<p>The precision is defined as <span class="math notranslate nohighlight">\(\tau_0 = \frac{1}{\sigma_0^2}\)</span>. In other words, the prior of <span class="math notranslate nohighlight">\(\beta\)</span> can be rewritten as:</p>
 <div class="math notranslate nohighlight">
 \[
-\theta \sim \mathcal{N}(\theta_0, \frac{1}{\tau_0})
+\beta \sim \mathcal{N}(\beta_0, \frac{1}{\tau_0})
 \]</div>
 <p>Therefore, the probability density function (PDF) is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-p(\theta)&amp;\propto \exp\left(-\frac{1}{2}\tau_0\theta^2 + \tau_0\theta_0 \theta\right) \\
-       &amp;\propto \exp\left(-\frac{1}{2}\tau_0 (\theta - \theta_0)^2\right)
+p(\beta)&amp;\propto \exp\left(-\frac{1}{2}\tau_0\beta^2 + \tau_0\beta_0 \beta\right) \\
+       &amp;\propto \exp\left(-\frac{1}{2}\tau_0 (\beta - \beta_0)^2\right)
 \end{align}
 \end{split}\]</div>
-<p>(Here, the 0 subscript is used to indicate that <span class="math notranslate nohighlight">\(\theta_0\)</span> and <span class="math notranslate nohighlight">\(\sigma_0\)</span> are parameters in the prior.)</p>
+<p>(Here, the 0 subscript is used to indicate that <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\sigma_0\)</span> are parameters in the prior.)</p>
 </section>
 <section id="likelihood">
 <h2>Likelihood<a class="headerlink" href="#likelihood" title="Link to this heading">#</a></h2>
-<p>The likelihood of the data given <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span> is:</p>
+<p>The likelihood of the data given <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[
-Y\mid\theta, \sigma^2 \sim \mathcal{N}(\theta, \sigma^2)
+Y\mid\beta, \sigma^2 \sim \mathcal{N}(\beta, \sigma^2)
 \]</div>
 <p>The probability density function (PDF) is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-p(Y\mid\theta) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y^2 - 2\theta Y)\right)\\
-&amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \theta)^2\right)
+p(Y\mid\beta) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y^2 - 2\beta Y)\right)\\
+&amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \beta)^2\right)
 \end{align}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\tau = \frac{1}{\sigma^2}\)</span> is the precision.</p>
 </section>
 <section id="posterior-distribution">
 <h2>Posterior Distribution<a class="headerlink" href="#posterior-distribution" title="Link to this heading">#</a></h2>
-<p>Using Bayes’ theorem, the posterior distribution of <span class="math notranslate nohighlight">\( \theta \)</span> is given by:</p>
+<p>Using Bayes’ theorem, the posterior distribution of <span class="math notranslate nohighlight">\( \beta \)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[
-p(\theta|Y) \propto p(Y|\theta) p(\theta)
+p(\beta|Y) \propto p(Y|\beta) p(\beta)
 \]</div>
 <p>Expanding the probability density functions:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-p(\theta \mid Y) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \theta)^2\right) \exp\left(-\frac{1}{2} \tau_0 (\theta - \theta_0)^2\right) \\
-&amp;\propto \exp\left(-\frac{1}{2} \tau (Y^2 - 2Y\theta + \theta^2) - \frac{1}{2} \tau_0 (\theta^2 - 2\theta \theta_0 + \theta_0^2)\right) \\
-&amp;\propto \exp\left(-\frac{1}{2} (\tau + \tau_0) \theta^2 + (\tau Y + \tau_0 \theta_0) \theta \right)
+p(\beta \mid Y) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \beta)^2\right) \exp\left(-\frac{1}{2} \tau_0 (\beta - \beta_0)^2\right) \\
+&amp;\propto \exp\left(-\frac{1}{2} \tau (Y^2 - 2Y\beta + \beta^2) - \frac{1}{2} \tau_0 (\beta^2 - 2\beta \beta_0 + \beta_0^2)\right) \\
+&amp;\propto \exp\left(-\frac{1}{2} (\tau + \tau_0) \beta^2 + (\tau Y + \tau_0 \beta_0) \beta \right)
 \end{align}
 \end{split}\]</div>
 <p>Recognizing the quadratic form, the posterior distribution follows a normal distribution:</p>
 <div class="math notranslate nohighlight">
 \[
-\theta \mid Y \sim \mathcal{N}\left( \theta_1, \sigma_1^2 \right)
+\beta \mid Y \sim \mathcal{N}\left( \beta_1, \sigma_1^2 \right)
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[
-\theta_1 = \frac{\tau Y + \tau_0 \theta_0}{\tau + \tau_0}, \quad \sigma_1^2 = \frac{1}{\tau + \tau_0}
+\beta_1 = \frac{\tau Y + \tau_0 \beta_0}{\tau + \tau_0}, \quad \sigma_1^2 = \frac{1}{\tau + \tau_0}
 \]</div>
 </section>
 <section id="characteristics">
 <h2>Characteristics<a class="headerlink" href="#characteristics" title="Link to this heading">#</a></h2>
 <ul>
-<li><p><strong>Bayes’ theorem</strong> combines these components: <span class="math notranslate nohighlight">\(P(\theta|D) \propto P(D|\theta) P(\theta)\)</span>.</p></li>
+<li><p><strong>Bayes’ theorem</strong> combines these components: <span class="math notranslate nohighlight">\(P(\beta|D) \propto P(D|\beta) P(\beta)\)</span>.</p></li>
 <li><p>The <strong>prior</strong> represents our belief about the parameter before seeing any data.</p></li>
 <li><p>The <strong>likelihood</strong> represents how likely we are to observe the data given the parameter.</p></li>
 <li><p>The <strong>posterior</strong> is the updated belief about the parameter after seeing the data.</p>
@@ -672,16 +682,16 @@ p(\theta \mid Y) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \theta)^2\right) 
 </ul>
 <div class="math notranslate nohighlight">
 \[
-    \theta_1=w\sum_i^n x_i+(1−w)\theta_0
+    \beta_1=w\sum_i^n x_i+(1−w)\beta_0
     \]</div>
-<p>where <span class="math notranslate nohighlight">\(w=\tau(\tau+\tau_0)\)</span>. Thus <span class="math notranslate nohighlight">\(\theta_1\)</span> is a weighted average of the sum of the data <span class="math notranslate nohighlight">\(x_i\)</span> and the prior mean <span class="math notranslate nohighlight">\(\theta_0\)</span>. And the weights depend on the relative precision of the data and the prior. If the data are precise compared with the prior (<span class="math notranslate nohighlight">\(\tau&gt;&gt;\tau_0\)</span>) then the weight <span class="math notranslate nohighlight">\(w\)</span> will be close to 1 and the posterior mean will be close to the data.</p>
+<p>where <span class="math notranslate nohighlight">\(w=\tau(\tau+\tau_0)\)</span>. Thus <span class="math notranslate nohighlight">\(\beta_1\)</span> is a weighted average of the sum of the data <span class="math notranslate nohighlight">\(x_i\)</span> and the prior mean <span class="math notranslate nohighlight">\(\beta_0\)</span>. And the weights depend on the relative precision of the data and the prior. If the data are precise compared with the prior (<span class="math notranslate nohighlight">\(\tau&gt;&gt;\tau_0\)</span>) then the weight <span class="math notranslate nohighlight">\(w\)</span> will be close to 1 and the posterior mean will be close to the data.</p>
 </li>
 </ul>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This R example demonstrates a Bayesian normal mean model for updating beliefs about a population parameter using observed data. The analysis starts with a prior belief that the true mean (<span class="math notranslate nohighlight">\(\theta\)</span>) follows a normal distribution with mean 0.1 and variance 1. After observing height measurements from five individuals, the code applies Bayesian updating rules to compute the posterior distribution, which combines the prior information with the likelihood of the observed data. The example illustrates how the posterior mean shifts toward the sample average while the posterior variance decreases (indicating increased certainty), and visualizes both the prior and posterior distributions along with the observed data points to show how Bayesian inference updates our beliefs in light of new evidence.</p>
+<p>This R example demonstrates a Bayesian normal mean model for updating beliefs about a population parameter using observed data. The analysis starts with a prior belief that the true mean (<span class="math notranslate nohighlight">\(\beta\)</span>) follows a normal distribution with mean 0.1 and variance 1. After observing height measurements from five individuals, the code applies Bayesian updating rules to compute the posterior distribution, which combines the prior information with the likelihood of the observed data. The example illustrates how the posterior mean shifts toward the sample average while the posterior variance decreases (indicating increased certainty), and visualizes both the prior and posterior distributions along with the observed data points to show how Bayesian inference updates our beliefs in light of new evidence.</p>
 <ul class="simple">
 <li><p>Requirement:</p>
 <ul>
@@ -698,200 +708,278 @@ p(\theta \mid Y) &amp;\propto \exp\left(-\frac{1}{2} \tau (Y - \theta)^2\right) 
 </div>
 </div>
 </div>
+<section id="generate-observed-data">
+<h2>Generate Observed Data<a class="headerlink" href="#generate-observed-data" title="Link to this heading">#</a></h2>
+<p>First we define the true parameters, which are unknown in practice, but here we are simulating the data. Then we generate the observed data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># True genetic effect of one variant on height</span>
+<span class="n">beta_true</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">4.5</span><span class="w">      </span><span class="c1"># cm per allele (this is what we want to estimate)</span>
+<span class="n">sigma_epsilon</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">8</span><span class="w">    </span><span class="c1"># residual standard deviation (cm)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n_individuals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="w">           </span><span class="c1"># number of individuals</span>
+<span class="n">height_baseline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">170</span><span class="w">       </span><span class="c1"># population mean height (cm)</span>
+
+<span class="c1"># Generate genotypes (0, 1, or 2 copies of the variant)</span>
+<span class="c1"># Assuming MAF = 0.3 (Minor Allele Frequency)</span>
+<span class="n">maf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.3</span>
+<span class="n">p_genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">maf</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="o">*</span><span class="n">maf</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">maf</span><span class="p">),</span><span class="w"> </span><span class="n">maf</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># P(0), P(1), P(2)</span>
+
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_individuals</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_genotypes</span><span class="p">)</span>
+
+<span class="c1"># Calculate genetic contributions and add environmental noise</span>
+<span class="n">genetic_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genotypes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta_true</span>
+<span class="n">environmental_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n_individuals</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma_epsilon</span><span class="p">)</span>
+<span class="n">observed_heights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">height_baseline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">genetic_effects</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">environmental_effects</span>
+
+<span class="c1"># Create dataset</span>
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">individual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_individuals</span><span class="p">,</span>
+<span class="w">  </span><span class="n">genotype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genotypes</span><span class="p">,</span>
+<span class="w">  </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">observed_heights</span><span class="p">,</span>
+<span class="w">  </span><span class="n">genetic_effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genetic_effects</span><span class="p">,</span>
+<span class="w">  </span><span class="n">environmental_effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">environmental_effects</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bayesian-inference">
+<h2>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Link to this heading">#</a></h2>
 <section id="id1">
-<h2>Prior Distribution<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>We assume a normal prior for <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<h3>Prior Distribution<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>We assume a normal prior for <span class="math notranslate nohighlight">\(\beta\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-\theta \sim \mathcal{N}(\theta_0, \sigma_0^2)
+\beta \sim \mathcal{N}(\beta_0, \sigma_0^2)
 \]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\theta_0 = 0.1\)</span> (prior mean),</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_0^2 = 1\)</span> (prior variance), leading to a precision <span class="math notranslate nohighlight">\(\tau_0 = 1/\sigma_0^2\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0 = 0\)</span> (prior mean),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_0^2 = 25\)</span> (prior variance), leading to a precision <span class="math notranslate nohighlight">\(\tau_0 = 1/\sigma_0^2\)</span>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prior distribution of mu</span>
-<span class="n">theta_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.1</span><span class="w">  </span><span class="c1"># Prior mean</span>
-<span class="n">sigma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># Prior standard deviation</span>
-<span class="n">tau_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma_0</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Prior precision</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Prior mean (theta_0):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">theta_0</span><span class="p">))</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Prior standard deviation (sigma_0):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_0</span><span class="p">))</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Prior precision (tau_0):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tau_0</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Prior mean (theta_0): 0.1&quot;
-[1] &quot;Prior standard deviation (sigma_0): 1&quot;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Prior precision (tau_0): 1&quot;
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prior belief about genetic effect (weakly informative)</span>
+<span class="n">beta_prior_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">         </span><span class="c1"># center at zero (no prior knowledge)</span>
+<span class="n">beta_prior_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">25</span><span class="w">         </span><span class="c1"># prior variance (SD = 5 cm per allele)</span>
+<span class="n">beta_prior_precision</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">beta_prior_var</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="observed-data-and-the-likelihood-function">
-<h2>Observed Data and the likelihood function<a class="headerlink" href="#observed-data-and-the-likelihood-function" title="Link to this heading">#</a></h2>
-<p>Let’s say that we observe heights of five individuals, and we assume the likelihood follows:</p>
+<section id="id2">
+<h3>Likelihood<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Likelihood for each individual i:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;height_i | beta ~ N(&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">height_baseline</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; + beta * genotype_i,&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_epsilon</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Known residual variance:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_epsilon</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm^2\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Residual precision:&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="n">sigma_epsilon</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The likelihood is a function of beta (unknown parameter):\n&quot;</span><span class="p">)</span>
+<span class="kr">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">min</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">n_individuals</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: height =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">      </span><span class="s">&quot;cm, genotype =&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">genotype</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  Expected height = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">height_baseline</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; + beta *&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">genotype</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span>
+<span class="w">      </span><span class="s">&quot;=&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">height_baseline</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;+ beta *&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">genotype</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  Likelihood contribution is proportional to exp(-0.5 * (&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">      </span><span class="s">&quot;- (&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">height_baseline</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;+ beta *&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">genotype</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;))^2 /&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_epsilon</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;...\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The likelihood function tells us how plausible different values of beta are,\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;given the observed data. We don&#39;t know the true beta - that&#39;s what we&#39;re estimating!\n\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Likelihood for each individual i:
+height_i | beta ~ N( 170  + beta * genotype_i, 64 )
+Known residual variance: 64 cm^2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Residual precision: 0.015625 
+
+The likelihood is a function of beta (unknown parameter):
+Individual 1 : height = 172.6 cm, genotype = 2 
+  Expected height =  170  + beta * 2 = 170 + beta * 2 
+  Likelihood contribution is proportional to exp(-0.5 * ( 172.6 - ( 170 + beta * 2 ))^2 / 64 )
+Individual 2 : height = 174 cm, genotype = 0 
+  Expected height =  170  + beta * 0 = 170 + beta * 0 
+  Likelihood contribution is proportional to exp(-0.5 * ( 174 - ( 170 + beta * 0 ))^2 / 64 )
+Individual 3 : height = 172 cm, genotype = 0 
+  Expected height =  170  + beta * 0 = 170 + beta * 0 
+  Likelihood contribution is proportional to exp(-0.5 * ( 172 - ( 170 + beta * 0 ))^2 / 64 )
+...
+The likelihood function tells us how plausible different values of beta are,
+given the observed data. We don&#39;t know the true beta - that&#39;s what we&#39;re estimating!
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <strong>sufficient statistic</strong> T(data) contains all the information about a parameter that is available in the dataset. Remarkably, for our normal model, ALL information about β from n individuals can be compressed into just <strong>two numbers</strong>:</p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(T_1\)</span></strong> = Σ(genotype_i²)</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(T_2\)</span></strong> = Σ(genotype_i · (height_i - baseline))</p></li>
+</ul>
+<p>Due to the <strong>exponential family</strong> property of the normal distribution, the likelihood can be rewritten as:</p>
 <div class="math notranslate nohighlight">
 \[
-Y | \theta, \sigma^2, X \sim \mathcal{N}(X\theta, \sigma^2)
+L(\beta|\text{data}) = L(\beta|T_1, T_2, N)
 \]</div>
-<p>To simplify, we assume that the individuals all have the same genotype value <span class="math notranslate nohighlight">\(X=1\)</span> (if not, then it is just the genotype value times <span class="math notranslate nohighlight">\(\theta\)</span>).</p>
+<p>This means we can <strong>throw away all the raw data</strong> and work only with <span class="math notranslate nohighlight">\(T_1\)</span>, <span class="math notranslate nohighlight">\(T_2\)</span>, and <span class="math notranslate nohighlight">\(N\)</span>, without losing any information about <span class="math notranslate nohighlight">\(\beta\)</span>!</p>
+<p>Sufficient statistics are particularly powerful when combined with <strong>conjugate priors</strong>. For the normal-normal model:</p>
+<ul class="simple">
+<li><p>Prior: <span class="math notranslate nohighlight">\(\beta \sim N(\beta_\text{prior}, \sigma_\text{prior}^2)\)</span></p></li>
+<li><p>Likelihood: data | <span class="math notranslate nohighlight">\(\beta\)</span> ~ Normal with sufficient statistics <span class="math notranslate nohighlight">\(T_1, T_2\)</span></p></li>
+<li><p>Posterior: <span class="math notranslate nohighlight">\(\beta | \text{data} \sim N(\beta_\text{posterior}, \sigma_\text{posterior}^2))\)</span> with simple update formulas</p></li>
+</ul>
+<p>This creates a beautiful mathematical framework where:</p>
+<ol class="arabic simple">
+<li><p>We can summarize any amount of data with just a few numbers</p></li>
+<li><p>Bayesian updating becomes elementary algebra</p></li>
+<li><p>The posterior has the same functional form as the prior</p></li>
+</ol>
+<p>Sufficient statistics transform Bayesian inference from a computationally intensive, data-heavy process into an elegant, efficient calculation. They are the reason why certain Bayesian models can scale to massive datasets while maintaining mathematical rigor and computational tractability.</p>
+<p>Without sufficient statistics, modern Bayesian genomics, machine learning, and large-scale data analysis would be practically impossible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed standardized height for the 5 individuals</span>
-<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.04</span><span class="p">,</span><span class="w"> </span><span class="m">-0.07</span><span class="p">,</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Likelihood: Assumption - Heights follow N(theta, sigma^2) with known variance</span>
-<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># Known standard deviation for heights within genotype class X=1</span>
-<span class="n">tau</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Precision</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Likelihood standard deviation (sigma):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">))</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Likelihood precision (tau):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tau</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Likelihood standard deviation (sigma): 1&quot;
-[1] &quot;Likelihood precision (tau): 1&quot;
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># For conjugate normal-normal model, we need:</span>
+<span class="c1"># Sum of (genotype_i^2) and Sum of (genotype_i * (height_i - baseline))</span>
+
+<span class="n">sum_genotype_squared</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">genotypes</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sum_genotype_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">genotypes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">observed_heights</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">height_baseline</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="posterior-distribution-update">
-<h2>Posterior Distribution Update<a class="headerlink" href="#posterior-distribution-update" title="Link to this heading">#</a></h2>
+<section id="posterior">
+<h3>Posterior<a class="headerlink" href="#posterior" title="Link to this heading">#</a></h3>
 <p>Using Bayesian updating, the posterior distribution is given by:</p>
 <div class="math notranslate nohighlight">
 \[
-\theta | Y \sim \mathcal{N}(\theta_1, \sigma_1^2)
+\beta | Y \sim \mathcal{N}(\beta_1, \sigma_1^2)
 \]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><strong>Posterior precision</strong>:
 <span class="math notranslate nohighlight">\(\tau_1 = \tau_0 + n \tau\)</span></p></li>
 <li><p><strong>Posterior mean</strong>:
-<span class="math notranslate nohighlight">\(\theta_1 = \frac{\tau_0 \theta_0 + \tau \sum Y}{\tau_1}\)</span></p></li>
+<span class="math notranslate nohighlight">\(\beta_1 = \frac{\tau_0 \beta_0 + \tau \sum Y}{\tau_1}\)</span></p></li>
 <li><p><strong>Posterior standard deviation</strong>:
 <span class="math notranslate nohighlight">\(\sigma_1 = \sqrt{\frac{1}{\tau_1}}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Posterior parameters update</span>
-<span class="n">tau_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tau_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tau</span><span class="w">  </span><span class="c1"># Posterior precision</span>
-<span class="n">sigma_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tau_1</span><span class="p">)</span><span class="w">  </span><span class="c1"># Posterior standard deviation</span>
-<span class="n">theta_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">tau_0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">theta_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tau_1</span><span class="w">  </span><span class="c1"># Posterior mean</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Posterior mean (theta_1):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">theta_1</span><span class="p">))</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Posterior standard deviation (sigma_1):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_1</span><span class="p">))</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Posterior precision (tau_1):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tau_1</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Posterior precision = prior precision + likelihood precision</span>
+<span class="n">likelihood_precision</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sum_genotype_squared</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma_epsilon</span><span class="o">^</span><span class="m">2</span>
+<span class="n">posterior_precision</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta_prior_precision</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">likelihood_precision</span>
+
+<span class="c1"># Posterior variance</span>
+<span class="n">posterior_variance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">posterior_precision</span>
+
+<span class="c1"># Posterior mean (precision-weighted average)</span>
+<span class="n">posterior_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">beta_prior_precision</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta_prior_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">likelihood_precision</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">sum_genotype_height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sum_genotype_squared</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">posterior_precision</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Bayesian updating formulas:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior precision = prior precision + likelihood precision\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;                   =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_prior_precision</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">likelihood_precision</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&quot;=&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_precision</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior variance = 1 / posterior precision =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_variance</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior mean = weighted average of prior and data\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weight on prior:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_prior_precision</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">posterior_precision</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weight on data:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">likelihood_precision</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">posterior_precision</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;POSTERIOR RESULTS:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior distribution: beta | data ~ N(&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_mean</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_variance</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;)\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior mean:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_mean</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;cm per allele\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior standard deviation:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">posterior_variance</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;cm per allele\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;True value (for comparison):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta_true</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm per allele\n\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Posterior mean (theta_1): 0.0866666666666667&quot;
-[1] &quot;Posterior standard deviation (sigma_1): 0.408248290463863&quot;
-[1] &quot;Posterior precision (tau_1): 6&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bayesian updating formulas:
+Posterior precision = prior precision + likelihood precision
+                   = 0.04 + 0.0938 = 0.1338 
+
+Posterior variance = 1 / posterior precision = 7.4766 
+
+Posterior mean = weighted average of prior and data
+Weight on prior: 0.299 
+Weight on data: 0.701 
+
+POSTERIOR RESULTS:
+Posterior distribution: beta | data ~ N( 2.215 , 7.4766 )
+Posterior mean: 2.215 cm per allele
+Posterior standard deviation: 2.734 cm per allele
+True value (for comparison): 4.5 cm per allele
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="plot-the-prior-and-posterior-distribution">
-<h2>Plot the prior and posterior distribution<a class="headerlink" href="#plot-the-prior-and-posterior-distribution" title="Link to this heading">#</a></h2>
+</section>
+<section id="optional-compare-with-mle">
+<h2>(optional) Compare with MLE<a class="headerlink" href="#optional-compare-with-mle" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the prior distribution</span>
-<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">theta_0</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_0</span><span class="p">),</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-10</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span>
-<span class="w">      </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="s">&quot;Prior vs Posterior Distribution of &quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">theta</span><span class="p">)),</span>
-<span class="w">     </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">500</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Maximum likelihood estimator (same as OLS for normal model)</span>
+<span class="c1"># beta_hat = (X&#39;X)^(-1) X&#39;Y where X is design matrix and Y is outcome vector</span>
 
-<span class="c1"># Add the posterior distribution</span>
-<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">theta_1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_1</span><span class="p">),</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-10</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">500</span><span class="p">)</span>
+<span class="c1"># For our simple model: height_i = baseline + beta * genotype_i + epsilon_i</span>
+<span class="c1"># The MLE is: beta_hat = sum(genotype_i * (height_i - baseline)) / sum(genotype_i^2)</span>
 
-<span class="c1"># Add three observations (data points)</span>
-<span class="nf">points</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+<span class="n">beta_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sum_genotype_height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sum_genotype_squared</span>
+<span class="n">se_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">sigma_epsilon</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sum_genotype_squared</span><span class="p">)</span>
 
-<span class="c1"># Add legend</span>
-<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Posterior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Observed Data&quot;</span><span class="p">),</span><span class="w"> </span>
-<span class="w">       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">),</span><span class="w"> </span>
-<span class="w">       </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">))</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Maximum Likelihood Estimator (MLE):\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;beta_hat =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;cm per allele\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Standard error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">se_mle</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;cm per allele\n&quot;</span><span class="p">)</span>
+
+<span class="c1"># 95% confidence interval</span>
+<span class="n">ci_lower</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta_mle</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">se_mle</span>
+<span class="n">ci_upper</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta_mle</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">se_mle</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;95% Confidence Interval: [&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">ci_lower</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">ci_upper</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;] cm per allele\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d120ef8dfab4ce0f434592ca756b304f8205407f9de9d0155dedc8d497cce7ca.png"><img alt="_images/d120ef8dfab4ce0f434592ca756b304f8205407f9de9d0155dedc8d497cce7ca.png" src="_images/d120ef8dfab4ce0f434592ca756b304f8205407f9de9d0155dedc8d497cce7ca.png" style="width: 420px; height: 420px;" />
-</a>
-</div>
-</div>
-<p>Now let’s consider that if the <span class="math notranslate nohighlight">\(\theta\)</span> is a fixed effect, then we would simply fit the ordinary least square to get an estimate of <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## Fixed Effect (Frequentist) Approach - Ordinary Least Squares</span>
-
-<span class="c1"># Create X variable (individual index or could be genotype values)</span>
-<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="w">  </span><span class="c1"># Individual indices (1, 2, 3, 4, 5)</span>
-
-<span class="c1"># Fit OLS regression: Y = intercept + slope * X + error</span>
-<span class="n">ols_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">X</span><span class="p">)</span>
-<span class="n">theta_intercept</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">coef</span><span class="p">(</span><span class="n">ols_model</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># Intercept estimate</span>
-<span class="n">theta_slope</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">coef</span><span class="p">(</span><span class="n">ols_model</span><span class="p">)[</span><span class="m">2</span><span class="p">]</span><span class="w">      </span><span class="c1"># Slope estimate</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;=== Fixed Effect (OLS) Results ===&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Intercept estimate:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">theta_intercept</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)))</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Slope estimate:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">theta_slope</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)))</span>
-
-<span class="c1"># Create scatterplot with fitted line</span>
-<span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span>
-<span class="w">     </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span>
-<span class="w">     </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span>
-<span class="w">     </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span>
-<span class="w">     </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">     </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Standardized Height&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">     </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;OLS Regression: Fixed Effect Model&quot;</span><span class="p">,</span>
-<span class="w">     </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">5.5</span><span class="p">),</span>
-<span class="w">     </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.05</span><span class="p">))</span>
-
-<span class="c1"># Add the fitted regression line</span>
-<span class="nf">abline</span><span class="p">(</span><span class="n">ols_model</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-
-<span class="c1"># Add grid for better readability</span>
-<span class="nf">grid</span><span class="p">()</span>
-
-<span class="c1"># Add legend</span>
-<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">       </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Observed Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OLS Fitted Line&quot;</span><span class="p">),</span><span class="w"> </span>
-<span class="w">       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">),</span><span class="w"> </span>
-<span class="w">       </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span>
-<span class="w">       </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
-<span class="w">       </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum Likelihood Estimator (MLE):
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;=== Fixed Effect (OLS) Results ===&quot;
-[1] &quot;Intercept estimate: -0.009&quot;
-[1] &quot;Slope estimate: 0.031&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>beta_hat = 3.16 cm per allele
+Standard error: 3.266 cm per allele
+95% Confidence Interval: [ -3.24 , 9.56 ] cm per allele
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/9f9dca711f00775b2bb00b4fe79832435da7f9e224a22bc7e2463dea73db3c6f.png"><img alt="_images/9f9dca711f00775b2bb00b4fe79832435da7f9e224a22bc7e2463dea73db3c6f.png" src="_images/9f9dca711f00775b2bb00b4fe79832435da7f9e224a22bc7e2463dea73db3c6f.png" style="width: 420px; height: 420px;" />
-</a>
 </div>
 </div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
-<section id="id2">
-<h2>Graphical Summary<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h2>Graphical Summary<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
@@ -919,32 +1007,32 @@ Y | \theta, \sigma^2, X \sim \mathcal{N}(X\theta, \sigma^2)
 <span class="n">mu_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">tau_0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mu_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau_likelihood</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y_bar</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tau_1</span><span class="w">  </span><span class="c1"># Posterior mean</span>
 
 <span class="c1"># Create data for plotting</span>
-<span class="n">theta_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-4</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">)</span>
+<span class="n">beta_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-4</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">)</span>
 
 <span class="c1"># Calculate densities</span>
-<span class="n">prior_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">theta_range</span><span class="p">,</span><span class="w"> </span><span class="n">mu_0</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_0</span><span class="p">)</span>
-<span class="n">likelihood_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">theta_range</span><span class="p">,</span><span class="w"> </span><span class="n">y_bar</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w">  </span><span class="c1"># Likelihood as function of theta</span>
-<span class="n">posterior_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">theta_range</span><span class="p">,</span><span class="w"> </span><span class="n">mu_1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_1</span><span class="p">)</span>
+<span class="n">prior_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">mu_0</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_0</span><span class="p">)</span>
+<span class="n">likelihood_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">y_bar</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w">  </span><span class="c1"># Likelihood as function of beta</span>
+<span class="n">posterior_density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">mu_1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_1</span><span class="p">)</span>
 
 <span class="c1"># Combine into data frame</span>
 <span class="n">plot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">theta_range</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
 <span class="w">  </span><span class="n">density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">prior_density</span><span class="p">,</span><span class="w"> </span><span class="n">likelihood_density</span><span class="p">,</span><span class="w"> </span><span class="n">posterior_density</span><span class="p">),</span>
-<span class="w">  </span><span class="n">distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Posterior&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">theta_range</span><span class="p">))</span>
+<span class="w">  </span><span class="n">distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Posterior&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">beta_range</span><span class="p">))</span>
 <span class="p">)</span>
 
 <span class="c1"># Create the plot</span>
-<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">density</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distribution</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distribution</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">density</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distribution</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distribution</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tomato&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">                               </span><span class="s">&quot;Likelihood&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;skyblue&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                               </span><span class="s">&quot;Likelihood&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#000080&quot;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">                               </span><span class="s">&quot;Posterior&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;darkgreen&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">scale_linetype_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">                                  </span><span class="s">&quot;Likelihood&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dotted&quot;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">                                  </span><span class="s">&quot;Posterior&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;solid&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">labs</span><span class="p">(</span>
 <span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span>
 <span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution&quot;</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
@@ -979,7 +1067,7 @@ Y | \theta, \sigma^2, X \sim \mathcal{N}(X\theta, \sigma^2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/68ff959655bc1e2550993b7df9a62e9bcbea50f36d00b31b4e189a07ba866802.png"><img alt="_images/68ff959655bc1e2550993b7df9a62e9bcbea50f36d00b31b4e189a07ba866802.png" src="_images/68ff959655bc1e2550993b7df9a62e9bcbea50f36d00b31b4e189a07ba866802.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/37191fec1664c3ca77432a35913e5a7a455677f1505774a5a3bde54f300417d8.png"><img alt="_images/37191fec1664c3ca77432a35913e5a7a455677f1505774a5a3bde54f300417d8.png" src="_images/37191fec1664c3ca77432a35913e5a7a455677f1505774a5a3bde54f300417d8.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
@@ -1062,14 +1150,18 @@ Y | \theta, \sigma^2, X \sim \mathcal{N}(X\theta, \sigma^2)
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-data-and-the-likelihood-function">Observed Data and the likelihood function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-update">Posterior Distribution Update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-prior-and-posterior-distribution">Plot the prior and posterior distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-observed-data">Generate Observed Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prior Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Likelihood</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior">Posterior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-compare-with-mle">(optional) Compare with MLE</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graphical Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>

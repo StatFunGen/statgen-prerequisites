@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Bayesian Normal Mean Model" href="Bayesian_normal_mean_model.html" />
-    <link rel="prev" title="Likelihood Ratio Test" href="likelihood_ratio_test.html" />
+    <link rel="prev" title="Bayes Rule" href="Bayes_rule.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -334,8 +334,13 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bayes Factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_rule.html">Bayes Rule</a></li>
 
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bayes Factor</a></li>
 
 
 
@@ -355,7 +360,8 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model [FIXME]</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
 
@@ -364,7 +370,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison [FIXME]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
 
 
 
@@ -519,7 +525,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayes Factor</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
@@ -543,12 +548,6 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="bayes-factor">
 <h1>Bayes Factor<a class="headerlink" href="#bayes-factor" title="Link to this heading">#</a></h1>
 <p>The Bayes factor is the ratio of two marginal likelihoods; that is, the likelihoods of two statistical models integrated over the prior probabilities of their parameters.</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="todo">
-<h1>TODO<a class="headerlink" href="#todo" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p>emphasize on the fact that bayes factor is the generalization of the MLE which accounts for the uncertainty in the model and then use integral over the parameter space</p></li>
-</ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -673,6 +672,53 @@ p(Y|M_2) = p(Y|\beta=1, M_2)
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize results table</span>
+<span class="n">bf_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Likelihood_M1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Likelihood for Model 1 (β=0)</span>
+<span class="w">    </span><span class="n">Likelihood_M2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Likelihood for Model 3 (β=1)</span>
+<span class="w">    </span><span class="n">BF12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Bayes Factor (M3 vs M1)</span>
+<span class="w">    </span><span class="n">log_BF12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># Log of Bayes Factor</span>
+<span class="p">)</span>
+
+<span class="c1"># Set parameters for models</span>
+<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># Standard deviation of residuals</span>
+<span class="n">beta1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="c1"># Effect size for Model 1</span>
+<span class="n">beta2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="c1"># Effect size for Model 2</span>
+
+<span class="c1"># Calculate Bayes Factors for each variant</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="c1"># Genotypes for variant j</span>
+
+<span class="w">    </span><span class="c1"># Calculate likelihoods</span>
+<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M2&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># Calculate Bayes Factor</span>
+<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF12&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M2&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;log_BF12&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF12&quot;</span><span class="p">])</span>
+<span class="p">}</span>
+<span class="n">bf_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 5</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>Likelihood_M1</th><th scope=col>Likelihood_M2</th><th scope=col>BF12</th><th scope=col>log_BF12</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Variant 1</td><td>0.001367607</td><td>0.0003050987</td><td>4.4825078</td><td> 1.500183</td></tr>
+	<tr><td>Variant 2</td><td>0.001367607</td><td>0.0045633971</td><td>0.2996906</td><td>-1.205005</td></tr>
+	<tr><td>Variant 3</td><td>0.001367607</td><td>0.0059679052</td><td>0.2291603</td><td>-1.473333</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <p>Note that under the two full specific models, the Bayes factor is exactly the likelihood ratio that we get from <code class="docutils literal notranslate"><span class="pre">likelihood</span> <span class="pre">ratio</span></code> notebook [FIXME with link].</p>
 </section>
@@ -826,7 +872,7 @@ p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}(1+\tau^
 <span class="n">prior_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">prior_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Beta</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Density</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior Distributions for Effect Size&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Effect Size (β)&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Effect Size (beta)&quot;</span><span class="p">,</span>
 <span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
 
@@ -845,7 +891,7 @@ p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}(1+\tau^
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/023ae744ff1d49dddccf84e3516d03d173ca5fda16e9cbbe49c02126607436bc.png"><img alt="_images/023ae744ff1d49dddccf84e3516d03d173ca5fda16e9cbbe49c02126607436bc.png" src="_images/023ae744ff1d49dddccf84e3516d03d173ca5fda16e9cbbe49c02126607436bc.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/3ae6cfea4c0207162c9e5e18318960689118ccf26cca1259a371a683c0c1e97b.png"><img alt="_images/3ae6cfea4c0207162c9e5e18318960689118ccf26cca1259a371a683c0c1e97b.png" src="_images/3ae6cfea4c0207162c9e5e18318960689118ccf26cca1259a371a683c0c1e97b.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
@@ -897,12 +943,12 @@ p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}(1+\tau^
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="likelihood_ratio_test.html"
+       href="Bayes_rule.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Likelihood Ratio Test</p>
+        <p class="prev-next-title">Bayes Rule</p>
       </div>
     </a>
     <a class="right-next"
@@ -931,7 +977,6 @@ p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}(1+\tau^
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayes Factor</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
