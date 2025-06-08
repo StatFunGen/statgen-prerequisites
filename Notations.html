@@ -354,8 +354,7 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model [FIXME]</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
 
 
 
@@ -673,15 +672,15 @@ document.write(`
 <td><p>Likelihood ratio test</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \theta \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \beta \)</span></p></td>
 <td><p>Mean of the normal distribution (unknown)</p></td>
-<td><p>Causal effect of genetic variant on the trait</p></td>
+<td><p>Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \theta_0 \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta_0 \)</span></p></td>
 <td><p>Prior mean</p></td>
 <td><p>Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \theta_1 \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \beta_1 \)</span></p></td>
 <td><p>Posterior mean</p></td>
 <td><p>Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
 </tr>
@@ -709,15 +708,11 @@ document.write(`
 <td><p>Precision matrix</p></td>
 <td><p>Precision matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( n \)</span></p></td>
-<td><p>Number of samples</p></td>
-<td><p>Number of individuals in the dataset</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( L(M) \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( L(M) \)</span></p></td>
 <td><p>Likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
 <td><p>Probability of observing the data under model <span class="math notranslate nohighlight">\(M\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( l(M) \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( l(M) \)</span></p></td>
 <td><p>Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
 <td><p>Log-transformed likelihood for numerical stability</p></td>
 </tr>
