@@ -57,4 +57,6 @@ rethinking_stats_youtube.ipynb
 _build/
 
 .DS_Store
-./unfinished_*.ipynb
+# pixi environments
+.pixi
+*.egg-info
