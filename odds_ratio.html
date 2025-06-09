@@ -209,10 +209,12 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -247,6 +249,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
 
 
 
@@ -527,17 +530,14 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-odds">Definition of Odds</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-odds-ratio">Definition of Odds Ratio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#odds">Odds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Odds Ratio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-in-genetics">Interpretation in Genetics</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table-calculation">Contingency Table Calculation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-marker-logistic-regression">Multiple Marker Logistic Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-to-case-control-studies">Relationship to Case-Control Studies</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -558,28 +558,28 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="OR" src="_images/Slide8.png" /></p>
+<p><img alt="Fig" src="_images/Slide8.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
 <p>In logistic regression for genetic association studies, we model the probability of a binary outcome (e.g., disease status) as a function of genetic markers:</p>
 <div class="math notranslate nohighlight">
 \[
-\text{logit}(p_i) = \ln\left(\frac{p_i}{1-p_i}\right) = \beta_0 + \beta_1 X_i
+\text{logit}(p_i) = \ln\left(\frac{p_i}{1-p_i}\right) = b_0 + \beta X_i
 \]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(p_i\)</span> is the probability of disease for individual <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p_i=P(Y_i=1)\)</span> is the probability of being a case for a specific disease for individual <span class="math notranslate nohighlight">\(i\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\frac{p_i}{1-p_i}\)</span> is the odds of disease for individual <span class="math notranslate nohighlight">\(i\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(X_i\)</span> is the genotype for individual <span class="math notranslate nohighlight">\(i\)</span> at a single marker (e.g., coded as 0, 1, 2 for the number of minor alleles)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> is the log odds ratio per unit increase in <span class="math notranslate nohighlight">\(X\)</span> (to be estimated)</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_0\)</span> is the intercept</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the log odds ratio per unit increase of <span class="math notranslate nohighlight">\(X\)</span> in <span class="math notranslate nohighlight">\(Y\)</span> (to be estimated)</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="definition-of-odds">
-<h2>Definition of Odds<a class="headerlink" href="#definition-of-odds" title="Link to this heading">#</a></h2>
+<section id="odds">
+<h2>Odds<a class="headerlink" href="#odds" title="Link to this heading">#</a></h2>
 <p>The odds for an event with probability <span class="math notranslate nohighlight">\(p\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -587,17 +587,17 @@ document.write(`
 \]</div>
 <p>For example, if the probability of disease is 0.2 (20%), then the odds of disease are <span class="math notranslate nohighlight">\(\frac{0.2}{0.8} = 0.25\)</span>, or 1:4.</p>
 </section>
-<section id="definition-of-odds-ratio">
-<h2>Definition of Odds Ratio<a class="headerlink" href="#definition-of-odds-ratio" title="Link to this heading">#</a></h2>
-<p>The odds ratio compares the odds of disease between two groups. For a genetic variant with genotypes AA, Aa, and aa (where a is the risk allele), the odds ratio for aa vs. AA would be:</p>
+<section id="id1">
+<h2>Odds Ratio<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>The odds ratio compares the odds of disease between two groups. For a genetic variant with genotypes AA, Aa, and aa (where <code class="docutils literal notranslate"><span class="pre">a</span></code> is the risk allele), the odds ratio for aa vs. AA would be:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{OR} = \frac{\text{Odds(Disease|aa)}}{\text{Odds(Disease|AA)}}
 \]</div>
-<p>In the logistic regression in the Key Formula section, the odds ratio (OR) can be calculated as:</p>
+<p>Then the odds ratio (OR) can be calculated as:</p>
 <div class="math notranslate nohighlight">
 \[
-\text{OR} = e^{\beta_1}
+\text{OR} = e^{\beta}
 \]</div>
 </section>
 <section id="interpretation-in-genetics">
@@ -611,13 +611,17 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This R code demonstrates a genetic association analysis workflow for studying potential relationships between genetic variants and disease status (binary). The key steps include:</p>
+<p>This example demonstrates a genetic association analysis workflow for studying potential relationships between genetic variants and disease status (binary). The key steps include:</p>
 <ol class="arabic simple">
 <li><p>Create the genotype and phenotype data for 5 individuals across 3 genetic variants and scale the matrix</p></li>
 <li><p>Assign disease status to each individual (case/control)</p></li>
 <li><p>Perform univariate logistic regression for each variant</p></li>
 <li><p>Calculate key statistical measures: beta coefficients, odds ratios, standard errors, z-scores, p-values and generate the summary statistics results</p></li>
 </ol>
+<p>Related topics:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -634,16 +638,16 @@ document.write(`
 <span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
 <span class="p">)</span>
 <span class="c1"># Reshape into a matrix</span>
-<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
-<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
 
 <span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
 
 <span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
 
 <span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
@@ -654,12 +658,13 @@ document.write(`
 <span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
-<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now instead of the continuous trait like we did before (e.g., height), now we observe if an individual is a case (1) or a control (0):</p>
+<p>Now instead of the continuous trait like we did in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a>, now we observe if an individual is a case (1) or a control (0) and denote as <code class="docutils literal notranslate"><span class="pre">Y</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed disease status for the 5 individuals (1: case, 0: control)</span>
@@ -667,19 +672,12 @@ document.write(`
 
 <span class="c1"># Create a data frame for analysis</span>
 <span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">disease</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span>
 <span class="w">  </span><span class="n">variant1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span>
 <span class="w">  </span><span class="n">variant2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span>
 <span class="w">  </span><span class="n">variant3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Genotype data and disease status:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+<span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -687,7 +685,7 @@ document.write(`
 <div class="output text_html"><table class="dataframe">
 <caption>A data.frame: 5 x 4</caption>
 <thead>
-	<tr><th></th><th scope=col>disease</th><th scope=col>variant1</th><th scope=col>variant2</th><th scope=col>variant3</th></tr>
+	<tr><th></th><th scope=col>Y</th><th scope=col>variant1</th><th scope=col>variant2</th><th scope=col>variant3</th></tr>
 	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
@@ -711,7 +709,7 @@ document.write(`
 <span class="n">p_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 
 <span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">formula</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.formula</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;disease ~&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)))</span>
+<span class="w">  </span><span class="n">formula</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.formula</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Y ~&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)))</span>
 <span class="w">  </span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">binomial</span><span class="p">())</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="c1"># Extract coefficient and calculate odds ratio</span>
@@ -722,8 +720,6 @@ document.write(`
 <span class="w">  </span><span class="n">z_score</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">se_beta</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 <span class="w">  </span><span class="n">p_value</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">coef_summary</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">  </span><span class="c1"># Two-tailed p-value</span>
 <span class="p">}</span>
-<span class="c1"># Create results table</span>
-<span class="n">logistic_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="n">BETA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">OR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">odds_ratios</span><span class="p">,</span><span class="w"> </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se_beta</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_score</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -736,10 +732,13 @@ Warning message:
 </div>
 </div>
 </div>
+<p>This warning occurs because with only 5 individuals, the logistic regression model is trying to fit a line that perfectly separates the cases (Y=1) from controls (Y=0), resulting in predicted probabilities of exactly 0 or 1. This leads to numerical instability and unreliable coefficient estimates - it’s a form of “complete separation” that’s common with very small sample sizes in logistic regression.</p>
 <p>The logistic results are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">logistic_results</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create results table</span>
+<span class="n">logistic_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="n">BETA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">OR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">odds_ratios</span><span class="p">,</span><span class="w"> </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se_beta</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_score</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_value</span><span class="p">)</span>
+<span class="n">logistic_results</span>
 </pre></div>
 </div>
 </div>
@@ -761,164 +760,8 @@ Warning message:
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
-<section id="contingency-table-calculation">
-<h2>Contingency Table Calculation<a class="headerlink" href="#contingency-table-calculation" title="Link to this heading">#</a></h2>
-<p>For a simple 2×2 contingency table:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p>Disease</p></th>
-<th class="head"><p>No Disease</p></th>
-<th class="head"><p>Total</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Genotype +</p></td>
-<td><p>a</p></td>
-<td><p>b</p></td>
-<td><p>a+b</p></td>
-</tr>
-<tr class="row-odd"><td><p>Genotype -</p></td>
-<td><p>c</p></td>
-<td><p>d</p></td>
-<td><p>c+d</p></td>
-</tr>
-<tr class="row-even"><td><p>Total</p></td>
-<td><p>a+c</p></td>
-<td><p>b+d</p></td>
-<td><p>n</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>The odds ratio is calculated as:</p>
-<div class="math notranslate nohighlight">
-\[
-\text{OR} = \frac{a/c}{b/d} = \frac{ad}{bc}
-\]</div>
-</section>
-<section id="multiple-marker-logistic-regression">
-<h2>Multiple Marker Logistic Regression<a class="headerlink" href="#multiple-marker-logistic-regression" title="Link to this heading">#</a></h2>
-<p>For multiple genetic markers, the model extends to:</p>
-<div class="math notranslate nohighlight">
-\[
-\text{logit}(p_i) = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + ... + \beta_M X_{iM}
-\]</div>
-<p>Where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(X_{ij}\)</span> is the genotype of individual <span class="math notranslate nohighlight">\(i\)</span> at marker <span class="math notranslate nohighlight">\(j\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta_j\)</span> is the log odds ratio for marker <span class="math notranslate nohighlight">\(j\)</span> adjusted for all other markers in the model</p></li>
-<li><p>The odds ratio for marker <span class="math notranslate nohighlight">\(j\)</span> is <span class="math notranslate nohighlight">\(e^{\beta_j}\)</span></p></li>
-</ul>
-</section>
-<section id="relationship-to-case-control-studies">
-<h2>Relationship to Case-Control Studies<a class="headerlink" href="#relationship-to-case-control-studies" title="Link to this heading">#</a></h2>
-<p>In genetic case-control studies, the odds ratio approximates the relative risk when the disease is rare in the population (rare disease assumption). This makes odds ratios particularly useful in genetic epidemiology for rare diseases.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a contingency table for Variant 1 to manually calculate odds ratio</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\n\n--- Contingency Table Analysis for Variant 1 ---\n&quot;</span><span class="p">)</span>
-<span class="n">table_v1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">variant1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">disease</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">table_v1</span><span class="p">)</span>
-
-<span class="c1"># Calculate odds ratio from contingency table</span>
-<span class="c1"># Note: This is simplified and works best with binary variants</span>
-<span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">table_v1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">table_v1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table_v1</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w">  </span><span class="c1"># Genotype present, disease present</span>
-<span class="w">  </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table_v1</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># Genotype present, disease absent</span>
-<span class="w">  </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table_v1</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w">  </span><span class="c1"># Genotype absent, disease present</span>
-<span class="w">  </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table_v1</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># Genotype absent, disease absent</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="n">or_manual</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nManually calculated odds ratio:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">or_manual</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nCannot calculate manual odds ratio - need 2x2 contingency table\n&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Contingency Table Analysis for Variant 1 ---
-                    
-                     0 1
-  -0.670820393249937 3 0
-  0.447213595499958  1 0
-  1.56524758424985   0 1
-
-Manually calculated odds ratio: NaN 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
-
-<span class="c1"># Simulate genotype and height values</span>
-<span class="n">genotype</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Genotypes: 1, 2, 0 represent the number of minor alleles (homozygous, heterozygous, and homozygous major)</span>
-<span class="n">trait</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="c1"># Trait values: 0 (disease absent) and 1 (disease present) for each individual</span>
-
-<span class="c1"># Simulate height values for three individuals based on genotypes</span>
-<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
-<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">genotype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genotype</span><span class="p">,</span><span class="w"> </span><span class="n">trait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trait</span><span class="p">)</span>
-<span class="n">data</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 5 × 2</caption>
-<thead>
-	<tr><th scope=col>genotype</th><th scope=col>trait</th></tr>
-	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>1</td><td>1</td></tr>
-	<tr><td>2</td><td>1</td></tr>
-	<tr><td>0</td><td>0</td></tr>
-	<tr><td>1</td><td>1</td></tr>
-	<tr><td>2</td><td>0</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a logistic regression model</span>
-<span class="n">logit_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">trait</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">genotype</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;binomial&quot;</span><span class="p">)</span>
-
-<span class="c1"># Summarize the model</span>
-<span class="nf">summary</span><span class="p">(</span><span class="n">logit_model</span><span class="p">)</span>
-
-<span class="c1"># Calculate the odds ratio (exp(coef)) for the genotype variable</span>
-<span class="n">odds_ratio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">logit_model</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span>
-<span class="n">odds_ratio</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
-glm(formula = trait ~ genotype, family = &quot;binomial&quot;, data = data)
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)
-(Intercept)  -0.3025     1.7188  -0.176    0.860
-genotype      0.6050     1.2597   0.480    0.631
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 6.7301  on 4  degrees of freedom
-Residual deviance: 6.4907  on 3  degrees of freedom
-AIC: 10.491
-
-Number of Fisher Scoring iterations: 4
-</pre></div>
-</div>
-<div class="output text_html"><strong>genotype:</strong> 1.83117720720709</div></div>
-</div>
-</section>
-<section id="id1">
-<h2>Graphical Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2>Graphical Summary<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load necessary library</span>
@@ -968,7 +811,7 @@ Number of Fisher Scoring iterations: 4
 <span class="nf">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
 <span class="c1"># Save with transparent background</span>
-<span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;cartoons/odds_ratio.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;./cartoons/odds_ratio.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span>
 <span class="w">       </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span>
 <span class="w">       </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">       </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
@@ -1051,17 +894,14 @@ Number of Fisher Scoring iterations: 4
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-odds">Definition of Odds</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-odds-ratio">Definition of Odds Ratio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#odds">Odds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Odds Ratio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-in-genetics">Interpretation in Genetics</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table-calculation">Contingency Table Calculation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-marker-logistic-regression">Multiple Marker Logistic Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-to-case-control-studies">Relationship to Case-Control Studies</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>

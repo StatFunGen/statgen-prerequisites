@@ -209,10 +209,12 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -247,6 +249,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
 
 
 
@@ -546,25 +549,32 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="MAF" src="_images/Slide2.png" /></p>
+<p><img alt="Fig" src="_images/Slide2.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
 <div class="math notranslate nohighlight">
-\[\text{MAF}_j = \frac{\mathbb{E}[X_{\text{additive},j}]}{2} = \frac{1}{2N}\sum_{i=1}^{N} X_{\text{additive},ij}\]</div>
+\[
+\text{MAF}_j = \frac{\mathbb{E}[X_{\text{additive},j}]}{2} = \frac{1}{2N}\sum_{i=1}^{N} X_{\text{additive},ij}
+\]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(X_{\text{additive},ij}\)</span> represents the count of alternative alleles (0,1,2) for individual <span class="math notranslate nohighlight">\(i\)</span> at variant <span class="math notranslate nohighlight">\(j\)</span></p></li>
-<li><p>The division by 2 is necessary because in the additive model for diploid organisms, each individual contributes two alleles</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_{\text{additive},ij}\)</span> represents the count of alternative alleles (0,1,2) for individual <span class="math notranslate nohighlight">\(i\)</span> at the <span class="math notranslate nohighlight">\(j\)</span>-th variant.</p></li>
+<li><p>The division by 2 is necessary because in the additive model for diploid organisms, each individual contributes two alleles.</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<p>If there are only two alleles at the same locus, then the frequency of them can be denoted as <span class="math notranslate nohighlight">\(f_j\)</span> and <span class="math notranslate nohighlight">\(1-f_j\)</span>, and the <span class="math notranslate nohighlight">\(\text{MAF}_j\)</span> is always defined as <span class="math notranslate nohighlight">\(\min(f_j, 1 - f_j)\)</span> (ensuring that it always represents the frequency of the <strong>less</strong> common allele in the population, i.e., <strong>minor allele</strong>). If there are more alleles, the <strong>MAF</strong> is specific for each minor allele.</p>
+<p>If there are only two alleles at the same locus, then the frequency of them can be denoted as <span class="math notranslate nohighlight">\(f_j\)</span> and <span class="math notranslate nohighlight">\(1-f_j\)</span>. The <span class="math notranslate nohighlight">\(\text{MAF}_j\)</span> is always defined as:
+$<span class="math notranslate nohighlight">\(
+\min(f_j, 1 - f_j)
+\)</span>$
+which ensures that it always represents the frequency of the <strong>less</strong> common allele in the population, i.e., <strong>minor allele</strong>.</p>
+<p>If there are more alleles, the <strong>MAF</strong> is specific for each minor allele.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>The R example here demonstrates a simple workflow for calculating Minor Allele Frequency (MAF). It organizes genotype data, extracts individual alleles, counts their frequencies, and identifies the minor allele. This approach illustrates the fundamental method for quantifying genetic variation at a specific locus.</p>
+<p>The R example here demonstrates a simple workflow for calculating the minor allele frequency for each variant. It organizes genotype data, extracts individual alleles, counts their frequencies, and identifies the minor allele.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -581,9 +591,11 @@ document.write(`
 <span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
 <span class="p">)</span>
 <span class="c1"># Reshape into a matrix</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -613,22 +625,23 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize the output data frame</span>
-<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the output data frame</span>
+<span class="n">maf_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
 <span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Major_Allele</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">character</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)),</span>
-<span class="w">  </span><span class="n">Minor_Allele</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">character</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)),</span>
-<span class="w">  </span><span class="n">MAF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)),</span>
+<span class="w">  </span><span class="n">Major_Allele</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">character</span><span class="p">(</span><span class="n">M</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Minor_Allele</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">character</span><span class="p">(</span><span class="n">M</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MAF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span>
 <span class="w">  </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>For each variant we first the extract the two alleles, then count the frequency of each allele to identify which one is major and which one is minor. At last we calculate the MAF of each variant.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Process each variant separately</span>
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">variant_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)[</span><span class="n">j</span><span class="p">]</span><span class="w">  </span>
 <span class="w">  </span><span class="c1"># Step 1: Extract all alleles from the genotype column</span>
 <span class="w">  </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">()</span>
@@ -651,9 +664,9 @@ document.write(`
 <span class="w">  </span>
 <span class="w">  </span><span class="c1"># Step 3: Calculate minor allele frequency (MAF)</span>
 <span class="w">  </span><span class="n">minor_freq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ordered_freqs</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
-<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Major_Allele</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">major_allele</span>
-<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Minor_Allele</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">minor_allele</span>
-<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">MAF</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">minor_freq</span>
+<span class="w">  </span><span class="n">maf_results</span><span class="o">$</span><span class="n">Major_Allele</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">major_allele</span>
+<span class="w">  </span><span class="n">maf_results</span><span class="o">$</span><span class="n">Minor_Allele</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">minor_allele</span>
+<span class="w">  </span><span class="n">maf_results</span><span class="o">$</span><span class="n">MAF</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">minor_freq</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -662,7 +675,7 @@ document.write(`
 <p>The minor allele frequencies for the three variants are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">maf_results</span>
 </pre></div>
 </div>
 </div>

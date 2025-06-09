@@ -209,10 +209,12 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -247,6 +249,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
 
 
 
@@ -551,11 +554,11 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="marginal_joint_effects" src="_images/Slide13.png" /></p>
+<p><img alt="Fig" src="_images/Slide9.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>In multiple marker linear regression, we extend the single marker model to incorporate multiple genetic variants:</p>
+<p>In multiple markers linear regression, we extend the single marker model to incorporate multiple genetic variants:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}
@@ -567,7 +570,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> is the <span class="math notranslate nohighlight">\(M \times 1\)</span> vector of effect sizes for each variant (to be estimated)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of error terms for <span class="math notranslate nohighlight">\(N\)</span> individuals and <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon} \sim N(0, \sigma^2\mathbf{I})\)</span></p></li>
 </ul>
-<p>Using <strong>ordinary least squares (OLS)</strong>, we can derive the estimators for <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> in matrix form:</p>
+<p>We can still use <strong>ordinary least squares (OLS)</strong> to derive the estimators for <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> in matrix form:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\boldsymbol{\beta}}_{\text{OLS}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
@@ -577,7 +580,7 @@ document.write(`
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="marginal-effect">
 <h2>Marginal Effect<a class="headerlink" href="#marginal-effect" title="Link to this heading">#</a></h2>
-<p>In the section about OLS, we discuss the single marker linear regression, which estimates the marginal effect of each X.</p>
+<p>In <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a>, we discuss the single marker linear regression, which actually estimates the marginal effect of each genetic variant, considering each variant can be treated independently.</p>
 <p>The marginal effect of a genetic variant is its association with the trait when analyzed in isolation, without accounting for other variants:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -587,7 +590,7 @@ document.write(`
 </section>
 <section id="joint-effect">
 <h2>Joint Effect<a class="headerlink" href="#joint-effect" title="Link to this heading">#</a></h2>
-<p>The joint effect of a genetic variant is its association with the trait when analyzed simultaneously with other variants, i.e., in the multiple marker model:</p>
+<p>The joint effect of a genetic variant is its association with the trait when <strong>analyzed simultaneously with other variants</strong>, i.e., in the multiple markers model:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\boldsymbol{\beta}}_{\text{joint}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
@@ -596,33 +599,37 @@ document.write(`
 </section>
 <section id="key-differences-between-marginal-and-joint-effects">
 <h2>Key Differences Between Marginal and Joint Effects<a class="headerlink" href="#key-differences-between-marginal-and-joint-effects" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Correlation Structure</strong>:</p>
 <ul class="simple">
+<li><p><strong>Correlation Structure</strong>:</p>
+<ul>
 <li><p>Marginal effects ignore correlations (linkage disequilibrium) between variants</p></li>
 <li><p>Joint effects account for correlations between variants</p></li>
 </ul>
 </li>
 <li><p><strong>Interpretation</strong>:</p>
-<ul class="simple">
+<ul>
 <li><p>Marginal effect: The expected change in the trait associated with a unit change in the variant, not accounting for other variants</p></li>
 <li><p>Joint effect: The expected change in the trait associated with a unit change in the variant, holding all other variants constant</p></li>
 </ul>
 </li>
 <li><p><strong>Consistency</strong>:</p>
-<ul class="simple">
+<ul>
 <li><p>When variants are uncorrelated, marginal and joint effects are identical</p></li>
 <li><p>When variants are correlated, marginal and joint effects will differ</p></li>
 <li><p>Joint effects can be smaller or larger than marginal effects, or even have opposite signs</p></li>
 </ul>
 </li>
-</ol>
+</ul>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
 <p>In this example we demonstrate a basic genetic association analysis for height across 5 individuals with 3 genetic variants.</p>
-<p>Following the similar framework of simulating the genotype data and standardization, we further assign the phenotype (height) to each individual and standardize the trait value as well. Then we perform single-marker linear regression for each genetic variant using both the <code class="docutils literal notranslate"><span class="pre">lm</span></code> function and the explicit formula we obtained abouve to estimate the OLS effect size.</p>
+<p>Following the similar framework of simulating the genotype data and standardization, we further assign the phenotype (height) to each individual and standardize the trait value as well. Then we perform single-marker linear regression for each genetic variant using both the <code class="docutils literal notranslate"><span class="pre">lm</span></code> function and the explicit formula we obtained above to estimate the OLS effect size.</p>
+<p>Related topics:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -639,16 +646,16 @@ document.write(`
 <span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
 <span class="p">)</span>
 <span class="c1"># Reshape into a matrix</span>
-<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
-<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
 
 <span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
 
 <span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
 
 <span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
@@ -659,7 +666,8 @@ document.write(`
 <span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
-<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -673,10 +681,10 @@ document.write(`
 </div>
 </div>
 </div>
+<p>We first recall how we calculate the marginal effect of each variant in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform GWAS-style analysis: Test each SNP independently using OLS</span>
-<span class="n">p_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">  </span><span class="c1"># Store p-values</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">  </span><span class="c1"># Store p-values</span>
 <span class="n">betas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">     </span><span class="c1"># Store estimated effect sizes</span>
 
 <span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -688,15 +696,12 @@ document.write(`
 <span class="w">  </span><span class="n">p_values</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">  </span><span class="c1"># p-value for SNP effect</span>
 <span class="w">  </span><span class="n">betas</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">     </span><span class="c1"># Estimated beta coefficient</span>
 <span class="p">}</span>
-<span class="c1"># Create results table</span>
-<span class="n">marginal_OLS_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="w"> </span>
-<span class="w">  </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betas</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_values</span><span class="p">)</span>
+<span class="n">marginal_OLS_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betas</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_values</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now let’s calculate the joint effects by including all variants in one model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># The previous code calculated marginal effects (GWAS-style, one SNP at a time)</span>
@@ -724,15 +729,15 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Single marker OLS Results:&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Marginal Effect:&quot;</span><span class="p">)</span>
 <span class="n">marginal_OLS_results</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Multiple marker OLS Results:&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Joint Effect:&quot;</span><span class="p">)</span>
 <span class="n">joint_OLS_results</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Single marker OLS Results:&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Marginal Effect:&quot;
 </pre></div>
 </div>
 <div class="output text_html"><table class="dataframe">
@@ -747,7 +752,7 @@ document.write(`
 	<tr><td>Variant 3</td><td> 0.9866667</td><td>0.001844466</td></tr>
 </tbody>
 </table>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Multiple marker OLS Results:&quot;
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Joint Effect:&quot;
 </pre></div>
 </div>
 <div class="output text_html"><table class="dataframe">

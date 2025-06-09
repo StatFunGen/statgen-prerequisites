@@ -209,10 +209,12 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -247,6 +249,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
 
 
 
@@ -528,6 +531,10 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -542,15 +549,15 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linkage-disequilibrium-score">
 <h1>Linkage Disequilibrium Score<a class="headerlink" href="#linkage-disequilibrium-score" title="Link to this heading">#</a></h1>
-<p>The LD score of a variant is a measure to describe how connected or tagged this variant is with other variants by summing up the squared correlation (r²) with every other variant under consideration.</p>
+<p>The LD score of a variant is a measure to describe how <strong>connected or tagged this variant is with other variants</strong> by summing up the squared correlation (r²) with every other variant under consideration.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="LD scores" src="_images/Slide5.png" /></p>
+<p><img alt="Fig" src="_images/Slide5.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>The LD score for a SNP is the sum of LD <span class="math notranslate nohighlight">\(r^2\)</span> measured with all other SNPs:</p>
+<p>The LD score for a SNP is the sum of squared correlation <span class="math notranslate nohighlight">\(r^2\)</span> measured with all other SNPs:</p>
 <div class="math notranslate nohighlight">
 \[
 l_j = \sum_{k=1, k \neq j}^M r^2(\textbf{X}_j, \textbf{X}_k)
@@ -558,14 +565,11 @@ l_j = \sum_{k=1, k \neq j}^M r^2(\textbf{X}_j, \textbf{X}_k)
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<p>The <strong>LD score</strong> is a measure of the extent to which a given variant is in linkage disequilibrium (LD) with other variants across the genome. It is used to summarize the amount of genetic information (in terms of LD) that a variant shares with all other variants in a region of interest. The LD score for a variant <span class="math notranslate nohighlight">\(j\)</span> is defined as the sum of the squared correlation coefficients <span class="math notranslate nohighlight">\(r^2\)</span> between that variant and all other variants in the genome, typically within a specified genomic window or region. Mathematically, the LD score for variant <span class="math notranslate nohighlight">\(j\)</span> is given by:</p>
+<p>The LD score for the <span class="math notranslate nohighlight">\(j\)</span>-th variant is defined as the sum of the squared correlation coefficients <span class="math notranslate nohighlight">\(r^2\)</span> between that variant and all other variants in the genome, typically within a specified genomic window or region:</p>
 <div class="math notranslate nohighlight">
 \[
 l_j = \sum_{k=1, k \neq j}^M r^2_{i,k}
 \]</div>
-<!-- Since $\textbf{X}$ is standardized, we can just calculate the sum of the squared sample correlations like this:
-
-$$\widetilde{l}_{j} = \frac{1}{N^2}\textbf{X}^\top_j\textbf{X}\textbf{X}^\top\textbf{X}_j - 1$$ -->
 <p>However, this is not an unbiased estimate. We can correct for the bias like this:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -575,11 +579,14 @@ r_\text{adj}^2 =  \hat{r}^2 - \frac{1-\hat{r}^2}{N-2}
 \[
 l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2 
 \]</div>
-<p>This score reflects how much a variant is correlated with other variants across the genome, providing insight into the local structure of LD around that variant.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
 <p>This example demonstrates the process of calculating Linkage Disequilibrium (LD) scores from a genotype matrix. It computes the correlation matrix based on the standardized genotype matrix, transforms it to squared correlations, and calculates raw LD scores. A bias correction is then applied to adjust for finite sample size effects, resulting in corrected LD scores that provide a measure of genetic variant connectivity.</p>
+<p>Related topics:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">LD</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -596,25 +603,28 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 <span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
 <span class="p">)</span>
 <span class="c1"># Reshape into a matrix</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
 
 <span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
 
 <span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
 
 <span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
 
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
 <span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
-<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 
 <span class="c1"># calculate the LD</span>
 <span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -643,21 +653,12 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 </table>
 </div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get sample size and number of variants</span>
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w">  </span><span class="c1"># Number of individuals/samples</span>
-<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w">  </span><span class="c1"># Number of genetic variants</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>To calculate raw LD scores:</p>
 <ol class="arabic simple">
 <li><p>Sum squared correlations across each column</p></li>
 <li><p>Subtract the diagonal (variant’s correlation with itself)</p></li>
 </ol>
-<p>This gives the total genetic connectivity for each variant</p>
+<p>This gives the total genetic connectivity for each variant.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R_sq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="o">^</span><span class="m">2</span>
@@ -692,7 +693,7 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 <span class="c1"># Apply the adjustment formula to each non-diagonal element</span>
 <span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="c1">#   Apply the adjustment formula: r²_adj = r² - (1-r²)/(N-2)</span>
+<span class="c1">#   Apply the adjustment formula: r2_adj = r2 - (1-r2)/(N-2)</span>
 <span class="w">    </span><span class="n">R_squared_adj_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R_sq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">R_sq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -720,6 +721,11 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 </table>
 </div></div>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Graphical Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
@@ -763,7 +769,7 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 <span class="w">    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bottom&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Position legend at the bottom</span>
 <span class="w">    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dotted&quot;</span><span class="p">),</span>
 <span class="w">    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
-<span class="w">    </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
 <span class="w">    </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
 <span class="w">    </span><span class="c1"># Add transparent backgrounds</span>
 <span class="w">    </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span>
@@ -786,6 +792,7 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 </a>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -857,6 +864,10 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

@@ -209,10 +209,12 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -247,6 +249,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
 
 
 
@@ -527,7 +530,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-counts-under-hwe">Expected Counts Under HWE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-counts-of-genotype-under-hwe">Expected Counts of Genotype Under HWE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-hwe-using-chi-squared-test">Test HWE Using Chi-squared Test</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-hwe-doesn-t-hold">When HWE Doesn’t Hold</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-misconceptions">Common Misconceptions</a></li>
@@ -557,25 +560,27 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="HWE" src="_images/Slide3.png" /></p>
+<p><img alt="Fig" src="_images/Slide3.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>For a genetic variants with two alleles (<code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code>) with frequencies <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> respectively (where <span class="math notranslate nohighlight">\(p + q = 1\)</span>):</p>
+<p>For a genetic variants with two alleles (<code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code>) with frequencies <span class="math notranslate nohighlight">\(f_A\)</span> and <span class="math notranslate nohighlight">\(f_a\)</span> respectively (where <span class="math notranslate nohighlight">\(f_A + f_a = 1\)</span>):</p>
 <div class="math notranslate nohighlight">
-\[p^2 + 2pq + q^2 = 1\]</div>
+\[
+f_A^2 + 2f_A f_a + f_a^2 = 1
+\]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(p^2\)</span> = frequency of genotype AA</p></li>
-<li><p><span class="math notranslate nohighlight">\(2pq\)</span> = frequency of genotype Aa</p></li>
-<li><p><span class="math notranslate nohighlight">\(q^2\)</span> = frequency of genotype aa</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_A^2\)</span> = frequency of genotype AA</p></li>
+<li><p><span class="math notranslate nohighlight">\(2f_A f_a\)</span> = frequency of genotype Aa</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_a^2\)</span> = frequency of genotype aa</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="expected-counts-under-hwe">
-<h2>Expected Counts Under HWE<a class="headerlink" href="#expected-counts-under-hwe" title="Link to this heading">#</a></h2>
-<p>The expected counts under HWE are:</p>
+<section id="expected-counts-of-genotype-under-hwe">
+<h2>Expected Counts of Genotype Under HWE<a class="headerlink" href="#expected-counts-of-genotype-under-hwe" title="Link to this heading">#</a></h2>
+<p>The expected counts of each genotype under HWE for a population of <span class="math notranslate nohighlight">\(N\)</span> individuals are:</p>
 <div class="math notranslate nohighlight">
 \[
 E_{AA} = f_A^2 \cdot N
@@ -631,7 +636,6 @@ p = P(\chi^2 &gt; \text{observed } \chi^2)
 <li><p>While entire genomes aren’t in HWE, individual loci often are, especially neutral markers.</p></li>
 <li><p>HWE is surprisingly robust to minor violations of its assumptions.</p></li>
 <li><p>Deviations from HWE often signal important biological phenomena rather than errors.</p></li>
-<li><p>HWE describes the mathematical relationship between allele and genotype frequencies, not the absence of genetic variation.</p></li>
 </ul>
 </section>
 <section id="role-of-hwe-in-statistical-genetics">
@@ -648,6 +652,11 @@ p = P(\chi^2 &gt; \text{observed } \chi^2)
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>Related topics:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/genotype_coding.html">genotype coding</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
+</ul>
 <section id="example-1-hwe-holds">
 <h2>Example 1 – HWE holds<a class="headerlink" href="#example-1-hwe-holds" title="Link to this heading">#</a></h2>
 <p>Here we use the original data from <a class="reference external" href="https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg_principle">E.B. Ford (1971) on the scarlet tiger moth</a>, for which the phenotypes of a sample of the population were recorded.</p>
@@ -691,12 +700,11 @@ p = P(\chi^2 &gt; \text{observed } \chi^2)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate observed allele frequencies</span>
-<span class="n">N_A</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">N_AA</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="p">)</span>
-<span class="n">N_a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">N_aa</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="p">)</span>
-<span class="n">N_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="o">*</span><span class="n">N_total</span>
+<span class="n">N_A</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_AA</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="p">)</span>
+<span class="n">N_a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_aa</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="p">)</span>
 
-<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_A</span><span class="o">/</span><span class="n">N_total</span><span class="w">  </span><span class="c1"># Frequency of A allele</span>
-<span class="n">q</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_a</span><span class="o">/</span><span class="n">N_total</span><span class="w">  </span><span class="c1"># Frequency of a allele</span>
+<span class="n">f_A</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_A</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span><span class="p">)</span><span class="w">  </span><span class="c1"># Frequency of A allele</span>
+<span class="n">f_a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span><span class="p">)</span><span class="w">  </span><span class="c1"># Frequency of a allele</span>
 </pre></div>
 </div>
 </div>
@@ -704,24 +712,25 @@ p = P(\chi^2 &gt; \text{observed } \chi^2)
 <p>Allele frequencies for A and a are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;p (A) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;q (a) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;f_A =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">f_A</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;f_a =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">f_a</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p (A) = 0.9541 
-q (a) = 0.0459 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f_A = 0.9541 
+f_a = 0.0459 
 </pre></div>
 </div>
 </div>
 </div>
+<p>Then we calculate the expected genotype counts if HWE holds:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate expected genotype counts under HWE</span>
-<span class="n">N_exp_AA</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
-<span class="n">N_exp_Aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
-<span class="n">N_exp_aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">q</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
+<span class="n">N_exp_AA</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">f_A</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
+<span class="n">N_exp_Aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="o">*</span><span class="n">f_A</span><span class="o">*</span><span class="n">f_a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
+<span class="n">N_exp_aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">f_a</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
 
 <span class="c1"># Create a table of observed vs expected</span>
 <span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Aa&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;aa&quot;</span><span class="p">)</span>
@@ -729,14 +738,7 @@ q (a) = 0.0459
 <span class="n">N_expected</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">N_exp_AA</span><span class="p">,</span><span class="w"> </span><span class="n">N_exp_Aa</span><span class="p">,</span><span class="w"> </span><span class="n">N_exp_aa</span><span class="p">)</span>
 <span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Genotype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">Observed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_observed</span><span class="p">,</span><span class="w"> </span><span class="n">Expected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_expected</span><span class="p">)</span>
 <span class="n">results</span><span class="o">$</span><span class="n">Difference</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Observed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Expected</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here is a table for observed vs expected genotype counts:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+<span class="n">results</span>
 </pre></div>
 </div>
 </div>
@@ -748,36 +750,30 @@ q (a) = 0.0459
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>AA</td><td>1469</td><td>2934.794045</td><td>-1465.794045</td></tr>
-	<tr><td>Aa</td><td> 138</td><td> 282.411911</td><td> -144.411911</td></tr>
-	<tr><td>aa</td><td>   5</td><td>   6.794045</td><td>   -1.794045</td></tr>
+	<tr><td>AA</td><td>1469</td><td>1467.397022</td><td> 1.602978</td></tr>
+	<tr><td>Aa</td><td> 138</td><td> 141.205955</td><td>-3.205955</td></tr>
+	<tr><td>aa</td><td>   5</td><td>   3.397022</td><td> 1.602978</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
+<p>We perform chi-square test to see if HWE holds:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform chi-square test</span>
 <span class="n">chi_sq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">((</span><span class="n">N_observed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">N_expected</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="o">/</span><span class="n">N_expected</span><span class="p">)</span>
 <span class="n">degrees_freedom</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># number of genotypes - number of independent alleles = 3 - 2 = 1</span>
 <span class="n">p_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">pchisq</span><span class="p">(</span><span class="n">chi_sq</span><span class="p">,</span><span class="w"> </span><span class="n">degrees_freedom</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Chi-square test result:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Chi-square statistic =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">chi_sq</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Chi-square statistic =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">chi_sq</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Degrees of freedom =&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">degrees_freedom</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;p-value =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span><span class="w"> </span><span class="n">scientific</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-square statistic = 806.4155 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-square statistic = 0.8309 
 Degrees of freedom = 1 
-p-value = 0e+00 
+p-value = 3.619985e-01 
 </pre></div>
 </div>
 </div>
@@ -796,7 +792,7 @@ p-value = 0e+00
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The population deviates significantly from Hardy-Weinberg equilibrium (p &lt; 0.05)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The population is in Hardy-Weinberg equilibrium (p &gt;= 0.05)
 </pre></div>
 </div>
 </div>
@@ -804,7 +800,7 @@ p-value = 0e+00
 </section>
 <section id="example-2-hwe-doens-t-hold">
 <h2>Example 2 – HWE doens’t hold<a class="headerlink" href="#example-2-hwe-doens-t-hold" title="Link to this heading">#</a></h2>
-<p>Now that imagine that we observe twice the size of the Intermediate (Aa) and zero of the Little spotting (aa), and re-do the analysis:</p>
+<p>Now that imagine that we observe more of the Intermediate (Aa) and zero of the Little spotting (aa), and re-do the analysis:</p>
 <blockquote>
 <div><p><strong>Table 2: Example Hardy–Weinberg Principle Calculation (manually adjusted in this notebook)</strong></p>
 </div></blockquote>
@@ -820,54 +816,61 @@ p-value = 0e+00
 <tbody>
 <tr class="row-even"><td><p>Number</p></td>
 <td><p>1469</p></td>
-<td><p>276</p></td>
+<td><p>500</p></td>
 <td><p>0</p></td>
-<td><p>1745</p></td>
+<td><p>1969</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
-<span class="c1"># Modified scenario: No aa genotypes observed</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="c1"># Data from E. B. Ford (1971) on the scarlet tiger moth</span>
 <span class="n">N_AA</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1469</span><span class="w">  </span><span class="c1"># White-spotted</span>
-<span class="n">N_Aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">276</span><span class="w">   </span><span class="c1"># Intermediate</span>
-<span class="n">N_aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">     </span><span class="c1"># Little spotting (now zero)</span>
+<span class="n">N_Aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span><span class="w">   </span><span class="c1"># Intermediate</span>
+<span class="n">N_aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">     </span><span class="c1"># Little spotting</span>
 <span class="n">N_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_AA</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_aa</span>
-
-<span class="c1"># Calculate observed allele frequencies</span>
-<span class="n">N_A</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">N_AA</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="p">)</span>
-<span class="n">N_a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">N_aa</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="p">)</span>
-<span class="n">N_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="o">*</span><span class="n">N_total</span>
-
-<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_A</span><span class="o">/</span><span class="n">N_total</span><span class="w">  </span><span class="c1"># Frequency of A allele</span>
-<span class="n">q</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_a</span><span class="o">/</span><span class="n">N_total</span><span class="w">  </span><span class="c1"># Frequency of a allele</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now the allele frequencies are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;p (A) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;q (a) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate observed allele frequencies</span>
+<span class="n">N_A</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_AA</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="p">)</span>
+<span class="n">N_a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_aa</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N_Aa</span><span class="p">)</span>
+
+<span class="n">f_A</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_A</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span><span class="p">)</span><span class="w">  </span><span class="c1"># Frequency of A allele</span>
+<span class="n">f_a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">N_a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span><span class="p">)</span><span class="w">  </span><span class="c1"># Frequency of a allele</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Allele frequencies for A and a are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;f_A =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">f_A</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;f_a =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">f_a</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p (A) = 0.9209 
-q (a) = 0.0791 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f_A = 0.873 
+f_a = 0.127 
 </pre></div>
 </div>
 </div>
 </div>
+<p>Then we calculate the expected genotype counts if HWE holds:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate expected genotype counts under HWE</span>
-<span class="n">N_exp_AA</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
-<span class="n">N_exp_Aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
-<span class="n">N_exp_aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">q</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
+<span class="n">N_exp_AA</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">f_A</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
+<span class="n">N_exp_Aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="o">*</span><span class="n">f_A</span><span class="o">*</span><span class="n">f_a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
+<span class="n">N_exp_aa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">f_a</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_total</span>
 
 <span class="c1"># Create a table of observed vs expected</span>
 <span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Aa&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;aa&quot;</span><span class="p">)</span>
@@ -875,14 +878,7 @@ q (a) = 0.0791
 <span class="n">N_expected</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">N_exp_AA</span><span class="p">,</span><span class="w"> </span><span class="n">N_exp_Aa</span><span class="p">,</span><span class="w"> </span><span class="n">N_exp_aa</span><span class="p">)</span>
 <span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Genotype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">Observed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_observed</span><span class="p">,</span><span class="w"> </span><span class="n">Expected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_expected</span><span class="p">)</span>
 <span class="n">results</span><span class="o">$</span><span class="n">Difference</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Observed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Expected</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Observed vs Expected Genotype Counts:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+<span class="n">results</span>
 </pre></div>
 </div>
 </div>
@@ -894,38 +890,30 @@ q (a) = 0.0791
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>AA</td><td>1469</td><td>2959.82693</td><td>-1490.82693</td></tr>
-	<tr><td>Aa</td><td> 276</td><td> 508.34613</td><td> -232.34613</td></tr>
-	<tr><td>aa</td><td>   0</td><td>  21.82693</td><td>  -21.82693</td></tr>
+	<tr><td>AA</td><td>1469</td><td>1500.742</td><td>-31.742</td></tr>
+	<tr><td>Aa</td><td> 500</td><td> 436.516</td><td> 63.484</td></tr>
+	<tr><td>aa</td><td>   0</td><td>  31.742</td><td>-31.742</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
+<p>We perform chi-square test to see if HWE holds:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform chi-square test</span>
 <span class="n">chi_sq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">((</span><span class="n">N_observed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">N_expected</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="o">/</span><span class="n">N_expected</span><span class="p">)</span>
 <span class="n">degrees_freedom</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># number of genotypes - number of independent alleles = 3 - 2 = 1</span>
 <span class="n">p_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">pchisq</span><span class="p">(</span><span class="n">chi_sq</span><span class="p">,</span><span class="w"> </span><span class="n">degrees_freedom</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Chi-square test result:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Chi-square statistic =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">chi_sq</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Chi-square statistic =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">chi_sq</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Degrees of freedom =&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">degrees_freedom</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;p-value =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span><span class="w"> </span><span class="n">scientific</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-square statistic = 878.9342 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Degrees of freedom = 1 
-p-value = 0e+00 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-square statistic = 41.6461 
+Degrees of freedom = 1 
+p-value = 1.093853e-10 
 </pre></div>
 </div>
 </div>
@@ -1020,7 +1008,7 @@ p-value = 0e+00
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-counts-under-hwe">Expected Counts Under HWE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-counts-of-genotype-under-hwe">Expected Counts of Genotype Under HWE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-hwe-using-chi-squared-test">Test HWE Using Chi-squared Test</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-hwe-doesn-t-hold">When HWE Doesn’t Hold</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-misconceptions">Common Misconceptions</a></li>

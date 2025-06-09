@@ -209,10 +209,12 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -247,6 +249,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
 
 
 
@@ -529,11 +532,13 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-ld-values">Interpreting LD Values</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ld-blocks">LD Blocks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#population-variation-in-ld-patterns">Population Variation in LD Patterns</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -548,15 +553,15 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linkage-disequilibrium">
 <h1>Linkage Disequilibrium<a class="headerlink" href="#linkage-disequilibrium" title="Link to this heading">#</a></h1>
-<p>Linkage disequilibrium is the <strong>non-random association</strong> between alleles at different genetic loci, where certain combinations occur <strong>more or less frequently than would be expected by chance</strong> if the loci were segregating independently.</p>
+<p>Linkage disequilibrium is the <strong>non-random association</strong> between alleles at different genetic loci, where certain combinations occur <strong>more or less frequently</strong> than would be expected by chance if the loci were segregating independently.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="LD" src="_images/Slide4.png" /></p>
+<p><img alt="Fig" src="_images/Slide4.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>Given the genotype matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> that has been centered (each column has mean 0) and scaled (each column has standard deviation 1), the LD matrix can be computed as:</p>
+<p>Given a standardized genotype matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> (each column has mean 0 and variance 1), the LD matrix can be computed as:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{R} = \frac{\mathbf{X}^T \mathbf{X}}{N}
@@ -570,14 +575,14 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<p><strong>r (correlation)</strong> ranges from -1 to 1, and if it is 1 or -1, it means that the two variants are in perfect LD (markers are perfect proxies for each other). If <span class="math notranslate nohighlight">\(r^2=0\)</span>, it indicates that no association between markers.</p>
+<p>Each element in <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> can be denoted as <span class="math notranslate nohighlight">\(r\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is the correlation between two variants, ranging from -1 to 1. If it is 1 or -1, it means that the two variants are in <strong>perfect LD</strong> (markers are perfect proxies for each other). If <span class="math notranslate nohighlight">\(r^2=0\)</span>, it indicates that no association between markers.</p>
 <section id="interpreting-ld-values">
 <h2>Interpreting LD Values<a class="headerlink" href="#interpreting-ld-values" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>High LD (<span class="math notranslate nohighlight">\(r^2 &gt; 0.8\)</span>)</strong>:</p>
 <ul>
-<li><p>Alleles at different loci appear together much more frequently than expected</p></li>
-<li><p>Markers can serve as proxies for each other in genetic studies</p></li>
+<li><p>Alleles at different loci appear together <strong>much more frequently</strong> than expected</p></li>
+<li><p>Markers can often serve as proxies for each other in genetic studies</p></li>
 <li><p>Likely physical proximity on chromosome or recent selection</p></li>
 <li><p>Less recombination between markers</p></li>
 </ul>
@@ -598,13 +603,13 @@ document.write(`
 </section>
 <section id="ld-blocks">
 <h2>LD Blocks<a class="headerlink" href="#ld-blocks" title="Link to this heading">#</a></h2>
-<p>LD blocks are the tegions of the genome with consistently high LD among SNPs.</p>
+<p>LD blocks are the regions of the genome with consistently high LD among SNPs.</p>
 <ul class="simple">
 <li><p><strong>Characteristics</strong>:</p>
 <ul>
 <li><p>Typically separated by recombination hotspots</p></li>
-<li><p>SNPs within a block are highly correlated and tend to be inherited together</p></li>
-<li><p>Block size typically ranges from a few kb to &gt;100 kb</p></li>
+<li><p>SNPs within a block are highly correlated and tend to be inherited together.</p></li>
+<li><p>Block size typically ranges from a few kb to &gt;100 kb.</p></li>
 <li><p>Can be visualized as triangular “heat maps” of pairwise LD values</p></li>
 </ul>
 </li>
@@ -616,25 +621,22 @@ document.write(`
 <li><p>Inform optimal imputation strategies</p></li>
 </ul>
 </li>
-</ul>
-</section>
-<section id="population-variation-in-ld-patterns">
-<h2>Population Variation in LD Patterns<a class="headerlink" href="#population-variation-in-ld-patterns" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>African populations</strong>:</p>
+<li><p><strong>Different patterns across populations</strong>:</p>
+<ul>
+<li><p>African populations:</p>
 <ul>
 <li><p>Shorter LD blocks (typically 5-15 kb)</p></li>
 <li><p>More haplotype diversity</p></li>
 <li><p>Due to older population age and larger ancestral effective population size</p></li>
 </ul>
 </li>
-<li><p><strong>European populations</strong>:</p>
+<li><p>European populations:</p>
 <ul>
 <li><p>Intermediate LD blocks (typically 15-50 kb)</p></li>
 <li><p>Reflects out-of-Africa bottleneck and subsequent population expansion</p></li>
 </ul>
 </li>
-<li><p><strong>East Asian populations</strong>:</p>
+<li><p>East Asian populations:</p>
 <ul>
 <li><p>Often longer LD blocks (can exceed 50 kb)</p></li>
 <li><p>Due to more recent bottlenecks and founder effects</p></li>
@@ -644,6 +646,8 @@ document.write(`
 <ul>
 <li><p>Even more extensive LD</p></li>
 <li><p>Due to founder effects and genetic drift in small populations</p></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -657,6 +661,11 @@ document.write(`
 <li><p>Calculate the correlation between each two variants.</p></li>
 <li><p>(optional) we show that when <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is centered and scaled, the correlation matrix is the same as the covariance matrix.</p></li>
 </ol>
+<p>Related topics:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/genotype_coding.html">genotype coding</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -673,20 +682,22 @@ document.write(`
 <span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
 <span class="p">)</span>
 <span class="c1"># Reshape into a matrix</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
 
 <span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
 
 <span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
 
 <span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
 
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
 <span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
 <span class="w">  </span><span class="p">}</span>
@@ -698,14 +709,8 @@ document.write(`
 <p>Then we scale the genotype matrix so that each <strong>column (variant)</strong> has mean 0 and variance 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">X</span>
 </pre></div>
 </div>
 </div>
@@ -771,6 +776,8 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Graphical Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load required library</span>
@@ -800,14 +807,7 @@ document.write(`
 </a>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -880,11 +880,13 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-ld-values">Interpreting LD Values</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ld-blocks">LD Blocks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#population-variation-in-ld-patterns">Population Variation in LD Patterns</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

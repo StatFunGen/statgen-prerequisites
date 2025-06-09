@@ -209,10 +209,12 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -247,6 +249,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
 
 
 
@@ -568,7 +571,7 @@ document.write(`
 <td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
 <td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> of individual <span class="math notranslate nohighlight">\(i\)</span>, when considering multiple variants</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{j}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{X}_{\cdot,j}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{\cdot,j}\)</span></p></td>
 <td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for all individuals</p></td>
 <td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for all individuals</p></td>
 </tr>
@@ -592,25 +595,25 @@ document.write(`
 <td><p>Number of variants</p></td>
 <td><p>Number of variants in the genotype data</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mu_j\)</span></p></td>
+<td><p>Mean value of the <span class="math notranslate nohighlight">\(j\)</span>-th variant in the <span class="math notranslate nohighlight">\(\mathbf{X}_{raw}\)</span></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A\)</span></p></td>
 <td><p>Major allele</p></td>
-<td><p>Major allele</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
 <td><p>Minor allele</p></td>
-<td><p>Minor allele</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f_j\)</span></p></td>
-<td><p>Frequency for genetic variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
-<td><p>0.1</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f_A\)</span>, <span class="math notranslate nohighlight">\(f_a\)</span></p></td>
+<td><p>Frequency for the allele A or a for a specific genetic variant</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_A=0.7, f_a=0.3\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
 <td><p>LD score of genetic variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Phi_{ij}\)</span></p></td>
-<td><p>The kinship coefficient between two individuals, <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span></p></td>
-<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span></p></td>
 <td><p>Genetic relatedness matrix (GRM)</p></td>
@@ -620,105 +623,40 @@ document.write(`
 <td><p>Random variable (trait)</p></td>
 <td><p>Trait (e.g., height <span class="math notranslate nohighlight">\(Y_1\)</span> and weight <span class="math notranslate nohighlight">\(Y_2\)</span> when bi-variate)</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(y_i\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Y_i\)</span></p></td>
 <td><p>Trait value for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
 <td><p>Height of individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\beta_0\)</span></p></td>
-<td><p>Baseline level in the regression model, intercept</p></td>
-<td><p>170cm for height</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\beta\)</span></p></td>
-<td><p>Marginal effect size of a variant in GWAS study</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(X_{i}\)</span></p></td>
+<td><p>Genotype variant value for individual <span class="math notranslate nohighlight">\(i\)</span> when only one variant is considered</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\sigma^2\)</span></p></td>
-<td><p>Variance of a random variable</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span></p></td>
-<td><p>Covariate matrix after normalization</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span></p></td>
-<td><p>A vector of the <strong>fixed</strong> effects of covariates</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Q\)</span></p></td>
-<td><p>The Cochran’s Q statistic</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(I^2\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(I^2\)</span> statistic</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\text{M}\)</span></p></td>
-<td><p>Model</p></td>
-<td><p><span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( M_1 \)</span></p></td>
-<td><p>Model 1 (no genetic effect)</p></td>
-<td><p>Model assuming no association between genotype and trait</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
-<td><p>Model 2 (genetic effect)</p></td>
-<td><p>Model assuming an association between genotype and trait</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \text{D} \)</span></p></td>
-<td><p>Observed data <span class="math notranslate nohighlight">\(d_i\)</span> (observation i)</p></td>
-<td><p><span class="math notranslate nohighlight">\(\{(x_1,y_1), (x_2, y_2), \dots, (x_n, y_n)\}\)</span>, Collected genotype-trait pairs</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \lambda \)</span></p></td>
-<td><p>Likelihood ratio test</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \beta \)</span></p></td>
-<td><p>Mean of the normal distribution (unknown)</p></td>
-<td><p>Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta_0 \)</span></p></td>
-<td><p>Prior mean</p></td>
-<td><p>Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \beta_1 \)</span></p></td>
-<td><p>Posterior mean</p></td>
-<td><p>Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_0^2 \)</span></p></td>
-<td><p>Variance of the normal distribution (known)</p></td>
-<td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \sigma_1^2 \)</span></p></td>
-<td><p>Posterior variance</p></td>
-<td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> after observing data</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \tau_0 \)</span></p></td>
-<td><p>Prior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_0^2}\)</span>)</p></td>
-<td><p>Inverse of prior variance</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_1 \)</span></p></td>
-<td><p>Posterior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_1^2}\)</span>)</p></td>
-<td><p>Inverse of posterior variance</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \Sigma \)</span></p></td>
-<td><p>Variance-covariance matrix</p></td>
-<td><p>variance-covariance matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \Omega \)</span></p></td>
-<td><p>Precision matrix</p></td>
-<td><p>Precision matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( L(M) \)</span></p></td>
-<td><p>Likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
-<td><p>Probability of observing the data under model <span class="math notranslate nohighlight">\(M\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( l(M) \)</span></p></td>
-<td><p>Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
-<td><p>Log-transformed likelihood for numerical stability</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>| <span class="math notranslate nohighlight">\(\beta_0\)</span> | Baseline level in the regression model, intercept | 170cm for height |
+| <span class="math notranslate nohighlight">\(\beta\)</span> | Marginal effect size of a variant in GWAS study | |
+| <span class="math notranslate nohighlight">\(\sigma^2\)</span> | Variance of a random variable | |
+| <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> | Covariate matrix after normalization | |
+| <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> | A vector of the <strong>fixed</strong> effects of covariates | |
+| <span class="math notranslate nohighlight">\(Q\)</span> | The Cochran’s Q statistic | |
+| <span class="math notranslate nohighlight">\(I^2\)</span> | <span class="math notranslate nohighlight">\(I^2\)</span> statistic | |
+| <span class="math notranslate nohighlight">\(\text{M}\)</span>| Model | <span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span>| |
+| <span class="math notranslate nohighlight">\( M_1 \)</span>          | Model 1 (no genetic effect) | Model assuming no association between genotype and trait |
+| <span class="math notranslate nohighlight">\( M_2 \)</span>          | Model 2 (genetic effect) | Model assuming an association between genotype and trait |
+| <span class="math notranslate nohighlight">\( \text{D} \)</span>     | Observed data <span class="math notranslate nohighlight">\(d_i\)</span> (observation i)|<span class="math notranslate nohighlight">\(\{(x_1,y_1), (x_2, y_2), \dots, (x_n, y_n)\}\)</span>, Collected genotype-trait pairs |
+| <span class="math notranslate nohighlight">\( \lambda \)</span>     | Likelihood ratio test||
+| <span class="math notranslate nohighlight">\( \beta \)</span>         | Mean of the normal distribution (unknown) | Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span>|
+| <span class="math notranslate nohighlight">\( \beta_0 \)</span>     | Prior mean  | Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span> |
+| <span class="math notranslate nohighlight">\( \beta_1 \)</span>     | Posterior mean  |  Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span> |
+| <span class="math notranslate nohighlight">\( \sigma_0^2 \)</span>   | Variance of the normal distribution (known) | Prior uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> |
+| <span class="math notranslate nohighlight">\( \sigma_1^2 \)</span>   | Posterior variance | Updated uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> after observing data |
+| <span class="math notranslate nohighlight">\( \tau_0 \)</span>       | Prior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_0^2}\)</span>)  | Inverse of prior variance |
+| <span class="math notranslate nohighlight">\( \tau_1 \)</span>       | Posterior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_1^2}\)</span>) | Inverse of posterior variance |
+| <span class="math notranslate nohighlight">\( \Sigma \)</span> | Variance-covariance matrix|variance-covariance matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span>|
+| <span class="math notranslate nohighlight">\( \Omega \)</span> | Precision matrix|Precision matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span>|
+| <span class="math notranslate nohighlight">\( L(M) \)</span>         | Likelihood for model <span class="math notranslate nohighlight">\( M \)</span> | Probability of observing the data under model <span class="math notranslate nohighlight">\(M\)</span> |
+| <span class="math notranslate nohighlight">\( l(M) \)</span>         | Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span> | Log-transformed likelihood for numerical stability |</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="concepts-in-statistical-genetics-and-related-topics">

@@ -209,10 +209,12 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -247,6 +249,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
 
 
 
@@ -527,7 +530,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-models">Three models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-models">Coding Models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-genotype-matrix">Standardized Genotype Matrix</a></li>
 </ul>
 </li>
@@ -554,34 +557,34 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="genotype" src="_images/Slide1.png" /></p>
+<p><img alt="Fig" src="_images/Slide1.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>We use <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span> to denote the <strong>Raw Genotype Matrix</strong> (an <span class="math notranslate nohighlight">\(N \times M\)</span> matrix representing genotypes for <span class="math notranslate nohighlight">\(N\)</span> individuals at <span class="math notranslate nohighlight">\(M\)</span> variants)</p>
+<p>We use <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span> to denote the <strong>raw genotype matrix</strong> (an <span class="math notranslate nohighlight">\(N \times M\)</span> matrix representing genotypes for <span class="math notranslate nohighlight">\(N\)</span> individuals at <span class="math notranslate nohighlight">\(M\)</span> variants).</p>
 <p>For diploid organisms, using different coding models:</p>
 <ul class="simple">
 <li><p>Additive model: takes value from <span class="math notranslate nohighlight">\(\{0, 1, 2\}\)</span> (count of alternative alleles)</p></li>
-<li><p>Dominant model: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> (1: presence of alternative allele)</p></li>
-<li><p>Recessive model: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> (two copies of alternative allele required for 1)</p></li>
+<li><p>Dominant model: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> (1: presence of alternative allele; 0 otherwise)</p></li>
+<li><p>Recessive model: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> (1: two copies of alternative allele; 0 otherwise)</p></li>
 </ul>
-<p><strong>Standardized Genotype Matrix</strong> <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>: Normalized version of <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span></p>
-<p>For each column <span class="math notranslate nohighlight">\(j\)</span> (variant):</p>
+<p>And we use <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> to denote the <strong>standardized genotype matrix</strong>, which is the normalized version of <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span></p>
+<p>For each column <span class="math notranslate nohighlight">\(j\)</span> (the <span class="math notranslate nohighlight">\(j\)</span>-th variant):</p>
 <div class="math notranslate nohighlight">
 \[
 X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 \]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}\)</span> (mean of variant <span class="math notranslate nohighlight">\(j\)</span>)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_j = \sqrt{\frac{1}{N}\sum_{i=1}^{N} (X_{\text{raw},ij} - \mu_j)^2}\)</span> (standard deviation of variant <span class="math notranslate nohighlight">\(j\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}\)</span> (mean of the <span class="math notranslate nohighlight">\(j\)</span>-th variant)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_j = \sqrt{\frac{1}{N}\sum_{i=1}^{N} (X_{\text{raw},ij} - \mu_j)^2}\)</span> (standard deviation of the <span class="math notranslate nohighlight">\(j\)</span>-th variant)</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="three-models">
-<h2>Three models<a class="headerlink" href="#three-models" title="Link to this heading">#</a></h2>
-<p>For diploid organisms (with two copies of each chromosome, e.g., human), we use different coding models:</p>
+<section id="coding-models">
+<h2>Coding Models<a class="headerlink" href="#coding-models" title="Link to this heading">#</a></h2>
+<p>For diploid organisms (with two copies of each chromosome, e.g., human), one could use different coding models:</p>
 <ul class="simple">
 <li><p><strong>Additive model</strong>: takes value from <span class="math notranslate nohighlight">\(\{0, 1, 2\}\)</span></p>
 <ul>
@@ -612,28 +615,27 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 <p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is a normalized version of <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span> where each variant is scaled to have mean 0 and variance 1.</p>
 <p>For each column <span class="math notranslate nohighlight">\(j\)</span> (variant):</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}\)</span> (mean of variant <span class="math notranslate nohighlight">\(j\)</span>)</p>
+<li><p><span class="math notranslate nohighlight">\(\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}\)</span> (mean of the <span class="math notranslate nohighlight">\(j\)</span>-th variant)</p>
 <ul>
-<li><p>Represents the average number of alternative alleles at variant <span class="math notranslate nohighlight">\(j\)</span> in the sample</p></li>
+<li><p>Represents the average number of alternative alleles at the <span class="math notranslate nohighlight">\(j\)</span>-th variant in the sample under the additive model</p></li>
 </ul>
 </li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_j = \sqrt{\frac{1}{N}\sum_{i=1}^{N} (X_{\text{raw},ij} - \mu_j)^2}\)</span> (standard deviation of variant <span class="math notranslate nohighlight">\(j\)</span>)</p>
+<li><p><span class="math notranslate nohighlight">\(\sigma_j = \sqrt{\frac{1}{N}\sum_{i=1}^{N} (X_{\text{raw},ij} - \mu_j)^2}\)</span> (standard deviation of the <span class="math notranslate nohighlight">\(j\)</span>-th variant)</p>
 <ul>
-<li><p>Measures the variability in the number of alternative alleles at variant <span class="math notranslate nohighlight">\(j\)</span></p></li>
+<li><p>Measures the variability in the number of alternative alleles at the <span class="math notranslate nohighlight">\(j\)</span>-th variant</p></li>
 </ul>
 </li>
 </ul>
 <p>This standardization ensures that:</p>
 <ul class="simple">
-<li><p>Each column of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> has mean 0</p></li>
-<li><p>Each column of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> has variance 1</p></li>
-<li><p>The standardized values reflect the deviation from the population mean in units of standard deviation</p></li>
+<li><p>Each column of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> has mean 0 and variance 1;</p></li>
+<li><p>The standardized values reflect the deviation from the population mean in units of standard deviation.</p></li>
 </ul>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>In this example, we generate the raw genotype data for five individuals across three genetic variants. We then encode these genotypes using three different genetic models: dominant, additive, and recessive. Finally, we standardize each encoded column to have a mean of 0 and a standard deviation of 1.</p>
+<p>In this example, we first generate the raw genotype data (three genetic variants) for five individuals, then encode these genotypes using three different genetic models: dominant, additive, and recessive. At the end, we standardize the raw genotype matrix to have a mean of 0 and a standard deviation of 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -650,9 +652,11 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 <span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
 <span class="p">)</span>
 <span class="c1"># Reshape into a matrix</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -680,19 +684,13 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 </table>
 </div></div>
 </div>
+<p>Then we assign the alternative allele for each variant:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define alternative alleles for each variant</span>
 <span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
 <span class="nf">names</span><span class="p">(</span><span class="n">alt_alleles</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The alternative alleles for the three variants are assigned as:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">alt_alleles</span>
+<span class="n">alt_alleles</span>
 </pre></div>
 </div>
 </div>
@@ -705,10 +703,11 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 </style><dl class=dl-inline><dt>Variant 1</dt><dd>'T'</dd><dt>Variant 2</dt><dd>'C'</dd><dt>Variant 3</dt><dd>'T'</dd></dl>
 </div></div>
 </div>
+<p>Now let’s convert the variants information for the individuals into a raw genotype matrix, under three different models:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># count number of non-reference alleles</span>
 <span class="n">Xraw_dominant</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># presence of alternative allele</span>
 <span class="n">Xraw_recessive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># two copies of alternative allele required</span>
 
@@ -730,11 +729,19 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 <p>Raw genotype matrix (Additive model: count of alternative alleles):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Xraw_additive</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Raw genotype matrix (additive model):&quot;</span><span class="p">)</span>
+<span class="n">Xraw_additive</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Raw genotype matrix (dominant model):&quot;</span><span class="p">)</span>
+<span class="n">Xraw_dominant</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Raw genotype matrix (recessive model):&quot;</span><span class="p">)</span>
+<span class="n">Xraw_recessive</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Raw genotype matrix (additive model):&quot;
+</pre></div>
+</div>
 <div class="output text_html"><table class="dataframe">
 <caption>A matrix: 5 x 3 of type dbl</caption>
 <thead>
@@ -748,16 +755,9 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 	<tr><th scope=row>Individual 5</th><td>0</td><td>2</td><td>2</td></tr>
 </tbody>
 </table>
-</div></div>
-</div>
-<p>Dominant model matrix (1 if any alternative allele is present):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Xraw_dominant</span>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Raw genotype matrix (dominant model):&quot;
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
 <caption>A matrix: 5 x 3 of type dbl</caption>
 <thead>
@@ -771,16 +771,9 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 	<tr><th scope=row>Individual 5</th><td>0</td><td>1</td><td>1</td></tr>
 </tbody>
 </table>
-</div></div>
-</div>
-<p>Recessive model matrix (1 if both alleles are alternative):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Xraw_recessive</span>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Raw genotype matrix (recessive model):&quot;
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
 <caption>A matrix: 5 x 3 of type dbl</caption>
 <thead>
@@ -796,6 +789,7 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 </table>
 </div></div>
 </div>
+<p>Then we standardize the raw genotype matrix under each model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standardize each raw genotype matrix</span>
@@ -806,14 +800,22 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 </div>
 </div>
 </div>
-<p>Standardized genotype matrix (Additive model):</p>
+<p>Here are the standardized matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X_additive</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Standardized genotype matrix (additive model):&quot;</span><span class="p">)</span>
+<span class="n">X_additive</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Standardized genotype matrix (dominant model):&quot;</span><span class="p">)</span>
+<span class="n">X_dominant</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Standardized genotype matrix (recessive model):&quot;</span><span class="p">)</span>
+<span class="n">X_recessive</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Standardized genotype matrix (additive model):&quot;
+</pre></div>
+</div>
 <div class="output text_html"><table class="dataframe">
 <caption>A matrix: 5 x 3 of type dbl</caption>
 <thead>
@@ -827,16 +829,9 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 	<tr><th scope=row>Individual 5</th><td>-0.6708204</td><td> 1.4342743</td><td> 1.5652476</td></tr>
 </tbody>
 </table>
-</div></div>
-</div>
-<p>Standardized genotype matrix (Dominant model):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X_dominant</span>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Standardized genotype matrix (dominant model):&quot;
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
 <caption>A matrix: 5 x 3 of type dbl</caption>
 <thead>
@@ -850,16 +845,9 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 	<tr><th scope=row>Individual 5</th><td>-0.7302967</td><td> 0.7302967</td><td> 1.0954451</td></tr>
 </tbody>
 </table>
-</div></div>
-</div>
-<p>Standardized genotype matrix (Recessive model):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X_recessive</span>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Standardized genotype matrix (recessive model):&quot;
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
 <caption>A matrix: 5 x 3 of type dbl</caption>
 <thead>
@@ -880,7 +868,7 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
 <section id="beyond-snps-encoding-different-variant-types">
 <h2>Beyond SNPs: Encoding Different Variant Types<a class="headerlink" href="#beyond-snps-encoding-different-variant-types" title="Link to this heading">#</a></h2>
-<p>While we commonly encode SNPs, the same principles apply to other genetic variants:</p>
+<p>While we commonly encode SNPs, there are other types of genetic variations where the same principles also apply:</p>
 <ol class="arabic simple">
 <li><p><strong>Insertions and Deletions (Indels)</strong></p></li>
 </ol>
@@ -902,7 +890,7 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 <li><p>Inversions, translocations, and complex rearrangements</p></li>
 <li><p>Often encoded as binary (presence/absence)</p></li>
 </ul>
-<p>The choice of encoding scheme should reflect the biological hypothesis about how the variant affects the phenotype. For more information, refer to <a class="reference internal" href="#(https://www.frontiersin.org/files/Articles/127738/fbioe-03-00013-HTML-r1/image_m/fbioe-03-00013-g001.jpg)"><span class="xref myst">Figure 1</span></a> in <a class="reference external" href="https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2015.00013/full">Cardoso et al., 2015</a>.</p>
+<p>The choice of encoding scheme should reflect the biological hypothesis about how the variant affects the phenotype. For more information, refer to <a class="reference external" href="https://www.frontiersin.org/files/Articles/127738/fbioe-03-00013-HTML-r1/image_m/fbioe-03-00013-g001.jpg">Figure 1</a> in <a class="reference external" href="https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2015.00013/full">Cardoso et al., 2015</a>.</p>
 </section>
 </section>
 
@@ -974,7 +962,7 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-models">Three models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-models">Coding Models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-genotype-matrix">Standardized Genotype Matrix</a></li>
 </ul>
 </li>
