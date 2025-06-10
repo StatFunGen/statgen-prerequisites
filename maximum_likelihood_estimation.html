@@ -307,7 +307,6 @@
 
 
 
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Maximum Likelihood Estimation</a></li>
 
 
@@ -320,11 +319,7 @@
 
 
 
-
-
 <li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
-
-
 
 
 
@@ -527,14 +522,14 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-with-log-likelihood">Work with Log-Likelihood</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-equation">Likelihood equation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iid-data">IID data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-equations">Likelihood Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-and-identically-distributed-iid-data">Independent and Identically Distributed (IID) Data</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-the-mle-for-frequency-from-the-figure">Obtain the MLE for frequency from the figure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-likelihood-function-to-log-likelihood-function">From likelihood function to log-likelihood function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-the-mle-of-frequency-analytically">Obtain the MLE of frequency analytically</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-likelihood-function">Calculate MLE From Likelihood Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-log-likelihood-function">Calculate MLE From Log-likelihood Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
@@ -559,171 +554,202 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="MLE" src="graphical_summary/Slide20.png" /></p>
+<p><img alt="Fig" src="_images/Slide20.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>In statistics, maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by finding the values of the model parameters (e.g., <span class="math notranslate nohighlight">\(\theta\)</span>) that maximize the likelihood function (<span class="math notranslate nohighlight">\(L(\theta|\text{D}) = P(\theta|\text{D})\)</span>) over the parameter space (e.g., <span class="math notranslate nohighlight">\(\Theta\)</span>), so that, under the assumed statistical model, the observed data <span class="math notranslate nohighlight">\(\text{D}\)</span> is most probable.</p>
+<p>Maximum Likelihood Estimation (MLE) finds the parameter value that makes our observed data most probable. In other words, say that each model <span class="math notranslate nohighlight">\(\text{M}\)</span> has only one parameter <span class="math notranslate nohighlight">\(\theta\)</span>, and among all possible values of <span class="math notranslate nohighlight">\(\theta\)</span>, MLE chooses the one that maximizes the likelihood function. For a model with parameter <span class="math notranslate nohighlight">\(\theta\)</span> (e.g., the genetic effect <span class="math notranslate nohighlight">\(\beta\)</span>), the maximum likelihood estimator is:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\theta} = \underset{\theta \in \Theta}{\operatorname{argmax}} L(\theta|D) = \underset{\theta \in \Theta}{\operatorname{argmax}} P(D|\theta)
+\hat{\theta} = \underset{\theta \in \Theta}{\operatorname{argmax}} \mathcal{L}(\theta\mid\text{D}) = \underset{\theta \in \Theta}{\operatorname{argmax}} P(\text{D}\mid\theta)
 \]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\theta}\)</span> is our estimated parameter value (the “hat” indicates it’s an estimate)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> represents the (general symbol of) parameter we want to estimate (e.g., <span class="math notranslate nohighlight">\(\beta\)</span> in our genetic model)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Theta\)</span> is the parameter space - all possible values θ can take</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{D}\)</span> is our observed data</p></li>
+<li><p><span class="math notranslate nohighlight">\(\operatorname{argmax}\)</span> means “the argument (value of θ) that maximizes the function”</p></li>
+</ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="work-with-log-likelihood">
 <h2>Work with Log-Likelihood<a class="headerlink" href="#work-with-log-likelihood" title="Link to this heading">#</a></h2>
-<p>In practice, it is often convenient to work with the natural logarithm of the likelihood function, called the log-likelihood:</p>
+<p>We have introduced log-likelihood before:</p>
 <div class="math notranslate nohighlight">
 \[
-\ell (\theta \,;\mathbf{y})=\ln {\mathcal{L}}_{n}(\theta \,;\mathbf{y})
+\ell(\theta \mid \text{D}) = \ln \mathcal{L}(\theta \mid \text{D})
 \]</div>
-<p>Since the logarithm is a monotonic function, the maximum of <span class="math notranslate nohighlight">\(\ell (\theta \,;\mathbf{y})\)</span> occurs at the same value of <span class="math notranslate nohighlight">\(\theta\)</span> as does the maximum of <span class="math notranslate nohighlight">\({\mathcal{L}}_{n}\)</span>.</p>
+<p>Since the logarithm is a monotonic function, the maximum of <span class="math notranslate nohighlight">\(\ell(\theta \mid \text{D})\)</span> occurs at the same value of <span class="math notranslate nohighlight">\(\theta\)</span> as does the maximum of <span class="math notranslate nohighlight">\(\mathcal{L}(\theta \mid \text{D})\)</span>. This transformation is particularly useful because:</p>
+<ol class="arabic simple">
+<li><p><strong>Numerical stability</strong>: Likelihood values can be extremely small, leading to numerical underflow</p></li>
+<li><p><strong>Computational convenience</strong>: Products become sums, which are easier to work with</p></li>
+<li><p><strong>Mathematical tractability</strong>: Many probability distributions have simpler derivatives in log form</p></li>
+</ol>
 </section>
-<section id="likelihood-equation">
-<h2>Likelihood equation<a class="headerlink" href="#likelihood-equation" title="Link to this heading">#</a></h2>
-<p>If <span class="math notranslate nohighlight">\(\ell (\theta \,;\mathbf{y})\)</span> is differentiable in <span class="math notranslate nohighlight">\(\Theta\)</span>, sufficient conditions for the occurrence of a maximum (or a minimum) are</p>
+<section id="likelihood-equations">
+<h2>Likelihood Equations<a class="headerlink" href="#likelihood-equations" title="Link to this heading">#</a></h2>
+<p>If <span class="math notranslate nohighlight">\(\ell(\theta \mid \text{D})\)</span> is differentiable in <span class="math notranslate nohighlight">\(\Theta\)</span>, sufficient conditions for the occurrence of a maximum (or minimum) are:</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial \ell}{\partial \theta}=0
+\frac{\partial \ell(\theta \mid \text{D})}{\partial \theta} = 0
 \]</div>
-<p>known as the likelihood equations.</p>
+<p>These are known as the <strong>likelihood equations</strong> or <strong>score equations</strong>. Solving these equations gives us the maximum likelihood estimator <span class="math notranslate nohighlight">\(\hat{\theta}\)</span>.</p>
 </section>
-<section id="iid-data">
-<h2>IID data<a class="headerlink" href="#iid-data" title="Link to this heading">#</a></h2>
-<p>If the data are independent and identically distributed, then we have</p>
+<section id="independent-and-identically-distributed-iid-data">
+<h2>Independent and Identically Distributed (IID) Data<a class="headerlink" href="#independent-and-identically-distributed-iid-data" title="Link to this heading">#</a></h2>
+<p>If the data are independent and identically distributed, then we have:</p>
 <div class="math notranslate nohighlight">
 \[
-{\widehat{\ell\,}}(\theta \,;D)=\sum_{i=1}^{n}\ln f(d_{i}\mid \theta)
+\mathcal{L}(\theta \mid \text{D}) = \prod_{i=1}^{n} P(\text{D}_i \mid \theta)
 \]</div>
-<p>this being the sample analogue of the expected log-likelihood</p>
+<p>Taking the log-likelihood:</p>
 <div class="math notranslate nohighlight">
 \[
-\ell(\theta)=\operatorname{\mathbb{E}}[\,\ln f(d_{i}\mid \theta)\,]
+\ell(\theta \mid \text{D}) = \sum_{i=1}^{n} \ln P(\text{D}_i \mid \theta)
 \]</div>
-<p>where this expectation is taken with respect to the true density.</p>
+<p>This decomposition is fundamental because it transforms the product of individual probabilities into a sum of log-probabilities, making both computation and differentiation much more manageable.</p>
+<p>The IID assumption is crucial in genetics because it allows us to treat each individual’s genotype-phenotype observation as independent, enabling us to multiply their individual likelihoods to get the overall likelihood for our dataset.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>Here we use the first genetic variant to show how to calculate the maximum likelihood estimate of the frequency of a genetic variant, using the first genetic variant as an example.</p>
-<section id="obtain-the-mle-for-frequency-from-the-figure">
-<h2>Obtain the MLE for frequency from the figure<a class="headerlink" href="#obtain-the-mle-for-frequency-from-the-figure" title="Link to this heading">#</a></h2>
+<p>This example demonstrates how to calculate the maximum likelihood estimate (MLE) of allele frequency using genetic variant data. We will use a single genetic variant to show how MLE works in practice.</p>
+<ul class="simple">
+<li><p>Related topics:</p>
+<ul>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
+</ul>
+</li>
+</ul>
+<section id="calculate-mle-from-likelihood-function">
+<h2>Calculate MLE From Likelihood Function<a class="headerlink" href="#calculate-mle-from-likelihood-function" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
 <span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
 
-<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
-<span class="c1"># These represent actual alleles at each position</span>
-<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
-<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
-<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 1</span>
-<span class="w">    </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 2</span>
-<span class="w">    </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 3</span>
-<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 4</span>
-<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w"> </span><span class="c1"># Individual 5</span>
-<span class="p">)</span>
-<span class="c1"># Reshape into a matrix</span>
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
-<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+<span class="c1"># Define genotypes for 5 individuals at 1 variant</span>
+<span class="c1"># Observed genotypes: CC, TT, CT, CC, CC</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">genotypes</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
 
-<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
-<span class="n">ref_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">)</span>
-
-<span class="n">geno_matrix</span>
+<span class="c1"># Define alleles for this variant</span>
+<span class="n">alt_allele</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="w">  </span><span class="c1"># alternative allele</span>
+<span class="n">ref_allele</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w">  </span><span class="c1"># reference allele</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 x 3 of type chr</caption>
-<thead>
-	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>Individual 1</th><td>CC</td><td>CT</td><td>AT</td></tr>
-	<tr><th scope=row>Individual 2</th><td>TT</td><td>TT</td><td>AA</td></tr>
-	<tr><th scope=row>Individual 3</th><td>CT</td><td>CT</td><td>AA</td></tr>
-	<tr><th scope=row>Individual 4</th><td>CC</td><td>TT</td><td>AA</td></tr>
-	<tr><th scope=row>Individual 5</th><td>CC</td><td>CC</td><td>TT</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
-<p>In the first variant we have observed the genotype data for five individuals, CC, TT, CT, CC and CC (which is our data <span class="math notranslate nohighlight">\(\text{D}\)</span>). We want to estimate the frequency fo the alternative <code class="docutils literal notranslate"><span class="pre">T</span></code> for this variant. Specifically, for each <span class="math notranslate nohighlight">\(q\in[0,1]\)</span> let <span class="math notranslate nohighlight">\(M_q\)</span> denote the model that the true frequency of the <code class="docutils literal notranslate"><span class="pre">T</span></code> allele is <span class="math notranslate nohighlight">\(q\)</span>. Then, given our observation that 3 of 10 alleles (2 alleles per individual because human is dipliod) carried allele <code class="docutils literal notranslate"><span class="pre">T</span></code> at marker 1, the likelihood for model <span class="math notranslate nohighlight">\(M_q\)</span> is, by the previous definition,
-$<span class="math notranslate nohighlight">\(
-L(M_q)=\Pr(\text{D}|M_q)=(1-q)^2 * q^2 * 2q(1-q) * (1-q)^2 * (1-q)^2 = 2q^3(1−q)^7
-\)</span>$</p>
-<p>When computing likelihoods for parametric models, we usually dispense with the model notation and simply use the parameter value to denote the model. So instead of referring to the likelihood for <span class="math notranslate nohighlight">\(M_q\)</span>  we just say the “likelihood for <span class="math notranslate nohighlight">\(q\)</span>”, and write <span class="math notranslate nohighlight">\(L(q)\)</span>. So the likelihood for <span class="math notranslate nohighlight">\(q\)</span> is given by</p>
+<p>We observed genotype data for five individuals: CC, TT, CT, CC, and CC (this is our observed data <span class="math notranslate nohighlight">\(\text{D}\)</span>). We want to estimate the frequency of the alternative allele <code class="docutils literal notranslate"><span class="pre">T</span></code> for this variant.</p>
+<p>Let <span class="math notranslate nohighlight">\(f_T\)</span> denote the true frequency of the <code class="docutils literal notranslate"><span class="pre">T</span></code> allele. For each <span class="math notranslate nohighlight">\(f_T \in [0,1]\)</span>, let <span class="math notranslate nohighlight">\(\text{M}_{f_T}\)</span> denote the model where the true frequency of the <code class="docutils literal notranslate"><span class="pre">T</span></code> allele is <span class="math notranslate nohighlight">\(f_T\)</span>.</p>
+<p>From our observation, we see that 3 out of 10 alleles (2 alleles per individual since humans are diploid) carry the <code class="docutils literal notranslate"><span class="pre">T</span></code> allele.</p>
+<p>Then we can calculate the likelihood model <span class="math notranslate nohighlight">\(\text{M}_{f_T}\)</span> is, by definition:</p>
 <div class="math notranslate nohighlight">
 \[
-L(q)= 2q^3(1−q)^7
+\mathcal{L}(\text{M}_{f_T} \mid \text{D}) = P(\text{D} \mid \text{M}_{f_T})
 \]</div>
-<p>We could plot the likelihood function as follows:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
-<span class="n">L</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">q</span><span class="o">^</span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">)</span><span class="o">^</span><span class="m">7</span>
-<span class="p">}</span>
-<span class="nf">plot</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="nf">L</span><span class="p">(</span><span class="n">q</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;L(q)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;q&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a0db86271b610e8ef6ececc99e07a7e223e8d74b09146725df4cf7826d4448a9.png"><img alt="_images/a0db86271b610e8ef6ececc99e07a7e223e8d74b09146725df4cf7826d4448a9.png" src="_images/a0db86271b610e8ef6ececc99e07a7e223e8d74b09146725df4cf7826d4448a9.png" style="width: 420px; height: 420px;" />
-</a>
-</div>
-</div>
-<p>Since the value of <span class="math notranslate nohighlight">\(q\)</span> that maximizes the likelihood function is referred to as the “maximum likelihood estimate”, and usually denoted <span class="math notranslate nohighlight">\(\hat{q}\)</span>. That is
+<p>For each genotype, the probabilities under Hardy-Weinberg equilibrium are:</p>
+<ul class="simple">
+<li><p>CC: <span class="math notranslate nohighlight">\((1-f_T)^2\)</span></p></li>
+<li><p>TT: <span class="math notranslate nohighlight">\(f_T^2\)</span></p></li>
+<li><p>CT: <span class="math notranslate nohighlight">\(2f_T(1-f_T)\)</span></p></li>
+</ul>
+<p>Therefore, the likelihood is:
 $<span class="math notranslate nohighlight">\(
-\hat{q} =\underset{\theta \in \Theta}{\operatorname{argmax}} L(q)
+\mathcal{L}(\text{M}_{f_T} \mid \text{D}) = (1-f_T)^2 \times f_T^2 \times 2f_T(1-f_T) \times (1-f_T)^2 \times (1-f_T)^2 = 2f_T^3(1-f_T)^7
 \)</span>$</p>
-<p>Provided the data are sufficiently informative, and the number of parameters is not too large, maximum likelihood estimates tend to be sensible. In this case we can see that the maximum likelihood estimate is <span class="math notranslate nohighlight">\(q=0.3\)</span>, which also corresponds to our intuition.</p>
-</section>
-<section id="from-likelihood-function-to-log-likelihood-function">
-<h2>From likelihood function to log-likelihood function<a class="headerlink" href="#from-likelihood-function-to-log-likelihood-function" title="Link to this heading">#</a></h2>
-<p>Just as it can often be convenient to work with the log-likelihood ratio, it can be convenient to work with the log-likelihood function, usually denoted as <span class="math notranslate nohighlight">\(l(q)\)</span>.  Here is the log-likelihood function.</p>
+<p>When computing likelihoods for parametric models, we often use the parameter value to denote the model. So instead of <span class="math notranslate nohighlight">\(\mathcal{L}(\text{M}_{f_T} \mid \text{D})\)</span>, we write <span class="math notranslate nohighlight">\(\mathcal{L}(f_T \mid \text{D})\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(f_T \mid \text{D}) = 2f_T^3(1-f_T)^7
+\]</div>
+<p>We then plot the likelihood function as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
-<span class="n">l</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the likelihood function</span>
+<span class="n">f_T</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+<span class="n">L</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">f_T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f_T</span><span class="o">^</span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f_T</span><span class="p">)</span><span class="o">^</span><span class="m">7</span>
 <span class="p">}</span>
-<span class="nf">plot</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="m">0.3</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l(q) - l(qhat)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;q&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">f_T</span><span class="p">,</span><span class="w"> </span><span class="nf">L</span><span class="p">(</span><span class="n">f_T</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;L(f_T)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;f_T&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Likelihood Function for Allele Frequency&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a56f88c172b9eb084081f52137fc30410f2defb7532af5a1408fe0058234b495.png"><img alt="_images/a56f88c172b9eb084081f52137fc30410f2defb7532af5a1408fe0058234b495.png" src="_images/a56f88c172b9eb084081f52137fc30410f2defb7532af5a1408fe0058234b495.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/10cd53ed66d2675140ebe0196a8bfb99b0c8a806f82f6c4e9a4db8311b88b865.png"><img alt="_images/10cd53ed66d2675140ebe0196a8bfb99b0c8a806f82f6c4e9a4db8311b88b865.png" src="_images/10cd53ed66d2675140ebe0196a8bfb99b0c8a806f82f6c4e9a4db8311b88b865.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
-<p>Changes in the log-likelihood function are referred to as “log-likelihood units”. For example the difference in the support for <code class="docutils literal notranslate"><span class="pre">q=0.3</span></code> and <code class="docutils literal notranslate"><span class="pre">q=0.35</span></code> is <code class="docutils literal notranslate"><span class="pre">l(0.3)-l(0.35)</span> <span class="pre">=</span> <span class="pre">0.5630377</span></code> log-likelihood units. Again, remember that it is differences in <code class="docutils literal notranslate"><span class="pre">l</span></code> that matter, not the actual values.</p>
+<p>The value of <span class="math notranslate nohighlight">\(f_T\)</span> that maximizes the likelihood function is the <strong>maximum likelihood estimate</strong>, denoted <span class="math notranslate nohighlight">\(\hat{f_T}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{f_T} = \underset{f_T \in [0,1]}{\operatorname{argmax}} \mathcal{L}(f_T \mid \text{D})
+\]</div>
+<p>From the plot, we can see that the maximum likelihood estimate is <span class="math notranslate nohighlight">\(\hat{f_T} = 0.3\)</span>, which corresponds to our intuition (3 out of 10 observed alleles were <code class="docutils literal notranslate"><span class="pre">T</span></code>).</p>
 </section>
-<section id="obtain-the-mle-of-frequency-analytically">
-<h2>Obtain the MLE of frequency analytically<a class="headerlink" href="#obtain-the-mle-of-frequency-analytically" title="Link to this heading">#</a></h2>
-<p>In this simple case we can calculate <span class="math notranslate nohighlight">\(\hat{q}\)</span> analytically as well, but keep in mind that in most of the cases, it’s impossible to get the explicit formula of <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> of a parameter <span class="math notranslate nohighlight">\(\theta\)</span> directly.</p>
-<ol class="arabic">
-<li><p>Take the natural logarithm of the likelihood function (for computational convenience):
-$<span class="math notranslate nohighlight">\(\ln L(q) = \ln(2) + 3\ln(q) + 7\ln(1-q)\)</span>$</p></li>
-<li><p>Find the critical point by taking the derivative and setting it to zero:
-$<span class="math notranslate nohighlight">\(\frac{d\ln L(q)}{dq} = \frac{3}{q} - \frac{7}{1-q} = 0\)</span>$</p></li>
-<li><p>Solve for <span class="math notranslate nohighlight">\(q\)</span>:
-$<span class="math notranslate nohighlight">\(\frac{3}{q} = \frac{7}{1-q}\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(3(1-q) = 7q\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(3 - 3q = 7q\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(3 = 10q\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(q = \frac{3}{10} = 0.3\)</span>$</p></li>
-<li><p>Verify it’s a maximum by checking that the second derivative is negative:
-$<span class="math notranslate nohighlight">\(\frac{d^2\ln L(q)}{dq^2} = -\frac{3}{q^2} - \frac{7}{(1-q)^2} &lt; 0\)</span>$</p>
-<p>This is always negative for <span class="math notranslate nohighlight">\(q \in (0,1)\)</span>, confirming we have a maximum.</p>
-</li>
-</ol>
+<section id="calculate-mle-from-log-likelihood-function">
+<h2>Calculate MLE From Log-likelihood Function<a class="headerlink" href="#calculate-mle-from-log-likelihood-function" title="Link to this heading">#</a></h2>
+<p>It is often convenient to work with the log-likelihood function, denoted <span class="math notranslate nohighlight">\(\ell(f_T \mid \text{D})\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\ell(f_T \mid \text{D}) = \ln \mathcal{L}(f_T \mid \text{D}) = \ln(2) + 3\ln(f_T) + 7\ln(1-f_T)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the log-likelihood function (relative to maximum)</span>
+<span class="n">l</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">f_T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">log</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">f_T</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f_T</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">f_T</span><span class="p">,</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="n">f_T</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="m">0.3</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l(f_T) - l(f_T_hat)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;f_T&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log-Likelihood Function (Relative)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/4a9d70668de44c7d23433a9bfec7095e6c3673c128e204f2a34dd3dd3c093c2f.png"><img alt="_images/4a9d70668de44c7d23433a9bfec7095e6c3673c128e204f2a34dd3dd3c093c2f.png" src="_images/4a9d70668de44c7d23433a9bfec7095e6c3673c128e204f2a34dd3dd3c093c2f.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>Changes in the log-likelihood function are measured in “log-likelihood units.” For example, the difference in support between <span class="math notranslate nohighlight">\(f_T = 0.3\)</span> and <span class="math notranslate nohighlight">\(f_T = 0.35\)</span> is <span class="math notranslate nohighlight">\(\ell(0.3 \mid \text{D}) - \ell(0.35 \mid \text{D}) = 0.563\)</span> log-likelihood units.</p>
+</section>
+<section id="analytical-solution">
+<h2>Analytical Solution<a class="headerlink" href="#analytical-solution" title="Link to this heading">#</a></h2>
+<p>In this simple case, we can calculate <span class="math notranslate nohighlight">\(\hat{f_T}\)</span> analytically using calculus:</p>
+<p><strong>Step 1</strong>: Take the natural logarithm of the likelihood function:
+$<span class="math notranslate nohighlight">\(
+\ell(f_T \mid \text{D}) = \ln(2) + 3\ln(f_T) + 7\ln(1-f_T)
+\)</span>$</p>
+<p><strong>Step 2</strong>: Find the critical point by taking the derivative and setting it to zero:
+$<span class="math notranslate nohighlight">\(
+\frac{d\ell(f_T \mid \text{D})}{df_T} = \frac{3}{f_T} - \frac{7}{1-f_T} = 0
+\)</span>$</p>
+<p><strong>Step 3</strong>: Solve for <span class="math notranslate nohighlight">\(f_T\)</span>:
+$<span class="math notranslate nohighlight">\(
+\frac{3}{f_T} = \frac{7}{1-f_T}
+\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+3(1-f_T) = 7f_T
+\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+3 - 3f_T = 7f_T
+\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+3 = 10f_T
+\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+f_T = \frac{3}{10} = 0.3
+\)</span>$</p>
+<p><strong>Step 4</strong>: Verify it’s a maximum by checking the second derivative:
+$<span class="math notranslate nohighlight">\(
+\frac{d^2\ell(f_T \mid \text{D})}{df_T^2} = -\frac{3}{f_T^2} - \frac{7}{(1-f_T)^2} &lt; 0
+\)</span>$</p>
+<p>This is always negative for <span class="math notranslate nohighlight">\(f_T \in (0,1)\)</span>, confirming we have a maximum.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
@@ -751,7 +777,7 @@ $<span class="math notranslate nohighlight">\(\frac{d^2\ln L(q)}{dq^2} = -\frac{
 <span class="w">           </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q_peak</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max_lik</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># Larger peak point</span>
 <span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="n">Parameter</span><span class="o">~</span><span class="p">(</span><span class="n">theta</span><span class="p">))),</span><span class="w"> </span>
-<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="n">Likelihood</span><span class="o">~</span><span class="nf">L</span><span class="p">(</span><span class="n">Data</span><span class="o">~</span><span class="s">&#39;|&#39;</span><span class="o">~</span><span class="n">theta</span><span class="p">))))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="n">Likelihood</span><span class="o">~</span><span class="nf">L</span><span class="p">(</span><span class="n">theta</span><span class="o">~</span><span class="s">&#39;|&#39;</span><span class="o">~</span><span class="n">D</span><span class="p">))))</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">),</span><span class="w"> </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expansion</span><span class="p">(</span><span class="n">mult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
@@ -781,7 +807,7 @@ $<span class="math notranslate nohighlight">\(\frac{d^2\ln L(q)}{dq^2} = -\frac{
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6d6a5876db7cf444d9bbdb17d1531b8ce4d500d66324506a9444d6c70c51cddc.png"><img alt="_images/6d6a5876db7cf444d9bbdb17d1531b8ce4d500d66324506a9444d6c70c51cddc.png" src="_images/6d6a5876db7cf444d9bbdb17d1531b8ce4d500d66324506a9444d6c70c51cddc.png" style="width: 600px; height: 360px;" />
+<a class="reference internal image-reference" href="_images/5c3983723dd450c8b2f5a29d24858b2efb18a6d313d7804ba6ec99679fabbf17.png"><img alt="_images/5c3983723dd450c8b2f5a29d24858b2efb18a6d313d7804ba6ec99679fabbf17.png" src="_images/5c3983723dd450c8b2f5a29d24858b2efb18a6d313d7804ba6ec99679fabbf17.png" style="width: 600px; height: 360px;" />
 </a>
 </div>
 </div>
@@ -857,14 +883,14 @@ $<span class="math notranslate nohighlight">\(\frac{d^2\ln L(q)}{dq^2} = -\frac{
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-with-log-likelihood">Work with Log-Likelihood</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-equation">Likelihood equation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iid-data">IID data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-equations">Likelihood Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-and-identically-distributed-iid-data">Independent and Identically Distributed (IID) Data</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-the-mle-for-frequency-from-the-figure">Obtain the MLE for frequency from the figure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-likelihood-function-to-log-likelihood-function">From likelihood function to log-likelihood function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-the-mle-of-frequency-analytically">Obtain the MLE of frequency analytically</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-likelihood-function">Calculate MLE From Likelihood Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-log-likelihood-function">Calculate MLE From Log-likelihood Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">

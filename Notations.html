@@ -307,7 +307,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html">Maximum Likelihood Estimation</a></li>
 
 
@@ -320,11 +319,7 @@
 
 
 
-
-
 <li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
-
-
 
 
 
@@ -671,15 +666,34 @@ document.write(`
 <td><p><span class="math notranslate nohighlight">\(I^2\)</span> statistic</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\text{M}\)</span></p></td>
+<td><p>A given model (or with subscript)</p></td>
+<td><p>e.g., <span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\text{D}\)</span></p></td>
+<td><p>Observed data (or with subscript)</p></td>
+<td><p>e.g., <span class="math notranslate nohighlight">\(\text{D}_1\)</span> for a single observation</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathcal{L}\)</span></p></td>
+<td><p>Likelihood function</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{L}(\text{M}\mid\text{D})= P(\text{D}\mid\text{M})\)</span>, the likelihood function for model <span class="math notranslate nohighlight">\(\text{M}\)</span> given data <span class="math notranslate nohighlight">\(\text{D}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<td><p>The parameter of the statistical model</p></td>
+<td><p>e.g., genetic effect <span class="math notranslate nohighlight">\(\beta\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
+<td><p>Parameter space of <span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \Lambda \)</span></p></td>
+<td><p>Likelihood ratio test</p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 </div>
-<p>| <span class="math notranslate nohighlight">\(\text{M}\)</span>| Model | <span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span>| |
-| <span class="math notranslate nohighlight">\( M_1 \)</span>          | Model 1 (no genetic effect) | Model assuming no association between genotype and trait |
-| <span class="math notranslate nohighlight">\( M_2 \)</span>          | Model 2 (genetic effect) | Model assuming an association between genotype and trait |
-| <span class="math notranslate nohighlight">\( \text{D} \)</span>     | Observed data <span class="math notranslate nohighlight">\(d_i\)</span> (observation i)|<span class="math notranslate nohighlight">\(\{(x_1,y_1), (x_2, y_2), \dots, (x_n, y_n)\}\)</span>, Collected genotype-trait pairs |
-| <span class="math notranslate nohighlight">\( \lambda \)</span>     | Likelihood ratio test||
-| <span class="math notranslate nohighlight">\( \beta \)</span>         | Mean of the normal distribution (unknown) | Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span>|
+<p>| <span class="math notranslate nohighlight">\( \beta \)</span>         | Mean of the normal distribution (unknown) | Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span>|
 | <span class="math notranslate nohighlight">\( \beta_0 \)</span>     | Prior mean  | Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span> |
 | <span class="math notranslate nohighlight">\( \beta_1 \)</span>     | Posterior mean  |  Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span> |
 | <span class="math notranslate nohighlight">\( \sigma_0^2 \)</span>   | Variance of the normal distribution (known) | Prior uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> |
