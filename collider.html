@@ -259,7 +259,6 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
 <ul class="nav bd-sidenav">
@@ -286,18 +285,15 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Meta-Analysis Fixed Effects</a></li>
 
 
 
 
-
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Random Effects Meta-Analysis</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effects</a></li>
 
 
 
@@ -529,7 +525,14 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collider</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-when-we-control-for-colliders">What Happens When We Control for Colliders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-conditioning-on-colliders-creates-bias">The Problem: Conditioning on Colliders Creates Bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-happens-selection-bias">Why This Happens: Selection Bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-colliders-in-genetic-studies">Common Colliders in Genetic Studies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-principle">The Key Principle</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 </ul>
 
@@ -549,7 +552,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="collider" src="graphical_summary/Slide11.png" /></p>
+<p><img alt="Fig" src="_images/Slide15.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
@@ -570,129 +573,168 @@ X \rightarrow C \leftarrow Y
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<p>Conditioning on a collider can introduce bias in the estimation of the relationship between its causes. This is often called <strong>collider bias</strong> or <strong>selection bias</strong>.</p>
-<p>In formal causal inference terminology, conditioning on a collider creates a situation where:</p>
+<section id="what-happens-when-we-control-for-colliders">
+<h2>What Happens When We Control for Colliders<a class="headerlink" href="#what-happens-when-we-control-for-colliders" title="Link to this heading">#</a></h2>
+<p>When a collider is present and incorrectly controlled for:</p>
 <div class="math notranslate nohighlight">
 \[
-P(Y|X) \neq P(Y|X, C)
+\text{Observed Association} = \text{True Effect} + \text{Collider Bias}
 \]</div>
-<p>Where conditioning on <span class="math notranslate nohighlight">\(C\)</span> creates a non-causal association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. This inequality shows that the association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> differs when we condition on the collider.</p>
-<p>Key characteristics of collider bias:</p>
+<ul class="simple">
+<li><p><strong>True Effect</strong>: The real biological relationship (may be zero)</p></li>
+<li><p><strong>Collider Bias</strong>: The false association created by conditioning on the collider</p></li>
+<li><p><strong>Observed Association</strong>: What we measure after incorrectly adjusting (often misleading!)</p></li>
+</ul>
+</section>
+<section id="the-problem-conditioning-on-colliders-creates-bias">
+<h2>The Problem: Conditioning on Colliders Creates Bias<a class="headerlink" href="#the-problem-conditioning-on-colliders-creates-bias" title="Link to this heading">#</a></h2>
+<p>Unlike confounders, colliders should <strong>NOT</strong> be included in regression models. Including a collider as a covariate can create spurious associations:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!)}
+\]</div>
+<p>This regression will give a <strong>biased estimate</strong> of <span class="math notranslate nohighlight">\(\beta_1\)</span> even when the true effect is zero.</p>
+</section>
+<section id="why-this-happens-selection-bias">
+<h2>Why This Happens: Selection Bias<a class="headerlink" href="#why-this-happens-selection-bias" title="Link to this heading">#</a></h2>
+<p>Controlling for a collider creates <strong>selection bias</strong> by conditioning on a variable that depends on both exposure and outcome:</p>
 <ol class="arabic simple">
-<li><p><strong>Induced Association</strong>: Conditioning on a collider can create an association between variables that are causally independent</p></li>
-<li><p><strong>Berkson’s Paradox</strong>: A classic example of collider bias in epidemiology</p></li>
-<li><p><strong>Selection Bias</strong>: Often occurs when study participants are selected based on criteria affected by both exposure and outcome</p></li>
-<li><p><strong>M-Bias</strong>: A specific pattern in DAGs where conditioning on a collider creates a biased path</p></li>
+<li><p><strong>Collider structure</strong>: <span class="math notranslate nohighlight">\(X \rightarrow \text{Collider} \leftarrow Y\)</span></p></li>
+<li><p><strong>Conditioning effect</strong>: When you control for the collider, you’re selecting specific combinations of X and Y</p></li>
+<li><p><strong>Induced association</strong>: This selection creates an artificial association between X and Y</p></li>
 </ol>
-<p>Unlike confounders which <strong>should be controlled</strong> for in analyses, colliders <strong>should not be controlled</strong> for when estimating the causal effect of interest.</p>
+</section>
+<section id="common-colliders-in-genetic-studies">
+<h2>Common Colliders in Genetic Studies<a class="headerlink" href="#common-colliders-in-genetic-studies" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Study Participation/Selection: Genetic Risk → Study Participation ← Disease Status</p></li>
+<li><p>Hospital Admission: Genetic Variant → Hospital Admission ← Disease Severity</p></li>
+<li><p>Survival to Study Age: Protective Alleles → Survival ← Disease Resistance. Studying only elderly survivors can bias estimates of genetic effects on longevity.</p></li>
+</ul>
+</section>
+<section id="the-key-principle">
+<h2>The Key Principle<a class="headerlink" href="#the-key-principle" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Confounders</strong>: Control to remove bias</p></li>
+<li><p><strong>Colliders</strong>: Don’t control to avoid creating bias</p></li>
+</ul>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates the concept of a collider in causal inference using genotype data from five individuals across three genetic variants.</p>
-<p>In this setup, we analyze how the correlation between two genetic variants (Variant 1 and Variant 2) changes when we condition on a third variable—disease status (Y)—that is influenced by both variants. The disease acts as a collider because it is a common effect of these two variants. Under normal circumstances, if two variables are independent (or weakly correlated), conditioning on their common effect can induce a spurious association between them. This phenomenon is known as collider bias or selection bias, and it’s a critical concept in causal modeling that can lead to misleading conclusions if not properly accounted for.</p>
+<p>This example demonstrates collider bias, a common source of spurious associations in genetic studies. In our scenario, genetic variants affect BMI, and waist circumference also affects BMI, but there is no direct causal relationship between the genetic variants and waist circumference. BMI acts as a “collider” because it is influenced by both the genetic variants and waist circumference. When we incorrectly adjust for BMI in our analysis, we create a spurious association between genetic variants and waist circumference, even though no true direct relationship exists. This illustrates why careful consideration of causal relationships is essential before including variables as covariates in statistical models.</p>
+<p>We perform two analyses:</p>
+<ul class="simple">
+<li><p>A correct analysis testing associations between genetic variants and waist circumference</p></li>
+<li><p>An incorrect analysis controlling for BMI (which creates bias)</p></li>
+</ul>
+<p>The example shows how BMI is caused by both genetic factors AND waist circumference, making it a collider. When we incorrectly control for BMI, we create an artificial association between SNPs and waist circumference where none should exist biologically.</p>
+<p>Related topics:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/confounder.html">confounder</a></p></li>
+</ul>
+<p>Let’s first generate the data for genotype variants, BMI and the waist circumference (independent of genetics).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
 <span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">15</span><span class="p">)</span><span class="w">  </span><span class="c1"># For reproducibility</span>
 
-<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
-<span class="c1"># These represent actual alleles at each position</span>
-<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
-<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
-<span class="w">  </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 1</span>
-<span class="w">  </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 2</span>
-<span class="w">  </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 3</span>
-<span class="w">  </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 4</span>
-<span class="w">  </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w"> </span><span class="c1"># Individual 5</span>
-<span class="p">)</span>
-<span class="c1"># Reshape into a matrix</span>
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
-<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="w">  </span><span class="c1"># Sample size</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w">   </span><span class="c1"># Number of variants</span>
 
-<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
-<span class="n">ref_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+<span class="c1"># Generate genetic variants that affect BMI</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">*</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">)),</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
 
-<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
-
-<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
-<span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
 <span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed disease status for the 5 individuals</span>
-<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analysis 1: Correlation in the FULL population (all individuals)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;=== ANALYSIS 1: FULL POPULATION ===&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Correlation between Variant 1 and Variant 2 in full population:&quot;</span><span class="p">)</span>
-<span class="n">cor_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">])</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Correlation =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">cor_full</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;=== ANALYSIS 1: FULL POPULATION ===&quot;
-[1] &quot;Correlation between Variant 1 and Variant 2 in full population:&quot;
-[1] &quot;Correlation = -0.468&quot;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analysis 2: Correlation in DISEASED individuals only (conditioning on collider)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;=== ANALYSIS 2: DISEASED INDIVIDUALS ONLY ===&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Conditioning on Disease = 1 (the collider)&quot;</span><span class="p">)</span>
 
-<span class="n">diseased_indices</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
-<span class="kr">if</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">diseased_indices</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Variant_1_diseased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">diseased_indices</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span>
-<span class="w">  </span><span class="n">Variant_2_diseased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">diseased_indices</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span>
+<span class="c1"># Generate waist circumference (independent of genetics)</span>
+<span class="n">waist_circumference</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+<span class="n">waist_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">waist_circumference</span><span class="p">)</span>
+
+<span class="c1"># Generate BMI as COLLIDER: caused by BOTH genetics AND waist circumference</span>
+<span class="n">genetic_effect_on_bmi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Xraw_additive</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="p">]</span><span class="w">        </span><span class="c1"># Only Variant 3 affects BMI</span>
+<span class="n">waist_effect_on_bmi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.15</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">waist_circumference</span><span class="w">      </span><span class="c1"># Waist circumference affects BMI</span>
+
+<span class="c1"># BMI is the sum of genetic and waist effects plus noise</span>
+<span class="n">bmi_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">genetic_effect_on_bmi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">waist_effect_on_bmi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="n">bmi_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">bmi_raw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on how the waist circumference is generated, it is independent from the genetic effect. Thus we should expect no signals when we test for the associations between waist circumference and SNPs. So we perform two analysis here:</p>
+<ul class="simple">
+<li><p>ignore the collider (BMI), regress waist circumference on SNPs</p></li>
+<li><p>consider the collider (BMI), regress waist circumference on SNPs and BMI</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_values_correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">  </span><span class="c1"># Store p-values for correct analysis</span>
+<span class="n">betas_correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">     </span><span class="c1"># Store estimated effect sizes for correct analysis</span>
+<span class="n">p_values_biased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">   </span><span class="c1"># Store p-values for biased analysis (controlling for collider)</span>
+<span class="n">betas_biased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">      </span><span class="c1"># Store estimated effect sizes for biased analysis</span>
+
+<span class="c1"># Perform OLS regression for each SNP</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">SNP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w">  </span><span class="c1"># Extract genotype for SNP j</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Diseased individuals:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">diseased_indices</span><span class="p">,</span><span class="w"> </span><span class="n">collapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">)))</span>
-<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant 1 values in diseased:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">Variant_1_diseased</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">collapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">)))</span>
-<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant 2 values in diseased:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">Variant_2_diseased</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">collapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">)))</span>
+<span class="w">  </span><span class="c1"># CORRECT analysis: SNP vs waist circumference (no BMI control)</span>
+<span class="w">  </span><span class="n">correct_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">waist_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="p">)</span><span class="w">  </span>
 <span class="w">  </span>
-<span class="w">  </span><span class="n">cor_diseased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">Variant_1_diseased</span><span class="p">,</span><span class="w"> </span><span class="n">Variant_2_diseased</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Correlation in diseased =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">cor_diseased</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)))</span>
-<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Not enough diseased individuals to calculate correlation&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="c1"># INCORRECT analysis: Control for BMI (the collider)</span>
+<span class="w">  </span><span class="n">biased_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">waist_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bmi_scaled</span><span class="p">)</span><span class="w">  </span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">summary_correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">correct_model</span><span class="p">)</span>
+<span class="w">  </span><span class="n">summary_biased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">biased_model</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Store p-values and effect sizes</span>
+<span class="w">  </span><span class="n">p_values_correct</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_correct</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">  </span><span class="c1"># p-value for SNP effect (correct)</span>
+<span class="w">  </span><span class="n">betas_correct</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_correct</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">     </span><span class="c1"># Estimated beta coefficient (correct)</span>
+<span class="w">  </span><span class="n">p_values_biased</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_biased</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">    </span><span class="c1"># p-value for SNP effect (biased)</span>
+<span class="w">  </span><span class="n">betas_biased</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_biased</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">       </span><span class="c1"># Estimated beta coefficient (biased)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;=== ANALYSIS 2: DISEASED INDIVIDUALS ONLY ===&quot;
-[1] &quot;Conditioning on Disease = 1 (the collider)&quot;
-[1] &quot;Diseased individuals: 2, 3&quot;
-[1] &quot;Variant 1 values in diseased: 1.565, 0.447&quot;
-[1] &quot;Variant 2 values in diseased: -0.956, 0.239&quot;
-[1] &quot;Correlation in diseased = -1&quot;
+</div>
+<p>The results are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create results table</span>
+<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Beta_Correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">betas_correct</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_Value_Correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p_values_correct</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Significant_Correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">p_values_correct</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Beta_Biased</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">betas_biased</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_Value_Biased</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p_values_biased</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Significant_Biased</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">p_values_biased</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">results</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 7</caption>
+<thead>
+	<tr><th scope=col>Variant</th><th scope=col>Beta_Correct</th><th scope=col>P_Value_Correct</th><th scope=col>Significant_Correct</th><th scope=col>Beta_Biased</th><th scope=col>P_Value_Biased</th><th scope=col>Significant_Biased</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Variant 1</td><td> 0.0645</td><td>0.7347</td><td>No</td><td> 0.1841</td><td>0.2437</td><td>No </td></tr>
+	<tr><td>Variant 2</td><td> 0.2585</td><td>0.1677</td><td>No</td><td> 0.0667</td><td>0.6890</td><td>No </td></tr>
+	<tr><td>Variant 3</td><td>-0.0203</td><td>0.9154</td><td>No</td><td>-0.7733</td><td>0.0000</td><td>Yes</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
-<p>In the full population of five individuals, the correlation between Variant 1 and Variant 2 is modestly negative (correlation = -0.468), suggesting only a weak linear relationship. However, after conditioning on individuals with disease (i.e., analyzing only those with disease status = 1), the correlation becomes perfectly negative (correlation = -1). This dramatic shift illustrates the collider effect: even if two variables are weakly or not associated in the general population, conditioning on a common outcome they influence can artificially induce strong correlation. This example highlights the importance of understanding the structure of causal relationships and avoiding inappropriate conditioning on colliders during statistical analyses.</p>
+<p>This example illustrates the dangers of collider bias in genetic association studies. The correct analysis shows no significant associations between genetic variants and waist circumference, which reflects the true underlying biology since we generated the data with no direct causal pathway between them. However, when we incorrectly adjust for BMI (the collider), we observe spurious significant associations. This occurs because BMI is causally influenced by both the genetic variants and waist circumference, so conditioning on BMI creates an artificial correlation between the variants and waist circumference. In real-world studies, researchers must carefully consider the causal structure of their variables to avoid such biased conclusions that could mislead scientific understanding and clinical decision-making.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -762,7 +804,14 @@ P(Y|X) \neq P(Y|X, C)
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collider</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-when-we-control-for-colliders">What Happens When We Control for Colliders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-conditioning-on-colliders-creates-bias">The Problem: Conditioning on Colliders Creates Bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-happens-selection-bias">Why This Happens: Selection Bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-colliders-in-genetic-studies">Common Colliders in Genetic Studies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-principle">The Key Principle</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 </ul>
 

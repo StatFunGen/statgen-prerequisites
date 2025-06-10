@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fixed Effects Meta-Analysis &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+    <title>Meta-Analysis Fixed Effects &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
   
   
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'meta_analysis_fixed_effect';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Random Effects Meta-Analysis" href="meta_analysis_random_effect.html" />
+    <link rel="next" title="Meta-Analysis Random Effects" href="meta_analysis_random_effect.html" />
     <link rel="prev" title="Mediator" href="mediator.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -259,7 +259,6 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
 <ul class="nav bd-sidenav">
@@ -286,18 +285,15 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Fixed Effects Meta-Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Meta-Analysis Fixed Effects</a></li>
 
 
 
 
-
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Random Effects Meta-Analysis</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effects</a></li>
 
 
 
@@ -516,7 +512,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Fixed Effects Meta-Analysis</h1>
+    <h1>Meta-Analysis Fixed Effects</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -526,24 +522,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fixed Effects Meta-Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Meta-Analysis Fixed Effects</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-fixed-effects-models">Multiple Fixed-Effects Models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-random-effects-models">Multiple Random-Effects Models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-in-genetic-studies">Meta-Analysis in Genetic Studies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-meta-analysis">Why Do We Need Meta-Analysis?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-weighting-works">How the Weighting Works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fixed-effects-assumption">The Fixed-Effects Assumption</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-limitations">Important Limitations</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneity-assessment">Heterogeneity Assessment</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cochran-s-q-statistic">Cochran’s Q Statistic:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-2-statistic-percentage-of-variation-due-to-heterogeneity"><span class="math notranslate nohighlight">\(I^2\)</span> Statistic (Percentage of Variation Due to Heterogeneity)</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 
             </nav>
@@ -556,64 +545,79 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="fixed-effects-meta-analysis">
-<h1>Fixed Effects Meta-Analysis<a class="headerlink" href="#fixed-effects-meta-analysis" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="meta-analysis-fixed-effects">
+<h1>Meta-Analysis Fixed Effects<a class="headerlink" href="#meta-analysis-fixed-effects" title="Link to this heading">#</a></h1>
 <p>Fixed-effect meta-analysis combines study-specific estimates under the assumption of a common fixed true effect, making it mathematically equivalent to analyzing all individuals as if they came from a single pooled dataset.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="Fixed Effect Meta-Analysis" src="graphical_summary/Slide17.png" /></p>
+<p><img alt="Fig" src="_images/Slide17.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
 <p>In meta-analysis, the weighted mean effect size for a fixed-effects model is calculated as:</p>
 <div class="math notranslate nohighlight">
-\[\hat{\beta} = \frac{\sum_{i=1}^{k} w_i \hat{\beta}_i}{\sum_{i=1}^{k} w_i}\]</div>
+\[\hat{\beta} = \frac{\sum_{k=1}^{K} w_k \hat{\beta}_k}{\sum_{k=1}^{K} w_k}\]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\hat{\beta}\)</span> is the combined effect estimate across all studies</p></li>
-<li><p><span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span> is the effect estimate from study <span class="math notranslate nohighlight">\(i\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(w_i\)</span> is the weight assigned to study <span class="math notranslate nohighlight">\(i\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(k\)</span> is the number of studies</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span> is the effect estimate from study <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w_k\)</span> is the weight assigned to study <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span> is the number of studies</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="multiple-fixed-effects-models">
-<h2>Multiple Fixed-Effects Models<a class="headerlink" href="#multiple-fixed-effects-models" title="Link to this heading">#</a></h2>
+<section id="why-do-we-need-meta-analysis">
+<h2>Why Do We Need Meta-Analysis?<a class="headerlink" href="#why-do-we-need-meta-analysis" title="Link to this heading">#</a></h2>
+<p><strong>Individual studies have limitations:</strong></p>
 <ul class="simple">
-<li><p>Weights for Fixed-Effects
-$<span class="math notranslate nohighlight">\(w_i = \frac{1}{v_i}\)</span><span class="math notranslate nohighlight">\(
-  Where \)</span>v_i<span class="math notranslate nohighlight">\( is the within-study variance for study \)</span>i$</p></li>
-<li><p>Variance of the Combined Estimate
-$<span class="math notranslate nohighlight">\(Var(\hat{\beta}) = \frac{1}{\sum_{i=1}^{k} w_i}\)</span>$</p></li>
-<li><p>Standard Error of the Combined Estimate
-$<span class="math notranslate nohighlight">\(SE(\hat{\beta}) = \sqrt{Var(\hat{\beta})} = \sqrt{\frac{1}{\sum_{i=1}^{k} w_i}}\)</span>$</p></li>
+<li><p>Small sample sizes → low statistical power</p></li>
+<li><p>Population-specific effects → limited generalizability</p></li>
+<li><p>Random variation → unreliable estimates</p></li>
+</ul>
+<p><strong>Meta-analysis provides:</strong></p>
+<ul class="simple">
+<li><p>Larger effective sample size → higher power to detect true effects</p></li>
+<li><p>More precise effect estimates → narrower confidence intervals</p></li>
+<li><p>Broader population representation → better generalizability</p></li>
 </ul>
 </section>
-<section id="multiple-random-effects-models">
-<h2>Multiple Random-Effects Models<a class="headerlink" href="#multiple-random-effects-models" title="Link to this heading">#</a></h2>
-<ul>
-<li><p>Weighted Mean Effect Size
-$<span class="math notranslate nohighlight">\(\hat{\beta}^* = \frac{\sum_{i=1}^{k} w_i^* \hat{\beta}_i}{\sum_{i=1}^{k} w_i^*}\)</span>$</p></li>
-<li><p>Weights for Random-Effects
-$<span class="math notranslate nohighlight">\(w_i^* = \frac{1}{v_i + \tau^2}\)</span>$</p>
-<p>Where <span class="math notranslate nohighlight">\(\tau^2\)</span> is the between-study variance</p>
-</li>
+<section id="how-the-weighting-works">
+<h2>How the Weighting Works<a class="headerlink" href="#how-the-weighting-works" title="Link to this heading">#</a></h2>
+<p>The key insight is that <strong>not all studies should contribute equally</strong>. Studies with more information should have more influence on the final result.</p>
+<p><strong>Weight is based on precision:</strong>
+$<span class="math notranslate nohighlight">\(w_k = \frac{1}{\text{SE}_k^2}\)</span>$</p>
+<p>Where <span class="math notranslate nohighlight">\(\text{SE}_k\)</span> is the standard error of study <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p><strong>This means:</strong></p>
+<ul class="simple">
+<li><p><strong>Large studies</strong> (small SE) get <strong>high weight</strong>: more influence</p></li>
+<li><p><strong>Small studies</strong> (large SE) get <strong>low weight</strong>: less influence</p></li>
+<li><p><strong>Precise studies</strong> contribute more to the final estimate</p></li>
 </ul>
 </section>
-<section id="meta-analysis-in-genetic-studies">
-<h2>Meta-Analysis in Genetic Studies<a class="headerlink" href="#meta-analysis-in-genetic-studies" title="Link to this heading">#</a></h2>
-<p>In genetic studies, meta-analysis often combines results from genome-wide association studies (GWAS) across different cohorts with weights either from the sample size or the inverse variance:</p>
-<ul>
-<li><p>Sample Size Weighting
-$<span class="math notranslate nohighlight">\(w_i = \sqrt{N_i}\)</span>$</p>
-<p>Where <span class="math notranslate nohighlight">\(N_i\)</span> is the sample size of study <span class="math notranslate nohighlight">\(i\)</span></p>
-</li>
-<li><p>Inverse Variance Weighting
-$<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2}\)</span>$</p>
-<p>Where <span class="math notranslate nohighlight">\(SE(\hat{\beta}_i)\)</span> is the standard error of the effect size estimate in study <span class="math notranslate nohighlight">\(i\)</span></p>
-</li>
+<section id="the-fixed-effects-assumption">
+<h2>The Fixed-Effects Assumption<a class="headerlink" href="#the-fixed-effects-assumption" title="Link to this heading">#</a></h2>
+<p>Fixed-effects meta-analysis assumes that <strong>all studies estimate the same true effect</strong>. Any differences between studies are due to random sampling variation only.</p>
+<p><strong>When to use fixed-effects:</strong></p>
+<ul class="simple">
+<li><p>Studies are very similar (same populations, methods, designs)</p></li>
+<li><p>Low heterogeneity between study results</p></li>
+<li><p>Want to estimate the common effect size</p></li>
+</ul>
+<p><strong>When NOT to use fixed-effects:</strong></p>
+<ul class="simple">
+<li><p>Studies differ substantially in populations or methods</p></li>
+<li><p>High heterogeneity between results</p></li>
+<li><p>Different genetic architectures across populations</p></li>
+</ul>
+</section>
+<section id="important-limitations">
+<h2>Important Limitations<a class="headerlink" href="#important-limitations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Garbage in, garbage out</strong>: Meta-analysis cannot fix poorly designed individual studies</p></li>
+<li><p><strong>Publication bias</strong>: Published studies may not represent all conducted research</p></li>
+<li><p><strong>Population differences</strong>: Genetic effects may genuinely differ across populations</p></li>
 </ul>
 </section>
 </section>
@@ -627,10 +631,18 @@ $<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2
 <li><p>Inverse variance weighting (weight = <span class="math notranslate nohighlight">\(\frac{1}{\text{SE}^2}\)</span>)</p></li>
 </ul>
 <p>Lastly we plot the effect size and p-values for each variant and compare the results from separate cohorts and meta-analysis results. We also compare the variance based on the sample size and inverse variance.</p>
+<ul class="simple">
+<li><p>Related topics:</p>
+<ul>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+</ul>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">17</span><span class="p">)</span>
 
 <span class="c1"># 1. Simulate genotype data (0/1/2) for a single SNP</span>
 <span class="n">N1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5000</span>
@@ -700,7 +712,7 @@ $<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2
 	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>0.9872088</td><td>0.03999143</td><td>24.68551</td><td>1.530562e-134</td></tr>
+	<tr><td>1.015251</td><td>0.04011815</td><td>25.30654</td><td>2.706622e-141</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -737,7 +749,7 @@ $<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2
 	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>0.9845484</td><td>0.03986773</td><td>24.69537</td><td>1.199156e-134</td></tr>
+	<tr><td>1.013051</td><td>0.03998501</td><td>25.33578</td><td>1.289396e-141</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -759,7 +771,7 @@ $<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2
 	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>0.9872088</td><td>0.03999143</td><td>24.68551</td><td>1.530562e-134</td></tr>
+	<tr><td>1.015251</td><td>0.04011815</td><td>25.30654</td><td>2.706622e-141</td></tr>
 </tbody>
 </table>
 </div><div class="output text_html"><table class="dataframe">
@@ -769,44 +781,12 @@ $<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2
 	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>0.9845484</td><td>0.03986773</td><td>24.69537</td><td>1.199156e-134</td></tr>
+	<tr><td>1.013051</td><td>0.03998501</td><td>25.33578</td><td>1.289396e-141</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
-<p>The results are identical.</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
-<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
-<blockquote>
-<div><p>slide 146 in Hailiang Huang’s slides</p>
-<p>slide 244-246 from GW</p>
-</div></blockquote>
-<section id="heterogeneity-assessment">
-<h2>Heterogeneity Assessment<a class="headerlink" href="#heterogeneity-assessment" title="Link to this heading">#</a></h2>
-<p>Heterogeneity assessment is a crucial component of meta-analysis because it evaluates whether the observed effect sizes across different studies are more variable than would be expected by chance alone. This helps us understand if we’re truly measuring the same effect across studies or if there are underlying differences. Below are several ways to measure it.</p>
-<section id="cochran-s-q-statistic">
-<h3>Cochran’s Q Statistic:<a class="headerlink" href="#cochran-s-q-statistic" title="Link to this heading">#</a></h3>
-<div class="math notranslate nohighlight">
-\[Q = \sum_{i=1}^{k} w_i(\hat{\beta}_i - \hat{\beta})^2\]</div>
-<p>This statistic follows a <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution with <span class="math notranslate nohighlight">\(k-1\)</span> degrees of freedom under the null hypothesis of homogeneity.</p>
-</section>
-<section id="i-2-statistic-percentage-of-variation-due-to-heterogeneity">
-<h3><span class="math notranslate nohighlight">\(I^2\)</span> Statistic (Percentage of Variation Due to Heterogeneity)<a class="headerlink" href="#i-2-statistic-percentage-of-variation-due-to-heterogeneity" title="Link to this heading">#</a></h3>
-<div class="math notranslate nohighlight">
-\[I^2 = \max\left\{0, \frac{Q-(k-1)}{Q} \times 100\%\right\}\]</div>
-<ul class="simple">
-<li><p>Interpretation:</p>
-<ul>
-<li><p>0-25%: Might not be important</p></li>
-<li><p>25-50%: Moderate heterogeneity</p></li>
-<li><p>50-75%: Substantial heterogeneity</p></li>
-<li><p>75-100%: Considerable heterogeneity</p></li>
-</ul>
-</li>
-</ul>
-</section>
-</section>
+<p>The results are almost identical (after numerical rounding).</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -853,7 +833,7 @@ $<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Random Effects Meta-Analysis</p>
+        <p class="prev-next-title">Meta-Analysis Random Effects</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -873,24 +853,17 @@ $<span class="math notranslate nohighlight">\(w_i = \frac{1}{SE(\hat{\beta}_i)^2
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fixed Effects Meta-Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Meta-Analysis Fixed Effects</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-fixed-effects-models">Multiple Fixed-Effects Models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-random-effects-models">Multiple Random-Effects Models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-in-genetic-studies">Meta-Analysis in Genetic Studies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-meta-analysis">Why Do We Need Meta-Analysis?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-weighting-works">How the Weighting Works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fixed-effects-assumption">The Fixed-Effects Assumption</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-limitations">Important Limitations</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneity-assessment">Heterogeneity Assessment</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cochran-s-q-statistic">Cochran’s Q Statistic:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-2-statistic-percentage-of-variation-due-to-heterogeneity"><span class="math notranslate nohighlight">\(I^2\)</span> Statistic (Percentage of Variation Due to Heterogeneity)</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 
   </nav></div>

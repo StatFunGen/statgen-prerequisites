@@ -259,7 +259,6 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
 <ul class="nav bd-sidenav">
@@ -286,18 +285,15 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Meta-Analysis Fixed Effects</a></li>
 
 
 
 
-
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Random Effects Meta-Analysis</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effects</a></li>
 
 
 
@@ -583,65 +579,102 @@ document.write(`
 <td><p>Index for genetic variant</p></td>
 <td><p><span class="math notranslate nohighlight">\(j=1,2,...,M\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
-<td><p>Index for study</p></td>
-<td><p><span class="math notranslate nohighlight">\(k=1,2,...,K\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
 <td><p>Number of samples</p></td>
 <td><p>Number of individuals in the dataset</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
 <td><p>Number of variants</p></td>
 <td><p>Number of variants in the genotype data</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mu_j\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mu_j\)</span></p></td>
 <td><p>Mean value of the <span class="math notranslate nohighlight">\(j\)</span>-th variant in the <span class="math notranslate nohighlight">\(\mathbf{X}_{raw}\)</span></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A\)</span></p></td>
 <td><p>Major allele</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
 <td><p>Minor allele</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f_A\)</span>, <span class="math notranslate nohighlight">\(f_a\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f_A\)</span>, <span class="math notranslate nohighlight">\(f_a\)</span></p></td>
 <td><p>Frequency for the allele A or a for a specific genetic variant</p></td>
 <td><p><span class="math notranslate nohighlight">\(f_A=0.7, f_a=0.3\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
 <td><p>LD score of genetic variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span></p></td>
 <td><p>Genetic relatedness matrix (GRM)</p></td>
 <td><p><span class="math notranslate nohighlight">\(N\)</span> by <span class="math notranslate nohighlight">\(N\)</span> matrix</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span></p></td>
 <td><p>Random variable (trait)</p></td>
 <td><p>Trait (e.g., height <span class="math notranslate nohighlight">\(Y_1\)</span> and weight <span class="math notranslate nohighlight">\(Y_2\)</span> when bi-variate)</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Y_i\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Y_i\)</span></p></td>
 <td><p>Trait value for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
 <td><p>Height of individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(X_{i}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(X_{i}\)</span></p></td>
 <td><p>Genotype variant value for individual <span class="math notranslate nohighlight">\(i\)</span> when only one variant is considered</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(b_0\)</span></p></td>
+<td><p>Baseline level in the regression model, intercept</p></td>
+<td><p>170cm for height</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\beta\)</span></p></td>
+<td><p>Effect size of a variant on a trait</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\sigma^2\)</span></p></td>
+<td><p>Variance of a random variable</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{g}\)</span></p></td>
+<td><p>Random effect in linear mixed models</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span></p></td>
+<td><p>Design matrix for random effects</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span></p></td>
+<td><p>Random effect vector in linear mixed models</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C\)</span></p></td>
+<td><p>Covariate (confounder, collider or mediator)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span></p></td>
+<td><p>the estimate of genetic effect from the <span class="math notranslate nohighlight">\(i\)</span>-th study</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p>Index for study</p></td>
+<td><p><span class="math notranslate nohighlight">\(k=1,2,...,K\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>K</p></td>
+<td><p>Number of studies</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Q\)</span></p></td>
+<td><p>The Cochran’s Q statistic</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(I^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(I^2\)</span> statistic</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>| <span class="math notranslate nohighlight">\(\beta_0\)</span> | Baseline level in the regression model, intercept | 170cm for height |
-| <span class="math notranslate nohighlight">\(\beta\)</span> | Marginal effect size of a variant in GWAS study | |
-| <span class="math notranslate nohighlight">\(\sigma^2\)</span> | Variance of a random variable | |
-| <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> | Covariate matrix after normalization | |
-| <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> | A vector of the <strong>fixed</strong> effects of covariates | |
-| <span class="math notranslate nohighlight">\(Q\)</span> | The Cochran’s Q statistic | |
-| <span class="math notranslate nohighlight">\(I^2\)</span> | <span class="math notranslate nohighlight">\(I^2\)</span> statistic | |
-| <span class="math notranslate nohighlight">\(\text{M}\)</span>| Model | <span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span>| |
+<p>| <span class="math notranslate nohighlight">\(\text{M}\)</span>| Model | <span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span>| |
 | <span class="math notranslate nohighlight">\( M_1 \)</span>          | Model 1 (no genetic effect) | Model assuming no association between genotype and trait |
 | <span class="math notranslate nohighlight">\( M_2 \)</span>          | Model 2 (genetic effect) | Model assuming an association between genotype and trait |
 | <span class="math notranslate nohighlight">\( \text{D} \)</span>     | Observed data <span class="math notranslate nohighlight">\(d_i\)</span> (observation i)|<span class="math notranslate nohighlight">\(\{(x_1,y_1), (x_2, y_2), \dots, (x_n, y_n)\}\)</span>, Collected genotype-trait pairs |

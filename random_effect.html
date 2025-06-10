@@ -259,7 +259,6 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
 <ul class="nav bd-sidenav">
@@ -286,18 +285,15 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Meta-Analysis Fixed Effects</a></li>
 
 
 
 
-
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Random Effects Meta-Analysis</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effects</a></li>
 
 
 
@@ -536,7 +532,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -628,7 +627,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
 <span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
-
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">11</span><span class="p">)</span>
 <span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
 <span class="c1"># These represent actual alleles at each position</span>
 <span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
@@ -689,12 +688,14 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>-0.714272041489195</li><li>-1.63835051816627</li><li>-0.494186740202808</li><li>0.488887951001249</li><li>1.00001362897709</li></ol>
+<ol class=list-inline><li>-0.591031102584368</li><li>0.026594369016167</li><li>-1.51655309708187</li><li>-1.36265334929581</li><li>1.17848915603162</li></ol>
 </div></div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Graphical Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
@@ -859,6 +860,7 @@ Warning message in is.na(x):
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -934,7 +936,10 @@ Warning message in is.na(x):
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

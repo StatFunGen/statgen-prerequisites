@@ -259,7 +259,6 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
 <ul class="nav bd-sidenav">
@@ -286,18 +285,15 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Fixed Effects Meta-Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Meta-Analysis Fixed Effects</a></li>
 
 
 
 
-
-<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Random Effects Meta-Analysis</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effects</a></li>
 
 
 
@@ -563,7 +559,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="Fig" src="graphical_summary/Slide7.png" /></p>
+<p><img alt="Fig" src="_images/Slide7.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
@@ -636,6 +632,10 @@ E[\hat{\beta}_{\text{OLS}}] = \beta
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
 <p>This example demonstrates basic genetic association analysis for height using 5 individuals and 3 genetic variants. (<strong>Note: N&lt;10 is insufficient for reliable OLS estimates in practice; this is purely illustrative.</strong>)</p>
 <p>We build on the previous genotype simulation and standardization framework by assigning height phenotypes to each individual and standardizing these trait values. We then conduct single-marker linear regression for each variant, estimating OLS effect sizes using both R’s <code class="docutils literal notranslate"><span class="pre">lm</span></code> function and our explicit formula derived above.</p>
+<p>Related topics:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/genotype_coding.html">genotype coding</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
