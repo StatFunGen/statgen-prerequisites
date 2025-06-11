@@ -307,7 +307,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html">Maximum Likelihood Estimation</a></li>
+
 
 
 
@@ -315,11 +317,6 @@
 
 <li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
 
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
 
 
 
@@ -334,7 +331,9 @@
 
 
 
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Bayes Factor</a></li>
+
 
 
 
@@ -521,9 +520,12 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effect-model">Fixed effect model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effect-model">Random effect model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-setup">Model Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-likelihood-and-log-likelihood">Compute Likelihood and Log-likelihood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">Maximum Likelihood Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bayes Factor</a></li>
 </ul>
 </li>
 </ul>
@@ -544,13 +546,13 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="fig" src="graphical_summary/Slide24.png" /></p>
+<p><img alt="Fig" src="_images/Slide23.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
 <p>Given a model selection problem in which one wishes to choose between two models on the basis of observed data <span class="math notranslate nohighlight">\(\text{D}\)</span>, the plausibility of the two different models <span class="math notranslate nohighlight">\(\text{M}_1\)</span> and <span class="math notranslate nohighlight">\(\text{M}_2\)</span>, parametrised by model parameter vectors <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span>, is assessed by the Bayes factor <span class="math notranslate nohighlight">\(\text{BF}\)</span> given by:
 $<span class="math notranslate nohighlight">\(
-\text{BF}_{1,2} = \frac{L(\text{D}|\text{M}_1)}{L(\text{D}|\text{M}_2)} ={\frac {\int \Pr(\theta _{1}|M_{1})\Pr(D|\theta _{1},M_{1})\,d\theta _{1}}{\int \Pr(\theta _{2}|M_{2})\Pr(D|\theta _{2},M_{2})\,d\theta _{2}}}
+\text{BF}_{21} = \frac{L(\text{M}_2|\text{D})}{L(\text{M}_1|\text{D})} ={\frac {\int \Pr(\theta_{2}|M_{2})\Pr(D|\theta_{2},M_{2})\,d\theta _{2}}{\int \Pr(\theta_{1}|M_{1})\Pr(D|\theta_{1},M_{1})\,d\theta _{1}}}
 \)</span>$</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
@@ -562,232 +564,83 @@ $<span class="math notranslate nohighlight">\(
 <li><p>An advantage of the use of Bayes factors is that it automatically, and quite naturally, includes a penalty for including too much model structure. It thus guards against overfitting. For models where an explicit version of the likelihood is not available or too costly to evaluate numerically, approximate Bayesian computation can be used for model selection in a Bayesian framework, with the caveat that approximate-Bayesian estimates of Bayes factors are often biased.</p></li>
 </ul>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood_ratio.html">likelihood ratio</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">maximum likelihood estimation</a></p></li>
+</ul>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This R code demonstrates a Bayesian model comparison approach for genetic association analysis. The analysis compares two different modeling frameworks: fixed effect models and random effect models.</p>
-<p>In the fixed effect comparison (Model 1 and Model 2), the code evaluates whether genetic variants have no effect versus a specific predetermined effect size on a trait like height.</p>
-<p>In the random effect comparison (Model 4 and Model 5), it compares models with different prior assumptions about the distribution of effect sizes - one assuming genetic effects are typically small (narrow prior) versus another allowing for potentially larger effects (wide prior).</p>
-<p>The analysis uses Bayes factors to determine which model better explains the observed data, providing a principled statistical framework for identifying genetic associations while accounting for different assumptions about the nature and magnitude of genetic effects.RetryClaude can make mistakes. Please double-check responses.</p>
+<p>We will use the same genetic example from the <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a>, and recall the concepts of MLE as we did in Example 2 in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">maximum likelihood estimation</a>. The new thing in this notebook is that we will use Bayes factors to compare composite models:</p>
+<ul class="simple">
+<li><p>Model 2 or 3: either a moderate or strong effect</p></li>
+<li><p>Model 4: the best-fitting effect from MLE that we derived in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">maximum likelihood estimation</a></p></li>
+</ul>
+<p>This shows how Bayes factors extend likelihood analysis from comparing separate models (i.e., likelihood ratio) to weighing evidence for complex scientific theories.</p>
+<section id="model-setup">
+<h2>Model Setup<a class="headerlink" href="#model-setup" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
 <span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">19</span><span class="p">)</span><span class="w">  </span><span class="c1"># For reproducibility</span>
 
-<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
-<span class="c1"># These represent actual alleles at each position</span>
-<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
-<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
-<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 1</span>
-<span class="w">    </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 2</span>
-<span class="w">    </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 3</span>
-<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Individual 4</span>
-<span class="w">    </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w"> </span><span class="c1"># Individual 5</span>
-<span class="p">)</span>
-<span class="c1"># Reshape into a matrix</span>
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1"># number of individuals</span>
-<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c1"># number of variants</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+<span class="c1"># Generate genotype data for 5 individuals at 1 variant</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">)</span><span class="w">  </span><span class="c1"># Individual genotypes</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">genotypes</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
 
-<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
-<span class="n">ref_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+<span class="c1"># Define alternative allele</span>
+<span class="n">alt_allele</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;T&quot;</span>
 
-<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
-
-<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-
+<span class="c1"># Convert to additive genotype coding (count of alternative alleles)</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
-<span class="w">        </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">genotypes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">  </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_allele</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">genotypes</span><span class="p">)</span>
 
-<span class="c1"># assign observed height for the 5 individuals</span>
-<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
-<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
+<span class="c1"># Standardize genotypes</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
+
+<span class="c1"># Set true beta and generate phenotype data</span>
+<span class="n">true_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.4</span>
+<span class="n">true_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.0</span>
+
+<span class="c1"># Generate phenotype with true effect</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">true_sd</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="fixed-effect-model">
-<h2>Fixed effect model<a class="headerlink" href="#fixed-effect-model" title="Link to this heading">#</a></h2>
-<p>Let’s first compare two competing models with fixed effect sizes (same models as we discussed in <code class="docutils literal notranslate"><span class="pre">likelihood</span></code> and <code class="docutils literal notranslate"><span class="pre">likelihood_ratio</span></code>):</p>
-<ul class="simple">
-<li><p><strong>Model 1 (<span class="math notranslate nohighlight">\(M_1\)</span>)</strong>: The variant has no effect on height (<span class="math notranslate nohighlight">\(\beta=0\)</span>)</p></li>
-<li><p><strong>Model 2 (<span class="math notranslate nohighlight">\(M_2\)</span>)</strong>: The variant has moderate effect on height (<span class="math notranslate nohighlight">\(\beta=0.5\)</span>)</p></li>
-</ul>
-<p>For both models, we assume:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{X}\beta + \epsilon\)</span>, where <span class="math notranslate nohighlight">\(\epsilon \sim N(0, \sigma^2)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma^2\)</span> is the residual variance (fixed at 1 for standardized data)</p></li>
-</ul>
-<p>The Bayes Factor (<span class="math notranslate nohighlight">\(K_{1,2}\)</span>) (comparing model 1 and model 2) is the ratio of the marginal likelihoods of the two models:</p>
-<div class="math notranslate nohighlight">
-\[BF_{1,2} = \frac{p(Y|M_1)}{p(Y|M_2)}\]</div>
-<p>For models with <strong>fixed effect sizes</strong>, the marginal likelihood is simply the likelihood function evaluated at the fixed parameter value:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-p(Y|M_1) = p(Y|\beta=0, M_1)\\
-p(Y|M_2) = p(Y|\beta=1, M_2)
-\end{split}\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to calculate the likelihood for a fixed effect model</span>
-<span class="c1"># assuming normal distribution for residuals</span>
-<span class="n">likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1"># beta: effect size parameter</span>
-<span class="w">    </span><span class="c1"># sd: standard deviation of residuals</span>
-<span class="w">    </span><span class="c1"># X: genotype values</span>
-<span class="w">    </span><span class="c1"># Y: observed phenotype values</span>
-
-<span class="w">    </span><span class="c1"># Calculate expected values under the model</span>
-<span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
-
-<span class="w">    </span><span class="c1"># Calculate likelihood (product of normal densities)</span>
-<span class="w">    </span><span class="nf">prod</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span>
-<span class="p">}</span>
-
-<span class="c1"># Function to calculate Bayes Factor between two fixed effect models</span>
-<span class="n">bayes_factor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1"># Calculate likelihoods</span>
-<span class="w">    </span><span class="n">likelihood_M1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
-<span class="w">    </span><span class="n">likelihood_M2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="c1"># Calculate Bayes Factor (M1 vs M2)</span>
-<span class="w">    </span><span class="n">BF12</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">likelihood_M1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">likelihood_M2</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">BF12</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize results table</span>
-<span class="n">bf_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">    </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
-<span class="w">    </span><span class="n">Likelihood_M1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Likelihood for Model 1 (β=0)</span>
-<span class="w">    </span><span class="n">Likelihood_M2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Likelihood for Model 3 (β=1)</span>
-<span class="w">    </span><span class="n">BF12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w"> </span><span class="c1"># Bayes Factor (M3 vs M1)</span>
-<span class="w">    </span><span class="n">log_BF12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># Log of Bayes Factor</span>
-<span class="p">)</span>
-
-<span class="c1"># Set parameters for models</span>
-<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># Standard deviation of residuals</span>
-<span class="n">beta1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="c1"># Effect size for Model 1</span>
-<span class="n">beta2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="c1"># Effect size for Model 2</span>
-
-<span class="c1"># Calculate Bayes Factors for each variant</span>
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="c1"># Genotypes for variant j</span>
-
-<span class="w">    </span><span class="c1"># Calculate likelihoods</span>
-<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta1</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
-<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M2&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta2</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
-
-<span class="w">    </span><span class="c1"># Calculate Bayes Factor</span>
-<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF12&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Likelihood_M2&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;log_BF12&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">bf_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF12&quot;</span><span class="p">])</span>
-<span class="p">}</span>
-<span class="n">bf_table</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 3 x 5</caption>
-<thead>
-	<tr><th scope=col>Variant</th><th scope=col>Likelihood_M1</th><th scope=col>Likelihood_M2</th><th scope=col>BF12</th><th scope=col>log_BF12</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>Variant 1</td><td>0.001367607</td><td>0.0003050987</td><td>4.4825078</td><td> 1.500183</td></tr>
-	<tr><td>Variant 2</td><td>0.001367607</td><td>0.0045633971</td><td>0.2996906</td><td>-1.205005</td></tr>
-	<tr><td>Variant 3</td><td>0.001367607</td><td>0.0059679052</td><td>0.2291603</td><td>-1.473333</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-<p>Note that under the two full specific models, the Bayes factor is exactly the likelihood ratio that we get from <code class="docutils literal notranslate"><span class="pre">likelihood</span> <span class="pre">ratio</span></code> notebook [FIXME with link].</p>
 </section>
-<section id="random-effect-model">
-<h2>Random effect model<a class="headerlink" href="#random-effect-model" title="Link to this heading">#</a></h2>
-<p>Now let’s compare two competing models with random effect sizes:</p>
-<ul class="simple">
-<li><p><strong>Model 4 (<span class="math notranslate nohighlight">\(M_4\)</span>)</strong>: The effect size follows a normal distribution with smaller variance (<span class="math notranslate nohighlight">\(\beta \sim N(0, 0.1^2)\)</span>)</p></li>
-<li><p><strong>Model 5 (<span class="math notranslate nohighlight">\(M_5\)</span>)</strong>: The effect size follows a normal distribution with larger variance (<span class="math notranslate nohighlight">\(\beta \sim N(0, 0.5^2)\)</span>)</p></li>
-</ul>
-<p>For both models, we assume:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{X}\beta + \epsilon\)</span>, where <span class="math notranslate nohighlight">\(\epsilon \sim N(0, \sigma^2)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the random effect of the genetic variant on height</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is the genotype data (standardized)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> is the observed phenotype (standardized height)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma^2\)</span> is the residual variance (fixed at 1 for standardized data)</p></li>
-</ul>
-<p>The key difference between these models is the prior distribution of the effect size:</p>
-<ul class="simple">
-<li><p>Model 4 assumes a tighter prior distribution, strongly favoring small effect sizes</p></li>
-<li><p>Model 5 assumes a more diffuse prior distribution, allowing for larger effect sizes</p></li>
-</ul>
-<p>With normal priors and normal likelihood, this integration has a closed-form solution, which we’ve implemented in the <code class="docutils literal notranslate"><span class="pre">random_effect_marginal_likelihood</span></code> function:</p>
-<p>For a linear model <span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{X}\beta + \varepsilon\)</span> with:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> as an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of standardized heights</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> as an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of standardized genotypes</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta \sim N(0, \tau^2)\)</span> as the random effect</p></li>
-<li><p><span class="math notranslate nohighlight">\(\varepsilon \sim N(0, \sigma^2\mathbf{I})\)</span> as the residual errors</p></li>
-</ul>
-<p>The marginal likelihood <span class="math notranslate nohighlight">\(p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2)\)</span> is:</p>
-<div class="math notranslate nohighlight">
-\[
-p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \int p(\mathbf{Y}|\mathbf{X},\beta,\sigma^2)p(\beta|\tau^2)d\beta
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi)^{n/2}|\sigma^2\mathbf{I}+\tau^2\mathbf{XX'}|^{1/2}}\exp\left(-\frac{1}{2}\mathbf{Y}'(\sigma^2\mathbf{I}+\tau^2\mathbf{XX'})^{-1}\mathbf{Y}\right)
-\]</div>
-<p>Using the matrix inversion lemma and simplifying:</p>
-<div class="math notranslate nohighlight">
-\[
-p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}(1+\tau^2\mathbf{X}'\mathbf{X}/\sigma^2)^{1/2}}\exp\left(-\frac{1}{2\sigma^2}\left(\mathbf{Y}'\mathbf{Y}-\frac{\tau^2(\mathbf{X}'\mathbf{Y})^2}{\sigma^2+\tau^2\mathbf{X}'\mathbf{X}}\right)\right)
-\]</div>
+<section id="compute-likelihood-and-log-likelihood">
+<h2>Compute Likelihood and Log-likelihood<a class="headerlink" href="#compute-likelihood-and-log-likelihood" title="Link to this heading">#</a></h2>
+<p>Now, let’s create two functions to compute the likelihood and log-likelihood under different models (in this case, different βs) for the effect of a genetic variant on the phenotype:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">random_effect_marginal_likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1"># For random effect models, the marginal likelihood has a closed form</span>
-<span class="w">  </span><span class="c1"># when using normal priors and normal likelihood</span>
-<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Likelihood function for normal distribution</span>
+<span class="n">likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Calculate expected values under the model</span>
+<span class="w">  </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># Calculate posterior variance</span>
-<span class="w">  </span><span class="n">post_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="n">prior_var</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="n">residual_var</span><span class="p">)</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># Calculate posterior mean</span>
-<span class="w">  </span><span class="n">post_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">post_var</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">residual_var</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># Calculate marginal likelihood</span>
-<span class="w">  </span><span class="n">log_ml</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="o">/</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kc">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>
-<span class="w">            </span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prior_var</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span><span class="w"> </span><span class="o">-</span>
-<span class="w">            </span><span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">Y</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">post_mean</span><span class="o">^</span><span class="m">2</span><span class="o">/</span><span class="n">post_var</span><span class="p">)</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">exp</span><span class="p">(</span><span class="n">log_ml</span><span class="p">))</span>
+<span class="w">  </span><span class="c1"># Calculate likelihood (product of normal densities)</span>
+<span class="w">  </span><span class="nf">prod</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span>
 <span class="p">}</span>
 
-<span class="c1"># Function to calculate Bayes Factor between two random effect models</span>
-<span class="n">bayes_factor_random</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var1</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var2</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1"># Calculate marginal likelihoods</span>
-<span class="w">  </span><span class="n">ml_model4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">random_effect_marginal_likelihood</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var1</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span>
-<span class="w">  </span><span class="n">ml_model5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">random_effect_marginal_likelihood</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var2</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span><span class="p">)</span>
+<span class="c1"># Log-likelihood function (more numerically stable)</span>
+<span class="n">log_likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Calculate expected values under the model</span>
+<span class="w">  </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># Calculate Bayes Factor (Model 4 vs Model 5)</span>
-<span class="w">  </span><span class="n">BF45</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ml_model4</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ml_model5</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">BF45</span><span class="p">)</span>
+<span class="w">  </span><span class="c1"># Calculate log-likelihood (sum of log normal densities)</span>
+<span class="w">  </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -795,113 +648,151 @@ p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}(1+\tau^
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define model parameters</span>
-<span class="n">prior_var_model4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.1</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Smaller variance for Model 4</span>
-<span class="n">prior_var_model5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="o">^</span><span class="m">2</span><span class="w">  </span><span class="c1"># Larger variance for Model 5</span>
-<span class="n">residual_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">          </span><span class="c1"># Residual variance (fixed)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test three different models with different beta values</span>
+<span class="n">beta_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span><span class="w">  </span><span class="c1"># Three different effect sizes to test</span>
+<span class="n">model_names</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Model &quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; (beta = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta_values</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">)</span>
 
-<span class="c1"># Initialize results table</span>
-<span class="n">bf_random_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
-<span class="w">  </span><span class="n">ML_Model4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">    </span><span class="c1"># Marginal likelihood for Model 4</span>
-<span class="w">  </span><span class="n">ML_Model5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">    </span><span class="c1"># Marginal likelihood for Model 5</span>
-<span class="w">  </span><span class="n">BF45</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">),</span><span class="w">         </span><span class="c1"># Bayes Factor (Model 4 vs Model 5)</span>
-<span class="w">  </span><span class="n">log_BF45</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">      </span><span class="c1"># Log of Bayes Factor</span>
+<span class="c1"># Calculate likelihoods and log-likelihoods</span>
+<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_names</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Likelihood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Log_Likelihood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="c1"># Calculate Bayes Factors for each variant</span>
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">X_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w">  </span><span class="c1"># Genotypes for variant j</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># Calculate marginal likelihoods</span>
-<span class="w">  </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ML_Model4&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">random_effect_marginal_likelihood</span><span class="p">(</span>
-<span class="w">    </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var_model4</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="w">  </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ML_Model5&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">random_effect_marginal_likelihood</span><span class="p">(</span>
-<span class="w">    </span><span class="n">X_j</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">prior_var_model5</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># Calculate Bayes Factor</span>
-<span class="w">  </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF45&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ML_Model4&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>
-<span class="w">                               </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ML_Model5&quot;</span><span class="p">]</span>
-<span class="w">  </span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;log_BF45&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">bf_random_table</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BF45&quot;</span><span class="p">])</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Log_Likelihood</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="n">bf_random_table</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Likelihood and Log-Likelihood Results:&quot;</span><span class="p">)</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Likelihood and Log-Likelihood Results:&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 x 4</caption>
+<thead>
+	<tr><th scope=col>Model</th><th scope=col>Beta</th><th scope=col>Likelihood</th><th scope=col>Log_Likelihood</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Model 1 (beta = 0)  </td><td>0.0</td><td>0.0019210299</td><td>-6.254894</td></tr>
+	<tr><td>Model 2 (beta = 0.5)</td><td>0.5</td><td>0.0021961524</td><td>-6.121048</td></tr>
+	<tr><td>Model 3 (beta = 1)  </td><td>1.0</td><td>0.0009236263</td><td>-6.987203</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="maximum-likelihood-estimation">
+<h2>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the MLE by optimizing the log-likelihood function</span>
+<span class="n">mle_result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w">  </span><span class="c1"># Search range for beta</span>
+<span class="w">                       </span><span class="n">maximum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">       </span><span class="c1"># We want to maximize</span>
+<span class="w">                       </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="n">beta_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mle_result</span><span class="o">$</span><span class="n">maximum</span>
+<span class="n">log_lik_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mle_result</span><span class="o">$</span><span class="n">objective</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Maximum Likelihood Estimate (MLE):\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Beta_MLE =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Log-likelihood at MLE =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">log_lik_mle</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compare MLE to Model 1 (beta = 0)</span>
+<span class="n">beta_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="n">log_lik_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_null</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="n">lik_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_null</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="n">lik_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="c1"># Calculate likelihood ratio: MLE vs Null model</span>
+<span class="n">lr_mle_vs_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lik_mle</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">lik_null</span>
+<span class="n">log_lr_mle_vs_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_lik_mle</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">log_lik_null</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum Likelihood Estimate (MLE):
+Beta_MLE = 0.3169 
+Log-likelihood at MLE = -6.054 
+</pre></div>
+</div>
+</div>
+</div>
+<p>MLE gives a point estimate and we append it to the results table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="m">+1</span>
+<span class="n">results</span><span class="p">[</span><span class="n">new_row</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span>
+
+<span class="n">results</span><span class="o">$</span><span class="n">Model</span><span class="p">[</span><span class="n">new_row</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Model &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">new_row</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(beta = &quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">$</span><span class="n">Beta</span><span class="p">[</span><span class="n">new_row</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta_mle</span>
+<span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="n">new_row</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lik_mle</span>
+<span class="n">results</span><span class="o">$</span><span class="n">Log_Likelihood</span><span class="p">[</span><span class="n">new_row</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_lik_mle</span>
+
+<span class="n">results</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 3 x 5</caption>
+<caption>A data.frame: 4 x 4</caption>
 <thead>
-	<tr><th scope=col>Variant</th><th scope=col>ML_Model4</th><th scope=col>ML_Model5</th><th scope=col>BF45</th><th scope=col>log_BF45</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+	<tr><th></th><th scope=col>Model</th><th scope=col>Beta</th><th scope=col>Likelihood</th><th scope=col>Log_Likelihood</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>Variant 1</td><td>0.001367098</td><td>0.001241823</td><td>1.1008798</td><td> 0.09610969</td></tr>
-	<tr><td>Variant 2</td><td>0.001418155</td><td>0.002000204</td><td>0.7090052</td><td>-0.34389240</td></tr>
-	<tr><td>Variant 3</td><td>0.001445330</td><td>0.002559982</td><td>0.5645861</td><td>-0.57166244</td></tr>
+	<tr><th scope=row>1</th><td>Model 1 (beta = 0)   </td><td>0.0000000</td><td>0.0019210299</td><td>-6.254894</td></tr>
+	<tr><th scope=row>2</th><td>Model 2 (beta = 0.5) </td><td>0.5000000</td><td>0.0021961524</td><td>-6.121048</td></tr>
+	<tr><th scope=row>3</th><td>Model 3 (beta = 1)   </td><td>1.0000000</td><td>0.0009236263</td><td>-6.987203</td></tr>
+	<tr><th scope=row>4</th><td>Model 4(beta = 0.317)</td><td>0.3169227</td><td>0.0023484170</td><td>-6.054014</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
+</section>
+<section id="id1">
+<h2>Bayes Factor<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Now let’s calculate Bayes factors by assigning prior probabilities to our models. Let’s try to answer the question, is the plausibility of Model 2 and 3 together more than MLE?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load required libraries</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define priors for Models 2 and 3 (equal weights)</span>
+<span class="n">prior_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w">  </span><span class="c1"># P(Model 2)</span>
+<span class="n">prior_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w">  </span><span class="c1"># P(Model 3)</span>
 
-<span class="c1"># Plot the prior distributions for effect sizes in both models</span>
-<span class="n">beta_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">)</span>
-<span class="n">prior_model4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">prior_var_model4</span><span class="p">))</span>
-<span class="n">prior_model5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">prior_var_model5</span><span class="p">))</span>
+<span class="c1"># Calculate weighted likelihood for combined &quot;non-null&quot; hypothesis</span>
+<span class="c1"># P(Data | H_alt) = P(Data | Model 2) × P(Model 2) + P(Data | Model 3) × P(Model 3)</span>
+<span class="n">likelihood_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w">  </span><span class="c1"># beta = 0.5</span>
+<span class="n">likelihood_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="m">3</span><span class="p">]</span><span class="w">  </span><span class="c1"># beta = 1.0</span>
+<span class="n">likelihood_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># beta = 0</span>
 
-<span class="n">prior_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">prior_model4</span><span class="p">,</span><span class="w"> </span><span class="n">prior_model5</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Model 4 (narrow prior)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Model 5 (wide prior)&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">beta_range</span><span class="p">))</span>
-<span class="p">)</span>
-
-<span class="n">prior_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">prior_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Beta</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Density</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior Distributions for Effect Size&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Effect Size (beta)&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
-
-<span class="c1"># Plot log Bayes factors</span>
-<span class="n">bf_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">bf_random_table</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Variant</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log_BF45</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;identity&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steelblue&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log Bayes Factors (Model 4 vs Model 5)&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;log(BF45) &gt; 0 favors Model 4 (narrow prior), log(BF45) &lt; 0 favors Model 5 (wide prior)&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;log(BF45)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
-
-<span class="c1"># Arrange plots</span>
-<span class="nf">grid.arrange</span><span class="p">(</span><span class="n">prior_plot</span><span class="p">,</span><span class="w"> </span><span class="n">bf_plot</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="c1"># Marginal likelihood under Model 2 + Model 3 (weighted average)</span>
+<span class="n">marginal_lik_23</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">likelihood_2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">prior_2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">likelihood_3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">prior_3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then the Bayes factor is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bf_23_vs_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">marginal_lik_23</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="m">4</span><span class="p">]</span>
+<span class="n">bf_23_vs_mle</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3ae6cfea4c0207162c9e5e18318960689118ccf26cca1259a371a683c0c1e97b.png"><img alt="_images/3ae6cfea4c0207162c9e5e18318960689118ccf26cca1259a371a683c0c1e97b.png" src="_images/3ae6cfea4c0207162c9e5e18318960689118ccf26cca1259a371a683c0c1e97b.png" style="width: 420px; height: 420px;" />
-</a>
+<div class="output text_html">0.66423013937647</div></div>
 </div>
-</div>
-<p>Random effect models offer a more flexible approach than fixed effect models by allowing the effect size to vary according to a probability distribution. This is particularly useful when:</p>
-<ol class="arabic simple">
-<li><p>We are uncertain about the exact effect size</p></li>
-<li><p>We believe effects may vary across different contexts or populations</p></li>
-<li><p>We want to account for heterogeneity in genetic effects</p></li>
-</ol>
-<p>The Bayes factor between two random effect models (<span class="math notranslate nohighlight">\(\text{BF}_{45}\)</span>) quantifies the relative evidence for different prior distributions on the effect size. A <span class="math notranslate nohighlight">\(\text{BF}_{45} &gt; 1\)</span> indicates that Model 4 (with narrower prior) is more supported by the data, while <span class="math notranslate nohighlight">\(\text{BF}_{45} &lt; 1\)</span> favors Model 5 (with wider prior).</p>
-<p>When comparing fixed and random effect models, we’re essentially testing whether the data supports a specific effect size or a distribution of possible effect sizes. These comparisons can help identify the most appropriate modeling approach for genetic association studies.</p>
-<p>The key formula for the Bayes factor between two random effect models is:</p>
-<div class="math notranslate nohighlight">
-\[
-\text{BF}_{45} = \frac{p(D|M_4)}{p(D|M_5)} = \frac{\int p(D|\beta,M_4)p(\beta|M_4)d\beta}{\int p(D|\beta,M_5)p(\beta|M_5)d\beta}
-\]</div>
-<p>This approach provides a principled way to incorporate prior knowledge about effect sizes while allowing for uncertainty in genetic association studies.</p>
+<p>The Bayes factor of 0.66 indicates that the MLE model has stronger evidence than the combined Models 2+3 hypothesis. In other words, the data supports the precise MLE estimate (<span class="math notranslate nohighlight">\(\beta \approx 0.4\)</span>) about 1.5 times more than the composite hypothesis that the effect is either moderate (<span class="math notranslate nohighlight">\(\beta \approx 0.5\)</span>) or strong (<span class="math notranslate nohighlight">\(\beta \approx 1.0\)</span>). This makes intuitive sense because the MLE estimate is closer to the true value (<span class="math notranslate nohighlight">\(\beta = 0.4\)</span>) than either of the fixed alternatives, demonstrating how the flexibility of MLE can outperform pre-specified model choices when the true parameter falls between them.</p>
 </section>
 </section>
 
@@ -973,9 +864,12 @@ p(\mathbf{Y}|\mathbf{X},\tau^2,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}(1+\tau^
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effect-model">Fixed effect model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effect-model">Random effect model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-setup">Model Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-likelihood-and-log-likelihood">Compute Likelihood and Log-likelihood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">Maximum Likelihood Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bayes Factor</a></li>
 </ul>
 </li>
 </ul>

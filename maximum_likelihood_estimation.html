@@ -307,7 +307,9 @@
 
 
 
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Maximum Likelihood Estimation</a></li>
+
 
 
 
@@ -315,11 +317,6 @@
 
 <li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
 
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
 
 
 
@@ -334,7 +331,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+
 
 
 
@@ -526,10 +525,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-and-identically-distributed-iid-data">Independent and Identically Distributed (IID) Data</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-likelihood-function">Calculate MLE From Likelihood Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-log-likelihood-function">Calculate MLE From Log-likelihood Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-allele-frequency">Example 1 – Allele Frequency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-likelihood-function">Calculate MLE From Likelihood Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-log-likelihood-function">Calculate MLE From Log-likelihood Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-genetic-effect">Example 2 – Genetic Effect</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
@@ -613,19 +617,24 @@ document.write(`
 <p>The IID assumption is crucial in genetics because it allows us to treat each individual’s genotype-phenotype observation as independent, enabling us to multiply their individual likelihoods to get the overall likelihood for our dataset.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="example">
-<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates how to calculate the maximum likelihood estimate (MLE) of allele frequency using genetic variant data. We will use a single genetic variant to show how MLE works in practice.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p>Related topics:</p>
-<ul>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 </ul>
-</li>
-</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<section id="example-1-allele-frequency">
+<h2>Example 1 – Allele Frequency<a class="headerlink" href="#example-1-allele-frequency" title="Link to this heading">#</a></h2>
+<p>So far we’ve been comparing different theories with fixed parameter values - like comparing <span class="math notranslate nohighlight">\(\beta\)</span> = 0 versus <span class="math notranslate nohighlight">\(\beta\)</span> = 0.5 versus <span class="math notranslate nohighlight">\(\beta\)</span> = 1.0. But what if we don’t want to limit ourselves to just a few specific values? What if we want to find the <strong>single best parameter value that maximizes the likelihood</strong>?</p>
+<p>This is exactly what maximum likelihood estimation (MLE) does. Instead of testing a handful of theories, <strong>MLE searches across all possible parameter values to find the one that makes our observed data most likely</strong>.</p>
+<p>Let’s see this in action with a different genetics problem. We observed genotype data for five individuals: CC, TT, CT, CC, and CC. Now, instead of asking “which effect size is most plausible?”, we’re asking “<strong>what’s the most plausible frequency of the T allele in the population?</strong>” MLE will give us the single best estimate by finding the frequency that maximizes the likelihood of seeing exactly these genotypes. This is the Method of the Moments for estimating the allele frequency that we have mentioned in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a>.</p>
 <section id="calculate-mle-from-likelihood-function">
-<h2>Calculate MLE From Likelihood Function<a class="headerlink" href="#calculate-mle-from-likelihood-function" title="Link to this heading">#</a></h2>
+<h3>Calculate MLE From Likelihood Function<a class="headerlink" href="#calculate-mle-from-likelihood-function" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -693,7 +702,7 @@ $<span class="math notranslate nohighlight">\(
 <p>From the plot, we can see that the maximum likelihood estimate is <span class="math notranslate nohighlight">\(\hat{f_T} = 0.3\)</span>, which corresponds to our intuition (3 out of 10 observed alleles were <code class="docutils literal notranslate"><span class="pre">T</span></code>).</p>
 </section>
 <section id="calculate-mle-from-log-likelihood-function">
-<h2>Calculate MLE From Log-likelihood Function<a class="headerlink" href="#calculate-mle-from-log-likelihood-function" title="Link to this heading">#</a></h2>
+<h3>Calculate MLE From Log-likelihood Function<a class="headerlink" href="#calculate-mle-from-log-likelihood-function" title="Link to this heading">#</a></h3>
 <p>It is often convenient to work with the log-likelihood function, denoted <span class="math notranslate nohighlight">\(\ell(f_T \mid \text{D})\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -719,7 +728,7 @@ $<span class="math notranslate nohighlight">\(
 <p>Changes in the log-likelihood function are measured in “log-likelihood units.” For example, the difference in support between <span class="math notranslate nohighlight">\(f_T = 0.3\)</span> and <span class="math notranslate nohighlight">\(f_T = 0.35\)</span> is <span class="math notranslate nohighlight">\(\ell(0.3 \mid \text{D}) - \ell(0.35 \mid \text{D}) = 0.563\)</span> log-likelihood units.</p>
 </section>
 <section id="analytical-solution">
-<h2>Analytical Solution<a class="headerlink" href="#analytical-solution" title="Link to this heading">#</a></h2>
+<h3>Analytical Solution<a class="headerlink" href="#analytical-solution" title="Link to this heading">#</a></h3>
 <p>In this simple case, we can calculate <span class="math notranslate nohighlight">\(\hat{f_T}\)</span> analytically using calculus:</p>
 <p><strong>Step 1</strong>: Take the natural logarithm of the likelihood function:
 $<span class="math notranslate nohighlight">\(
@@ -750,6 +759,187 @@ $<span class="math notranslate nohighlight">\(
 \frac{d^2\ell(f_T \mid \text{D})}{df_T^2} = -\frac{3}{f_T^2} - \frac{7}{(1-f_T)^2} &lt; 0
 \)</span>$</p>
 <p>This is always negative for <span class="math notranslate nohighlight">\(f_T \in (0,1)\)</span>, confirming we have a maximum.</p>
+</section>
+</section>
+<section id="example-2-genetic-effect">
+<h2>Example 2 – Genetic Effect<a class="headerlink" href="#example-2-genetic-effect" title="Link to this heading">#</a></h2>
+<p>Looking at our likelihood results about the genetic effect in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a>, we see that Model 2 (<span class="math notranslate nohighlight">\(\beta = 0.5\)</span>) performs better than both Model 1 (<span class="math notranslate nohighlight">\(\beta = 0\)</span>) and Model 3 (<span class="math notranslate nohighlight">\(\beta = 1.0\)</span>). But this raises an interesting question: we only tested three specific values. What if the optimal <span class="math notranslate nohighlight">\(\beta\)</span> is somewhere between 0.5 and 1.0, or maybe 0.4 or 0.6?</p>
+<p>Instead of guessing more values to test, we can use <strong>Maximum Likelihood Estimation (MLE)</strong> to find <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> that maximizes the likelihood function. Then we can compare this optimal estimate to our models - particularly the null model (<span class="math notranslate nohighlight">\(\beta = 0\)</span>), which is often of special interest in genetics because it represents “no genetic effect.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">19</span><span class="p">)</span><span class="w">  </span><span class="c1"># For reproducibility</span>
+
+<span class="c1"># Generate genotype data for 5 individuals at 1 variant</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">)</span><span class="w">  </span><span class="c1"># Individual genotypes</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">genotypes</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Define alternative allele</span>
+<span class="n">alt_allele</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;T&quot;</span>
+
+<span class="c1"># Convert to additive genotype coding (count of alternative alleles)</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">genotypes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">  </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_allele</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">genotypes</span><span class="p">)</span>
+
+<span class="c1"># Standardize genotypes</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
+
+<span class="c1"># Set true beta and generate phenotype data</span>
+<span class="n">true_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.4</span>
+<span class="n">true_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.0</span>
+
+<span class="c1"># Generate phenotype with true effect</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">true_sd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s create two functions to compute the likelihood and log-likelihood:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Likelihood function for normal distribution</span>
+<span class="n">likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Calculate expected values under the model</span>
+<span class="w">  </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate likelihood (product of normal densities)</span>
+<span class="w">  </span><span class="nf">prod</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Log-likelihood function (more numerically stable)</span>
+<span class="n">log_likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Calculate expected values under the model</span>
+<span class="w">  </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Calculate log-likelihood (sum of log normal densities)</span>
+<span class="w">  </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the MLE by optimizing the log-likelihood function</span>
+<span class="n">mle_result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w">  </span><span class="c1"># Search range for beta</span>
+<span class="w">                       </span><span class="n">maximum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">       </span><span class="c1"># We want to maximize</span>
+<span class="w">                       </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="n">beta_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mle_result</span><span class="o">$</span><span class="n">maximum</span>
+<span class="n">log_lik_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mle_result</span><span class="o">$</span><span class="n">objective</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Maximum Likelihood Estimate (MLE):\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Beta_MLE =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Log-likelihood at MLE =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">log_lik_mle</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compare MLE to Model 1 (beta = 0)</span>
+<span class="n">beta_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="n">log_lik_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_null</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="n">lik_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_null</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="n">lik_mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="c1"># Calculate likelihood ratio: MLE vs Null model</span>
+<span class="n">lr_mle_vs_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lik_mle</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">lik_null</span>
+<span class="n">log_lr_mle_vs_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_lik_mle</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">log_lik_null</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum Likelihood Estimate (MLE):
+Beta_MLE = 0.3169 
+Log-likelihood at MLE = -6.054 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the likelihood function with MLE highlighted</span>
+<span class="n">beta_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+<span class="n">likelihood_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">))</span>
+<span class="n">log_likelihood_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="nf">log_likelihood</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">))</span>
+
+<span class="c1"># Set up plotting parameters for better layout</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">  </span><span class="c1"># Adjust margins</span>
+
+<span class="c1"># Plot likelihood function</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">likelihood_values</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Beta&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Likelihood&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Likelihood with MLE&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Shorter title</span>
+<span class="w">     </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="n">lik_mle</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">lik_null</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;MLE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Null&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="m">19</span><span class="p">))</span>
+
+<span class="c1"># Plot log-likelihood function</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">log_likelihood_values</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Beta&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log-Likelihood&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log-Likelihood with MLE&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Shorter title</span>
+<span class="w">     </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">beta_mle</span><span class="p">,</span><span class="w"> </span><span class="n">log_lik_mle</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">log_lik_null</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;MLE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Null&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="m">19</span><span class="p">))</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w">  </span><span class="c1"># Reset to defaults</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/5134351d7728734be1b634ceaebb9beaf69ecd5ee80c5c29d63ca72d2122da05.png"><img alt="_images/5134351d7728734be1b634ceaebb9beaf69ecd5ee80c5c29d63ca72d2122da05.png" src="_images/5134351d7728734be1b634ceaebb9beaf69ecd5ee80c5c29d63ca72d2122da05.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>Other than the figure, we can also derive the MLE analytically using calculus. This shows how we can find the optimal value across the entire parameter space. But please note that in more complicated cases it is almost impossible to get explicit solutions.</p>
+<p>For our model <span class="math notranslate nohighlight">\(Y = X \beta + \epsilon\)</span> where <span class="math notranslate nohighlight">\(\epsilon \sim N(0, \sigma^2)\)</span>, the MLE is:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta} = \frac{\sum_{i=1}^n X_i Y_i}{\sum_{i=1}^n X_i^2}
+\]</div>
+<p>This formula comes from setting the derivative of the log-likelihood equal to zero and solving analytically. The beauty is that we can compute the exact MLE without any iterative search:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the analytical MLE using the closed-form formula</span>
+<span class="n">numerator</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="n">denominator</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="n">beta_analytical</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">numerator</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">denominator</span>
+<span class="n">beta_analytical</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.316922714010208</div></div>
+</div>
+<p>This is equal to the <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> that we get from <code class="docutils literal notranslate"><span class="pre">optimize</span></code> function above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_mle</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.316922714010208</div></div>
+</div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
@@ -887,10 +1077,15 @@ $<span class="math notranslate nohighlight">\(
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-and-identically-distributed-iid-data">Independent and Identically Distributed (IID) Data</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-likelihood-function">Calculate MLE From Likelihood Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-log-likelihood-function">Calculate MLE From Log-likelihood Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-allele-frequency">Example 1 – Allele Frequency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-likelihood-function">Calculate MLE From Likelihood Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mle-from-log-likelihood-function">Calculate MLE From Log-likelihood Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-genetic-effect">Example 2 – Genetic Effect</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">

@@ -307,7 +307,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html">Maximum Likelihood Estimation</a></li>
+
 
 
 
@@ -315,11 +317,6 @@
 
 <li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
 
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio_test.html">Likelihood Ratio Test</a></li>
 
 
 
@@ -334,7 +331,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+
 
 
 
@@ -526,10 +525,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood">Log-Likelihood</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-for-genetic-effect">Likelihood for genetic effect</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
 </ul>
@@ -599,19 +596,23 @@ document.write(`
 <p>In <span class="math notranslate nohighlight">\(\log\)</span>, unless otherwise specified, we use <strong>log base e</strong>.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="example">
-<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<section id="likelihood-for-genetic-effect">
-<h2>Likelihood for genetic effect<a class="headerlink" href="#likelihood-for-genetic-effect" title="Link to this heading">#</a></h2>
-<p>This example demonstrates how to calculate likelihood functions for genetic association analysis. We will generate genotype data for one variant across 5 individuals, set a true effect size (<span class="math notranslate nohighlight">\(\beta = 0.4\)</span>), and calculate the likelihood under three different models with different assumed beta values. This illustrates how likelihood functions help us evaluate which model parameters best explain our observed data.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p>Related topics:</p>
-<ul>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 </ul>
-</li>
-</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>Say we have genotype data across 5 people and we also have their measurements of height. Now suppose I have three different theories about how genetics affects height:</p>
+<ol class="arabic simple">
+<li><p>no genetic effect (<span class="math notranslate nohighlight">\(\beta=0\)</span>)</p></li>
+<li><p>moderate genetic effect (<span class="math notranslate nohighlight">\(\beta=0.5\)</span>)</p></li>
+<li><p>large genetic effect (<span class="math notranslate nohighlight">\(\beta=1.0\)</span>)</p></li>
+</ol>
+<p><strong>How do I know from the data which theory is most plausible?</strong></p>
+<p>This is where likelihood comes in - it helps us evaluate how well each theory explains our observed data. We’ll generate some example data where we know the true effect size (β = 0.4), then calculate the likelihood under each of our three theories to see which one the data supports most strongly.</p>
 <p>Let’s first generate the genotype data and trait values for 5 individuals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -773,7 +774,6 @@ document.write(`
 </a>
 </div>
 </div>
-</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
@@ -1046,10 +1046,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood">Log-Likelihood</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-for-genetic-effect">Likelihood for genetic effect</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
 </ul>
