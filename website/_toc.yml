@@ -58,7 +58,6 @@ parts:
       - file: likelihood
       - file: maximum_likelihood_estimation
       - file: likelihood_ratio
-      - file: likelihood_ratio_test
   
   - caption: Bayesian Versus Frequentist
     chapters: 
