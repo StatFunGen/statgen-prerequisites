@@ -61,6 +61,7 @@ parts:
   
   - caption: Bayesian Versus Frequentist
     chapters: 
+      - file: Bayesian_frequentist
       - file: Bayes_rule
       - file: Bayes_factor
   

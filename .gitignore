@@ -60,3 +60,8 @@ _build/
 # pixi environments
 .pixi
 *.egg-info
+
+.gitattributes
+comments.md
+pixi.lock
+pixi.toml
