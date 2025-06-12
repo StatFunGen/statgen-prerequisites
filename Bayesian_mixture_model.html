@@ -355,7 +355,9 @@
 
 
 
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Bayesian Mixture Model</a></li>
+
 
 
 
@@ -522,18 +524,22 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment">Component Assignment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-specifications">Prior Specifications</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-inference">Posterior Inference</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-mixture-models">Why Use Mixture Models?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-idea-multiple-sources-of-effects">The Core Idea: Multiple Sources of Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment-which-group-does-this-parameter-belong-to">Component Assignment: Which Group Does This Parameter Belong To?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-prior-structure">Setting Up the Prior Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-from-data-posterior-component-membership">Learning from Data: Posterior Component Membership</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-mixture-models-are-powerful-in-genetics">Why Mixture Models Are Powerful in Genetics</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-setup">Model Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-models">Individual Models:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-models-the-biological-stories">Component Models: The Biological Stories</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-components-m0-m6">Individual Components (M0-M6):</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixture-models">Mixture Models:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-data-from-simulation">Generate Data From Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-core-effect-generation-function">Building the Core Effect Generation Function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">Data Generation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
@@ -562,116 +568,286 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="fig" src="graphical_summary/Slide27.png" /></p>
+<p><img alt="Fig" src="_images/Slide27.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>In a mixture model, we assume that the variable <span class="math notranslate nohighlight">\(\beta\)</span> is generated from a weighted sum of <span class="math notranslate nohighlight">\(K\)</span> different distributions, where each distribution corresponds to a different “component” representing different types of genetic effects. The probability density function (PDF) of the mixture prior can be written as:</p>
+<p>In a Bayesian mixture model, we assume that the parameter <span class="math notranslate nohighlight">\(\beta\)</span> is generated from a weighted sum of <span class="math notranslate nohighlight">\(C\)</span> different distributions, where each distribution corresponds to a different “component” representing different types of effects. The probability density function (PDF) of the mixture prior can be written as:</p>
 <div class="math notranslate nohighlight">
 \[
-p(\beta) = \sum_{k=1}^{K} \pi_k p_k(\beta)
+p(\beta) = \sum_{c=1}^{C} \pi_c p_c(\beta)
 \]</div>
-<p>Where:</p>
+<p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(p(\beta)\)</span> is the overall prior probability density function for the genetic effect <span class="math notranslate nohighlight">\(\beta\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(K\)</span> is the number of component distributions</p></li>
-<li><p><span class="math notranslate nohighlight">\(\pi_k\)</span> is the mixture weight for the <span class="math notranslate nohighlight">\(k\)</span>-th component (with <span class="math notranslate nohighlight">\(\sum_{k=1}^{K} \pi_k = 1\)</span>)</p></li>
-<li><p><span class="math notranslate nohighlight">\(p_k(\beta)\)</span> is the probability density function of the <span class="math notranslate nohighlight">\(k\)</span>-th component, typically <span class="math notranslate nohighlight">\(p_k(\beta) = \mathcal{N}(\mu_k, \sigma_k^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\beta)\)</span> is the overall prior probability density function for the parameter <span class="math notranslate nohighlight">\(\beta\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span> is the number of component distributions</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi_c\)</span> is the mixture weight for the <span class="math notranslate nohighlight">\(c\)</span>-th component (with <span class="math notranslate nohighlight">\(\sum_{c=1}^{C} \pi_c = 1\)</span> and <span class="math notranslate nohighlight">\(\pi_c \geq 0\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_c(\beta)\)</span> is the probability density function of the <span class="math notranslate nohighlight">\(c\)</span>-th component, typically <span class="math notranslate nohighlight">\(p_c(\beta) = \mathcal{N}(\mu_c, \sigma_c^2)\)</span></p></li>
 </ul>
-<p><img alt="fig" src="graphical_summary/Slide27.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="component-assignment">
-<h2>Component Assignment<a class="headerlink" href="#component-assignment" title="Link to this heading">#</a></h2>
-<p>We don’t know which component that the parameter <span class="math notranslate nohighlight">\(\beta\)</span> belongs to, and it could come from several different distributions. We introduce a latent variable <span class="math notranslate nohighlight">\(z\)</span> to indicate component membership:</p>
+<section id="the-core-idea-multiple-sources-of-effects">
+<h2>The Core Idea: Multiple Sources of Effects<a class="headerlink" href="#the-core-idea-multiple-sources-of-effects" title="Link to this heading">#</a></h2>
+<p>In statistical genetics, we often encounter parameters that don’t come from a single, simple distribution. Think of it this way: genetic effects can be small (most variants), moderate (some important variants), or large (rare but impactful variants). A Bayesian mixture model captures this reality by saying “the parameter <span class="math notranslate nohighlight">\(\beta\)</span> could come from any of several different distributions, and we’ll let the data tell us which one is most likely.”</p>
+</section>
+<section id="component-assignment-which-group-does-this-parameter-belong-to">
+<h2>Component Assignment: Which Group Does This Parameter Belong To?<a class="headerlink" href="#component-assignment-which-group-does-this-parameter-belong-to" title="Link to this heading">#</a></h2>
+<p>Since we don’t know a priori which component generated our parameter <span class="math notranslate nohighlight">\(\beta\)</span>, we introduce a latent (hidden) variable <span class="math notranslate nohighlight">\(z\)</span> that acts like a “group membership card”:</p>
 <div class="math notranslate nohighlight">
 \[
-z \in \{1, 2, \ldots, K\}
+z \in \{1, 2, \ldots, C\}
 \]</div>
-<div class="math notranslate nohighlight">
-\[
-P(z = k) = \pi_k
-\]</div>
-<p>Given the component assignment, the parameter follows:
+<p>The probability that <span class="math notranslate nohighlight">\(\beta\)</span> belongs to component <span class="math notranslate nohighlight">\(c\)</span> is simply the mixture weight:
 $<span class="math notranslate nohighlight">\(
-\beta \mid z = k \sim p_k(\beta)
+P(z = c) = \pi_c
 \)</span>$</p>
-<p>where <span class="math notranslate nohighlight">\(p_k(\beta)\)</span> is the probability density function for component <span class="math notranslate nohighlight">\(k\)</span>.</p>
-</section>
-<section id="prior-specifications">
-<h2>Prior Specifications<a class="headerlink" href="#prior-specifications" title="Link to this heading">#</a></h2>
-<p><strong>Mixture Weights:</strong>
+<p>Once we know the component assignment, the parameter follows that component’s distribution:
 $<span class="math notranslate nohighlight">\(
-\boldsymbol{\pi} = (\pi_1, \pi_2, \ldots, \pi_K) \sim \text{Dirichlet}(\alpha_1, \alpha_2, \ldots, \alpha_K)
+\beta \mid z = c \sim p_c(\beta)
 \)</span>$</p>
-<p><strong>Component Parameters:</strong>
-Each component <span class="math notranslate nohighlight">\(k\)</span> has its own parameters <span class="math notranslate nohighlight">\(\theta_k\)</span> with appropriate priors depending on the chosen distribution family.</p>
+<p>Think of <span class="math notranslate nohighlight">\(z\)</span> as nature’s coin flip that decides which distribution to draw <span class="math notranslate nohighlight">\(\beta\)</span> from, but we never get to see the result of that coin flip directly.</p>
 </section>
-<section id="posterior-inference">
-<h2>Posterior Inference<a class="headerlink" href="#posterior-inference" title="Link to this heading">#</a></h2>
-<p><strong>Component Assignment Probability:</strong>
-After observing data, the probability that <span class="math notranslate nohighlight">\(\beta\)</span> belongs to component <span class="math notranslate nohighlight">\(k\)</span> is:</p>
+<section id="setting-up-the-prior-structure">
+<h2>Setting Up the Prior Structure<a class="headerlink" href="#setting-up-the-prior-structure" title="Link to this heading">#</a></h2>
+<p><strong>Mixture Weights - How Common Is Each Component?</strong></p>
+<p>The mixture weights <span class="math notranslate nohighlight">\(\boldsymbol{\pi} = (\pi_1, \pi_2, \ldots, \pi_C)\)</span> tell us how frequently we expect each component to occur. We typically give them a Dirichlet prior:</p>
 <div class="math notranslate nohighlight">
 \[
-P(z = k \mid \beta, \text{data}) = \frac{\pi_k p_k(\beta)}{\sum_{j=1}^K \pi_j p_j(\beta)}
+\boldsymbol{\pi} \sim \text{Dirichlet}(\alpha_1, \alpha_2, \ldots, \alpha_C)
 \]</div>
-<p>This tells us how confident we are about which component the parameter belongs to.</p>
+<p>This ensures the weights are positive and sum to 1. If you set all <span class="math notranslate nohighlight">\(\alpha_c = 1\)</span>, you’re saying “I have no strong opinion about which components are more common” - the weights will be roughly equal on average.</p>
+<p><strong>Component-Specific Parameters</strong></p>
+<p>Each component <span class="math notranslate nohighlight">\(c\)</span> has its own parameters that define its shape. For genetic effect sizes, we often use normal distributions:</p>
+<ul class="simple">
+<li><p>Component 1 (null effects): <span class="math notranslate nohighlight">\(p_1(\beta) = \mathcal{N}(0, \sigma_1^2)\)</span> where <span class="math notranslate nohighlight">\(\sigma_1^2\)</span> is very small</p></li>
+<li><p>Component 2 (moderate effects): <span class="math notranslate nohighlight">\(p_2(\beta) = \mathcal{N}(0, \sigma_2^2)\)</span> where <span class="math notranslate nohighlight">\(\sigma_2^2\)</span> is moderate</p></li>
+<li><p>Component 3 (large effects): <span class="math notranslate nohighlight">\(p_3(\beta) = \mathcal{N}(0, \sigma_3^2)\)</span> where <span class="math notranslate nohighlight">\(\sigma_3^2\)</span> is large</p></li>
+</ul>
+<p>Each <span class="math notranslate nohighlight">\(\sigma_c^2\)</span> gets its own prior based on your domain knowledge.</p>
 </section>
-<section id="why-use-mixture-models">
-<h2>Why Use Mixture Models?<a class="headerlink" href="#why-use-mixture-models" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Flexibility</strong>: Can model complex, multi-modal distributions</p></li>
-<li><p><strong>Automatic clustering</strong>: Parameters naturally group into similar types</p></li>
-<li><p><strong>Robustness</strong>: Less sensitive to outliers than single component models</p></li>
-<li><p><strong>Uncertainty quantification</strong>: Provides probabilities for component membership</p></li>
-</ol>
+<section id="learning-from-data-posterior-component-membership">
+<h2>Learning from Data: Posterior Component Membership<a class="headerlink" href="#learning-from-data-posterior-component-membership" title="Link to this heading">#</a></h2>
+<p>Here’s where the magic happens. After seeing the data, we can calculate how likely it is that parameter <span class="math notranslate nohighlight">\(\beta\)</span> belongs to each component using Bayes’ rule:</p>
+<div class="math notranslate nohighlight">
+\[
+P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_j(\beta)}
+\]</div>
+<p>This posterior probability has an intuitive interpretation: it weighs how well component <span class="math notranslate nohighlight">\(c\)</span> explains the observed <span class="math notranslate nohighlight">\(\beta\)</span> (the numerator <span class="math notranslate nohighlight">\(\pi_c p_c(\beta)\)</span>) against how well all components explain it (the denominator).</p>
+<p>If <span class="math notranslate nohighlight">\(\beta\)</span> is close to zero, the “null effect” component will have high posterior probability. If <span class="math notranslate nohighlight">\(\beta\)</span> is large, the “large effect” component will dominate.</p>
 </section>
+<section id="why-mixture-models-are-powerful-in-genetics">
+<h2>Why Mixture Models Are Powerful in Genetics<a class="headerlink" href="#why-mixture-models-are-powerful-in-genetics" title="Link to this heading">#</a></h2>
+<p><strong>Biological Realism</strong>: Genetic architectures naturally have multiple classes of effects. Most variants do nothing, some have small effects, and a few have large effects. Mixture models capture this heterogeneity directly.</p>
+<p><strong>Automatic Effect Classification</strong>: You don’t need to pre-specify which genetic variants have large vs. small effects. The model learns this from the data and gives you posterior probabilities for each classification.</p>
+<p><strong>Robust to Outliers</strong>: If a few genetic effects are much larger than expected, they get assigned to a “large effect” component rather than distorting the estimates for typical effects.</p>
+<p><strong>Principled Uncertainty</strong>: Instead of hard classifications (“this effect is large”), you get probabilistic statements (“this effect has an 85% chance of being large”). This uncertainty naturally propagates through downstream analyses.</p>
+<p><strong>Flexible Modeling</strong>: You can easily accommodate different biological scenarios by changing the number and types of components. Want to model population-specific effects? Add population-specific components. Suspect some effects are exactly zero? Include a point mass at zero.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">maximum likelihood estimation</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html#">Bayesian normal mean model</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_multivariate_normal_mean_model.html#">Bayesian multivariate normal mean model</a></p></li>
+</ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates how Bayesian mixture models can be used to detect pleiotropy by comparing different hypotheses about how a genetic variant affects multiple traits. The model automatically identifies whether the data is better explained by scenarios where the variant affects traits independently (no pleiotropy) or with correlated effects (pleiotropy).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">mvtnorm</span><span class="p">)</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">101</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="model-setup">
-<h2>Model Setup<a class="headerlink" href="#model-setup" title="Link to this heading">#</a></h2>
-<p>We have:</p>
+<p>Imagine you’re studying how a single genetic variant affects human height and weight. You have a simple but fundamental question: <strong>Does this genetic variant affect just one trait, both traits, or neither?</strong> And if it affects both traits, <strong>how correlated are these effects?</strong></p>
+<p>We have discussed this in the topic of <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_multivariate_normal_mean_model.html#">Bayesian multivariate normal mean model</a>, but back then the assumption is that there IS correlation between the traits and our focus was on the estimation of genetic effect.</p>
+<p>Here this question gets to the heart of <strong>pleiotropy</strong> - the phenomenon where a single gene influences multiple traits. A variant might only affect height (think growth hormone pathways), only affect weight (metabolic pathways), or affect both in correlated ways (general body size regulation).</p>
+<p>We’ll simulate data for <span class="math notranslate nohighlight">\(N\)</span> individuals with two phenotypes (height and weight) and one genotype variant, and also the genetic effect <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>.</p>
+<p>The model is simply: <span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\)</span></p>
+<p>But here’s the key insight: <strong><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> can come from different “component models” representing different biological mechanisms.</strong></p>
+<section id="component-models-the-biological-stories">
+<h2>Component Models: The Biological Stories<a class="headerlink" href="#component-models-the-biological-stories" title="Link to this heading">#</a></h2>
+<p>We’ll define 7 component models, each telling a different biological story:</p>
+<section id="individual-components-m0-m6">
+<h3>Individual Components (M0-M6):<a class="headerlink" href="#individual-components-m0-m6" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(Y_{N \times 2}\)</span>: phenotype matrix (height and weight for N individuals)</p></li>
-<li><p><span class="math notranslate nohighlight">\(X_{N \times 1}\)</span>: genotype vector (0, 1, 2 coding for one variant)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta_{1 \times 2}\)</span>: effect vector for the variant on both traits</p></li>
-</ul>
-<p>The model is: <span class="math notranslate nohighlight">\(Y = X\beta + \varepsilon\)</span></p>
-<p>We define 7 different component models representing different patterns of genetic effects:</p>
-<section id="individual-models">
-<h3>Individual Models:<a class="headerlink" href="#individual-models" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>M0 (Null)</strong>: No effect on either trait</p></li>
-<li><p><strong>M1</strong>: Effect only on height</p></li>
-<li><p><strong>M2</strong>: Effect only on weight</p></li>
-<li><p><strong>M3</strong>: Perfect correlation between height and weight effects</p></li>
-<li><p><strong>M4</strong>: Weak correlation (0.1)</p></li>
-<li><p><strong>M5</strong>: Medium correlation (0.5)</p></li>
-<li><p><strong>M6</strong>: Strong correlation (0.8)</p></li>
+<li><p><strong>M0 (Null)</strong>: “This variant does nothing” - <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> = (0, 0)</p></li>
+<li><p><strong>M1 (Height Only)</strong>: “This variant only affects height” - <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> = (<span class="math notranslate nohighlight">\(\beta_1\)</span>, 0)</p></li>
+<li><p><strong>M2 (Weight Only)</strong>: “This variant only affects weight” - <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> = (0, <span class="math notranslate nohighlight">\(\beta_2\)</span>)</p></li>
+<li><p><strong>M3 (Perfect Correlation)</strong>: “Effects are perfectly correlated” - <span class="math notranslate nohighlight">\(\beta_2\)</span> = <span class="math notranslate nohighlight">\(\beta_1\)</span></p></li>
+<li><p><strong>M4 (Weak Correlation)</strong>: “Effects are weakly related” - correlation = 0.1</p></li>
+<li><p><strong>M5 (Medium Correlation)</strong>: “Effects are moderately related” - correlation = 0.5</p></li>
+<li><p><strong>M6 (Strong Correlation)</strong>: “Effects are strongly related” - correlation = 0.8</p></li>
 </ul>
 </section>
 <section id="mixture-models">
 <h3>Mixture Models:<a class="headerlink" href="#mixture-models" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>No Pleiotropy</strong>: Mixture of M0, M1, M2 (equal weights)</p></li>
+<li><p><strong>No Pleiotropy</strong>: Mixture of M0, M1, M2 (M0 gets higher weight since most variants are null)</p></li>
 <li><p><strong>Pleiotropy</strong>: Mixture of M3, M4, M5, M6 (equal weights)</p></li>
 </ul>
+</section>
+</section>
+<section id="generate-data-from-simulation">
+<h2>Generate Data From Simulation<a class="headerlink" href="#generate-data-from-simulation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">  </span><span class="c1"># for mvrnorm</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span>
+
+<span class="c1"># Simulation parameters</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span><span class="w">           </span><span class="c1"># Sample size (number of individuals)</span>
+<span class="n">effect_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.3</span><span class="w">    </span><span class="c1"># Standard deviation of non-zero genetic effects</span>
+<span class="n">error_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.0</span><span class="w">     </span><span class="c1"># Standard deviation of phenotype noise</span>
+
+<span class="c1"># Generate genotype data for one variant</span>
+<span class="c1"># Minor allele frequency = 0.3</span>
+<span class="c1"># Genotypes are coded as 0, 1, 2 (number of minor alleles)</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="building-the-core-effect-generation-function">
+<h2>Building the Core Effect Generation Function<a class="headerlink" href="#building-the-core-effect-generation-function" title="Link to this heading">#</a></h2>
+<p>The heart of our simulation lies in generating different patterns of genetic effects. Each component model represents a different biological mechanism for how our variant might affect the two traits. We need a function that can create these diverse patterns on demand.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; Generate genetic effects for individual component models</span>
+<span class="n">generate_component_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">effect_sd</span><span class="p">,</span><span class="w"> </span><span class="n">component_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Initialize effect vector (both traits)</span>
+<span class="w">  </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">switch</span><span class="p">(</span><span class="n">component_type</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;M0&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Null model: no effects on either trait</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M1&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Height-only model: effect on height, zero on weight</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M2&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Weight-only model: zero on height, effect on weight</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">))</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M3&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Perfect correlation: height and weight effects are identical</span>
+<span class="w">      </span><span class="n">height_effect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">)</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">height_effect</span><span class="p">,</span><span class="w"> </span><span class="n">height_effect</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M4&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Weak correlation (r = 0.1): effects are slightly related</span>
+<span class="w">      </span><span class="n">correlation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.1</span>
+<span class="w">      </span><span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">effect_sd</span><span class="o">^</span><span class="m">2</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M5&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Medium correlation (r = 0.5): effects are moderately related</span>
+<span class="w">      </span><span class="n">correlation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span>
+<span class="w">      </span><span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">effect_sd</span><span class="o">^</span><span class="m">2</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M6&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Strong correlation (r = 0.8): effects are highly related</span>
+<span class="w">      </span><span class="n">correlation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.8</span>
+<span class="w">      </span><span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">effect_sd</span><span class="o">^</span><span class="m">2</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">effects</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function captures the essence of each biological story. For the null variant (M0), effects are exactly zero. For trait-specific variants (M1, M2), only one trait is affected. For pleiotropic variants (M3-M6), we generate correlated effects using different correlation structures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; Generate effects for individual component models</span>
+<span class="n">generate_component_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">,</span><span class="w"> </span><span class="n">component_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">switch</span><span class="p">(</span><span class="n">component_type</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;M0&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Null: no effects</span>
+<span class="w">      </span><span class="n">effects</span><span class="p">[]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M1&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Height only</span>
+<span class="w">      </span><span class="n">effects</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">)</span>
+<span class="w">      </span><span class="n">effects</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M2&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Weight only  </span>
+<span class="w">      </span><span class="n">effects</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">      </span><span class="n">effects</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M3&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Perfect correlation</span>
+<span class="w">      </span><span class="n">height_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">)</span>
+<span class="w">      </span><span class="n">effects</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">height_effects</span>
+<span class="w">      </span><span class="n">effects</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">height_effects</span><span class="w">  </span><span class="c1"># Perfect correlation</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M4&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Weak correlation (r = 0.1)</span>
+<span class="w">      </span><span class="n">correlation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.1</span>
+<span class="w">      </span><span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">effect_sd</span><span class="o">^</span><span class="m">2</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M5&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Medium correlation (r = 0.5)</span>
+<span class="w">      </span><span class="n">correlation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span>
+<span class="w">      </span><span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">effect_sd</span><span class="o">^</span><span class="m">2</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;M6&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Strong correlation (r = 0.8)</span>
+<span class="w">      </span><span class="n">correlation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.8</span>
+<span class="w">      </span><span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="n">correlation</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">effect_sd</span><span class="o">^</span><span class="m">2</span>
+<span class="w">      </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sigma</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">effects</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; Generate effects for mixture models</span>
+<span class="n">generate_mixture_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">,</span><span class="w"> </span><span class="n">mixture_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">mixture_type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;no_pleiotropy&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># M0 gets higher weight (most variants are null)</span>
+<span class="w">    </span><span class="n">components</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">))</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">mixture_type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;pleiotropy&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># Equal mixture of M3, M4, M5, M6  </span>
+<span class="w">    </span><span class="n">components</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M6&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="m">4</span><span class="p">))</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_effects</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span><span class="n">component_labels</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">character</span><span class="p">(</span><span class="n">n_effects</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_effects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">comp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">components</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">    </span><span class="n">effects</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">generate_component_effects</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">effect_sd</span><span class="p">,</span><span class="w"> </span><span class="n">comp</span><span class="p">)</span>
+<span class="w">    </span><span class="n">component_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">comp</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">effects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">effects</span><span class="p">,</span><span class="w"> </span><span class="n">components</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">component_labels</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">models</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
@@ -719,7 +895,6 @@ Weights: 0.25 0.25 0.25 0.25
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="data-generation">
 <h2>Data Generation<a class="headerlink" href="#data-generation" title="Link to this heading">#</a></h2>
@@ -1269,18 +1444,22 @@ $<span class="math notranslate nohighlight">\(\beta \sim \sum_{k=1}^K \pi_k \mat
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment">Component Assignment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-specifications">Prior Specifications</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-inference">Posterior Inference</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-mixture-models">Why Use Mixture Models?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-idea-multiple-sources-of-effects">The Core Idea: Multiple Sources of Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment-which-group-does-this-parameter-belong-to">Component Assignment: Which Group Does This Parameter Belong To?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-prior-structure">Setting Up the Prior Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-from-data-posterior-component-membership">Learning from Data: Posterior Component Membership</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-mixture-models-are-powerful-in-genetics">Why Mixture Models Are Powerful in Genetics</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-setup">Model Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-models">Individual Models:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-models-the-biological-stories">Component Models: The Biological Stories</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-components-m0-m6">Individual Components (M0-M6):</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixture-models">Mixture Models:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-data-from-simulation">Generate Data From Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-core-effect-generation-function">Building the Core Effect Generation Function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">Data Generation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
