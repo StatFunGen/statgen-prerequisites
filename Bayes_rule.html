@@ -348,6 +348,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
 
 
@@ -637,7 +638,7 @@ P(\theta|D) = \frac{P(D|\theta) × P(\theta)} {P(D)}
 <span class="n">true_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.0</span>
 
 <span class="c1"># Generate phenotype with true effect</span>
-<span class="n">Y_true</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">true_sd</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">true_sd</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -680,8 +681,8 @@ P(\theta|D) = \frac{P(D|\theta) × P(\theta)} {P(D)}
 <span class="p">)</span>
 
 <span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y_true</span><span class="p">)</span>
-<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Log_Likelihood</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y_true</span><span class="p">)</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Log_Likelihood</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -711,7 +712,7 @@ P(\theta|D) = \frac{P(D|\theta) × P(\theta)} {P(D)}
 </section>
 <section id="setting-prior-beliefs">
 <h2>Setting Prior Beliefs<a class="headerlink" href="#setting-prior-beliefs" title="Link to this heading">#</a></h2>
-<p>Now let’s specify our prior beliefs about each model. Suppose based on previous genetics research, we believe:</p>
+<p>Now let’s specify our prior beliefs about each model. Suppose based on the pQTL analysis results, we have the following prior belief about the models:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prior probabilities (must sum to 1)</span>
@@ -876,6 +877,19 @@ P(\theta|D) = \frac{P(D|\theta) × P(\theta)} {P(D)}
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;dplyr&#39;
+
+
+The following objects are masked from &#39;package:stats&#39;:
+
+    filter, lag
+
+
+The following objects are masked from &#39;package:base&#39;:
+
+    intersect, setdiff, setequal, union
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="_images/3e696705a261ce0d10b4e88614903e676a6a39e61ca2857eb347fd3dc9760a39.png"><img alt="_images/3e696705a261ce0d10b4e88614903e676a6a39e61ca2857eb347fd3dc9760a39.png" src="_images/3e696705a261ce0d10b4e88614903e676a6a39e61ca2857eb347fd3dc9760a39.png" style="width: 420px; height: 420px;" />
 </a>
 </div>

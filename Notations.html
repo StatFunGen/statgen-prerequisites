@@ -348,6 +348,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
 
 
@@ -690,17 +691,38 @@ document.write(`
 <td><p>Likelihood ratio test</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \beta \)</span></p></td>
+<td><p>Mean of the normal distribution (unknown)</p></td>
+<td><p>Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta_0 \)</span></p></td>
+<td><p>Prior mean</p></td>
+<td><p>Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \beta_1 \)</span></p></td>
+<td><p>Posterior mean</p></td>
+<td><p>Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_0^2 \)</span></p></td>
+<td><p>Variance of the normal distribution (known)</p></td>
+<td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \sigma_1^2 \)</span></p></td>
+<td><p>Posterior variance</p></td>
+<td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> after observing data</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \tau_0 \)</span></p></td>
+<td><p>Prior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_0^2}\)</span>)</p></td>
+<td><p>Inverse of prior variance</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_1 \)</span></p></td>
+<td><p>Posterior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_1^2}\)</span>)</p></td>
+<td><p>Inverse of posterior variance</p></td>
+</tr>
 </tbody>
 </table>
 </div>
-<p>| <span class="math notranslate nohighlight">\( \beta \)</span>         | Mean of the normal distribution (unknown) | Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span>|
-| <span class="math notranslate nohighlight">\( \beta_0 \)</span>     | Prior mean  | Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span> |
-| <span class="math notranslate nohighlight">\( \beta_1 \)</span>     | Posterior mean  |  Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span> |
-| <span class="math notranslate nohighlight">\( \sigma_0^2 \)</span>   | Variance of the normal distribution (known) | Prior uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> |
-| <span class="math notranslate nohighlight">\( \sigma_1^2 \)</span>   | Posterior variance | Updated uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> after observing data |
-| <span class="math notranslate nohighlight">\( \tau_0 \)</span>       | Prior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_0^2}\)</span>)  | Inverse of prior variance |
-| <span class="math notranslate nohighlight">\( \tau_1 \)</span>       | Posterior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_1^2}\)</span>) | Inverse of posterior variance |
-| <span class="math notranslate nohighlight">\( \Sigma \)</span> | Variance-covariance matrix|variance-covariance matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span>|
+<p>| <span class="math notranslate nohighlight">\( \Sigma \)</span> | Variance-covariance matrix|variance-covariance matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span>|
 | <span class="math notranslate nohighlight">\( \Omega \)</span> | Precision matrix|Precision matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span>|
 | <span class="math notranslate nohighlight">\( L(M) \)</span>         | Likelihood for model <span class="math notranslate nohighlight">\( M \)</span> | Probability of observing the data under model <span class="math notranslate nohighlight">\(M\)</span> |
 | <span class="math notranslate nohighlight">\( l(M) \)</span>         | Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span> | Log-transformed likelihood for numerical stability |</p>
