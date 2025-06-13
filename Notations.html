@@ -372,6 +372,8 @@
 
 
 
+
+
 </ul>
 
     </div>
@@ -681,53 +683,113 @@ document.write(`
 <td><p>Likelihood function</p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{L}(\text{M}\mid\text{D})= P(\text{D}\mid\text{M})\)</span>, the likelihood function for model <span class="math notranslate nohighlight">\(\text{M}\)</span> given data <span class="math notranslate nohighlight">\(\text{D}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \ell \)</span></p></td>
+<td><p>Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
+<td><p>Log-transformed likelihood for numerical stability</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\theta\)</span></p></td>
 <td><p>The parameter of the statistical model</p></td>
 <td><p>e.g., genetic effect <span class="math notranslate nohighlight">\(\beta\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
 <td><p>Parameter space of <span class="math notranslate nohighlight">\(\theta\)</span></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \Lambda \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \Lambda \)</span></p></td>
 <td><p>Likelihood ratio test</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \beta \)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta \)</span></p></td>
 <td><p>Mean of the normal distribution (unknown)</p></td>
 <td><p>Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span></p></td>
 </tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></p></td>
+<td><p>Mean parameter vector (unknown)</p></td>
+<td><p>Causal effects of genetic variant on traits <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>: <span class="math notranslate nohighlight">\(\boldsymbol{\beta} = \begin{pmatrix} \beta_a \\ \beta_b \end{pmatrix}\)</span></p></td>
+</tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta_0 \)</span></p></td>
-<td><p>Prior mean</p></td>
+<td><p>Prior mean (scalar)</p></td>
 <td><p>Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \beta_1 \)</span></p></td>
-<td><p>Posterior mean</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_0\)</span></p></td>
+<td><p>Prior mean vector</p></td>
+<td><p>Prior mean of <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> before observing data <span class="math notranslate nohighlight">\(\mathbf{D}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta_1 \)</span></p></td>
+<td><p>Posterior mean (scalar)</p></td>
 <td><p>Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
 </tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_1\)</span></p></td>
+<td><p>Posterior mean vector</p></td>
+<td><p>Posterior mean of <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> after observing data <span class="math notranslate nohighlight">\(\mathbf{D}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\sigma\)</span></p></td>
+<td><p>variance</p></td>
+<td><p>Variance for a trait$</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span></p></td>
+<td><p>Known covariance matrix</p></td>
+<td><p>Covariance structure between traits <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span></p></td>
+</tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_0^2 \)</span></p></td>
-<td><p>Variance of the normal distribution (known)</p></td>
-<td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span></p></td>
+<td><p>Variance of the normal distribution</p></td>
+<td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\beta\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \sigma_1^2 \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0\)</span></p></td>
+<td><p>Prior covariance matrix</p></td>
+<td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_1^2 \)</span></p></td>
 <td><p>Posterior variance</p></td>
-<td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\mu\)</span> after observing data</p></td>
+<td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\beta\)</span> after observing data</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \tau_0 \)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_1\)</span></p></td>
+<td><p>Posterior covariance matrix</p></td>
+<td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> after observing data</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\tau}\)</span></p></td>
+<td><p>Known precision matrix (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{-1}\)</span>)</p></td>
+<td><p>Inverse of known covariance matrix</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_0 \)</span></p></td>
 <td><p>Prior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_0^2}\)</span>)</p></td>
 <td><p>Inverse of prior variance</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\tau}_0\)</span></p></td>
+<td><p>Prior precision matrix (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0^{-1}\)</span>)</p></td>
+<td><p>Inverse of prior covariance matrix</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_1 \)</span></p></td>
 <td><p>Posterior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_1^2}\)</span>)</p></td>
 <td><p>Inverse of posterior variance</p></td>
 </tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\tau}_1\)</span></p></td>
+<td><p>Posterior precision matrix (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_1^{-1}\)</span>)</p></td>
+<td><p>Inverse of posterior covariance matrix</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_1\)</span></p></td>
+<td><p>Sufficient statistic</p></td>
+<td><p><span class="math notranslate nohighlight">\(T_1 = \sum_{i=1}^N X_i^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{T}_2\)</span></p></td>
+<td><p>Sufficient statistic vector</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \begin{pmatrix} \sum_{i=1}^N X_i Y_{i,a} \\ \sum_{i=1}^N X_i Y_{i,b} \end{pmatrix}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C\)</span></p></td>
+<td><p>Number of components</p></td>
+<td><p>Total number of mixture components</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\pi_c\)</span></p></td>
+<td><p>Mixture weight</p></td>
+<td><p>Probability that an observation belongs to component <span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p_c(\beta)\)</span></p></td>
+<td><p>Component density</p></td>
+<td><p>Probability density function of the <span class="math notranslate nohighlight">\(c\)</span>-th component</p></td>
+</tr>
 </tbody>
 </table>
 </div>
-<p>| <span class="math notranslate nohighlight">\( \Sigma \)</span> | Variance-covariance matrix|variance-covariance matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span>|
-| <span class="math notranslate nohighlight">\( \Omega \)</span> | Precision matrix|Precision matrix for height <span class="math notranslate nohighlight">\(Y_1\)</span>and weight <span class="math notranslate nohighlight">\(Y_2\)</span>|
-| <span class="math notranslate nohighlight">\( L(M) \)</span>         | Likelihood for model <span class="math notranslate nohighlight">\( M \)</span> | Probability of observing the data under model <span class="math notranslate nohighlight">\(M\)</span> |
-| <span class="math notranslate nohighlight">\( l(M) \)</span>         | Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span> | Log-transformed likelihood for numerical stability |</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="concepts-in-statistical-genetics-and-related-topics">
