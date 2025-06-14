@@ -3,9 +3,9 @@ format: jb-book
 root: README
 
 parts:
-  - caption: Notations and References
+  - caption: Notations
     chapters:
-      - file: Notations
+      - file: notations
   
   - caption: Popular Topics and Related Notebooks
     chapters:
