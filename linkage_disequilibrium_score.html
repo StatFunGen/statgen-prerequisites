@@ -186,7 +186,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
+
 
 
 
@@ -200,7 +202,9 @@
 
 
 
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Linkage Disequilibrium Score</a></li>
+
 
 
 
@@ -210,6 +214,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -522,6 +527,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topic">Related Topic</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
@@ -572,13 +578,16 @@ r_\text{adj}^2 =  \hat{r}^2 - \frac{1-\hat{r}^2}{N-2}
 l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2 
 \]</div>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topic">
+<h1>Related Topic<a class="headerlink" href="#related-topic" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">linkage disequilibrium</a></p></li>
+</ul>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates the process of calculating Linkage Disequilibrium (LD) scores from a genotype matrix. It computes the correlation matrix based on the standardized genotype matrix, transforms it to squared correlations, and calculates raw LD scores. A bias correction is then applied to adjust for finite sample size effects, resulting in corrected LD scores that provide a measure of genetic variant connectivity.</p>
-<p>Related topics:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">LD</a></p></li>
-</ul>
+<p>We’ve seen how genetic variants can be correlated with each other in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">Lecture: linkage disequilibrium</a>, but how do we summarize the overall “connectedness” of each variant to all others? In statistical genetics, this is captured by the LD score - a single number that tells us how much linkage disequilibrium a variant has with all other variants in the region.</p>
+<p>But there’s a catch: with small sample sizes, the sample correlation is a biased estimator, meaning even unrelated variants can show non-zero correlations just due to sampling noise. How do we adjust for this bias, and what do LD scores look like before and after this adjustment?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -855,6 +864,7 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topic">Related Topic</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>

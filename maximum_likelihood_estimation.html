@@ -186,7 +186,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
+
 
 
 
@@ -200,7 +202,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
+
 
 
 
@@ -210,6 +214,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
 
 
 
@@ -630,11 +635,12 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<section id="example-1-allele-frequency">
-<h2>Example 1 – Allele Frequency<a class="headerlink" href="#example-1-allele-frequency" title="Link to this heading">#</a></h2>
 <p>So far we’ve been comparing different theories with fixed parameter values - like comparing <span class="math notranslate nohighlight">\(\beta\)</span> = 0 versus <span class="math notranslate nohighlight">\(\beta\)</span> = 0.5 versus <span class="math notranslate nohighlight">\(\beta\)</span> = 1.0. But what if we don’t want to limit ourselves to just a few specific values? What if we want to find the <strong>single best parameter value that maximizes the likelihood</strong>?</p>
 <p>This is exactly what maximum likelihood estimation (MLE) does. Instead of testing a handful of theories, <strong>MLE searches across all possible parameter values to find the one that makes our observed data most likely</strong>.</p>
-<p>Let’s see this in action with a different genetics problem. We observed genotype data for five individuals: CC, TT, CT, CC, and CC. Now, instead of asking “which effect size is most plausible?”, we’re asking “<strong>what’s the most plausible frequency of the T allele in the population?</strong>” MLE will give us the single best estimate by finding the frequency that maximizes the likelihood of seeing exactly these genotypes. This is the Method of the Moments for estimating the allele frequency that we have mentioned in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a>.</p>
+<section id="example-1-allele-frequency">
+<h2>Example 1 – Allele Frequency<a class="headerlink" href="#example-1-allele-frequency" title="Link to this heading">#</a></h2>
+<p>Now let’s reconsider the question of estimating minor allele frequency. We have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">Lecture: minor allele frequency</a> using simple counting, but in practice geneticists use MLE because it handles missing data naturally and provides more stable estimates with small sample sizes.</p>
+<p>We’re asking “<strong>what’s the most plausible frequency of the T allele in the population?</strong>” MLE will give us the single best estimate by finding the frequency that maximizes the likelihood of seeing exactly these genotypes.</p>
 <section id="calculate-mle-from-likelihood-function">
 <h3>Calculate MLE From Likelihood Function<a class="headerlink" href="#calculate-mle-from-likelihood-function" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
