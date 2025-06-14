@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Genotype Coding &#8212; Statistical backgrounds for the Summer Program in Statistical Functional Genomics</title>
+    <title>Genotype Coding &#8212; Statistical backgrounds for gene mapping</title>
   
   
   
@@ -151,7 +151,7 @@
   
   
   
-    <p class="title logo__title">Statistical backgrounds for the Summer Program in Statistical Functional Genomics</p>
+    <p class="title logo__title">Statistical backgrounds for gene mapping</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -167,12 +167,7 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notations and References</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Notations.html">Notation</a></li>
-
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular topics</a></li>
 
@@ -180,6 +175,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Genotype Coding</a></li>
+
 
 
 
@@ -530,6 +526,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-genotype-matrix">Standardized Genotype Matrix</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-snps-encoding-different-variant-types">Beyond SNPs: Encoding Different Variant Types</a></li>
@@ -549,7 +546,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="genotype-coding">
 <h1>Genotype Coding<a class="headerlink" href="#genotype-coding" title="Link to this heading">#</a></h1>
-<p>Genotype coding converts DNA nucleotide pairs into numerical values for statistical analysis, with the additive model being particularly valuable because genetic effects often accumulate proportionally with each additional copy of a variant.</p>
+<p>Genotype coding converts DNA nucleotide pairs into numerical values for statistical analysis, with the <strong>additive</strong> model being particularly valuable because genetic effects often accumulate proportionally with each additional copy of a variant.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -557,14 +554,8 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>We use <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span> to denote the <strong>raw genotype matrix</strong> (an <span class="math notranslate nohighlight">\(N \times M\)</span> matrix representing genotypes for <span class="math notranslate nohighlight">\(N\)</span> individuals at <span class="math notranslate nohighlight">\(M\)</span> variants).</p>
-<p>For diploid organisms, using different coding models:</p>
-<ul class="simple">
-<li><p>Additive model: takes value from <span class="math notranslate nohighlight">\(\{0, 1, 2\}\)</span> (count of alternative alleles)</p></li>
-<li><p>Dominant model: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> (1: presence of alternative allele; 0 otherwise)</p></li>
-<li><p>Recessive model: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> (1: two copies of alternative allele; 0 otherwise)</p></li>
-</ul>
-<p>And we use <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> to denote the <strong>standardized genotype matrix</strong>, which is the normalized version of <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span></p>
+<p>We use <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span> to denote the <strong>raw genotype matrix</strong> (an <span class="math notranslate nohighlight">\(N \times M\)</span> matrix representing genotypes for <span class="math notranslate nohighlight">\(N\)</span> individuals at <span class="math notranslate nohighlight">\(M\)</span> variants). By default, we use the <strong>additive coding model</strong> which takes values from <span class="math notranslate nohighlight">\(\{0, 1, 2\}\)</span> representing the count of alternative alleles.</p>
+<p>We use <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> to denote the <strong>standardized genotype matrix</strong>, which is the normalized version of <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span>. The reason for doing standardization is that different genetic variants have different allele frequencies in the population. Without standardization, variants with higher allele frequencies would dominate statistical analyses simply due to their larger numerical values, not because of their biological importance. Standardization ensures that each variant contributes equally to downstream analyses regardless of its allele frequency.</p>
 <p>For each column <span class="math notranslate nohighlight">\(j\)</span> (the <span class="math notranslate nohighlight">\(j\)</span>-th variant):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -580,9 +571,9 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="coding-models">
 <h2>Coding Models<a class="headerlink" href="#coding-models" title="Link to this heading">#</a></h2>
-<p>For diploid organisms (with two copies of each chromosome, e.g., human), one could use different coding models:</p>
+<p>For diploid organisms (with two copies of each chromosome, e.g., human), we can use different coding models:</p>
 <ul class="simple">
-<li><p><strong>Additive model</strong>: takes value from <span class="math notranslate nohighlight">\(\{0, 1, 2\}\)</span></p>
+<li><p><strong>Additive model</strong> (default): takes value from <span class="math notranslate nohighlight">\(\{0, 1, 2\}\)</span></p>
 <ul>
 <li><p>0: Homozygous for reference allele (AA)</p></li>
 <li><p>1: Heterozygous (Aa)</p></li>
@@ -624,14 +615,21 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 </ul>
 <p>This standardization ensures that:</p>
 <ul class="simple">
-<li><p>Each column of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> has mean 0 and variance 1;</p></li>
-<li><p>The standardized values reflect the deviation from the population mean in units of standard deviation.</p></li>
+<li><p>Each column of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> has mean 0 and variance 1</p></li>
+<li><p>The standardized values reflect the deviation from the population mean in units of standard deviation</p></li>
+<li><p>All variants contribute equally to downstream statistical analyses regardless of their allele frequencies</p></li>
 </ul>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
+</ul>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>In this example, we first generate the raw genotype data (three genetic variants) for five individuals, then encode these genotypes using three different genetic models: dominant, additive, and recessive. At the end, we standardize the raw genotype matrix to have a mean of 0 and a standard deviation of 1.</p>
+<p>Let’s say we have genetic data from 5 individuals tested at 3 different variants. How do we go from the actual genotype calls (like “CC” or “CT”) to the numerical matrices used in statistical genetics? What happens when we apply different coding models to the same data? And how do we standardize these matrices in R?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -962,6 +960,7 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-genotype-matrix">Standardized Genotype Matrix</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-snps-encoding-different-variant-types">Beyond SNPs: Encoding Different Variant Types</a></li>
