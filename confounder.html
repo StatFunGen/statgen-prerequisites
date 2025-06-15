@@ -235,7 +235,10 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html">Marginal and Joint Effects</a></li>
+
+
 
 
 
@@ -272,6 +275,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Covariates</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Confounder</a></li>
+
 
 
 
@@ -531,6 +535,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-control-for-confounders">The Solution: Control for Confounders</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 </ul>
 
@@ -619,134 +624,96 @@ $<span class="math notranslate nohighlight">\(
 <p>The goal is to block <strong>backdoor paths</strong> while keeping the <strong>direct causal path</strong> open.</p>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">LD</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/marginal_joint_effects.html">marginal and joint effects</a></p></li>
+</ul>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates how to identify and control for confounding in genetic association studies. We create a simple dataset with:</p>
-<ul class="simple">
-<li><p>Genetic variants for 5 individuals</p></li>
-<li><p>Height measurements</p></li>
-<li><p>Ancestry information (the confounder)</p></li>
-</ul>
-<p>We perform two analyses:</p>
-<ul class="simple">
-<li><p>A naive analysis testing associations between genetic variants and height</p></li>
-<li><p>An adjusted analysis controlling for ancestry as a confounder</p></li>
-</ul>
-<p>The example shows how ancestry can create spurious associations between certain genetic variants and height, and how proper statistical adjustment helps reveal the true underlying relationships by blocking this “backdoor path” created by the confounder.</p>
-<p>Related topics:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
-</ul>
+<p>Recall from our earlier discussion of marginal vs joint effects how a genetic variant can appear protective when analyzed alone but harmful when controlling for other factors. This dramatic reversal illustrates <strong>confounding</strong> - where ancestry affects both variant frequency and disease risk, creating spurious associations.</p>
+<p>The key question: <em>How can ancestry confound genetic associations and lead us to completely misinterpret a variant’s true effect?</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
-<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">9</span><span class="p">)</span><span class="w">  </span><span class="c1"># For reproducibility</span>
 
-<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
-<span class="c1"># These represent actual alleles at each position</span>
-<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
-<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
-<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 1</span>
-<span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 2</span>
-<span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 3</span>
-<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 4</span>
-<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">  </span><span class="c1"># Sample size</span>
+
+<span class="c1"># Create a confounding variable (genetic ancestry)</span>
+<span class="n">ancestry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">  </span><span class="c1"># 0 = Population A, 1 = Population B</span>
+
+<span class="c1"># Generate genotype that&#39;s correlated with ancestry</span>
+<span class="c1"># Population B has higher frequency of risk allele</span>
+<span class="n">variant1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                  </span><span class="nf">rbinom</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">),</span><span class="w">  </span><span class="c1"># Pop A: low risk allele frequency</span>
+<span class="w">                  </span><span class="nf">rbinom</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">))</span><span class="w">  </span><span class="c1"># Pop B: high risk allele frequency</span>
+
+<span class="c1"># Population B has generally lower disease risk (better healthcare/environment)</span>
+<span class="c1"># But the variant increases risk within each population</span>
+<span class="n">baseline_risk</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w">  </span><span class="c1"># Pop A much higher baseline risk</span>
+<span class="n">genetic_effect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">variant1</span><span class="w">  </span><span class="c1"># Variant increases risk in both populations</span>
+
+<span class="n">disease_prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">baseline_risk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">genetic_effect</span>
+<span class="n">disease</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">pmin</span><span class="p">(</span><span class="n">disease_prob</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">  </span><span class="c1"># Ensure prob ≤ 1</span>
+
+<span class="c1"># Create data frame</span>
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">disease</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">disease</span><span class="p">,</span>
+<span class="w">  </span><span class="n">variant1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">variant1</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ancestry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ancestry</span>
 <span class="p">)</span>
-<span class="c1"># Reshape into a matrix</span>
-<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
-<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
-
-<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
-
-<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
-
-<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
-<span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now let’s introduce a confounder: Ancestry. We’ll create two ancestry groups that correlate with both genotype and phenotype.</p>
+<p>As we did previously, ignoring the confounder (in this case, ancestry) will give us an incorrect result:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ancestry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="c1"># 1=Population A, 2=Population B</span>
-<span class="n">ancestry_factor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">ancestry</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We assign the trait information (height) same as in previous notebooks:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed height for the 5 individuals</span>
-<span class="n">Y_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="w"> </span><span class="m">160</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">,</span><span class="w"> </span><span class="m">155</span><span class="p">,</span><span class="w"> </span><span class="m">193</span><span class="p">)</span>
-<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Y_raw</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Then we run the OLS regression and see how the results different after adjusting for ancestry.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">  </span><span class="c1"># Store p-values</span>
-<span class="n">betas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">     </span><span class="c1"># Store estimated effect sizes</span>
-<span class="n">p_values_adjusted</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">  </span><span class="c1"># Store p-values adjusted for ancestry</span>
-<span class="n">betas_adjusted</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">     </span><span class="c1"># Store estimated effect sizes adjusted for ancestry</span>
-<span class="c1"># Perform OLS regression for each SNP</span>
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">SNP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w">  </span><span class="c1"># Extract genotype for SNP j</span>
-<span class="w">  </span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="p">)</span><span class="w">  </span><span class="c1"># OLS regression: Trait ~ SNP</span>
-<span class="w">  </span><span class="n">adjusted_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ancestry_factor</span><span class="p">)</span><span class="w">  </span><span class="c1"># Adjust for ancestry</span>
-<span class="w">  </span><span class="n">summary_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-<span class="w">  </span><span class="n">summary_adjusted_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">adjusted_model</span><span class="p">)</span>
-<span class="w">  </span><span class="c1"># Store p-value and effect size (coefficient)</span>
-<span class="w">  </span><span class="n">p_values</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">  </span><span class="c1"># p-value for SNP effect</span>
-<span class="w">  </span><span class="n">betas</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">     </span><span class="c1"># Estimated beta coefficient</span>
-<span class="w">  </span><span class="n">p_values_adjusted</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_adjusted_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">  </span><span class="c1"># p-value for SNP effect adjusted for ancestry</span>
-<span class="w">  </span><span class="n">betas_adjusted</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_adjusted_model</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">     </span><span class="c1"># Estimated beta coefficient adjusted for ancestry</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create results table</span>
-<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betas</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_values</span><span class="p">,</span><span class="w"> </span>
-<span class="w">                      </span><span class="n">Beta_Adjusted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betas_adjusted</span><span class="p">,</span><span class="w"> </span><span class="n">P_Value_Adjusted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_values_adjusted</span><span class="p">)</span>
-<span class="n">results</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Marginal analysis (ignoring ancestry - combining both populations)</span>
+<span class="n">marginal_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">disease</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">variant1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binomial</span><span class="p">)</span>
+<span class="n">marginal_OR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">marginal_model</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span>
+<span class="n">marginal_p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">marginal_model</span><span class="p">)</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== MARGINAL EFFECT (combining populations, ignoring ancestry) ===\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;OR =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">marginal_OR</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;, p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">marginal_p</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Interpretation:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">marginal_OR</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Harmful&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Protective&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 3 x 5</caption>
-<thead>
-	<tr><th scope=col>Variant</th><th scope=col>Beta</th><th scope=col>P_Value</th><th scope=col>Beta_Adjusted</th><th scope=col>P_Value_Adjusted</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>Variant 1</td><td>-0.5000913</td><td>0.390901513</td><td>-0.2838356</td><td>0.66071613</td></tr>
-	<tr><td>Variant 2</td><td> 0.8525024</td><td>0.066475513</td><td> 1.2137322</td><td>0.22449400</td></tr>
-	<tr><td>Variant 3</td><td> 0.9866667</td><td>0.001844466</td><td> 0.9461187</td><td>0.02057182</td></tr>
-</tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== MARGINAL EFFECT (combining populations, ignoring ancestry) ===
+OR = 0.394 , p = 4e-04 
+Interpretation: Protective 
+</pre></div>
 </div>
-<p>The results clearly demonstrate the impact of confounder control in genetic association studies. In the naive analysis without ancestry adjustment, Variant 3 appears highly significant (<span class="math notranslate nohighlight">\(p&lt;0.01\)</span>), while Variants 1 and 2 show non-significant associations. However, after controlling for ancestry, all variants lose statistical significance - Variant 3’s p-value increases dramatically from 0.0018 to 0.0206 (barely significant), while Variants 1 and 2 remain non-significant with even higher p-values. This illustrates how population structure can create spurious associations that disappear once proper confounder control is applied, highlighting the critical importance of ancestry adjustment in preventing false positive discoveries in genetic studies.</p>
+</div>
+</div>
+<p>But if we consider this in the joint model to control for it, we will get the correct answer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Joint analysis (controlling for ancestry)</span>
+<span class="n">joint_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">disease</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">variant1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ancestry</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binomial</span><span class="p">)</span>
+<span class="n">joint_OR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">joint_model</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span>
+<span class="n">joint_p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">joint_model</span><span class="p">)</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== JOINT EFFECT (controlling for ancestry) ===\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;OR =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">joint_OR</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;, p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">joint_p</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Interpretation:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">joint_OR</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Harmful&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Protective&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== JOINT EFFECT (controlling for ancestry) ===
+OR = 1.192 , p = 0.6768 
+Interpretation: Harmful 
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -821,6 +788,7 @@ $<span class="math notranslate nohighlight">\(
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-control-for-confounders">The Solution: Control for Confounders</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 </ul>
 
