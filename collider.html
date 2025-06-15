@@ -249,6 +249,7 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
@@ -259,6 +260,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
 
 
 
@@ -290,6 +292,7 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
@@ -298,7 +301,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effect</a></li>
+
 
 
 
@@ -536,6 +541,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-happens-selection-bias">Why This Happens: Selection Bias</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-colliders-in-genetic-studies">Common Colliders in Genetic Studies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-principle">The Key Principle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
@@ -624,21 +630,20 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 <li><p><strong>Colliders</strong>: Don’t control to avoid creating bias</p></li>
 </ul>
 </section>
+<section id="related-topics">
+<h2>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/confounder.html">confounder</a></p></li>
+</ul>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates collider bias, a common source of spurious associations in genetic studies. In our scenario, genetic variants affect BMI, and waist circumference also affects BMI, but there is no direct causal relationship between the genetic variants and waist circumference. BMI acts as a “collider” because it is influenced by both the genetic variants and waist circumference. When we incorrectly adjust for BMI in our analysis, we create a spurious association between genetic variants and waist circumference, even though no true direct relationship exists. This illustrates why careful consideration of causal relationships is essential before including variables as covariates in statistical models.</p>
-<p>We perform two analyses:</p>
-<ul class="simple">
-<li><p>A correct analysis testing associations between genetic variants and waist circumference</p></li>
-<li><p>An incorrect analysis controlling for BMI (which creates bias)</p></li>
-</ul>
-<p>The example shows how BMI is caused by both genetic factors AND waist circumference, making it a collider. When we incorrectly control for BMI, we create an artificial association between SNPs and waist circumference where none should exist biologically.</p>
-<p>Related topics:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/confounder.html">confounder</a></p></li>
-</ul>
+<p>Imagine you’re studying the relationship between genetic variants and waist circumference. You might think: “Since BMI is related to both genetics and body measurements, I should control for it to get a cleaner analysis, right?”</p>
+<p>Wrong! This intuitive approach can actually create false associations where none exist.</p>
+<p>Here’s the puzzle: What happens when we study the relationship between genetic variants and waist circumference, with and without “controlling” for BMI? You might expect that adding more variables to your model would make your analysis more accurate, but sometimes it can completely mislead you.</p>
+<p>We’ll explore this using a simple simulation where we know the true relationships: genetic variants affect BMI, waist circumference also affects BMI, but there’s no direct connection between genetics and waist circumference. The key question is: <em>What happens to our results when we incorrectly adjust for a variable that sits “in the middle” of our causal pathway?</em></p>
 <p>Let’s first generate the data for genotype variants, BMI and the waist circumference (independent of genetics).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -815,6 +820,7 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-happens-selection-bias">Why This Happens: Selection Bias</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-colliders-in-genetic-studies">Common Colliders in Genetic Studies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-principle">The Key Principle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>

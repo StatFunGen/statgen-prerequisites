@@ -249,6 +249,7 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
@@ -259,6 +260,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
 
 
 
@@ -290,6 +292,7 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
@@ -298,7 +301,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effect</a></li>
+
 
 
 
@@ -533,11 +538,12 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-mediation">What is Mediation?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mediation-vs-other-variable-types">Mediation vs Other Variable Types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mediation-equation">The Mediation Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mediation-framework">The Mediation Framework</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidence-for-mediation">Evidence for Mediation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-steps">Analysis Steps</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 </ul>
 
@@ -573,7 +579,7 @@ X \rightarrow C \rightarrow Y
 <li><p><span class="math notranslate nohighlight">\(Y\)</span> is the dependent variable (e.g., trait)</p></li>
 <li><p>The arrows (<span class="math notranslate nohighlight">\(\rightarrow\)</span>) indicate the direction of causal influence</p></li>
 </ul>
-<p>This diagram illustrates that a mediator (<span class="math notranslate nohighlight">\(C\)</span>) lies in the causal pathway between the independent variable (<span class="math notranslate nohighlight">\(X\)</span>) and the dependent variable (<span class="math notranslate nohighlight">\(Y\)</span>). The mediator transmits the effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>, creating an indirect causal pathway through which <span class="math notranslate nohighlight">\(X\)</span> affects <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>This diagram illustrates that a mediator (<span class="math notranslate nohighlight">\(C\)</span>) lies in the causal pathway between the independent variable (<span class="math notranslate nohighlight">\(X\)</span>) and the dependent variable (<span class="math notranslate nohighlight">\(Y\)</span>). The mediator transmits the effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>, creating a causal pathway through which <span class="math notranslate nohighlight">\(X\)</span> affects <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
@@ -586,36 +592,36 @@ X \rightarrow C \rightarrow Y
 <p>When deciding whether to control for a variable, ask:</p>
 <p><strong>Mediator</strong>: “Does this variable explain HOW the SNP affects the outcome?”</p>
 <ul class="simple">
-<li><p><strong>Action</strong>: Can control to isolate direct effects, but often want to preserve the mediated pathway</p></li>
-<li><p><strong>Structure</strong>: SNP → Mediator → Outcome</p></li>
+<li><p><strong>Action</strong>: Can control to isolate effects not through the mediator</p></li>
+<li><p><strong>Structure</strong>: SNP -&gt; Mediator -&gt; Outcome</p></li>
 </ul>
 <p><strong>Confounder</strong>: “Does this variable affect both SNP and outcome?”</p>
 <ul class="simple">
 <li><p><strong>Action</strong>: Must control to remove bias</p></li>
-<li><p><strong>Structure</strong>: SNP ← Confounder → Outcome</p></li>
+<li><p><strong>Structure</strong>: SNP &lt;- Confounder -&gt; Outcome</p></li>
 </ul>
 <p><strong>Collider</strong>: “Is this variable caused by both SNP and outcome?”</p>
 <ul class="simple">
 <li><p><strong>Action</strong>: Never control - creates bias</p></li>
-<li><p><strong>Structure</strong>: SNP → Collider ← Outcome</p></li>
+<li><p><strong>Structure</strong>: SNP -&gt; Collider &lt;- Outcome</p></li>
 </ul>
 </section>
-<section id="the-mediation-equation">
-<h2>The Mediation Equation<a class="headerlink" href="#the-mediation-equation" title="Link to this heading">#</a></h2>
+<section id="the-mediation-framework">
+<h2>The Mediation Framework<a class="headerlink" href="#the-mediation-framework" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
-\[\text{Total Effect} = \text{Direct Effect} + \text{Indirect Effect}\]</div>
+\[\text{Total Effect} = \text{Effect through Mediator} + \text{Other Effects}\]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><strong>Total Effect</strong>: SNP → Outcome (β without mediator control)</p></li>
-<li><p><strong>Direct Effect</strong>: SNP → Outcome (β with mediator control)</p></li>
-<li><p><strong>Indirect Effect</strong>: SNP → Mediator → Outcome (mediated pathway)</p></li>
+<li><p><strong>Total Effect</strong>: SNP -&gt; Outcome (<span class="math notranslate nohighlight">\(\beta\)</span> without controlling for mediator)</p></li>
+<li><p><strong>Effect through Mediator</strong>: SNP -&gt; Mediator -&gt; Outcome (the mediated pathway = <span class="math notranslate nohighlight">\(a \times b\)</span>)</p></li>
+<li><p><strong>Other Effects</strong>: Effect NOT through the mediator (<span class="math notranslate nohighlight">\(\beta\)</span> when controlling for mediator - includes unmeasured pleiotropy)</p></li>
 </ul>
 </section>
 <section id="evidence-for-mediation">
 <h2>Evidence for Mediation<a class="headerlink" href="#evidence-for-mediation" title="Link to this heading">#</a></h2>
 <p><strong>Strong evidence</strong> when controlling for the mediator:</p>
 <ol class="arabic simple">
-<li><p><strong>Reduces effect size</strong>: Total effect &gt; Direct effect</p></li>
+<li><p><strong>Reduces effect size</strong>: Total effect &gt; Effect after controlling for mediator</p></li>
 <li><p><strong>Eliminates significance</strong>: p-value increases substantially</p></li>
 <li><p><strong>Biological plausibility</strong>: Mediator is in known pathway</p></li>
 </ol>
@@ -623,43 +629,39 @@ X \rightarrow C \rightarrow Y
 <section id="analysis-steps">
 <h2>Analysis Steps<a class="headerlink" href="#analysis-steps" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Test total effect by <code class="docutils literal notranslate"><span class="pre">lm(Outcome</span> <span class="pre">~</span> <span class="pre">SNP)</span></code>  (Results should be significant).</p></li>
-<li><p>Test mediation by <code class="docutils literal notranslate"><span class="pre">lm(Outcome</span> <span class="pre">~</span> <span class="pre">SNP</span> <span class="pre">+</span> <span class="pre">Mediator)</span></code>  (SNP effect should reduce/disappear)</p></li>
+<li><p><strong>Estimate total effect</strong>: <code class="docutils literal notranslate"><span class="pre">lm(Outcome</span> <span class="pre">~</span> <span class="pre">SNP)</span></code> (should be significant)</p></li>
+<li><p><strong>Test for mediation</strong>: <code class="docutils literal notranslate"><span class="pre">lm(Outcome</span> <span class="pre">~</span> <span class="pre">SNP</span> <span class="pre">+</span> <span class="pre">Mediator)</span></code> (SNP effect should reduce/disappear)</p></li>
 </ol>
 <p><strong>Interpretation</strong>:</p>
 <ul class="simple">
-<li><p>If SNP effect disappears → <strong>Complete mediation</strong></p></li>
-<li><p>If SNP effect reduces → <strong>Partial mediation</strong></p></li>
-<li><p>If SNP effect unchanged → <strong>No mediation</strong></p></li>
+<li><p>If SNP effect disappears -&gt; <strong>Complete mediation</strong></p></li>
+<li><p>If SNP effect reduces -&gt; <strong>Partial mediation</strong></p></li>
+<li><p>If SNP effect unchanged -&gt; <strong>No mediation</strong></p></li>
 </ul>
 <p><strong>Examples of Mediation</strong>:</p>
 <ul class="simple">
-<li><p>SNP → Gene Expression → Disease</p></li>
-<li><p>SNP → Protein Levels → Metabolic Trait</p></li>
-<li><p>SNP → Hormone Levels → Growth/Development</p></li>
-<li><p>SNP → Enzyme Activity → Drug Response</p></li>
+<li><p>SNP -&gt; Gene Expression -&gt; Disease</p></li>
+<li><p>SNP -&gt; Protein Levels -&gt; Metabolic Trait</p></li>
+<li><p>SNP -&gt; Hormone Levels -&gt; Growth/Development</p></li>
+<li><p>SNP -&gt; Enzyme Activity -&gt; Drug Response</p></li>
 </ul>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/confounder.html">confounder</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/collider.html">collider</a></p></li>
+</ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates how to identify and analyze a mediator in genetic association studies. We create a simple dataset with:</p>
-<ul class="simple">
-<li><p>Genetic variants</p></li>
-<li><p>Height measurements</p></li>
-<li><p><strong>Growth hormone levels (the mediator)</strong></p></li>
-</ul>
-<p>We perform two analyses:</p>
-<ul class="simple">
-<li><p>Total Effect Analysis: The overall relationship between genetic variants and height without considering the mediator</p></li>
-<li><p>Direct Effect Analysis: The relationship between variants and height while controlling for growth hormone</p></li>
-</ul>
-<p>The example shows how genetic variants can influence height both directly and indirectly through biological mechanisms (growth hormone levels). By analyzing these pathways separately, we can better understand the biological processes underlying genetic associations and quantify how much of a genetic effect is explained by specific biological mechanisms.</p>
-<p>Related topics:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/confounder.html">confounder</a></p></li>
-</ul>
+<p>Imagine you discover that a genetic variant is associated with height. The natural follow-up question is: <em>How does this variant actually influence height?</em> Does it work through growth hormones, bone development, or some other biological pathway?</p>
+<p>Understanding the mechanism matters because it tells us where and how we might intervene. If a variant affects height through growth hormone levels, then measuring growth hormone could help us understand individual differences in height and potentially guide treatment decisions.</p>
+<p>Here’s our classic scenario: We have 5 individuals with different genetic variants, and we want to understand how one particular variant influences height. We suspect that growth hormone might be the key mediator - the biological “middleman” that explains how genes influence height.</p>
+<p>The crucial question is: <em>What happens to the genetic association with height when we account for growth hormone levels? Does the genetic effect disappear (suggesting complete mediation) or remain (suggesting other pathways)?</em></p>
+<p>The crucial question is: <em>If growth hormone is truly the <strong>only</strong> mechanism by which this variant affects height, then controlling for growth hormone levels should remove the genetic association with height.</em> Why? Because if this is the only pathway, then once we account for the mediator, there should be no remaining pathway for the variant to influence height.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -715,7 +717,7 @@ X \rightarrow C \rightarrow Y
 <p>Then we assign the height for the individuals (mediated by hormones):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create mediator structure: Variant 3 → Growth Hormone → Height</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create mediator structure: Variant 3 -&gt; Growth Hormone -&gt; Height</span>
 <span class="c1"># Height is caused by:</span>
 <span class="c1"># 1. Direct effect from growth hormone (the mediator)</span>
 <span class="c1"># 2. Small effects from variants 1 and 2 (not mediated)</span>
@@ -781,7 +783,8 @@ X \rightarrow C \rightarrow Y
 </table>
 </div></div>
 </div>
-<p>The results perfectly demonstrate the concept of mediation in genetic association studies. In the total effect analysis (without controlling for growth hormone), Variant 3 shows significant associations with height (p = 0.007). However, when we control for growth hormone as a mediator, the pattern dramatically changes: Variant 3’s association completely disappears (p-value increases from 0.007 to 0.337), indicating that its effect on height is entirely mediated through growth hormone. This illustrates the key principle that controlling for a mediator removes the indirect effect, revealing only the direct pathway. For Variant 3, the loss of significance after controlling for growth hormone confirms that this variant affects height specifically through its influence on growth hormone levels, representing a classic mediation pathway in genetic studies.</p>
+<p>The results perfectly demonstrate the concept of mediation in genetic association studies. In the total effect analysis (without controlling for growth hormone), Variant 3 shows significant associations with height (p = 0.007). However, when we control for growth hormone as a mediator, the pattern dramatically changes: Variant 3’s association completely disappears (p-value increases from 0.007 to 0.337), indicating that its effect on height is entirely through the growth hormone pathway rather than through other mechanisms.</p>
+<p>This illustrates the key principle that controlling for a mediator reveals the effect NOT through that mediator. For Variant 3, the loss of significance after controlling for growth hormone confirms that this variant affects height specifically through its influence on growth hormone levels, with no additional pathways contributing to the association. This represents a classic complete mediation scenario in genetic studies.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -854,11 +857,12 @@ X \rightarrow C \rightarrow Y
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-mediation">What is Mediation?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mediation-vs-other-variable-types">Mediation vs Other Variable Types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mediation-equation">The Mediation Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mediation-framework">The Mediation Framework</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidence-for-mediation">Evidence for Mediation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-steps">Analysis Steps</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 </ul>
 

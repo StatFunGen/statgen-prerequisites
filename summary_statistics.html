@@ -249,6 +249,7 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
 <ul class="nav bd-sidenav">
@@ -259,6 +260,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
 
 
 
@@ -290,6 +292,7 @@
 
 
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
@@ -298,7 +301,9 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effect</a></li>
+
 
 
 
@@ -531,11 +536,14 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-staistics">From OLS to Summary Staistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-and-p-value">Z-score and P-value</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table">Example GWAS Summary Statistics Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics-as-data-input">Summary Statistics as Data Input</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-statistics">From OLS to Summary Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-measurements-for-analysis">Standardized Measurements for Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-gwas-data-format">Standard GWAS Data Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-vs-bayesian-perspectives">Frequentist vs Bayesian Perspectives</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-summary-statistics-using-linear-and-logistic-models">Example 1: Summary Statistics using Linear and Logistic Models</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-outcome-height">Continuous Outcome – Height</a></li>
@@ -564,7 +572,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics">
 <h1>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Link to this heading">#</a></h1>
-<p>Summary statistics in genetics capture <strong>the association between genetic variants and traits</strong>, allowing researchers to share and analyze meaningful associations <strong>without requiring access to the complete individual-level genotype and phenotype data</strong>.</p>
+<p>Summary statistics in genetics capture how each genetic variant relates to a trait, where <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> for a SNP is a noisy measurement of the X-Y relationship</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -572,59 +580,48 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>For a specific genetic variant, <span class="math notranslate nohighlight">\(\beta\)</span> represents the estimated effect size (how much the trait changes per additional copy of the variant), and <span class="math notranslate nohighlight">\(\text{SE}(\beta)\)</span> is the standard error measuring the uncertainty of this estimate. The Z-score standardizes the effect by its precision, providing a measure of statistical significance that can be compared across different variants and studies.</p>
+<p>Summary statistics provide standardized measurements that can be shared and combined across studies. The Z-score transforms each variant’s association measurement into a comparable format:</p>
 <div class="math notranslate nohighlight">
 \[
-Z = \frac{\beta}{\text{SE}(\beta)}
+Z = \frac{\hat{\beta}}{\text{SE}(\hat{\beta})}
 \]</div>
+<p>This standardization enables researchers to integrate data across different studies, populations, and analysis methods in downstream applications.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="from-ols-to-summary-staistics">
-<h2>From OLS to Summary Staistics<a class="headerlink" href="#from-ols-to-summary-staistics" title="Link to this heading">#</a></h2>
-<p>In the section of <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a>, we try to minimize the residual sum of squares (RSS) between the observed and predicted trait values, and both <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> are scaled to have mean 0 and variance 1, we get the following formula for the OLS estimator of <span class="math notranslate nohighlight">\( \beta_j\)</span>:</p>
+<section id="summary-statistics-as-data-input">
+<h2>Summary Statistics as Data Input<a class="headerlink" href="#summary-statistics-as-data-input" title="Link to this heading">#</a></h2>
+<p>Summary statistics represent the primary data format for most post-GWAS analyses. Rather than sharing raw genotype and phenotype data, researchers distribute these standardized measurements which capture the essential X-Y relationships needed for downstream methods.</p>
+</section>
+<section id="from-ols-to-summary-statistics">
+<h2>From OLS to Summary Statistics<a class="headerlink" href="#from-ols-to-summary-statistics" title="Link to this heading">#</a></h2>
+<p>When we perform GWAS analysis using OLS regression on standardized data (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> scaled to mean 0 and variance 1), we obtain:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\beta}_j = \frac{\mathbf{X}_j^T \mathbf{Y}}{\mathbf{X}_j^T \mathbf{X}_j} = \mathbf{X}_j^T \mathbf{Y} = \text{Cov}(\mathbf{X}_j, \mathbf{Y}) = r_{\mathbf{X_j}, \mathbf{Y}} 
 \]</div>
-<p>And the variance of <span class="math notranslate nohighlight">\( \hat{\beta}_j \)</span> can be calculated as:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{Var}(\hat{\beta}_j) = \frac{\sigma^2}{\mathbf{X}_j^T \mathbf{X}_j} = \sigma^2
 \]</div>
-<p>Where <span class="math notranslate nohighlight">\( \sigma^2 \)</span> is the residual variance, which is typically estimated from the residuals of the model.</p>
-<p>In the section where we discuss the <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/marginal_joint_effects.html">marginal and joint effects</a>, we use OLS again to estimate the joint effects. In the summary statistics, the <span class="math notranslate nohighlight">\(\beta\)</span> can be either marginal effect or joint effect, depending on what method one uses to generate it.</p>
+<p>These become the building blocks for many subsequent analyses. The <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> values from marginal or joint analysis serve as input measurements for methods like fine-mapping, polygenic risk scores, and Mendelian randomization.</p>
 </section>
-<section id="z-score-and-p-value">
-<h2>Z-score and P-value<a class="headerlink" href="#z-score-and-p-value" title="Link to this heading">#</a></h2>
-<ul>
-<li><p>Z-score</p>
-<ul>
-<li><p>Z-score is the standardized effect size</p>
+<section id="standardized-measurements-for-analysis">
+<h2>Standardized Measurements for Analysis<a class="headerlink" href="#standardized-measurements-for-analysis" title="Link to this heading">#</a></h2>
+<p><strong>Z-score:</strong> The standardized measurement that enables cross-study comparison:</p>
 <div class="math notranslate nohighlight">
 \[
-    Z_j = \frac{\hat{\beta}_j}{SE(\hat{\beta}_j)} = \frac{\hat{\beta}_j}{\sqrt{\text{Var}(\hat{\beta}_j)}} = \frac{\hat{\beta}_j}{\sigma}
-    \]</div>
-<ul class="simple">
-<li><p>Under the null hypothesis of no association (<span class="math notranslate nohighlight">\(\beta_j = 0\)</span>), <span class="math notranslate nohighlight">\(Z_j\)</span> follows a standard normal distribution, which forms the basis for statistical testing.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>P-value</p>
-<ul class="simple">
-<li><p>Two-sided p-value:
-$<span class="math notranslate nohighlight">\(
+Z_j = \frac{\hat{\beta}_j}{SE(\hat{\beta}_j)} = \frac{\hat{\beta}_j}{\sigma}
+\]</div>
+<p><strong>P-value:</strong> Statistical significance of each measurement:</p>
+<div class="math notranslate nohighlight">
+\[
 P = 2 \times (1 - \Phi(|Z|))
-\)</span>$</p></li>
-<li><p><span class="math notranslate nohighlight">\(\Phi\)</span> is the cumulative distribution function of the standard normal distribution</p></li>
-<li><p>Represents the probability of observing an effect as extreme as β by chance</p></li>
-</ul>
-</li>
-</ul>
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\Phi\)</span> is the cumulative distribution function of the standard normal distribution.</p>
 </section>
-<section id="example-gwas-summary-statistics-table">
-<h2>Example GWAS Summary Statistics Table<a class="headerlink" href="#example-gwas-summary-statistics-table" title="Link to this heading">#</a></h2>
+<section id="standard-gwas-data-format">
+<h2>Standard GWAS Data Format<a class="headerlink" href="#standard-gwas-data-format" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>SNP (rsID)</p></th>
@@ -680,26 +677,45 @@ P = 2 \times (1 - \Phi(|Z|))
 </tbody>
 </table>
 </div>
+<p>This tabular format provides the essential data inputs that downstream methods require:</p>
+<p><strong>Data Fields:</strong></p>
 <ul class="simple">
-<li><p><strong>SNP (rsID)</strong>: Identifier for the single nucleotide polymorphism, such as <code class="docutils literal notranslate"><span class="pre">rs12345</span></code> or <code class="docutils literal notranslate"><span class="pre">chr21:295472:G:A</span></code>.</p></li>
-<li><p><strong>CHR</strong>: Chromosome number where the SNP is located. Other common names: <code class="docutils literal notranslate"><span class="pre">chrom</span></code>, <code class="docutils literal notranslate"><span class="pre">chromosome</span></code></p></li>
-<li><p><strong>BP</strong>: Genomic position of the SNP, specific to a reference genome assembly (e.g., GRCh37 or GRCh38). Other common names: <code class="docutils literal notranslate"><span class="pre">pos</span></code>, <code class="docutils literal notranslate"><span class="pre">position</span></code></p></li>
-<li><p><strong>A1 and A2</strong>: The two alleles at the variant site, with one designated as the effect allele. Other common names: <code class="docutils literal notranslate"><span class="pre">REF</span></code> and <code class="docutils literal notranslate"><span class="pre">ALT</span></code>, <code class="docutils literal notranslate"><span class="pre">Effect</span> <span class="pre">allele</span></code> and <code class="docutils literal notranslate"><span class="pre">Other</span> <span class="pre">allele</span></code></p>
-<ul>
-<li><p>Note that one allele may be effect allele in one study but alternative allele in another.</p></li>
-</ul>
-</li>
-<li><p><strong>MAF</strong>: The frequency of the less common allele for variant <span class="math notranslate nohighlight">\(j\)</span> in the sample.</p></li>
-<li><p><strong>EAF</strong>: The frequency of the effect allele for variant <span class="math notranslate nohighlight">\(j\)</span> in the sample (note that this doesn’t have to be the minor allele) (sometimes called <code class="docutils literal notranslate"><span class="pre">RAF</span></code>: risk allele frequency)</p></li>
-<li><p><strong>BETA</strong>: Estimated effect size (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>), representing the association between the effect allele and the trait. Always check which allele it corresponds to.</p></li>
-<li><p><strong>SE</strong>: Standard error of the effect size estimat, reflecting the uncertainty in the effect size estimate. It is computed as <span class="math notranslate nohighlight">\(SE_j = \sqrt{\frac{\hat{\sigma}^2}{\mathbf{X}_j^T \mathbf{X}_j}}\)</span>, where <span class="math notranslate nohighlight">\( \hat{\sigma}^2 \)</span> is the estimated residual variance from the model.</p></li>
-<li><p><strong>Z</strong>: Standardized test statistic, computed as <span class="math notranslate nohighlight">\(Z = \frac{\beta}{\text{SE}}\)</span>.</p></li>
-<li><p><strong>P-value</strong>: Significance of the association, testing whether the SNP has an effect on the trait, <span class="math notranslate nohighlight">\(p_j = 2 \times (1 - \Phi(|t_j|))\)</span>, where <span class="math notranslate nohighlight">\( \Phi \)</span> is the cumulative distribution function (CDF) of the standard normal distribution. Sometimes <code class="docutils literal notranslate"><span class="pre">LOG10P</span></code> is reported which is the <span class="math notranslate nohighlight">\(-\log_{10}P\)</span>.</p></li>
-<li><p><strong>N</strong>: Number of individuals included in the analysis.</p></li>
-<li><p><strong>N_cases</strong>: Number of individuals with the trait (cases), relevant for case-control studies.</p></li>
-<li><p><strong>N_ctrls</strong>: Number of individuals without the trait (controls), relevant for case-control studies.</p></li>
+<li><p><strong>SNP (rsID)</strong>: Variant identifier for matching across datasets</p></li>
+<li><p><strong>CHR/BP</strong>: Genomic coordinates for positional analysis</p></li>
+<li><p><strong>A1/A2</strong>: Allele definitions for effect direction consistency</p></li>
+<li><p><strong>MAF/EAF</strong>: Allele frequencies for population matching and quality control</p></li>
+<li><p><strong>BETA/SE</strong>: The core association measurements with uncertainty quantification</p></li>
+<li><p><strong>Z-score/P-value</strong>: Standardized significance measures for prioritization</p></li>
+<li><p><strong>N</strong>: Sample size for meta-analysis weighting</p></li>
 </ul>
 </section>
+<section id="frequentist-vs-bayesian-perspectives">
+<h2>Frequentist vs Bayesian Perspectives<a class="headerlink" href="#frequentist-vs-bayesian-perspectives" title="Link to this heading">#</a></h2>
+<p>The formulation above represents the <strong>frequentist view</strong>, where <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> is a point estimate with associated uncertainty <span class="math notranslate nohighlight">\(\text{SE}(\hat{\beta}_j)\)</span>.</p>
+<p>In the <strong>Bayesian framework</strong>, we start with the hierarchical model:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y} = \mathbf{X}\beta + \boldsymbol{\epsilon}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_j \sim N(\beta_j, \sigma^2)
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> is treated as a noisy observation of the true parameter <span class="math notranslate nohighlight">\(\beta_j\)</span> and the <strong>noisy</strong> comes from the assumption that it comes from a distribution rather than a fixed value. This allows Bayesian methods to quantify the uncertainty and place informative priors on effect sizes.</p>
+<p><em>Note: Don’t worry if this Bayesian perspective seems abstract right now. We recommend revisiting this section after reading through the topics in the Related Topics section, which will provide concrete examples of how this framework is applied in practice.</em></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">Odds Ratio</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/mediator.html">mediator</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/confounder.html">confounder</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/marginal_joint_effects.html">marginal/joint effects model</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">random effect</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html">Bayesian normal mean model</a></p></li>
+</ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
@@ -773,14 +789,6 @@ P = 2 \times (1 - \Phi(|Z|))
 <section id="example-1-summary-statistics-using-linear-and-logistic-models">
 <h2>Example 1: Summary Statistics using Linear and Logistic Models<a class="headerlink" href="#example-1-summary-statistics-using-linear-and-logistic-models" title="Link to this heading">#</a></h2>
 <p>In this example, we simulate a simple genome-wide association study (GWAS) by testing the relationship between three genetic variants and trait across five individuals.</p>
-<ul class="simple">
-<li><p>Related topics:</p>
-<ul>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">Odds Ratio</a></p></li>
-</ul>
-</li>
-</ul>
 <section id="continuous-outcome-height">
 <h3>Continuous Outcome – Height<a class="headerlink" href="#continuous-outcome-height" title="Link to this heading">#</a></h3>
 <p>Let’s first use OLS to compute the summary statistics for a continuous variable — height (we have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a>).</p>
@@ -903,14 +911,6 @@ Warning message:
 <h2>Example 2: Summary Statistics when considering covariates<a class="headerlink" href="#example-2-summary-statistics-when-considering-covariates" title="Link to this heading">#</a></h2>
 <p>For this example we assume you already understand the basics of summary statistics and the concepts of covariates.</p>
 <p>We calculate the summary statistics using OLS and consider age as the covariate.</p>
-<ul class="simple">
-<li><p>Related:</p>
-<ul>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/mediator.html">Covariates, e.g., mediator</a></p></li>
-</ul>
-</li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sumstats_age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sumstats_0</span>
@@ -990,14 +990,6 @@ Warning message:
 <h2>Example 3: Marginal and Joint Effects<a class="headerlink" href="#example-3-marginal-and-joint-effects" title="Link to this heading">#</a></h2>
 <p>In Example 1 and 2, we always consider each variant independently (using the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop) and treat them one by one. The summary statistics, therefore, describes the marginal effect of each variant on the trait value.</p>
 <p>However, this ignores the LD between the variants. And when multiple variants are considered in a single model at the same time, we can obtain the joint effects.</p>
-<ul class="simple">
-<li><p>Related topics:</p>
-<ul>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/marginal_joint_effects.html">marginal/joint effects model</a></p></li>
-</ul>
-</li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sumstats_joint</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sumstats_0</span>
@@ -1255,11 +1247,14 @@ Warning message:
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-staistics">From OLS to Summary Staistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-and-p-value">Z-score and P-value</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gwas-summary-statistics-table">Example GWAS Summary Statistics Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics-as-data-input">Summary Statistics as Data Input</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-statistics">From OLS to Summary Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-measurements-for-analysis">Standardized Measurements for Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-gwas-data-format">Standard GWAS Data Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-vs-bayesian-perspectives">Frequentist vs Bayesian Perspectives</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-summary-statistics-using-linear-and-logistic-models">Example 1: Summary Statistics using Linear and Logistic Models</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-outcome-height">Continuous Outcome – Height</a></li>
