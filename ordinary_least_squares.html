@@ -229,6 +229,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
 
 
@@ -269,6 +270,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
+
 
 
 
@@ -536,6 +538,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#genomic-intuition">Genomic Intuition</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-form-for-single-marker-regression">Simplified Form for Single Marker Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-properties">Statistical Properties</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unbiasedness">Unbiasedness</a></li>
@@ -546,6 +549,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
@@ -565,7 +569,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ordinary-least-squares">
 <h1>Ordinary Least Squares<a class="headerlink" href="#ordinary-least-squares" title="Link to this heading">#</a></h1>
-<p>Single marker linear regression in statistical genetics explores how a specific genetic variant influences a trait by estimating a linear relationship between the variant’s presence and the trait value.</p>
+<p>Single marker linear regression measures how well a genetic variant “aligns” with a trait by projecting the trait values onto the variant’s genotype direction.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -573,10 +577,11 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>In the single marker linear regression
-$<span class="math notranslate nohighlight">\(
-\mathbf{Y} = \mathbf{X} \beta  + \boldsymbol{\epsilon}
-\)</span>$</p>
+<p>In the single marker linear regression</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y} = \mathbf{X} \beta + \boldsymbol{\epsilon}
+\]</div>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of trait values for <span class="math notranslate nohighlight">\(N\)</span> individuals</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of the genotype vector for a single variant across <span class="math notranslate nohighlight">\(N\)</span> individuals</p></li>
@@ -591,25 +596,35 @@ $<span class="math notranslate nohighlight">\(
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="genomic-intuition">
+<h2>Genomic Intuition<a class="headerlink" href="#genomic-intuition" title="Link to this heading">#</a></h2>
+<p>The OLS estimator has a beautiful geometric interpretation that makes intuitive sense in genomics. At its core, OLS is measuring <strong>how much two vectors align in the same direction</strong> through their inner product.</p>
+<p><strong>The Inner Product <span class="math notranslate nohighlight">\(\mathbf{X}^T\mathbf{Y}\)</span></strong>: This measures the projection of the phenotype vector <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> onto the genotype vector <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In genomic terms, it captures how much the phenotype and genotype “move together” - when genotype values are high, are phenotype values also high? The inner product quantifies this concordance.</p>
+<p><strong>Why the Scaling Factor <span class="math notranslate nohighlight">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span>?</strong>: This scalar normalization is crucial because we want our measure of association to be <strong>scale-independent</strong>. Whether we code genotypes as (0,1,2) or (0,2,4), or measure height in centimeters versus meters, the strength of association shouldn’t change due to arbitrary scaling choices. The factor <span class="math notranslate nohighlight">\((\mathbf{X}^T\mathbf{X})^{-1} = \frac{1}{\sum_{i=1}^N X_i^2}\)</span> normalizes by the “magnitude” of the genotype vector, making the result invariant to scaling.</p>
+<p><strong>The Complete Picture</strong>: OLS finds the linear combination of genotypes that aligns as closely as possible with the phenotype vector. It’s asking: “What’s the best way to scale the genotype vector so that it points in the same direction as the phenotype vector?” The answer is the OLS coefficient <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>.</p>
+</section>
 <section id="simplified-form-for-single-marker-regression">
 <h2>Simplified Form for Single Marker Regression<a class="headerlink" href="#simplified-form-for-single-marker-regression" title="Link to this heading">#</a></h2>
-<p>For a single marker regression, the OLS estimator simplifies to:
-$<span class="math notranslate nohighlight">\(
+<p>For a single marker regression, the OLS estimator simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[
 \hat{\beta}_{\text{OLS}} = \frac{\sum_{i=1}^N X_i Y_i}{\sum_{i=1}^N X_i^2}
-\)</span>$</p>
-<p>If genotypes are centered (mean = 0), this becomes the sample covariance divided by sample variance:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>If genotypes are centered (mean = 0), this becomes the sample covariance divided by sample variance:</p>
+<div class="math notranslate nohighlight">
+\[
 \hat{\beta}_{\text{OLS}} = \frac{\text{Cov}(X, Y)}{\text{Var}(X)}
-\)</span>$</p>
+\]</div>
 </section>
 <section id="statistical-properties">
 <h2>Statistical Properties<a class="headerlink" href="#statistical-properties" title="Link to this heading">#</a></h2>
 <section id="unbiasedness">
 <h3>Unbiasedness<a class="headerlink" href="#unbiasedness" title="Link to this heading">#</a></h3>
-<p>Under the assumption that <span class="math notranslate nohighlight">\(E[\boldsymbol{\epsilon}|\mathbf{X}] = 0\)</span>, we have
-$<span class="math notranslate nohighlight">\(
+<p>Under the assumption that <span class="math notranslate nohighlight">\(E[\boldsymbol{\epsilon}|\mathbf{X}] = 0\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[
 E[\hat{\beta}_{\text{OLS}}] = \beta
-\)</span>$</p>
+\]</div>
 </section>
 <section id="variance-of-the-estimator">
 <h3>Variance of the Estimator<a class="headerlink" href="#variance-of-the-estimator" title="Link to this heading">#</a></h3>
@@ -638,14 +653,19 @@ E[\hat{\beta}_{\text{OLS}}] = \beta
 </section>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="example">
-<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>This example demonstrates basic genetic association analysis for height using 5 individuals and 3 genetic variants. (<strong>Note: N&lt;10 is insufficient for reliable OLS estimates in practice; this is purely illustrative.</strong>)</p>
-<p>We build on the previous genotype simulation and standardization framework by assigning height phenotypes to each individual and standardizing these trait values. We then conduct single-marker linear regression for each variant, estimating OLS effect sizes using both R’s <code class="docutils literal notranslate"><span class="pre">lm</span></code> function and our explicit formula derived above.</p>
-<p>Related topics:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/genotype_coding.html">genotype coding</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">odds ratio</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html">Bayesian normal mean model</a></p></li>
 </ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>How do we actually apply that OLS formula to real genetic data? Let’s work through a concrete example with 5 individuals and 3 genetic variants to see the math in action.</p>
+<p>Imagine we have genotype data (like “CC”, “TT”, “CT”) and height measurements for 5 people. We have converted those nucleotides into numbers that we can analyze in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/genotype_coding.html">Lecture: genotype coding</a>, now the key question is <em>do any of these variants actually influence height?</em></p>
+<p>We’ll transform the genotypes using an additive model (counting alternative alleles), then apply our OLS formula both manually and using R’s built-in function. This will show you exactly how that geometric intuition - the projection and alignment between genotype and phenotype vectors - translates into real code and results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -827,7 +847,7 @@ E[\hat{\beta}_{\text{OLS}}] = \beta
 
 <span class="c1"># Save with transparent background</span>
 <span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;cartoons/ordinary_least_squares.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span>
-<span class="w">       </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span>
 <span class="w">       </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">       </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
 </pre></div>
@@ -909,6 +929,7 @@ E[\hat{\beta}_{\text{OLS}}] = \beta
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#genomic-intuition">Genomic Intuition</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-form-for-single-marker-regression">Simplified Form for Single Marker Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-properties">Statistical Properties</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unbiasedness">Unbiasedness</a></li>
@@ -919,6 +940,7 @@ E[\hat{\beta}_{\text{OLS}}] = \beta
 </li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
