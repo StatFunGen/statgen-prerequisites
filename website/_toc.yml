@@ -64,6 +64,7 @@ parts:
       - file: Bayesian_frequentist
       - file: Bayes_rule
       - file: Bayes_factor
+      - file: p_value
   
   - caption: Bayes Models
     chapters:
