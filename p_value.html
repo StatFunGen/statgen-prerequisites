@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hardy-Weinberg Equilibrium &#8212; Statistical backgrounds for gene mapping</title>
+    <title>p-value &#8212; Statistical backgrounds for gene mapping</title>
   
   
   
@@ -59,11 +59,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Hardy_Weinberg_equilibrium';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'p_value';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Linkage Disequilibrium" href="linkage_disequilibrium.html" />
-    <link rel="prev" title="Minor Allele Frequency" href="minor_allele_frequency.html" />
+    <link rel="next" title="Bayesian Normal Mean Model" href="Bayesian_normal_mean_model.html" />
+    <link rel="prev" title="Bayes Factor" href="Bayes_factor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,7 +173,7 @@
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
 
 
@@ -187,7 +187,7 @@
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hardy-Weinberg Equilibrium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
 
 
 
@@ -336,7 +336,7 @@
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_frequentist.html">Bayesian and Frequentist</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bayes_rule.html">Bayes Rule</a></li>
 
@@ -351,7 +351,7 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="p_value.html">p-value</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">p-value</a></li>
 
 
 
@@ -446,7 +446,7 @@
       
       
       
-      <li><a href="_sources/Hardy_Weinberg_equilibrium.ipynb" target="_blank"
+      <li><a href="_sources/p_value.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -530,7 +530,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Hardy-Weinberg Equilibrium</h1>
+    <h1>p-value</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -540,17 +540,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Hardy-Weinberg Equilibrium</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">p-value</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-a-contingency-table">Setup a Contingency Table</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-hwe-doesn-t-hold">When HWE Doesn’t Hold</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-hwe-matters-in-practice">Why HWE Matters in Practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-definition">Mathematical Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-limitation-asymmetric-logic">Critical Limitation: Asymmetric Logic</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-bayesian-inference">Connection to Bayesian Inference</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
 </ul>
 
             </nav>
@@ -563,94 +566,87 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="hardy-weinberg-equilibrium">
-<h1>Hardy-Weinberg Equilibrium<a class="headerlink" href="#hardy-weinberg-equilibrium" title="Link to this heading">#</a></h1>
-<p>The Hardy-Weinberg equilibrium (HWE) describes how allele and genotype frequencies remain <strong>constant</strong> across generations in a population under simple Mendelian inheritance <strong>without any interference</strong>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="p-value">
+<h1>p-value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h1>
+<p>In null-hypothesis significance testing, the p-value is the probability of obtaining test results at least as extreme as the result actually observed, under the assumption that the null hypothesis is correct.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="Fig" src="_images/Slide3.png" /></p>
+<p><img alt="Fig" src="_images/Slide29.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>For a genetic variant with two alleles (<code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code>) with frequencies <span class="math notranslate nohighlight">\(f_A\)</span> and <span class="math notranslate nohighlight">\(f_a\)</span> respectively (where <span class="math notranslate nohighlight">\(f_A + f_a = 1\)</span>):</p>
+<p>The p-value represents the probability of observing a test statistic at least as extreme as what was actually observed, assuming the null hypothesis is true.</p>
 <div class="math notranslate nohighlight">
 \[
-(f_A + f_a)^2 = f_A^2 + 2f_A f_a + f_a^2 = 1
+p\text{-value} = P(\text{Test Statistic is as extreme or more extreme than observed} | H_0 \text{is true})
 \]</div>
-<p>Where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(f_A^2\)</span> = frequency of genotype AA</p></li>
-<li><p><span class="math notranslate nohighlight">\(2f_A f_a\)</span> = frequency of genotype Aa</p></li>
-<li><p><span class="math notranslate nohighlight">\(f_a^2\)</span> = frequency of genotype aa</p></li>
-</ul>
-<p><strong>HWE is fundamentally a binomial expansion with power 2.</strong> The general intuition of binomial expansion is: if you have two options and you make the choice <span class="math notranslate nohighlight">\(n\)</span> times, what are the possible outcomes and how frequently is each one?</p>
-<p>In HWE, we have two alleles (A and a) and we’re making the “choice” twice (once from each parent), so <span class="math notranslate nohighlight">\(n=2\)</span>. The binomial expansion <span class="math notranslate nohighlight">\((f_A + f_a)^2\)</span> directly gives us:</p>
-<ul class="simple">
-<li><p>How many ways to get each genotype combination</p></li>
-<li><p>The probability of each genotype under random mating</p></li>
-</ul>
-<p>This mathematical structure immediately tells us that HWE is about <strong>random sampling of alleles twice</strong> - exactly what happens when two parents contribute one allele each to their offspring under Mendelian inheritance.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="setup-a-contingency-table">
-<h2>Setup a Contingency Table<a class="headerlink" href="#setup-a-contingency-table" title="Link to this heading">#</a></h2>
-<p>If HWE holds, it means maternal and paternal alleles are chosen independently (as in our binomial expansion). We can test this independence directly using a 2×2 contingency table.</p>
-<p>Set up the data as:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p>Paternal A</p></th>
-<th class="head"><p>Paternal a</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Maternal A</strong></p></td>
-<td><p>AA count</p></td>
-<td><p>Aa count</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Maternal a</strong></p></td>
-<td><p>Aa count</p></td>
-<td><p>aa count</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Under HWE, the <strong>odds ratio should approximately equal 1.0</strong> (which we will discuss further in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">Lecture: odds ratio</a>), meaning:</p>
-<ul class="simple">
-<li><p>The odds of getting allele A vs. a from the father are the same regardless of which allele came from the mother</p></li>
-<li><p>Maternal and paternal allele choices are independent (exactly what our binomial expansion assumes)</p></li>
-</ul>
+<section id="mathematical-definition">
+<h2>Mathematical Definition<a class="headerlink" href="#mathematical-definition" title="Link to this heading">#</a></h2>
+<p>For a test statistic <span class="math notranslate nohighlight">\(T\)</span> and observed value <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+p\text{-value} &amp;= P(T \geq t | H_0) \quad \text{[right-tailed test]} \\
+p\text{-value} &amp;= P(T \leq t | H_0) \quad \text{[left-tailed test]} \\
+p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]}
+\end{align}
+\end{split}\]</div>
+<section id="key-properties">
+<h3>Key Properties<a class="headerlink" href="#key-properties" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Monotonic Relationship</strong>: Smaller p-values correspond to more extreme test statistics</p></li>
+<li><p><strong>Significance Level</strong>: We reject <span class="math notranslate nohighlight">\(H_0\)</span> if <span class="math notranslate nohighlight">\(p\text{-value} \leq \alpha\)</span></p></li>
+</ol>
 </section>
-<section id="when-hwe-doesn-t-hold">
-<h2>When HWE Doesn’t Hold<a class="headerlink" href="#when-hwe-doesn-t-hold" title="Link to this heading">#</a></h2>
-<p>Common reasons why we might see deviations from HWE:</p>
+<section id="critical-limitation-asymmetric-logic">
+<h3>Critical Limitation: Asymmetric Logic<a class="headerlink" href="#critical-limitation-asymmetric-logic" title="Link to this heading">#</a></h3>
+<p><strong>Important</strong>: The null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> can never be “accepted” or “proven true” - it can only be:</p>
 <ul class="simple">
-<li><p><strong>Non-random mating</strong>: People don’t choose partners randomly - they might prefer similar traits, leading to more homozygotes than expected</p></li>
-<li><p><strong>Population mixing</strong>: When people from different populations have children together, it can create patterns that don’t match HWE</p></li>
-<li><p><strong>Technical issues</strong>: Genotyping errors or poor DNA quality can make it look like HWE is violated</p></li>
+<li><p><strong>Rejected</strong> (when <span class="math notranslate nohighlight">\(p\text{-value} \leq \alpha\)</span>): Strong evidence against <span class="math notranslate nohighlight">\(H_0\)</span></p></li>
+<li><p><strong>Not rejected</strong> (when <span class="math notranslate nohighlight">\(p\text{-value} &gt; \alpha\)</span>): Insufficient evidence to reject <span class="math notranslate nohighlight">\(H_0\)</span></p></li>
 </ul>
+<p>“Not rejected” is not “accepted” or “true”. Absence of evidence is not evidence of absence.</p>
 </section>
-<section id="why-hwe-matters-in-practice">
-<h2>Why HWE Matters in Practice<a class="headerlink" href="#why-hwe-matters-in-practice" title="Link to this heading">#</a></h2>
+</section>
+<section id="connection-to-bayesian-inference">
+<h2>Connection to Bayesian Inference<a class="headerlink" href="#connection-to-bayesian-inference" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Quality control</strong>: If many genetic variants violate HWE in your dataset, it often means there are technical problems with the genotyping</p></li>
-<li><p><strong>Baseline expectation</strong>: HWE tells us what “normal” looks like, so we can spot when something interesting (or problematic) is happening</p></li>
+<li><p><strong>Important</strong>: P-values are almost always reported in <strong>summary statistics</strong>, but it is not inference. They summarize how compatible the observed data is with <span class="math notranslate nohighlight">\(H_0\)</span>, but they don’t directly provide probabilistic statements about hypotheses.</p></li>
+<li><p><strong>How does Bayesian inference answer the same question</strong>: What’s the probability that the parameter differs from zero?</p>
+<ul>
+<li><p>In Bayesian inference with posterior distribution <span class="math notranslate nohighlight">\(N(\mu, \sigma^2)\)</span>, we can check: Does the 95% High Probability Density (HPD) region cover zero?</p></li>
+<li><p>This directly answers the question.</p></li>
 </ul>
+</li>
+<li><p><strong>False Discovery Rate (FDR)</strong>: In Bayesian mixture models, we can compute FDR based on data <span class="math notranslate nohighlight">\(P(H_0 | \text{data})\)</span>. This provides direct probabilistic interpretations that p-values cannot.</p></li>
+<li><p><strong>Bayesian Hypothesis Testing</strong>: Given a posterior distribution, Bayesian hypothesis testing is more intuitive:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+P(H_0 | \text{data}) = \frac{P(\text{data} | H_0) \cdot P(H_0)}{P(\text{data})}
+\]</div>
+<p>This directly gives the probability that <span class="math notranslate nohighlight">\(H_0\)</span> is true, which is what researchers often think they’re getting from p-values.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
 <h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/genotype_coding.html">genotype coding</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">odds ratio</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayes_factor.html">Bayes factor</a></p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="example">
-<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>We demonstrate how to test for Hardy-Weinberg equilibrium using the classic scarlet tiger moth data in Example 1 in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">Lecture: odds ratio</a>. This example shows how to set up a 2×2 contingency table to test independence of maternal and paternal alleles, calculate odds ratios, and perform chi-square tests to determine if HWE holds in real data. Now you can skip this section.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stephens999.github.io/fiveMinuteStats/BF_and_pvalue.html">Connection between Bayes factor and p-value</a></p></li>
+<li><p><a class="reference external" href="https://stephens999.github.io/fiveMinuteStats/pvalue_difficult_calibrate_example.html">Example of difficulty of calibrating p values</a></p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -684,20 +680,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="minor_allele_frequency.html"
+       href="Bayes_factor.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Minor Allele Frequency</p>
+        <p class="prev-next-title">Bayes Factor</p>
       </div>
     </a>
     <a class="right-next"
-       href="linkage_disequilibrium.html"
+       href="Bayesian_normal_mean_model.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linkage Disequilibrium</p>
+        <p class="prev-next-title">Bayesian Normal Mean Model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -717,17 +713,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Hardy-Weinberg Equilibrium</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">p-value</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-a-contingency-table">Setup a Contingency Table</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-hwe-doesn-t-hold">When HWE Doesn’t Hold</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-hwe-matters-in-practice">Why HWE Matters in Practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-definition">Mathematical Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-limitation-asymmetric-logic">Critical Limitation: Asymmetric Logic</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-bayesian-inference">Connection to Bayesian Inference</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
 </ul>
 
   </nav></div>
