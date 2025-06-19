@@ -516,9 +516,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -534,19 +532,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Notation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notation-table"><strong>Notation Table</strong></a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-in-statistical-genetics-and-related-topics">Concepts in statistical genetics and related topics</a></li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -558,8 +543,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="notation">
 <h1>Notation<a class="headerlink" href="#notation" title="Link to this heading">#</a></h1>
-<section id="notation-table">
-<h2><strong>Notation Table</strong><a class="headerlink" href="#notation-table" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -568,25 +551,41 @@ document.write(`
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{raw}\)</span></p></td>
+<tr class="row-even"><td><p><strong>Genotype Data</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{\text{raw}}\)</span></p></td>
 <td><p>Raw genotype matrix (without centering or standardization)</p></td>
-<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(N \times M\)</span> matrix with values 0, 1, 2 for AA, Aa, aa</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span></p></td>
 <td><p>Genotype matrix after normalization</p></td>
+<td><p>Centered and scaled genotype matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{i,\cdot}\)</span></p></td>
+<td><p>Genotype for individual <span class="math notranslate nohighlight">\(i\)</span> across all variants</p></td>
+<td><p>Row vector of genotypes for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{i,j}\)</span></p></td>
+<td><p>Genotype for individual <span class="math notranslate nohighlight">\(i\)</span> at variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p>Number of risk alleles (0, 1, or 2) for individual <span class="math notranslate nohighlight">\(i\)</span> at variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{\cdot,j}\)</span></p></td>
+<td><p>Genotype at variant <span class="math notranslate nohighlight">\(j\)</span> for all individuals</p></td>
+<td><p>Column vector of genotypes for variant <span class="math notranslate nohighlight">\(j\)</span> across all individuals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(X_i\)</span></p></td>
+<td><p>Genotype value for individual <span class="math notranslate nohighlight">\(i\)</span> (single variant case)</p></td>
+<td><p>Number of risk alleles for individual <span class="math notranslate nohighlight">\(i\)</span> (0, 1, or 2)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mu_j\)</span></p></td>
+<td><p>Mean value of variant <span class="math notranslate nohighlight">\(j\)</span> in raw genotype data</p></td>
+<td><p>Mean genotype value across all individuals for variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Indices and Dimensions</strong></p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{i,\cdot}\)</span></p></td>
-<td><p>Genotype for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td><p>Genotype (e.g., number of risk alleles) of individual <span class="math notranslate nohighlight">\(i\)</span>, when considering one variant</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{i,j}\)</span></p></td>
-<td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> of individual <span class="math notranslate nohighlight">\(i\)</span>, when considering multiple variants</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{\cdot,j}\)</span></p></td>
-<td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for all individuals</p></td>
-<td><p>Genotype variant <span class="math notranslate nohighlight">\(j\)</span> for all individuals</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
 <td><p>Index for individual</p></td>
@@ -596,339 +595,261 @@ document.write(`
 <td><p>Index for genetic variant</p></td>
 <td><p><span class="math notranslate nohighlight">\(j=1,2,...,M\)</span></p></td>
 </tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p>Index for study</p></td>
+<td><p><span class="math notranslate nohighlight">\(k=1,2,...,K\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td><p>Index for mixture component</p></td>
+<td><p><span class="math notranslate nohighlight">\(c=1,2,...,C\)</span></p></td>
+</tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
-<td><p>Number of samples</p></td>
-<td><p>Number of individuals in the dataset</p></td>
+<td><p>Number of individuals</p></td>
+<td><p>500,000 individuals in UK Biobank subset</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
 <td><p>Number of variants</p></td>
-<td><p>Number of variants in the genotype data</p></td>
+<td><p>1,000,000 SNPs after quality control</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mu_j\)</span></p></td>
-<td><p>Mean value of the <span class="math notranslate nohighlight">\(j\)</span>-th variant in the <span class="math notranslate nohighlight">\(\mathbf{X}_{raw}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(K\)</span></p></td>
+<td><p>Number of studies</p></td>
+<td><p>3 studies in meta-analysis</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C\)</span></p></td>
+<td><p>Number of mixture components</p></td>
+<td><p>4 components in mixture model (null, small, medium, large effects)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Alleles and Frequencies</strong></p></td>
+<td><p></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A\)</span></p></td>
 <td><p>Major allele</p></td>
-<td><p></p></td>
+<td><p>Reference allele (more common)</p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
 <td><p>Minor allele</p></td>
-<td><p></p></td>
+<td><p>Alternative allele (less common)</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f_A\)</span>, <span class="math notranslate nohighlight">\(f_a\)</span></p></td>
-<td><p>Frequency for the allele A or a for a specific genetic variant</p></td>
-<td><p><span class="math notranslate nohighlight">\(f_A=0.7, f_a=0.3\)</span></p></td>
+<td><p>Allele frequencies</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_A=0.7, f_a=0.3\)</span> for a variant</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
-<td><p>LD score of genetic variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
+<tr class="row-odd"><td><p><strong>Linkage and Relatedness</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span></p></td>
-<td><p>Genetic relatedness matrix (GRM)</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span> by <span class="math notranslate nohighlight">\(N\)</span> matrix</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
+<td><p>LD score of variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p>Measure of local LD around variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span></p></td>
+<td><p>Genetic relationship matrix (GRM)</p></td>
+<td><p><span class="math notranslate nohighlight">\(N \times N\)</span> matrix of genetic similarities</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Traits and Phenotypes</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span></p></td>
-<td><p>Random variable (trait)</p></td>
-<td><p>Trait (e.g., height <span class="math notranslate nohighlight">\(Y_1\)</span> and weight <span class="math notranslate nohighlight">\(Y_2\)</span> when bi-variate)</p></td>
+<td><p>Trait vector (multivariate case)</p></td>
+<td><p>Height and weight measurements</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Y_i\)</span></p></td>
 <td><p>Trait value for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td><p>Height of individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>Height = 175cm for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(X_{i}\)</span></p></td>
-<td><p>Genotype variant value for individual <span class="math notranslate nohighlight">\(i\)</span> when only one variant is considered</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Y_{i,a}\)</span>, <span class="math notranslate nohighlight">\(Y_{i,b}\)</span></p></td>
+<td><p>Trait values for individual <span class="math notranslate nohighlight">\(i\)</span> (multivariate)</p></td>
+<td><p>Height = 175cm, weight = 70kg for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Regression Parameters</strong></p></td>
+<td><p></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(b_0\)</span></p></td>
-<td><p>Baseline level in the regression model, intercept</p></td>
-<td><p>170cm for height</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(b_0\)</span></p></td>
+<td><p>Intercept in regression model</p></td>
+<td><p>Mean height = 170cm when genotype = 0</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\beta\)</span></p></td>
-<td><p>Effect size of a variant on a trait</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\beta\)</span></p></td>
+<td><p>Effect size of variant on trait (scalar)</p></td>
+<td><p>0.5cm increase in height per risk allele</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></p></td>
+<td><p>Effect size vector (multivariate)</p></td>
+<td><p>Effects on height and weight: <span class="math notranslate nohighlight">\(\begin{pmatrix} 0.5 \\ 0.3 \end{pmatrix}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\hat{\beta}_k\)</span></p></td>
+<td><p>Estimated effect from study <span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p>Effect estimate from European study</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mu_\beta\)</span></p></td>
+<td><p>Mean of <span class="math notranslate nohighlight">\(\beta\)</span> distribution</p></td>
+<td><p>Average effect across all variants</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Variance and Covariance</strong></p></td>
+<td><p></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\sigma^2\)</span></p></td>
-<td><p>Variance of a random variable</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{g}\)</span></p></td>
-<td><p>Random effect in linear mixed models</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span></p></td>
-<td><p>Design matrix for random effects</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span></p></td>
-<td><p>Random effect vector in linear mixed models</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C\)</span></p></td>
-<td><p>Covariate (confounder, collider or mediator)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span></p></td>
-<td><p>the estimate of genetic effect from the <span class="math notranslate nohighlight">\(i\)</span>-th study</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
-<td><p>Index for study</p></td>
-<td><p><span class="math notranslate nohighlight">\(k=1,2,...,K\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p>K</p></td>
-<td><p>Number of studies</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Q\)</span></p></td>
-<td><p>The Cochran’s Q statistic</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(I^2\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(I^2\)</span> statistic</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\text{M}\)</span></p></td>
-<td><p>A given model (or with subscript)</p></td>
-<td><p>e.g., <span class="math notranslate nohighlight">\( M_1 \)</span> and <span class="math notranslate nohighlight">\( M_2 \)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\text{D}\)</span></p></td>
-<td><p>Observed data (or with subscript)</p></td>
-<td><p>e.g., <span class="math notranslate nohighlight">\(\text{D}_1\)</span> for a single observation</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathcal{L}\)</span></p></td>
-<td><p>Likelihood function</p></td>
-<td><p><span class="math notranslate nohighlight">\(\mathcal{L}(\text{M}\mid\text{D})= P(\text{D}\mid\text{M})\)</span>, the likelihood function for model <span class="math notranslate nohighlight">\(\text{M}\)</span> given data <span class="math notranslate nohighlight">\(\text{D}\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \ell \)</span></p></td>
-<td><p>Log-likelihood for model <span class="math notranslate nohighlight">\( M \)</span></p></td>
-<td><p>Log-transformed likelihood for numerical stability</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\theta\)</span></p></td>
-<td><p>The parameter of the statistical model</p></td>
-<td><p>e.g., genetic effect <span class="math notranslate nohighlight">\(\beta\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
-<td><p>Parameter space of <span class="math notranslate nohighlight">\(\theta\)</span></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \Lambda \)</span></p></td>
-<td><p>Likelihood ratio test</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta \)</span></p></td>
-<td><p>Mean of the normal distribution (unknown)</p></td>
-<td><p>Causal effect of genetic variant on the trait. If multiple traits, <span class="math notranslate nohighlight">\(\beta_a\)</span> and <span class="math notranslate nohighlight">\(\beta_b\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></p></td>
-<td><p>Mean parameter vector (unknown)</p></td>
-<td><p>Causal effects of genetic variant on traits <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>: <span class="math notranslate nohighlight">\(\boldsymbol{\beta} = \begin{pmatrix} \beta_a \\ \beta_b \end{pmatrix}\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta_0 \)</span></p></td>
-<td><p>Prior mean (scalar)</p></td>
-<td><p>Prior mean of <span class="math notranslate nohighlight">\(\theta\)</span> before observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_0\)</span></p></td>
-<td><p>Prior mean vector</p></td>
-<td><p>Prior mean of <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> before observing data <span class="math notranslate nohighlight">\(\mathbf{D}\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \beta_1 \)</span></p></td>
-<td><p>Posterior mean (scalar)</p></td>
-<td><p>Posterior mean of <span class="math notranslate nohighlight">\(\theta\)</span> after observing data <span class="math notranslate nohighlight">\(D\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_1\)</span></p></td>
-<td><p>Posterior mean vector</p></td>
-<td><p>Posterior mean of <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> after observing data <span class="math notranslate nohighlight">\(\mathbf{D}\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\sigma\)</span></p></td>
-<td><p>variance</p></td>
-<td><p>Variance for a trait$</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\sigma^2\)</span></p></td>
+<td><p>Variance of trait</p></td>
+<td><p>Residual variance in height (e.g., 100 cm²)</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span></p></td>
 <td><p>Known covariance matrix</p></td>
-<td><p>Covariance structure between traits <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td><p>Residual covariance between height and weight</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_0^2 \)</span></p></td>
-<td><p>Variance of the normal distribution</p></td>
-<td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\beta\)</span></p></td>
+<tr class="row-odd"><td><p><strong>Prior Parameters</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\beta_0\)</span></p></td>
+<td><p>Prior mean (scalar)</p></td>
+<td><p>Expected effect = 0 before seeing data</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_0\)</span></p></td>
+<td><p>Prior mean vector</p></td>
+<td><p>Expected effects = <span class="math notranslate nohighlight">\(\begin{pmatrix} 0 \\ 0 \end{pmatrix}\)</span> before data</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\sigma_0^2\)</span></p></td>
+<td><p>Prior variance (scalar)</p></td>
+<td><p>Prior uncertainty = 0.25 for effect size</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0\)</span></p></td>
 <td><p>Prior covariance matrix</p></td>
-<td><p>Prior uncertainty in <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></p></td>
+<td><p>Prior uncertainty about joint effects</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( \sigma_1^2 \)</span></p></td>
-<td><p>Posterior variance</p></td>
-<td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\beta\)</span> after observing data</p></td>
+<tr class="row-even"><td><p><strong>Posterior Parameters</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\beta_1\)</span></p></td>
+<td><p>Posterior mean (scalar)</p></td>
+<td><p>Updated effect = 0.3 after seeing data</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_1\)</span></p></td>
+<td><p>Posterior mean vector</p></td>
+<td><p>Updated effects = <span class="math notranslate nohighlight">\(\begin{pmatrix} 0.3 \\ 0.2 \end{pmatrix}\)</span> after data</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\sigma_1^2\)</span></p></td>
+<td><p>Posterior variance (scalar)</p></td>
+<td><p>Reduced uncertainty = 0.1 after data</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_1\)</span></p></td>
 <td><p>Posterior covariance matrix</p></td>
-<td><p>Updated uncertainty in <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> after observing data</p></td>
+<td><p>Reduced uncertainty about joint effects</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\tau}\)</span></p></td>
-<td><p>Known precision matrix (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{-1}\)</span>)</p></td>
-<td><p>Inverse of known covariance matrix</p></td>
+<tr class="row-odd"><td><p><strong>Mixed Models</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_0 \)</span></p></td>
-<td><p>Prior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_0^2}\)</span>)</p></td>
-<td><p>Inverse of prior variance</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{g}\)</span></p></td>
+<td><p>Random effect vector in linear mixed models</p></td>
+<td><p>Individual-specific genetic effects</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\tau}_0\)</span></p></td>
-<td><p>Prior precision matrix (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0^{-1}\)</span>)</p></td>
-<td><p>Inverse of prior covariance matrix</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span></p></td>
+<td><p>Design matrix for random effects</p></td>
+<td><p>Matrix linking observations to random effects</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( \tau_1 \)</span></p></td>
-<td><p>Posterior precision (<span class="math notranslate nohighlight">\(\frac{1}{\sigma_1^2}\)</span>)</p></td>
-<td><p>Inverse of posterior variance</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span></p></td>
+<td><p>Random effect vector in linear mixed models</p></td>
+<td><p>Polygenic effects for each individual</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\tau}_1\)</span></p></td>
-<td><p>Posterior precision matrix (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_1^{-1}\)</span>)</p></td>
-<td><p>Inverse of posterior covariance matrix</p></td>
+<tr class="row-odd"><td><p><strong>Covariates</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{W}\)</span></p></td>
+<td><p>Covariate matrix (confounder, collider, or mediator)</p></td>
+<td><p>Age, sex, principal components</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Meta-Analysis</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Q\)</span></p></td>
+<td><p>Cochran’s Q statistic</p></td>
+<td><p>Test statistic for heterogeneity = 12.5</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(I^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(I^2\)</span> statistic for heterogeneity</p></td>
+<td><p>Percentage of variation due to heterogeneity = 75%</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Model and Data</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td><p>Model</p></td>
+<td><p>Linear model vs. quadratic model</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D\)</span></p></td>
+<td><p>Observed data</p></td>
+<td><p>Genotype and phenotype measurements</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Likelihood and Testing</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathcal{L}\)</span></p></td>
+<td><p>Likelihood function</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{L}(\beta\mid Y,X) = P(Y\mid X,\beta)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\ell\)</span></p></td>
+<td><p>Log-likelihood</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ell = \log(\mathcal{L})\)</span> for numerical stability</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Lambda\)</span></p></td>
+<td><p>Likelihood ratio test statistic</p></td>
+<td><p><span class="math notranslate nohighlight">\(\Lambda = 2(\ell_1 - \ell_0)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(p\)</span></p></td>
+<td><p>P-value</p></td>
+<td><p>Probability = 0.001 under null hypothesis</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(H_0\)</span></p></td>
+<td><p>Null hypothesis</p></td>
+<td><p>No genetic effect (<span class="math notranslate nohighlight">\(\beta = 0\)</span>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(H_a\)</span></p></td>
+<td><p>Alternative hypothesis</p></td>
+<td><p>Genetic effect exists (<span class="math notranslate nohighlight">\(\beta \neq 0\)</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parameters and Spaces</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<td><p>Generic parameter of statistical model</p></td>
+<td><p>Could be <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(\sigma^2\)</span>, or other parameters</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
+<td><p>Parameter space of <span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<td><p>Set of all possible values for <span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Sufficient Statistics</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_1\)</span></p></td>
-<td><p>Sufficient statistic</p></td>
-<td><p><span class="math notranslate nohighlight">\(T_1 = \sum_{i=1}^N X_i^2\)</span></p></td>
+<td><p>Sufficient statistic (scalar)</p></td>
+<td><p><span class="math notranslate nohighlight">\(T_1 = \sum_{i=1}^N X_i^2 = 1000\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{T}_2\)</span></p></td>
 <td><p>Sufficient statistic vector</p></td>
-<td><p><span class="math notranslate nohighlight">\(\mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \begin{pmatrix} \sum_{i=1}^N X_i Y_{i,a} \\ \sum_{i=1}^N X_i Y_{i,b} \end{pmatrix}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i\)</span> for multivariate traits</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C\)</span></p></td>
-<td><p>Number of components</p></td>
-<td><p>Total number of mixture components</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\pi_c\)</span></p></td>
-<td><p>Mixture weight</p></td>
-<td><p>Probability that an observation belongs to component <span class="math notranslate nohighlight">\(c\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p_c(\beta)\)</span></p></td>
-<td><p>Component density</p></td>
-<td><p>Probability density function of the <span class="math notranslate nohighlight">\(c\)</span>-th component</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="concepts-in-statistical-genetics-and-related-topics">
-<h1>Concepts in statistical genetics and related topics<a class="headerlink" href="#concepts-in-statistical-genetics-and-related-topics" title="Link to this heading">#</a></h1>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Concept</p></th>
-<th class="head"><p>Description</p></th>
-<th class="head"><p>Importance</p></th>
-<th class="head"><p>Rui’s notes</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Kinship</p></td>
-<td><p>Statistical measure of relatedness between individuals based on shared genetic material</p></td>
-<td><p>Fundamental for understanding genetic relationships and forms the basis for many statistical methods in genetics</p></td>
-<td><p>It’s essentially just random sampling in meiosis across many generations —  X~Bernoulli(1/2) for single locus, Binomial(n,1/2) for multiple loci  per generation,   with power <span class="math notranslate nohighlight">\(n\)</span> for <span class="math notranslate nohighlight">\(n\)</span> generations . So the statistical background is random variable and binommial distribution with kinship and IBD being examples</p></td>
-</tr>
-<tr class="row-odd"><td><p>Identity by Descent (IBD)</p></td>
-<td><p>Probability that alleles in two individuals are identical because they were inherited from a common ancestor</p></td>
-<td><p>Essential for relatedness inference and forms the basis for many genetic analyses</p></td>
-<td><p>Follow from above, expected number of IBD loci can be computed from that Binomial distribution</p></td>
-</tr>
-<tr class="row-even"><td><p>Haplotypes</p></td>
-<td><p>Combination of alleles at different loci that are inherited together</p></td>
-<td><p>Critical for understanding inheritance patterns and LD structure</p></td>
-<td><p>Nothing mathy here</p></td>
-</tr>
-<tr class="row-odd"><td><p>Effective Population Size (Ne)</p></td>
-<td><p>The size of an idealized population that would experience the same amount of genetic drift as the observed population</p></td>
-<td><p>Crucial for understanding how genetic variation changes over time in populations</p></td>
-<td><p>popgen.  I think it is just a harmonic mean of population sizes over time? if you wantto talk about this in statistical setting I think the related concept is just harmonic mean and Ne is an example for that.</p></td>
-</tr>
-<tr class="row-even"><td><p>Allele/Genotype Coding</p></td>
-<td><p>Numerical representation of genetic variants (additive, dominant, recessive models)</p></td>
-<td><p>Basic requirement for any genetic analysis involving regression models</p></td>
-<td><p>Numerical modeling of genetic data</p></td>
-</tr>
-<tr class="row-odd"><td><p>Assortative Mating</p></td>
-<td><p>Non-random mating based on phenotypic similarity</p></td>
-<td><p>Affects genetic structure and can bias heritability estimates</p></td>
-<td><p>It’s just conditional expectation — the mates phenotype is dependent on each other: cute boys for cute girls where cuteness is phenotype</p></td>
-</tr>
-<tr class="row-even"><td><p>Ascertainment Bias</p></td>
-<td><p>Systematic error due to non-random sampling</p></td>
-<td><p>Critical for understanding limitations in genetic studies</p></td>
-<td><p>It’s more like study design or epidemology, not statitical modeling. As a statistical concept, alternatively you may want to discuss Winner’s Curse …</p></td>
-</tr>
-<tr class="row-odd"><td><p>Genetic Distance</p></td>
-<td><p>Measures of genetic dissimilarity between individuals or populations</p></td>
-<td><p>Basic concept for population genetic analyses</p></td>
-<td><p>covered in GRM</p></td>
-</tr>
-<tr class="row-even"><td><p>Threshold Models</p></td>
-<td><p>Statistical models linking continuous genetic liability to categorical phenotypes</p></td>
-<td><p>Essential for analyzing binary and categorical traits</p></td>
-<td><p>I think it should be in LM/GLM. All notebooks must be statistical concepts or models</p></td>
-</tr>
-<tr class="row-odd"><td><p>Cross-Validation</p></td>
-<td><p>Method to assess how genetic models generalize to independent data</p></td>
-<td><p>Fundamental for evaluating predictive models</p></td>
-<td><p>too pure stat? Pure stat is not a problem. The problem is that it’s not the fundamental. It is rather derivative and thus uninteresting.</p></td>
-</tr>
-<tr class="row-even"><td><p>Genomic Control / Inflation Factor</p></td>
-<td><p>Measure of inflation or deflation in test statistics, often visualized with QQ plots, indicating population stratification or other confounding effects</p></td>
-<td><p>Critical for detecting and correcting systematic biases in association studies, ensuring valid p-value interpretation</p></td>
-<td><p>Intuition is really simple: p-values under the null are uniform</p></td>
-</tr>
-<tr class="row-odd"><td><p>Genetic Heterogeneity</p></td>
-<td><p>Different genetic variants producing similar phenotypes</p></td>
-<td><p>Essential for understanding why multiple genes can cause similar diseases or traits</p></td>
-<td><p>This is biology, almost nothing statistical</p></td>
-</tr>
-<tr class="row-even"><td><p>Genetic Load</p></td>
-<td><p>Total quantity of deleterious genetic material in a population or individual</p></td>
-<td><p>Fundamental for understanding the accumulation of harmful mutations</p></td>
-<td><p>Biology or popgen, nothing statistical</p></td>
-</tr>
-<tr class="row-odd"><td><p>Genotype-Environment Correlation</p></td>
-<td><p>Association between genotypes and the environments individuals experience</p></td>
-<td><p>Critical for distinguishing genetic effects from environmental factors</p></td>
-<td><p>No really a valid or popular problem — GxE interaction maybe. But I don’t feel this is mainstream statgen anyways.</p></td>
-</tr>
-<tr class="row-even"><td><p>Genotype Imputation</p></td>
-<td><p>Statistical inference of unmeasured genotypes based on known haplotype patterns</p></td>
-<td><p>Fundamental for increasing statistical power in genetic studies</p></td>
-<td><p>Hidden Markov model</p></td>
-</tr>
-<tr class="row-odd"><td><p>Genetic Anticipation</p></td>
-<td><p>Phenomenon where genetic disorders manifest at earlier ages in successive generations</p></td>
-<td><p>Important concept for understanding intergenerational disease patterns</p></td>
-<td><p>popgen?</p></td>
-</tr>
-<tr class="row-even"><td><p>Genomic Inflation Factor</p></td>
-<td><p>Measure of systematic bias in test statistics from a genetic association study</p></td>
-<td><p>Essential quality control metric in genetic association studies</p></td>
+<tr class="row-even"><td><p><strong>Mixture Models</strong></p></td>
+<td><p></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>Regression to the Mean</p></td>
-<td><p>The tendency for extreme phenotypic values to produce offspring with less extreme values</p></td>
-<td><p>Fundamental concept for prediction and breeding applications</p></td>
-<td><p>?                  LM</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\pi_c\)</span></p></td>
+<td><p>Mixture weight for component <span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td><p>90% of variants have no effect (<span class="math notranslate nohighlight">\(\pi_1 = 0.9\)</span>)</p></td>
 </tr>
-<tr class="row-even"><td><p>Parentage Analysis</p></td>
-<td><p>Statistical methods to assign parents based on genetic data</p></td>
-<td><p>Fundamental for pedigree verification and relationship testing</p></td>
-<td><p>LRT with recombination coef being a parameter</p></td>
-</tr>
-<tr class="row-odd"><td><p>Genetic Background Effects</p></td>
-<td><p>Influence of overall genetic makeup on the phenotypic expression of specific variants</p></td>
-<td><p>Important for understanding variant effect heterogeneity across populations</p></td>
-<td><p>?                       LM when p&gt;n</p></td>
-</tr>
-<tr class="row-even"><td><p>Synthetic Association</p></td>
-<td><p>Phenomenon where common variants tag effects of multiple rare causal variants</p></td>
-<td><p>Critical concept for interpreting GWAS findings</p></td>
-<td><p>?</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nested Association Mapping</p></td>
-<td><p>Design combining advantages of linkage analysis and association mapping</p></td>
-<td><p>Powerful approach for dissecting complex trait genetics, especially in plants</p></td>
-<td><p>?   No longer that popular but essentially, just yet another LRT</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p_c(\beta)\)</span></p></td>
+<td><p>Component density function</p></td>
+<td><p>Normal distribution for component <span class="math notranslate nohighlight">\(c\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -971,26 +892,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Notation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notation-table"><strong>Notation Table</strong></a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-in-statistical-genetics-and-related-topics">Concepts in statistical genetics and related topics</a></li>
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
