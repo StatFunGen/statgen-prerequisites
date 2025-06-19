@@ -169,8 +169,7 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular topics</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -544,11 +543,12 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bayesian-perspective-joint-uncertainty">The Bayesian Perspective: Joint Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood">Likelihood</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution">Posterior Distribution</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-as-weighted-average">Interpretation as Weighted Average</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution-joint-uncertainty">Prior Distribution: Joint Uncertainty</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-what-we-can-condition-on">Likelihood: What We Can Condition On</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-updated-joint-uncertainty">Posterior Distribution: Updated Joint Uncertainty</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-as-weighted-combination">Interpretation as Weighted Combination</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-to-multivariate-case">Generalization to Multivariate Case</a></li>
@@ -558,16 +558,16 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-simulated-data">Generate Simulated Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-multivariate-model-setup">Bayesian Multivariate Model Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-multivariate-posterior">Calculate the Multivariate Posterior</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-multivariate-posterior-by-conditioning-on-data">Calculate the Multivariate Posterior by Conditioning on Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sufficient-statistics">Sufficient Statistics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-formulas">Posterior Formulas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Interpretation as Weighted Average</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-information-sharing-through-joint-uncertainty">Interpretation: Information Sharing Through Joint Uncertainty</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graphical Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -584,7 +584,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-multivariate-normal-mean-model">
 <h1>Bayesian Multivariate Normal Mean Model<a class="headerlink" href="#bayesian-multivariate-normal-mean-model" title="Link to this heading">#</a></h1>
-<p>The Bayesian multivariate normal mean model extends the univariate case by accounting for relationships between multiple parameters, allowing information from one variable to influence our beliefs about others through their correlation structure, which results in more precise posterior estimates than if we had treated each parameter independently.</p>
+<p>The Bayesian multivariate normal mean model extends the univariate case by treating multiple unknown mean parameters as jointly uncertain through a multivariate normal distribution, then conditioning on observed data while accounting for correlations between parameters, which allows uncertainty about one parameter to inform and reduce uncertainty about others in ways that independent analyses cannot achieve.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -592,7 +592,7 @@ document.write(`
 <!-- ![fig](./cartoons/Bayesian_multivariate_normal_mean_model.svg) --></section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>In the bivariate normal mean model, if the prior is:</p>
+<p>In the bivariate normal mean model, if our joint uncertainty about the parameters is represented by the prior:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
@@ -611,14 +611,14 @@ document.write(`
 \end{pmatrix}
 \right)
 \end{split}\]</div>
-<p>and with observed data <span class="math notranslate nohighlight">\(\mathbf{D}\)</span>, the posterior is:</p>
+<p>then conditioning on observed data <span class="math notranslate nohighlight">\(\text{D}\)</span> yields the posterior distribution:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
 \beta_a \\
 \beta_b
 \end{pmatrix}
-\bigg| \mathbf{D} \sim \mathcal{N}
+\bigg| \text{D} \sim \mathcal{N}
 \left( 
 \begin{pmatrix}
 \beta_{a,1}  \\
@@ -630,19 +630,24 @@ document.write(`
 \end{pmatrix}
 \right)
 \end{split}\]</div>
-<p>where the posterior precision matrix is the sum of the prior precision and the data precision, and the posterior mean is a precision-weighted average of the prior mean and the data estimate.</p>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\beta_a, \beta_b\)</span> = genetic effects on traits <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{D}\)</span> = observed data</p></li>
-<li><p>Subscript <span class="math notranslate nohighlight">\(0\)</span> = prior parameters, Subscript <span class="math notranslate nohighlight">\(1\)</span> = posterior parameters</p></li>
-<li><p><span class="math notranslate nohighlight">\(\rho_0, \rho_1\)</span> = prior and posterior correlations between genetic effects</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_a, \beta_b\)</span> = unknown mean parameters we cannot condition on</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{D}\)</span> = observed data we condition on</p></li>
+<li><p>Subscript <span class="math notranslate nohighlight">\(0\)</span> = prior parameters (initial uncertainty)</p></li>
+<li><p>Subscript <span class="math notranslate nohighlight">\(1\)</span> = posterior parameters (updated uncertainty after conditioning)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_0, \rho_1\)</span> = prior and posterior correlations quantifying how uncertainty about one parameter relates to uncertainty about the other</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="the-bayesian-perspective-joint-uncertainty">
+<h2>The Bayesian Perspective: Joint Uncertainty<a class="headerlink" href="#the-bayesian-perspective-joint-uncertainty" title="Link to this heading">#</a></h2>
+<p>In the multivariate case, we extend our treatment of uncertainty by recognizing that multiple parameters may be jointly uncertain, and that our inability to condition on one parameter may be related to our inability to condition on others through correlation structures.</p>
+</section>
 <section id="model-assumptions">
 <h2>Model Assumptions<a class="headerlink" href="#model-assumptions" title="Link to this heading">#</a></h2>
-<p>In the Bayesian bivariate normal mean model, each observation pair <span class="math notranslate nohighlight">\((Y_{i,a}, Y_{i,b})\)</span> for individual <span class="math notranslate nohighlight">\(i\)</span> follows a bivariate normal distribution:</p>
+<p>In the Bayesian bivariate normal mean model, we treat the joint uncertainty about multiple parameters systematically:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
@@ -652,35 +657,33 @@ Y_{i,b}
 \end{split}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta} = \begin{pmatrix} \beta_a \\ \beta_b \end{pmatrix}\)</span> is the unknown mean parameter vector (genetic effects on traits <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is the known <span class="math notranslate nohighlight">\(2 \times 2\)</span> covariance matrix</p></li>
-<li><p><span class="math notranslate nohighlight">\(X_i\)</span> is the genotype value (fixed) for individual <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta} = \begin{pmatrix} \beta_a \\ \beta_b \end{pmatrix}\)</span> represents our joint uncertainty about both mean parameters</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is the known covariance matrix (we condition on this)</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_i\)</span> are observed covariates (we condition on these)</p></li>
 </ul>
-<p>Since <span class="math notranslate nohighlight">\(X_i\)</span> values are fixed, the question becomes: what can we learn about the unknown parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>?</p>
+<p><strong>Key insight</strong>: Since we cannot condition on the true values of either <span class="math notranslate nohighlight">\(\beta_a\)</span> or <span class="math notranslate nohighlight">\(\beta_b\)</span>, we treat them as jointly random variables, allowing their uncertainties to be correlated.</p>
 </section>
-<section id="prior-distribution">
-<h2>Prior Distribution<a class="headerlink" href="#prior-distribution" title="Link to this heading">#</a></h2>
-<p>A common choice for the prior on <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> is a bivariate normal distribution:</p>
+<section id="prior-distribution-joint-uncertainty">
+<h2>Prior Distribution: Joint Uncertainty<a class="headerlink" href="#prior-distribution-joint-uncertainty" title="Link to this heading">#</a></h2>
+<p>We express our joint uncertainty about the parameter vector through a multivariate normal distribution:</p>
 <div class="math notranslate nohighlight">
 \[
 \boldsymbol{\beta} \sim \mathcal{N}(\boldsymbol{\beta}_0, \boldsymbol{\Sigma}_0)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_0\)</span> is the prior mean vector and <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0\)</span> is the prior covariance matrix.</p>
-<p>The precision matrix is defined as <span class="math notranslate nohighlight">\(\boldsymbol{\tau}_0 = \boldsymbol{\Sigma}_0^{-1}\)</span>. In other words, the prior of <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> can be rewritten as:</p>
-<p><span class="math notranslate nohighlight">\(
-\boldsymbol{\beta} \sim \mathcal{N}\left(\boldsymbol{\beta}_0, \boldsymbol{\tau}_0^{-1}\right)
-\)</span></p>
-<p>Therefore, the probability density function (PDF) is:</p>
-<p><span class="math notranslate nohighlight">\(
-\begin{align}
-p(\boldsymbol{\beta}) &amp;\propto \exp\left(-\frac{1}{2}(\boldsymbol{\beta} - \boldsymbol{\beta}_0)^T \boldsymbol{\tau}_0 (\boldsymbol{\beta} - \boldsymbol{\beta}_0)\right) \\
-&amp;\propto \exp\left(-\frac{1}{2}\boldsymbol{\beta}^T \boldsymbol{\tau}_0 \boldsymbol{\beta} + \boldsymbol{\beta}_0^T \boldsymbol{\tau}_0 \boldsymbol{\beta}\right)
-\end{align}
-\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_0\)</span> represents our best joint guess about both parameters</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0\)</span> quantifies not only our uncertainty about each parameter individually, but also how these uncertainties are related</p></li>
+</ul>
+<p>The probability density function reflects this joint uncertainty:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\boldsymbol{\beta}) \propto \exp\left(-\frac{1}{2}(\boldsymbol{\beta} - \boldsymbol{\beta}_0)^T \boldsymbol{\Sigma}_0^{-1} (\boldsymbol{\beta} - \boldsymbol{\beta}_0)\right)
+\]</div>
 </section>
-<section id="likelihood">
-<h2>Likelihood<a class="headerlink" href="#likelihood" title="Link to this heading">#</a></h2>
-<p>The likelihood of the data given <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is:</p>
+<section id="likelihood-what-we-can-condition-on">
+<h2>Likelihood: What We Can Condition On<a class="headerlink" href="#likelihood-what-we-can-condition-on" title="Link to this heading">#</a></h2>
+<p>The likelihood represents what we can condition on - the observed data given our uncertain parameter vector:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
@@ -689,17 +692,15 @@ Y_{i,b}
 \end{pmatrix} \bigg| \boldsymbol{\beta}, \boldsymbol{\Sigma} \sim \mathcal{N}\left(X_i \boldsymbol{\beta}, \boldsymbol{\Sigma} \right) \quad \text{for } i = 1, 2, \ldots, N
 \end{split}\]</div>
 <p>For all observations, the likelihood is:</p>
-<p><span class="math notranslate nohighlight">\(
-\begin{align}
-p(\mathbf{Y}|\boldsymbol{\beta}) &amp;\propto \exp\left(-\frac{1}{2} \sum_{i=1}^N (\mathbf{Y}_i - X_i\boldsymbol{\beta})^T \boldsymbol{\Sigma}^{-1} (\mathbf{Y}_i - X_i\boldsymbol{\beta})\right)\\
-&amp;\propto \exp\left(-\frac{1}{2} \sum_{i=1}^N (\mathbf{Y}_i - X_i\boldsymbol{\beta})^T \boldsymbol{\tau} (\mathbf{Y}_i - X_i\boldsymbol{\beta})\right)
-\end{align}
-\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\tau} = \boldsymbol{\Sigma}^{-1}\)</span> is the precision matrix and <span class="math notranslate nohighlight">\(\mathbf{Y}_i = \begin{pmatrix} Y_{i,a} \\ Y_{i,b} \end{pmatrix}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{Y}|\boldsymbol{\beta}) \propto \exp\left(-\frac{1}{2} \sum_{i=1}^N (\mathbf{Y}_i - X_i\boldsymbol{\beta})^T \boldsymbol{\Sigma}^{-1} (\mathbf{Y}_i - X_i\boldsymbol{\beta})\right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{Y}_i = \begin{pmatrix} Y_{i,a} \\ Y_{i,b} \end{pmatrix}\)</span>.</p>
 </section>
-<section id="posterior-distribution">
-<h2>Posterior Distribution<a class="headerlink" href="#posterior-distribution" title="Link to this heading">#</a></h2>
-<p>Using Bayes’ theorem, the posterior distribution of <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> is given by:</p>
+<section id="posterior-distribution-updated-joint-uncertainty">
+<h2>Posterior Distribution: Updated Joint Uncertainty<a class="headerlink" href="#posterior-distribution-updated-joint-uncertainty" title="Link to this heading">#</a></h2>
+<p>Using Bayes’ theorem, we condition on all available information to update our joint uncertainty:</p>
 <div class="math notranslate nohighlight">
 \[
 p(\boldsymbol{\beta}|\mathbf{Y}) \propto p(\mathbf{Y}|\boldsymbol{\beta}) p(\boldsymbol{\beta})
@@ -710,36 +711,33 @@ p(\boldsymbol{\beta}|\mathbf{Y}) \propto p(\mathbf{Y}|\boldsymbol{\beta}) p(\bol
 \boldsymbol{\beta} \mid \mathbf{Y} \sim \mathcal{N}\left( \boldsymbol{\beta}_1, \boldsymbol{\Sigma}_1 \right)
 \]</div>
 <p>where the parameters are:</p>
-<p><span class="math notranslate nohighlight">\(
-\boldsymbol{\tau}_1 = \boldsymbol{\tau}_0 + \sum_{i=1}^N X_i^2 \boldsymbol{\tau} = \boldsymbol{\tau}_0 + T_1 \boldsymbol{\tau}
-\)</span></p>
-<p><span class="math notranslate nohighlight">\(
-\boldsymbol{\beta}_1 = \boldsymbol{\tau}_1^{-1} \left( \boldsymbol{\tau}_0 \boldsymbol{\beta}_0 + \boldsymbol{\tau} \sum_{i=1}^N X_i \mathbf{Y}_i \right) = \boldsymbol{\tau}_1^{-1} \left( \boldsymbol{\tau}_0 \boldsymbol{\beta}_0 + \boldsymbol{\tau} \mathbf{T}_2 \right)
-\)</span></p>
-<p><span class="math notranslate nohighlight">\(
-\boldsymbol{\Sigma}_1 = \boldsymbol{\tau}_1^{-1}
-\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\Sigma}_1^{-1} = \boldsymbol{\Sigma}_0^{-1} + \sum_{i=1}^N X_i^2 \boldsymbol{\Sigma}^{-1} = \boldsymbol{\Sigma}_0^{-1} + T_1 \boldsymbol{\Sigma}^{-1}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\beta}_1 = \boldsymbol{\Sigma}_1 \left( \boldsymbol{\Sigma}_0^{-1} \boldsymbol{\beta}_0 + \boldsymbol{\Sigma}^{-1} \sum_{i=1}^N X_i \mathbf{Y}_i \right) = \boldsymbol{\Sigma}_1 \left( \boldsymbol{\Sigma}_0^{-1} \boldsymbol{\beta}_0 + \boldsymbol{\Sigma}^{-1} \mathbf{T}_2 \right)
+\]</div>
 <p>These can be written in terms of sufficient statistics:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 T_1 = \sum_{i=1}^N X_i^2, \quad \mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \begin{pmatrix} \sum_{i=1}^N X_i Y_{i,a} \\ \sum_{i=1}^N X_i Y_{i,b} \end{pmatrix}
 \end{split}\]</div>
-<section id="interpretation-as-weighted-average">
-<h3>Interpretation as Weighted Average<a class="headerlink" href="#interpretation-as-weighted-average" title="Link to this heading">#</a></h3>
-<p>The posterior mean can be rewritten as a <strong>precision-weighted average</strong>:</p>
+<p><strong>Key insight</strong>: Notice that <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_1\)</span> has smaller variances than <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0\)</span> - conditioning on data reduces our joint uncertainty about all parameters.</p>
+<section id="interpretation-as-weighted-combination">
+<h3>Interpretation as Weighted Combination<a class="headerlink" href="#interpretation-as-weighted-combination" title="Link to this heading">#</a></h3>
+<p>The posterior mean represents a weighted combination of our prior beliefs and what we learned from data:</p>
 <div class="math notranslate nohighlight">
-\[\boldsymbol{\beta}_1 = \boldsymbol{W} \cdot \hat{\boldsymbol{\beta}} + (\boldsymbol{I} - \boldsymbol{W}) \cdot \boldsymbol{\beta}_0\]</div>
-<p>where:</p>
+\[
+\boldsymbol{\beta}_1 = \boldsymbol{W} \cdot \frac{\mathbf{T}_2}{T_1} + (\boldsymbol{I} - \boldsymbol{W}) \cdot \boldsymbol{\beta}_0
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{W}\)</span> is a weight matrix that depends on the relative amount of information in the data versus our prior uncertainty.</p>
+<p>This shows how conditioning works in the multivariate case:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}} = \boldsymbol{\tau}^{-1} \boldsymbol{\tau} \frac{\mathbf{T}_2}{T_1} = \frac{\mathbf{T}_2}{T_1}\)</span> is the data’s estimate (MLE)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{W} = \boldsymbol{\tau}_1^{-1} T_1 \boldsymbol{\tau}\)</span> is the weight matrix</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{I}\)</span> is the identity matrix</p></li>
-</ul>
-<p>This shows <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_1\)</span> balances the data’s estimate and the prior mean, with weights determined by relative precision:</p>
-<ul class="simple">
-<li><p><strong>Precise data</strong> (<span class="math notranslate nohighlight">\(T_1 \boldsymbol{\tau} &gt;&gt; \boldsymbol{\tau}_0\)</span>): <span class="math notranslate nohighlight">\(\boldsymbol{W} \approx \boldsymbol{I}\)</span>, posterior follows data</p></li>
-<li><p><strong>Precise prior</strong> (<span class="math notranslate nohighlight">\(\boldsymbol{\tau}_0 &gt;&gt; T_1 \boldsymbol{\tau}\)</span>): <span class="math notranslate nohighlight">\(\boldsymbol{W} \approx \boldsymbol{0}\)</span>, posterior follows prior</p></li>
-<li><p><strong>Equal precision</strong> (<span class="math notranslate nohighlight">\(T_1 \boldsymbol{\tau} = \boldsymbol{\tau}_0\)</span>): equal weighting between data and prior</p></li>
+<li><p><strong>More informative data</strong>: <span class="math notranslate nohighlight">\(\boldsymbol{W} \approx \boldsymbol{I}\)</span>, we trust the data more</p></li>
+<li><p><strong>More uncertain prior</strong>: <span class="math notranslate nohighlight">\(\boldsymbol{W} \approx \boldsymbol{I}\)</span>, we let data dominate since our prior was vague</p></li>
+<li><p><strong>Less uncertain prior</strong>: <span class="math notranslate nohighlight">\(\boldsymbol{W} \approx \boldsymbol{0}\)</span>, we stick closer to our prior beliefs</p></li>
 </ul>
 </section>
 </section>
@@ -749,9 +747,9 @@ T_1 = \sum_{i=1}^N X_i^2, \quad \mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(2 \times 2\)</span> matrices with <span class="math notranslate nohighlight">\(p \times p\)</span> matrices</p></li>
 <li><p>Bivariate normal distributions with <span class="math notranslate nohighlight">\(p\)</span>-variate normal distributions</p></li>
-<li><p>All matrix operations remain the same (matrix inversion, multiplication, etc.)</p></li>
+<li><p>All matrix operations remain the same</p></li>
 </ul>
-<p>The key insight remains: the posterior precision is the sum of prior and data precisions, and the posterior mean is a precision-weighted average of prior beliefs and data evidence.</p>
+<p><strong>The fundamental principle remains</strong>: We systematically handle joint uncertainty about multiple parameters we cannot condition on, then update this uncertainty by conditioning on observed data, allowing information about one parameter to reduce uncertainty about others through their correlation structure.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
@@ -760,37 +758,39 @@ T_1 = \sum_{i=1}^N X_i^2, \quad \mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">random effect</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">maximum likelihood estimation</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html#">Bayesian normal mean model</a></p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>In our previous example, we analyzed how genetic variants affect a single trait (phenotype) using a Bayesian normal mean model. But what if we want to study <strong>genetic effects on multiple related traits simultaneously</strong>?</p>
+<p>In our previous example in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html#">Lecture: Bayesian normal mean model</a>, we analyzed how genetic variants affect a single trait (phenotype) using a Bayesian normal mean model. But what if we want to study <strong>genetic effects on multiple related traits simultaneously</strong>?</p>
 <p>For example, a genetic variant might affect both height and weight, and these traits are likely correlated. Analyzing them together can be more powerful than analyzing each separately because:</p>
 <ul class="simple">
-<li><p>We can borrow strength across traits</p></li>
-<li><p>We can estimate genetic correlations</p></li>
-<li><p>We can make joint inferences about multi-trait effects</p></li>
+<li><p>We can share information about our uncertainty across traits</p></li>
+<li><p>Our inability to condition on one effect can inform our uncertainty about another</p></li>
+<li><p>We can capture correlations between effects that separate analyses miss</p></li>
 </ul>
-<p>This example shows how to implement a <strong>Bayesian multivariate normal mean model</strong> where we treat the genetic effect vector <span class="math notranslate nohighlight">\(\mathbf{\beta} = [\beta_a, \beta_b]\)</span> as having effects on both height and weight. Instead of separate analyses, we get a joint posterior distribution that captures both the individual effects and their correlation.</p>
-<p>Using simulated data where a genetic variant affects both height (true effect <span class="math notranslate nohighlight">\(\beta_a = 0.3\)</span>) and weight (true effect <span class="math notranslate nohighlight">\(\beta_b = 0.4\)</span>) with a correlation, we’ll see how prior beliefs about the effect vector get updated to give us a multivariate posterior distribution.</p>
+<p>This example shows how to implement a <strong>Bayesian multivariate normal mean model</strong> where we treat the genetic effect vector <span class="math notranslate nohighlight">\(\boldsymbol{\beta} = [\beta_a, \beta_b]\)</span> as jointly uncertain. Instead of separate analyses, we get a joint posterior distribution that reflects our updated uncertainty about both effects and their relationship.</p>
+<p>Using simulated data where a genetic variant affects both height (true effect <span class="math notranslate nohighlight">\(\beta_a = 0.3\)</span>) and weight (true effect <span class="math notranslate nohighlight">\(\beta_b = 0.4\)</span>) with correlated residuals, we’ll see how our joint uncertainty about the effect vector gets updated when we condition on multivariate trait data.</p>
 <section id="generate-simulated-data">
 <h2>Generate Simulated Data<a class="headerlink" href="#generate-simulated-data" title="Link to this heading">#</a></h2>
 <p>Let’s create genetic data for 5 individuals where one variant affects both height and weight.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment and set reproducibility</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
 <span class="nf">set.seed</span><span class="p">(</span><span class="m">26</span><span class="p">)</span>
 
-<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">  </span><span class="c1"># for mvrnorm</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">  </span><span class="c1"># for multivariate normal generation</span>
 
-<span class="c1"># Generate genotype data (same as before)</span>
+<span class="c1"># Generate genotype data that we can condition on</span>
 <span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
 <span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">)</span>
 <span class="nf">names</span><span class="p">(</span><span class="n">genotypes</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
 
-<span class="c1"># Convert to additive coding and standardize</span>
+<span class="c1"># Convert to additive coding and standardize (observed data we condition on)</span>
 <span class="n">alt_allele</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;T&quot;</span>
 <span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -798,6 +798,25 @@ T_1 = \sum_{i=1}^N X_i^2, \quad \mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \
 <span class="w">  </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_allele</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
+
+<span class="c1"># True effects we CANNOT condition on (unknown in practice)</span>
+<span class="n">true_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">)</span><span class="w">  </span><span class="c1"># [height_effect, weight_effect]</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">true_beta</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Weight&quot;</span><span class="p">)</span>
+
+<span class="c1"># Known residual covariance (what we can condition on)</span>
+<span class="n">Sigma_known</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w">   </span><span class="c1"># height variance = 1, covariance = 0.6</span>
+<span class="w">                        </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">1.2</span><span class="p">),</span><span class="w">  </span><span class="c1"># weight variance = 1.2</span>
+<span class="w">                      </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Sigma_known</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">Sigma_known</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Weight&quot;</span><span class="p">)</span>
+
+<span class="c1"># Generate observed trait data</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="kr">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">genetic_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_beta</span><span class="w">  </span><span class="c1"># What we cannot observe directly</span>
+<span class="w">  </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">genetic_effects</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sigma_known</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Weight&quot;</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -829,46 +848,26 @@ T_1 = \sum_{i=1}^N X_i^2, \quad \mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \
 </section>
 <section id="bayesian-multivariate-model-setup">
 <h2>Bayesian Multivariate Model Setup<a class="headerlink" href="#bayesian-multivariate-model-setup" title="Link to this heading">#</a></h2>
-<p>Now we specify our multivariate Bayesian model with prior beliefs about both genetic effects.</p>
+<p>First we express our joint uncertainty through a prior distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prior specification for beta vector</span>
-<span class="n">beta_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">  </span><span class="c1"># Prior mean: expect no effects</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prior: Our joint uncertainty about the effect vector</span>
+<span class="n">beta_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">  </span><span class="c1"># Best guess: no effects</span>
 <span class="nf">names</span><span class="p">(</span><span class="n">beta_0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Weight&quot;</span><span class="p">)</span>
 
-<span class="c1"># Prior covariance matrix (assume effects are independent a priori)</span>
-<span class="n">Sigma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w">   </span><span class="c1"># prior variance for height effect = 0.25</span>
-<span class="w">                    </span><span class="m">0.0</span><span class="p">,</span><span class="w">  </span><span class="m">0.25</span><span class="p">),</span><span class="w"> </span><span class="c1"># prior variance for weight effect = 0.25</span>
+<span class="c1"># Prior covariance: Quantifies our joint uncertainty</span>
+<span class="n">Sigma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w">    </span><span class="c1"># modest uncertainty, slight correlation</span>
+<span class="w">                    </span><span class="m">0.1</span><span class="p">,</span><span class="w">  </span><span class="m">0.25</span><span class="p">),</span><span class="w">   </span><span class="c1"># expecting effects might be related</span>
 <span class="w">                  </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 <span class="nf">rownames</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Weight&quot;</span><span class="p">)</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Prior beliefs about genetic effects:\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Prior mean vector (beta_0):&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">beta_0</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Prior covariance matrix (Sigma_0):&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prior beliefs about genetic effects:
-[1] &quot;Prior mean vector (beta_0):&quot;
-Height Weight 
-     0      0 
-[1] &quot;Prior covariance matrix (Sigma_0):&quot;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Height Weight
-Height   0.25   0.00
-Weight   0.00   0.25
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="calculate-the-multivariate-posterior">
-<h2>Calculate the Multivariate Posterior<a class="headerlink" href="#calculate-the-multivariate-posterior" title="Link to this heading">#</a></h2>
-<p>For the multivariate normal-normal conjugate model, we have closed-form solutions.</p>
+<section id="calculate-the-multivariate-posterior-by-conditioning-on-data">
+<h2>Calculate the Multivariate Posterior by Conditioning on Data<a class="headerlink" href="#calculate-the-multivariate-posterior-by-conditioning-on-data" title="Link to this heading">#</a></h2>
+<p>Now we condition on all observed information to update our joint uncertainty. For the multivariate normal-normal conjugate model, we have closed-form solutions.</p>
 <section id="sufficient-statistics">
 <h3>Sufficient Statistics<a class="headerlink" href="#sufficient-statistics" title="Link to this heading">#</a></h3>
 <p>The sufficient statistics for the multivariate case are:</p>
@@ -887,152 +886,121 @@ Weight   0.00   0.25
 <p>where <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}} = \mathbf{T}_2 / T_1\)</span> is the data’s estimate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate sufficient statistics</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sufficient statistics from conditioning on observed data</span>
 <span class="n">T1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">X</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
-<span class="n">T2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w">  </span><span class="c1"># Vector: [sum(X*Height), sum(X*Weight)]</span>
-<span class="n">beta_hat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">T1</span><span class="w">   </span><span class="c1"># Data&#39;s estimate of effect vector</span>
+<span class="n">T2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w">  </span><span class="c1"># What data tells us about effects</span>
+<span class="n">beta_hat_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">T1</span><span class="w">   </span><span class="c1"># Data&#39;s estimate (what we&#39;d get from separate OLS)</span>
 
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sufficient statistics:\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;T1 =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;T2 =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">T2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Data&#39;s estimate beta_hat =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_hat</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;What we learn from conditioning on data:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Data&#39;s joint estimate (beta_hat):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_hat_data</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;(True effects were:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">true_beta</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)\n\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sufficient statistics:
-T1 = 4 
-T2 = 2.848 2.602 
-Data&#39;s estimate beta_hat = 0.712 0.651 .
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>What we learn from conditioning on data:
+Data&#39;s joint estimate (beta_hat): 0.21 0.569 
+(True effects were: 0.3 0.4 )
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate posterior covariance matrix</span>
-<span class="n">Sigma_inv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Posterior: Updated joint uncertainty after conditioning</span>
+<span class="n">Sigma_inv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma_known</span><span class="p">)</span>
 <span class="n">Sigma_0_inv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">)</span>
+
+<span class="c1"># Joint posterior covariance (always smaller than prior - conditioning reduces uncertainty)</span>
 <span class="n">Sigma_1_inv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Sigma_inv</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Sigma_0_inv</span>
 <span class="n">Sigma_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma_1_inv</span><span class="p">)</span>
 
-<span class="c1"># Calculate posterior mean vector</span>
-<span class="n">beta_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sigma_1</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Sigma_inv</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_hat</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Sigma_0_inv</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_0</span><span class="p">)</span>
+<span class="c1"># Joint posterior mean (weighted combination of prior beliefs and data)</span>
+<span class="n">beta_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sigma_1</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Sigma_inv</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_hat_data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Sigma_0_inv</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_0</span><span class="p">)</span>
 
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior distribution: beta | Y ~ MVN(beta_1, Sigma_1)\n\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Updated joint uncertainty after conditioning (posterior):\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior mean vector (beta_1):\n&quot;</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">beta_1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior covariance matrix (Sigma_1):\n&quot;</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">))</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nTrue effects were:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">true_beta</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check that uncertainty decreased</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nUncertainty reduction:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Prior uncertainty (marginal variances):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">diag</span><span class="p">(</span><span class="n">Sigma_0</span><span class="p">),</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Posterior uncertainty (marginal variances):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">diag</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">),</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior distribution: beta | Y ~ MVN(beta_1, Sigma_1)
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated joint uncertainty after conditioning (posterior):
 Posterior mean vector (beta_1):
         [,1]
-Height 0.291
-Weight 0.216
+Height 0.078
+Weight 0.260
 
 Posterior covariance matrix (Sigma_1):
        Height Weight
-Height 0.1139 0.0371
-Weight 0.0371 0.1262
+Height 0.1235 0.0618
+Weight 0.0618 0.1359
 
-True effects were: 0.3 0.4 .
+Uncertainty reduction:
+Prior uncertainty (marginal variances): 0.25 0.25 
+Posterior uncertainty (marginal variances): 0.1235 0.1359 
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="id1">
-<h3>Interpretation as Weighted Average<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>Similar as the Bayesian normal mean model for one trait, the posterior mean can also be viewed as a weighted sum of our prior and the data we observed.</p>
+<section id="interpretation-information-sharing-through-joint-uncertainty">
+<h3>Interpretation: Information Sharing Through Joint Uncertainty<a class="headerlink" href="#interpretation-information-sharing-through-joint-uncertainty" title="Link to this heading">#</a></h3>
+<p>The beauty of joint modeling is how information about one trait affects our uncertainty about another.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the weighting matrices</span>
-<span class="n">data_precision</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Sigma_inv</span>
-<span class="n">prior_precision</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sigma_0_inv</span>
-<span class="n">total_precision</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_precision</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prior_precision</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The weights can be calculated as:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Weight matrix for data vs prior</span>
-<span class="n">W_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">total_precision</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">data_precision</span>
-<span class="n">W_prior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">total_precision</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">prior_precision</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare with what we&#39;d get from independent analyses</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Comparison with independent analyses:\n&quot;</span><span class="p">)</span>
 
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;W_data (data weighting matrix):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">W_data</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">))</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nW_prior (prior weighting matrix):\n&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">W_prior</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>W_data (data weighting matrix):
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        Height  Weight
-Height  0.5446 -0.1485
-Weight -0.1485  0.4950
+<span class="c1"># Height analysis alone</span>
+<span class="n">var_height_indep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="o">/</span><span class="n">Sigma_known</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="n">Sigma_0</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">])</span>
+<span class="n">mean_height_indep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">var_height_indep</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta_hat_data</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="n">Sigma_known</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">])</span>
 
-W_prior (prior weighting matrix):
-       Height Weight
-Height 0.4554 0.1485
-Weight 0.1485 0.5050
-</pre></div>
-</div>
-</div>
-</div>
-<p>And the weighted sum is:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify the weighted average</span>
-<span class="n">beta_1_check</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">W_data</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_hat</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">W_prior</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_0</span>
-<span class="n">beta_1_check</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 2 x 1 of type dbl</caption>
-<tbody>
-	<tr><th scope=row>Height</th><td>0.2911393</td></tr>
-	<tr><th scope=row>Weight</th><td>0.2163259</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-<p>which is identical to the beta_1 that we get from the formula:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span>
+<span class="c1"># Weight analysis alone  </span>
+<span class="n">var_weight_indep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="o">/</span><span class="n">Sigma_known</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="n">Sigma_0</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">])</span>
+<span class="n">mean_weight_indep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">var_weight_indep</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta_hat_data</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">/</span><span class="n">Sigma_known</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">])</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Independent analysis results:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Height effect: mean =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">mean_height_indep</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&quot;, var =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">var_height_indep</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weight effect: mean =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">mean_weight_indep</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&quot;, var =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">var_weight_indep</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nJoint analysis results:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Height effect: mean =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&quot;, var =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weight effect: mean =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&quot;, var =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">Sigma_1</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 2 x 1 of type dbl</caption>
-<tbody>
-	<tr><th scope=row>Height</th><td>0.2911393</td></tr>
-	<tr><th scope=row>Weight</th><td>0.2163259</td></tr>
-</tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Comparison with independent analyses:
+Independent analysis results:
+Height effect: mean = 0.105 , var = 0.125 
+Weight effect: mean = 0.259 , var = 0.1364 
+
+Joint analysis results:
+Height effect: mean = 0.078 , var = 0.1235 
+Weight effect: mean = 0.26 , var = 0.1359 
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
-<section id="id2">
-<h2>Graphical Summary<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h2>Graphical Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add this code after your existing genetic effects analysis</span>
@@ -1469,11 +1437,12 @@ ggplot2 3.4.0.
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bayesian-perspective-joint-uncertainty">The Bayesian Perspective: Joint Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution">Prior Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood">Likelihood</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution">Posterior Distribution</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-as-weighted-average">Interpretation as Weighted Average</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-distribution-joint-uncertainty">Prior Distribution: Joint Uncertainty</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-what-we-can-condition-on">Likelihood: What We Can Condition On</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-distribution-updated-joint-uncertainty">Posterior Distribution: Updated Joint Uncertainty</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-as-weighted-combination">Interpretation as Weighted Combination</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-to-multivariate-case">Generalization to Multivariate Case</a></li>
@@ -1483,16 +1452,16 @@ ggplot2 3.4.0.
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-simulated-data">Generate Simulated Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-multivariate-model-setup">Bayesian Multivariate Model Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-multivariate-posterior">Calculate the Multivariate Posterior</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-multivariate-posterior-by-conditioning-on-data">Calculate the Multivariate Posterior by Conditioning on Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sufficient-statistics">Sufficient Statistics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-formulas">Posterior Formulas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Interpretation as Weighted Average</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-information-sharing-through-joint-uncertainty">Interpretation: Information Sharing Through Joint Uncertainty</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graphical Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>

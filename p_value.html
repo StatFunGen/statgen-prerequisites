@@ -169,8 +169,7 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular topics</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -614,22 +613,20 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 </section>
 <section id="connection-to-bayesian-inference">
 <h2>Connection to Bayesian Inference<a class="headerlink" href="#connection-to-bayesian-inference" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Important</strong>: P-values are almost always reported in <strong>summary statistics</strong>, but it is not inference. They summarize how compatible the observed data is with <span class="math notranslate nohighlight">\(H_0\)</span>, but they don’t directly provide probabilistic statements about hypotheses.</p></li>
-<li><p><strong>How does Bayesian inference answer the same question</strong>: What’s the probability that the parameter differs from zero?</p>
 <ul>
+<li><p><strong>Important</strong>: P-values are almost always reported in <strong>summary statistics</strong>, but it is not inference. They summarize how compatible the observed data is with <span class="math notranslate nohighlight">\(H_0\)</span>, but they don’t directly provide probabilistic statements about hypotheses.</p></li>
+<li><p><strong>What would we do in Bayesian hypothesis testing to answer the same question</strong>:</p>
+<ul class="simple">
 <li><p>In Bayesian inference with posterior distribution <span class="math notranslate nohighlight">\(N(\mu, \sigma^2)\)</span>, we can check: Does the 95% High Probability Density (HPD) region cover zero?</p></li>
-<li><p>This directly answers the question.</p></li>
-</ul>
-</li>
-<li><p><strong>False Discovery Rate (FDR)</strong>: In Bayesian mixture models, we can compute FDR based on data <span class="math notranslate nohighlight">\(P(H_0 | \text{data})\)</span>. This provides direct probabilistic interpretations that p-values cannot.</p></li>
-<li><p><strong>Bayesian Hypothesis Testing</strong>: Given a posterior distribution, Bayesian hypothesis testing is more intuitive:</p></li>
+<li><p>This directly gives the probability that <span class="math notranslate nohighlight">\(H_0\)</span> is true:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-P(H_0 | \text{data}) = \frac{P(\text{data} | H_0) \cdot P(H_0)}{P(\text{data})}
-\]</div>
-<p>This directly gives the probability that <span class="math notranslate nohighlight">\(H_0\)</span> is true, which is what researchers often think they’re getting from p-values.</p>
+    P(H_0 | \text{D}) = \frac{P(\text{D} | H_0) \cdot P(H_0)}{P(\text{D})}
+    \]</div>
+</li>
+<li><p><strong>False Discovery Rate (FDR)</strong>: In Bayesian mixture models, we can compute FDR based on data <span class="math notranslate nohighlight">\(P(H_0 | \text{D})\)</span>. This provides direct probabilistic interpretations that p-values cannot.</p></li>
+</ul>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">

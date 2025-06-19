@@ -169,8 +169,7 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular topics</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -578,16 +577,16 @@ document.write(`
 <p>The key formula for the concept of a collider is represented in a causal diagram as:</p>
 <div class="math notranslate nohighlight">
 \[
-X \rightarrow C \leftarrow Y
+X \rightarrow W \leftarrow Y
 \]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(C\)</span> is the collider variable</p></li>
+<li><p><span class="math notranslate nohighlight">\(W\)</span> is the collider variable</p></li>
 <li><p><span class="math notranslate nohighlight">\(X\)</span> is one cause of the collider</p></li>
 <li><p><span class="math notranslate nohighlight">\(Y\)</span> is another cause of the collider</p></li>
 <li><p>The arrows (→) indicate the direction of causal influence</p></li>
 </ul>
-<p>This diagram illustrates that a collider (<span class="math notranslate nohighlight">\(C\)</span>) is a variable that is <em>caused by</em> both the exposure (<span class="math notranslate nohighlight">\(X\)</span>) and the outcome (<span class="math notranslate nohighlight">\(Y\)</span>), creating a situation where <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> both flow into <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<p>This diagram illustrates that a collider (<span class="math notranslate nohighlight">\(W\)</span>) is a variable that is <em>caused by</em> both the exposure (<span class="math notranslate nohighlight">\(X\)</span>) and the outcome (<span class="math notranslate nohighlight">\(Y\)</span>), creating a situation where <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> both flow into <span class="math notranslate nohighlight">\(W\)</span>.</p>
 <p>A <strong>collider</strong> is a variable that is influenced by two other variables in a causal pathway. When we condition on (adjust for, stratify by, or select based on) a collider, we can induce a spurious association between its causes, even if they were originally independent.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">

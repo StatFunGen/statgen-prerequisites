@@ -169,8 +169,7 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular topics</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -575,16 +574,16 @@ document.write(`
 <p>The key formula for the concept of a confounder is represented in a causal diagram as:</p>
 <div class="math notranslate nohighlight">
 \[
-X ← C → Y
+X \leftarrow W \rightarrow Y
 \]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(C\)</span> is the confounder variable</p></li>
+<li><p><span class="math notranslate nohighlight">\(W\)</span> is the confounder variable</p></li>
 <li><p><span class="math notranslate nohighlight">\(X\)</span> is the exposure/treatment variable</p></li>
 <li><p><span class="math notranslate nohighlight">\(Y\)</span> is the outcome variable</p></li>
-<li><p>The arrows (←, →) indicate the direction of causal influence</p></li>
+<li><p>The arrows <span class="math notranslate nohighlight">\((\leftarrow, \rightarrow)\)</span> indicate the direction of causal influence</p></li>
 </ul>
-<p>This diagram illustrates that a confounder (<span class="math notranslate nohighlight">\(C\)</span>) has a direct causal effect on both the exposure (<span class="math notranslate nohighlight">\(X\)</span>) and the outcome (<span class="math notranslate nohighlight">\(Y\)</span>), creating a “backdoor path” between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> that must be blocked to obtain an unbiased estimate of the causal effect.</p>
+<p>This diagram illustrates that a confounder (<span class="math notranslate nohighlight">\(W\)</span>) has a direct causal effect on both the exposure (<span class="math notranslate nohighlight">\(X\)</span>) and the outcome (<span class="math notranslate nohighlight">\(Y\)</span>), creating a “backdoor path” between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> that must be blocked to obtain an unbiased estimate of the causal effect.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
@@ -606,13 +605,13 @@ X ← C → Y
 <p>The most common and practical solution is <strong>regression adjustment</strong> - simply include confounders as additional variables in your model:</p>
 <div class="math notranslate nohighlight">
 \[
-Y = \beta_0 + \beta_1 X + \beta_2 C_1 + \beta_3 C_2 + \ldots + \epsilon
+Y = \beta_0 + \beta_1 X + \beta_2 W_1 + \beta_3 W_2 + \ldots + \epsilon
 \]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(Y\)</span> = outcome (e.g., height, disease status)</p></li>
 <li><p><span class="math notranslate nohighlight">\(X\)</span> = genetic variant of interest</p></li>
-<li><p><span class="math notranslate nohighlight">\(C_1, C_2, \ldots\)</span> = confounders (e.g., age, ancestry, sex)</p></li>
+<li><p><span class="math notranslate nohighlight">\(W_1, W_2, \ldots\)</span> = confounders (e.g., age, ancestry, sex)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> = the <strong>unbiased</strong> effect of the genetic variant</p></li>
 </ul>
 <p>Here are the common approaches in genetic studies:</p>
