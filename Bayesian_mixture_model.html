@@ -543,17 +543,23 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment-which-group-does-this-parameter-belong-to">Component Assignment: Which Group Does This Parameter Belong To?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-prior-structure">Setting Up the Prior Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-from-data-posterior-component-membership">Learning from Data: Posterior Component Membership</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-mixture-models-are-powerful-in-genetics">Why Mixture Models Are Powerful in Genetics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment-modeling-unknown-group-membership">Component Assignment: Modeling Unknown Group Membership</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-structure-for-uncertain-components">Prior Structure for Uncertain Components</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-component-membership-from-data">Learning Component Membership from Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-mixture-models-handle-conditioning-limitations">Why Mixture Models Handle Conditioning Limitations</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-mixture-distribution-of-effects">Create a Mixture Distribution of Effects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-individual-level-data">Simulating the Individual-Level Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-random-effects-model">Connection to Random Effects Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-of-simulated-data">Generation of Simulated Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-mixture-distribution-of-effects">Create a Mixture Distribution of Effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-individual-level-data">Simulating the Individual-Level Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-analysis-with-fixed-mixture-prior">Bayesian Analysis with Fixed Mixture Prior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-posterior-component-probabilities">Computing Posterior Component Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-effect-size-estimates">Posterior Effect Size Estimates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-mixture-weights">Updated Mixture Weights</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
@@ -574,7 +580,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-mixture-model">
 <h1>Bayesian Mixture Model<a class="headerlink" href="#bayesian-mixture-model" title="Link to this heading">#</a></h1>
-<p>A Bayesian mixture model assumes that parameters come from a weighted combination of different distributions rather than a single distribution, allowing the model to automatically identify and handle heterogeneity in parameter types while providing uncertainty quantification about which component each parameter belongs to.</p>
+<p>A Bayesian mixture model arises when we cannot condition on which component generated each parameter, leaving this membership uncertain and requiring us to treat both the component assignments and parameters as random variables to quantify uncertainty about the underlying heterogeneous structure.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -582,75 +588,74 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>In a Bayesian mixture model, we assume that the parameter <span class="math notranslate nohighlight">\(\beta\)</span> is generated from a weighted sum of <span class="math notranslate nohighlight">\(C\)</span> different distributions, where each distribution corresponds to a different “component” representing different types of effects. The probability density function (PDF) of the mixture prior can be written as:</p>
+<p>In a Bayesian mixture model, we cannot observe which component generates each parameter, so we model this uncertainty by assuming the parameter <span class="math notranslate nohighlight">\(\beta\)</span> comes from a weighted combination of different distributions:</p>
 <div class="math notranslate nohighlight">
 \[
 p(\beta) = \sum_{c=1}^{C} \pi_c p_c(\beta)
 \]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(p(\beta)\)</span> is the overall prior probability density function for the parameter <span class="math notranslate nohighlight">\(\beta\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(C\)</span> is the number of component distributions</p></li>
-<li><p><span class="math notranslate nohighlight">\(\pi_c\)</span> is the mixture weight for the <span class="math notranslate nohighlight">\(c\)</span>-th component (with <span class="math notranslate nohighlight">\(\sum_{c=1}^{C} \pi_c = 1\)</span> and <span class="math notranslate nohighlight">\(\pi_c \geq 0\)</span>)</p></li>
-<li><p><span class="math notranslate nohighlight">\(p_c(\beta)\)</span> is the probability density function of the <span class="math notranslate nohighlight">\(c\)</span>-th component, typically <span class="math notranslate nohighlight">\(p_c(\beta) = \mathcal{N}(\mu_c, \sigma_c^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi_c\)</span> represents our uncertainty about which component <span class="math notranslate nohighlight">\(c\)</span> the parameter belongs to</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_c(\beta)\)</span> is the distribution for that component</p></li>
 </ul>
+<p>This captures heterogeneity by allowing different parameter types while quantifying our uncertainty about which type each parameter represents.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<p>In statistical genetics, we often encounter parameters that don’t come from a single, simple distribution. Think of it this way: genetic effects can be small (most variants), moderate (some important variants), or large (rare but impactful variants). A Bayesian mixture model captures this reality by saying “the parameter <span class="math notranslate nohighlight">\(\beta\)</span> could come from any of several different distributions, and we’ll let the data tell us which one is most likely.”</p>
-<p>Note that by the statement above, we are already implying that the <span class="math notranslate nohighlight">\(\beta\)</span> comes from a distribution, i.e., a random effect model.</p>
-<section id="component-assignment-which-group-does-this-parameter-belong-to">
-<h2>Component Assignment: Which Group Does This Parameter Belong To?<a class="headerlink" href="#component-assignment-which-group-does-this-parameter-belong-to" title="Link to this heading">#</a></h2>
-<p>Since we don’t know a priori which component generated our parameter <span class="math notranslate nohighlight">\(\beta\)</span>, we introduce a latent (hidden) variable <span class="math notranslate nohighlight">\(z\)</span> that acts like a “group membership card”:</p>
+<p>In statistical genetics, we cannot condition on which type of effect each parameter represents - whether it’s null, moderate, or large. This uncertainty about parameter heterogeneity is precisely why we need Bayesian mixture models. Rather than assuming all genetic effects come from a single distribution, we acknowledge that we don’t know which “type” each parameter belongs to and model this uncertainty explicitly.</p>
+<p>Since we treat parameters as random variables (rather than fixed effects), the mixture model becomes our way of handling the uncertainty about which distribution generated each parameter.</p>
+<section id="component-assignment-modeling-unknown-group-membership">
+<h2>Component Assignment: Modeling Unknown Group Membership<a class="headerlink" href="#component-assignment-modeling-unknown-group-membership" title="Link to this heading">#</a></h2>
+<p>We cannot observe which component generated our parameter <span class="math notranslate nohighlight">\(\beta\)</span>, so we introduce a latent variable <span class="math notranslate nohighlight">\(z\)</span> to represent this unknown membership:</p>
 <div class="math notranslate nohighlight">
 \[
 z \in \{1, 2, \ldots, C\}
 \]</div>
-<p>The probability that <span class="math notranslate nohighlight">\(\beta\)</span> belongs to component <span class="math notranslate nohighlight">\(c\)</span> is simply the mixture weight:
+<p>Our uncertainty about component membership is captured by:
 $<span class="math notranslate nohighlight">\(
 P(z = c) = \pi_c
 \)</span>$</p>
-<p>Once we know the component assignment, the parameter follows that component’s distribution:
+<p>Once we condition on the (unknown) component assignment, the parameter follows that component’s distribution:
 $<span class="math notranslate nohighlight">\(
 \beta \mid z = c \sim p_c(\beta)
 \)</span>$</p>
-<p>Think of <span class="math notranslate nohighlight">\(z\)</span> as nature’s coin flip that decides which distribution to draw <span class="math notranslate nohighlight">\(\beta\)</span> from, but we never get to see the result of that coin flip directly.</p>
+<p>The key insight is that <span class="math notranslate nohighlight">\(z\)</span> represents information we cannot condition on directly - we never observe which component actually generated each parameter.</p>
 </section>
-<section id="setting-up-the-prior-structure">
-<h2>Setting Up the Prior Structure<a class="headerlink" href="#setting-up-the-prior-structure" title="Link to this heading">#</a></h2>
-<p><strong>Mixture Weights - How Common Is Each Component?</strong></p>
-<p>The mixture weights <span class="math notranslate nohighlight">\(\boldsymbol{\pi} = (\pi_1, \pi_2, \ldots, \pi_C)\)</span> tell us how frequently we expect each component to occur. We typically give them a Dirichlet prior:</p>
+<section id="prior-structure-for-uncertain-components">
+<h2>Prior Structure for Uncertain Components<a class="headerlink" href="#prior-structure-for-uncertain-components" title="Link to this heading">#</a></h2>
+<p><strong>Mixture Weights - Quantifying Component Uncertainty</strong></p>
+<p>The mixture weights <span class="math notranslate nohighlight">\(\boldsymbol{\pi} = (\pi_1, \pi_2, \ldots, \pi_C)\)</span> represent our prior uncertainty about component frequencies. We place a Dirichlet prior on these weights:</p>
 <div class="math notranslate nohighlight">
 \[
 \boldsymbol{\pi} \sim \text{Dirichlet}(\alpha_1, \alpha_2, \ldots, \alpha_C)
 \]</div>
-<p>This ensures the weights are positive and sum to 1. If you set all <span class="math notranslate nohighlight">\(\alpha_c = 1\)</span>, you’re saying “I have no strong opinion about which components are more common” - the weights will be roughly equal on average.</p>
+<p>This prior quantifies our uncertainty about how common each component is before seeing data.</p>
 <p><strong>Component-Specific Parameters</strong></p>
-<p>Each component <span class="math notranslate nohighlight">\(c\)</span> has its own parameters that define its shape. For genetic effect sizes, we often use normal distributions:</p>
+<p>Each component represents a different “type” of uncertainty about parameter values. For genetic effects, we might specify:</p>
 <ul class="simple">
-<li><p>Component 1 (null effects): <span class="math notranslate nohighlight">\(p_1(\beta) = \mathcal{N}(0, \sigma_1^2)\)</span> where <span class="math notranslate nohighlight">\(\sigma_1^2\)</span> is very small</p></li>
-<li><p>Component 2 (moderate effects): <span class="math notranslate nohighlight">\(p_2(\beta) = \mathcal{N}(0, \sigma_2^2)\)</span> where <span class="math notranslate nohighlight">\(\sigma_2^2\)</span> is moderate</p></li>
-<li><p>Component 3 (large effects): <span class="math notranslate nohighlight">\(p_3(\beta) = \mathcal{N}(0, \sigma_3^2)\)</span> where <span class="math notranslate nohighlight">\(\sigma_3^2\)</span> is large</p></li>
+<li><p>Component 1 (null effects): <span class="math notranslate nohighlight">\(p_1(\beta) = \mathcal{N}(0, \sigma_1^2)\)</span> with small <span class="math notranslate nohighlight">\(\sigma_1^2\)</span></p></li>
+<li><p>Component 2 (moderate effects): <span class="math notranslate nohighlight">\(p_2(\beta) = \mathcal{N}(0, \sigma_2^2)\)</span> with moderate <span class="math notranslate nohighlight">\(\sigma_2^2\)</span></p></li>
+<li><p>Component 3 (large effects): <span class="math notranslate nohighlight">\(p_3(\beta) = \mathcal{N}(0, \sigma_3^2)\)</span> with large <span class="math notranslate nohighlight">\(\sigma_3^2\)</span></p></li>
 </ul>
-<p>Each <span class="math notranslate nohighlight">\(\sigma_c^2\)</span> gets its own prior based on your domain knowledge.</p>
+<p>Each <span class="math notranslate nohighlight">\(\sigma_c^2\)</span> has its own prior, reflecting our uncertainty about the scale of effects within each component.</p>
+<p>Or we can also specify that the mean of each component is different but have a shared variance. Or both of them are different, or even from different distributions even.</p>
 </section>
-<section id="learning-from-data-posterior-component-membership">
-<h2>Learning from Data: Posterior Component Membership<a class="headerlink" href="#learning-from-data-posterior-component-membership" title="Link to this heading">#</a></h2>
-<p>Here’s where the magic happens. After seeing the data, we can calculate how likely it is that parameter <span class="math notranslate nohighlight">\(\beta\)</span> belongs to each component using Bayes’ rule:</p>
+<section id="learning-component-membership-from-data">
+<h2>Learning Component Membership from Data<a class="headerlink" href="#learning-component-membership-from-data" title="Link to this heading">#</a></h2>
+<p>After observing data, we update our uncertainty about which component each parameter belongs to using Bayes’ rule:</p>
 <div class="math notranslate nohighlight">
 \[
 P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_j(\beta)}
 \]</div>
-<p>This posterior probability has an intuitive interpretation: it weighs how well component <span class="math notranslate nohighlight">\(c\)</span> explains the observed <span class="math notranslate nohighlight">\(\beta\)</span> (the numerator <span class="math notranslate nohighlight">\(\pi_c p_c(\beta)\)</span>) against how well all components explain it (the denominator).</p>
-<p>If <span class="math notranslate nohighlight">\(\beta\)</span> is close to zero, the “null effect” component will have high posterior probability. If <span class="math notranslate nohighlight">\(\beta\)</span> is large, the “large effect” component will dominate.</p>
+<p>This posterior probability quantifies our remaining uncertainty about component membership after conditioning on the observed data. Parameters that fit well with component <span class="math notranslate nohighlight">\(c\)</span> receive higher posterior probability for that component.</p>
 </section>
-<section id="why-mixture-models-are-powerful-in-genetics">
-<h2>Why Mixture Models Are Powerful in Genetics<a class="headerlink" href="#why-mixture-models-are-powerful-in-genetics" title="Link to this heading">#</a></h2>
-<p><strong>Biological Realism</strong>: Genetic architectures naturally have multiple classes of effects. Most variants do nothing, some have small effects, and a few have large effects. Mixture models capture this heterogeneity directly.</p>
-<p><strong>Automatic Effect Classification</strong>: You don’t need to pre-specify which genetic variants have large vs. small effects. The model learns this from the data and gives you posterior probabilities for each classification.</p>
-<p><strong>Robust to Outliers</strong>: If a few genetic effects are much larger than expected, they get assigned to a “large effect” component rather than distorting the estimates for typical effects.</p>
-<p><strong>Principled Uncertainty</strong>: Instead of hard classifications (“this effect is large”), you get probabilistic statements (“this effect has an 85% chance of being large”). This uncertainty naturally propagates through downstream analyses.</p>
-<p><strong>Flexible Modeling</strong>: You can easily accommodate different biological scenarios by changing the number and types of components. Want to model population-specific effects? Add population-specific components. Suspect some effects are exactly zero? Include a point mass at zero.</p>
+<section id="why-mixture-models-handle-conditioning-limitations">
+<h2>Why Mixture Models Handle Conditioning Limitations<a class="headerlink" href="#why-mixture-models-handle-conditioning-limitations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Acknowledging Unknown Heterogeneity</strong>: We cannot condition on effect type a priori, so mixture models treat this as a source of uncertainty to be quantified rather than ignored.</p></li>
+<li><p><strong>Robust Parameter Estimation</strong>: When we cannot condition on outliers or different parameter types, mixture models prevent extreme values from distorting estimates by assigning them to appropriate components.</p></li>
+<li><p><strong>Flexible Uncertainty Modeling</strong>: We can adapt the mixture structure to reflect different sources of uncertainty - population differences, effect mechanisms, or measurement contexts - by adjusting the components accordingly.</p></li>
+</ul>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
@@ -670,23 +675,31 @@ P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
 <p>Remember when we studied how a single genetic variant affects height and weight using the Bayesian multivariate normal mean model? We assumed there <em>was</em> an effect and focused on estimating it - figuring out the correlation between height and weight effects for that one variant.</p>
 <p><strong>But what happens when we study hundreds of variants at once?</strong></p>
-<p>In practice, there are millions of genetic variants, and we are not looking at millions of versions of the same story. Instead, you’re seeing a mixture of completely different biological mechanisms:</p>
+<p>In practice, there are millions of genetic variants, and we cannot condition on which biological mechanism each one follows. Instead of millions of versions of the same story, you’re seeing a mixture of completely different mechanisms:</p>
 <ul class="simple">
 <li><p>Most variants actually do nothing to either trait (null effects)</p></li>
 <li><p>Some only affect height (e.g., growth pathways)</p></li>
 <li><p>Others only affect weight (e.g., metabolism)</p></li>
 <li><p>A few affect both traits in coordinated ways</p></li>
 </ul>
-<p><strong>The puzzle?</strong> Without knowing the truth, all we see is a messy scatter plot of effects with no clear pattern.</p>
-<p>This is where mixture models become powerful. Instead of assuming all variants work the same way, we can ask: <em>“What if our observed data comes from a mixture of different underlying mechanisms?”</em></p>
-<p>Let’s explore this by defining seven component models (M0-M6), each representing a different way variants can work, then combining them in realistic proportions to see what we actually observe when studying multiple variants together.</p>
+<p><strong>The puzzle?</strong> Without knowing which mechanism generated each variant, all we see is a messy scatter plot of effects with no clear pattern.</p>
+<p>This is where mixture models become powerful. Since we cannot condition on these underlying mechanisms, we treat the effects as random variables drawn from different distributions rather than fixed parameters. We ask: <em>“What if our observed data comes from a mixture of different mechanisms we cannot observe?”</em></p>
+<p><strong>But how do we actually use this insight for analysis?</strong> This example demonstrates the complete workflow: we’ll first generate realistic data from a 7-component mixture representing different biological mechanisms, then show how Bayesian analysis with fixed mixture priors can flexibly classify variants and estimate effects - allowing us to analyze heterogeneous variants in a unified framework rather than assuming they all follow the same model.</p>
+<p>Let’s explore this by defining seven component models (M0-M6), generating data from them in realistic proportions, and then demonstrating how mixture-based Bayesian analysis can recover the underlying structure while quantifying our uncertainty about which mechanism each variant follows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">  </span><span class="c1"># for mvrnorm</span>
 <span class="nf">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span>
-
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span><span class="w">          </span><span class="c1"># Number of individuals</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="generation-of-simulated-data">
+<h2>Generation of Simulated Data<a class="headerlink" href="#generation-of-simulated-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span><span class="w">          </span><span class="c1"># Number of individuals</span>
 <span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">           </span><span class="c1"># Number of genetic variants</span>
 <span class="n">ES_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w">          </span><span class="c1"># Standard deviation of effect sizes</span>
 </pre></div>
@@ -694,7 +707,7 @@ P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_
 </div>
 </div>
 <section id="create-a-mixture-distribution-of-effects">
-<h2>Create a Mixture Distribution of Effects<a class="headerlink" href="#create-a-mixture-distribution-of-effects" title="Link to this heading">#</a></h2>
+<h3>Create a Mixture Distribution of Effects<a class="headerlink" href="#create-a-mixture-distribution-of-effects" title="Link to this heading">#</a></h3>
 <p>Now here’s the key insight: <strong>real populations are mixtures</strong> of these components. Most variants do nothing (M0), some affect single traits (M1, M2), and fewer show pleiotropy (M3-M6).</p>
 <p>We’ll define 7 component models, each telling a different biological story:</p>
 <ul class="simple">
@@ -708,7 +721,7 @@ P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define mixture weights - this is the biological reality!</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define mixture weights</span>
 <span class="c1"># Most variants are null, few show pleiotropy</span>
 <span class="n">weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.70</span><span class="p">,</span><span class="w"> </span><span class="m">0.10</span><span class="p">,</span><span class="w"> </span><span class="m">0.10</span><span class="p">,</span><span class="w"> </span><span class="m">0.03</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.03</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">)</span><span class="w">  </span><span class="c1"># proportion of M0 to M6</span>
 <span class="nf">names</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M6&quot;</span><span class="p">)</span>
@@ -781,7 +794,9 @@ P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mixture Population Summary:
 Total variants: 100 
 Null variants: 74 ( 74 %)
-Pleiotropic variants: 11 ( 11 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pleiotropic variants: 11 ( 11 %)
 Observed correlation: 0.334 
 </pre></div>
 </div>
@@ -865,7 +880,7 @@ Observed correlation: 0.334
 </div>
 </section>
 <section id="simulating-the-individual-level-data">
-<h2>Simulating the Individual-Level Data<a class="headerlink" href="#simulating-the-individual-level-data" title="Link to this heading">#</a></h2>
+<h3>Simulating the Individual-Level Data<a class="headerlink" href="#simulating-the-individual-level-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now let&#39;s simulate the complete genetic data</span>
@@ -890,7 +905,7 @@ Observed correlation: 0.334
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Height effects range:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">beta_height</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weight effects range:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">beta_weight</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 
-<span class="c1"># Calculate genetic values: X %*% β</span>
+<span class="c1"># Calculate genetic values: X %*% beta</span>
 <span class="n">genetic_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_height</span>
 <span class="n">genetic_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_weight</span>
 
@@ -899,8 +914,8 @@ Observed correlation: 0.334
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weight genetic values range:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">genetic_weight</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 
 <span class="c1"># Add environmental noise to achieve desired heritability</span>
-<span class="c1"># Heritability h² = Var(genetic) / Var(total)</span>
-<span class="c1"># So Var(error) = Var(genetic) * (1 - h²) / h²</span>
+<span class="c1"># Heritability h^2 = Var(genetic) / Var(total)</span>
+<span class="c1"># So Var(error) = Var(genetic) * (1 - h^2) / h^2</span>
 
 <span class="n">h2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.7</span><span class="w">  </span><span class="c1"># 70% heritability</span>
 <span class="n">genetic_var_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">genetic_height</span><span class="p">)</span>
@@ -913,7 +928,7 @@ Observed correlation: 0.334
 <span class="n">error_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">error_var_height</span><span class="p">))</span>
 <span class="n">error_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">error_var_weight</span><span class="p">))</span>
 
-<span class="c1"># Final phenotypes: Y = X*β + ε</span>
+<span class="c1"># Final phenotypes: Y = X*beta + epsilon</span>
 <span class="n">phenotype_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genetic_height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error_height</span>
 <span class="n">phenotype_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genetic_weight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error_weight</span>
 
@@ -1003,9 +1018,279 @@ Achieved heritability - Weight: 0.712
 </div>
 </div>
 </section>
-<section id="connection-to-random-effects-model">
-<h2>Connection to Random Effects Model<a class="headerlink" href="#connection-to-random-effects-model" title="Link to this heading">#</a></h2>
-<p>This mixture model is indeed a <strong>random effects model</strong> (rather than a fixed effect model) because each variant’s effect is drawn randomly from a distribution, rather than being a fixed unknown parameter. Looking at our code, we can see that even within the same component, different variants get different effect sizes through random sampling - for example, variants in component M1 all have <code class="docutils literal notranslate"><span class="pre">height_effects[i]</span> <span class="pre">&lt;-</span> <span class="pre">rnorm(1,</span> <span class="pre">mean</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">sd</span> <span class="pre">=</span> <span class="pre">ES_sd)</span></code>, meaning each variant randomly draws its height effect from a Normal(0, σ²) distribution. The key insight is that <strong>effects are random variables, not fixed parameters</strong>. Each component (M0-M6) defines a different probability distribution for effects, and variants assigned to that component randomly sample their effects from that distribution. This is fundamentally different from a fixed effects model where each variant would have an unknown but fixed true effect size. Here, we’re explicitly modeling the biological reality that even variants working through the same pathway (same component) will have different effect sizes due to the random nature of genetic architecture. The mixture captures both the diversity of biological mechanisms (different components) and the variability within each mechanism (random sampling from component-specific distributions).</p>
+</section>
+<section id="bayesian-analysis-with-fixed-mixture-prior">
+<h2>Bayesian Analysis with Fixed Mixture Prior<a class="headerlink" href="#bayesian-analysis-with-fixed-mixture-prior" title="Link to this heading">#</a></h2>
+<p>Now we’ll demonstrate the key power of mixture models: analyzing variants with a flexible prior that allows each variant to belong to any component, rather than assuming all variants follow the same model.</p>
+<p>For this multivariate example, we’ll focus on analyzing height effects while using the mixture structure learned from the bivariate simulation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use height phenotype for univariate analysis</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">phenotype_height</span>
+
+<span class="c1"># Set up fixed mixture prior parameters based on the 7-component model</span>
+<span class="c1"># These represent our prior knowledge about effect size distributions</span>
+
+<span class="c1"># Fixed mixture weights (pi) - based on the original simulation weights</span>
+<span class="n">pi_prior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.70</span><span class="p">,</span><span class="w"> </span><span class="m">0.10</span><span class="p">,</span><span class="w"> </span><span class="m">0.10</span><span class="p">,</span><span class="w"> </span><span class="m">0.03</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.03</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">pi_prior</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M6&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fixed component standard deviations (sigma) for height effects</span>
+<span class="c1"># M0: null, M1: height-only, M2: weight-only (0 for height), M3-M6: pleiotropic</span>
+<span class="n">sigma_prior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w">    </span><span class="c1"># M0: null</span>
+<span class="w">                 </span><span class="m">0.5</span><span class="p">,</span><span class="w">    </span><span class="c1"># M1: height effects</span>
+<span class="w">                 </span><span class="m">0.0</span><span class="p">,</span><span class="w">    </span><span class="c1"># M2: weight-only (no height effect)</span>
+<span class="w">                 </span><span class="m">0.5</span><span class="p">,</span><span class="w">    </span><span class="c1"># M3: pleiotropic</span>
+<span class="w">                 </span><span class="m">0.5</span><span class="p">,</span><span class="w">    </span><span class="c1"># M4: pleiotropic</span>
+<span class="w">                 </span><span class="m">0.5</span><span class="p">,</span><span class="w">    </span><span class="c1"># M5: pleiotropic</span>
+<span class="w">                 </span><span class="m">0.5</span><span class="p">)</span><span class="w">    </span><span class="c1"># M6: pleiotropic</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">sigma_prior</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M6&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Fixed mixture prior for height effects:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Mixture weights (pi):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pi_prior</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Component sigmas (sigma):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_prior</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fixed mixture prior for height effects:
+Mixture weights (pi): 0.7 0.1 0.1 0.03 0.02 0.03 0.02 
+Component sigmas (sigma): 0 0.5 0 0.5 0.5 0.5 0.5 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="computing-posterior-component-probabilities">
+<h2>Computing Posterior Component Probabilities<a class="headerlink" href="#computing-posterior-component-probabilities" title="Link to this heading">#</a></h2>
+<p>For each variant, we compute the posterior probability of belonging to each component using Bayes’ rule:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to compute posterior component probabilities for univariate case</span>
+<span class="n">compute_posterior_probs_univariate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">pi_mix</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_mix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="w">  </span><span class="n">n_comp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">pi_mix</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Storage for posterior probabilities</span>
+<span class="w">  </span><span class="n">posterior_probs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_comp</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">colnames</span><span class="p">(</span><span class="n">posterior_probs</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">pi_mix</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">rownames</span><span class="p">(</span><span class="n">posterior_probs</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Estimate error variance from residual phenotypic variance</span>
+<span class="w">  </span><span class="n">sigma_e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.6</span><span class="w">  </span><span class="c1"># Conservative estimate</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># Get genotype data for variant i</span>
+<span class="w">    </span><span class="n">Xi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">i</span><span class="p">]</span>
+<span class="w">    </span><span class="n">Xi_centered</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Xi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Xi</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Compute marginal likelihood under each component</span>
+<span class="w">    </span><span class="n">log_likelihoods</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">n_comp</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kr">for</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_comp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">sigma_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sigma_mix</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="kr">if</span><span class="p">(</span><span class="n">sigma_beta</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1"># Null component: β = 0 exactly</span>
+<span class="w">        </span><span class="c1"># Marginal likelihood: Y ~ N(μ, σ_e²)</span>
+<span class="w">        </span><span class="n">mu_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="w">        </span><span class="n">log_likelihoods</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu_null</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma_e</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">        </span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1"># Non-null component: β ~ N(0, σ_β²)</span>
+<span class="w">        </span><span class="c1"># Use normal-normal conjugacy for marginal likelihood</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">XtX</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Xi_centered</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="w">        </span><span class="n">XtY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Xi_centered</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">)))</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="kr">if</span><span class="p">(</span><span class="n">XtX</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1e-10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="c1"># Prior and likelihood precision</span>
+<span class="w">          </span><span class="n">tau_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma_beta</span><span class="o">^</span><span class="m">2</span>
+<span class="w">          </span><span class="n">tau_e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma_e</span><span class="o">^</span><span class="m">2</span>
+<span class="w">          </span>
+<span class="w">          </span><span class="c1"># Posterior parameters</span>
+<span class="w">          </span><span class="n">post_var_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">tau_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau_e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">XtX</span><span class="p">)</span>
+<span class="w">          </span><span class="n">post_mean_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">tau_e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">XtY</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">tau_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau_e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">XtX</span><span class="p">)</span>
+<span class="w">          </span>
+<span class="w">          </span><span class="c1"># Log marginal likelihood (analytical)</span>
+<span class="w">          </span><span class="n">const_term</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kc">pi</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">sigma_e</span><span class="p">)</span>
+<span class="w">          </span><span class="n">prior_term</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kc">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma_beta</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="w">          </span><span class="n">post_term</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kc">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">post_var_beta</span><span class="p">)</span>
+<span class="w">          </span>
+<span class="w">          </span><span class="c1"># Quadratic form difference</span>
+<span class="w">          </span><span class="n">Y_centered</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="w">          </span><span class="n">ss_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Y_centered</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="w">          </span><span class="n">ss_explained</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">post_mean_beta</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">post_var_beta</span>
+<span class="w">          </span>
+<span class="w">          </span><span class="n">quad_term</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tau_e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ss_total</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ss_explained</span><span class="p">)</span>
+<span class="w">          </span>
+<span class="w">          </span><span class="n">log_likelihoods</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">const_term</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prior_term</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">post_term</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">quad_term</span>
+<span class="w">          </span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="c1"># No genetic variation</span>
+<span class="w">          </span><span class="n">log_likelihoods</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="o">-</span><span class="kc">Inf</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Convert to posterior probabilities using Bayes&#39; rule</span>
+<span class="w">    </span><span class="n">log_posteriors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">pi_mix</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">log_likelihoods</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Numerical stability</span>
+<span class="w">    </span><span class="n">max_log_post</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">log_posteriors</span><span class="p">[</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">log_posteriors</span><span class="p">)])</span>
+<span class="w">    </span><span class="n">log_posteriors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_posteriors</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_log_post</span>
+<span class="w">    </span><span class="n">posteriors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">log_posteriors</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Normalize</span>
+<span class="w">    </span><span class="n">posterior_probs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">posteriors</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">posteriors</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">posterior_probs</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Compute posterior probabilities</span>
+<span class="n">posterior_probs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">compute_posterior_probs_univariate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">pi_prior</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_prior</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior component probabilities (first 10 variants):\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_probs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior component probabilities (first 10 variants):
+              M0    M1    M2    M3    M4    M5    M6
+Variant 1  0.000 0.500 0.000 0.150 0.100 0.150 0.100
+Variant 2  0.778 0.055 0.111 0.017 0.011 0.017 0.011
+Variant 3  0.857 0.010 0.122 0.003 0.002 0.003 0.002
+Variant 4  0.852 0.013 0.122 0.004 0.003 0.004 0.003
+Variant 5  0.845 0.017 0.121 0.005 0.003 0.005 0.003
+Variant 6  0.852 0.013 0.122 0.004 0.003 0.004 0.003
+Variant 7  0.811 0.037 0.116 0.011 0.007 0.011 0.007
+Variant 8  0.852 0.013 0.122 0.004 0.003 0.004 0.003
+Variant 9  0.855 0.011 0.122 0.003 0.002 0.003 0.002
+Variant 10 0.850 0.014 0.121 0.004 0.003 0.004 0.003
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="posterior-effect-size-estimates">
+<h2>Posterior Effect Size Estimates<a class="headerlink" href="#posterior-effect-size-estimates" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute posterior effect size estimates using mixture posterior</span>
+<span class="n">posterior_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="n">posterior_vars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">sigma_e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.6</span>
+
+<span class="kr">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Xi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">i</span><span class="p">])</span>
+<span class="w">  </span><span class="n">XtX</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Xi</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span><span class="n">XtY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Xi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">)))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Mixture posterior for effect size</span>
+<span class="w">  </span><span class="n">mixture_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">  </span><span class="n">mixture_second_moment</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kr">for</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">prob_c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">posterior_probs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">]</span>
+<span class="w">    </span><span class="n">sigma_c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sigma_prior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kr">if</span><span class="p">(</span><span class="n">sigma_c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Null component contributes zero</span>
+<span class="w">      </span><span class="n">comp_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">      </span><span class="n">comp_second_moment</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># Non-null component posterior</span>
+<span class="w">      </span><span class="n">tau_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma_c</span><span class="o">^</span><span class="m">2</span>
+<span class="w">      </span><span class="n">tau_e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sigma_e</span><span class="o">^</span><span class="m">2</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="kr">if</span><span class="p">(</span><span class="n">XtX</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1e-10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">post_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">tau_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau_e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">XtX</span><span class="p">)</span>
+<span class="w">        </span><span class="n">post_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">tau_e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">XtY</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">tau_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau_e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">XtX</span><span class="p">)</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">post_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sigma_c</span><span class="o">^</span><span class="m">2</span>
+<span class="w">        </span><span class="n">post_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="n">comp_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">post_mean</span>
+<span class="w">      </span><span class="n">comp_second_moment</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">post_var</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">post_mean</span><span class="o">^</span><span class="m">2</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Mixture moments</span>
+<span class="w">    </span><span class="n">mixture_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mixture_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prob_c</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">comp_mean</span>
+<span class="w">    </span><span class="n">mixture_second_moment</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mixture_second_moment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prob_c</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">comp_second_moment</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">mixture_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mixture_second_moment</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mixture_mean</span><span class="o">^</span><span class="m">2</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">posterior_effects</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mixture_mean</span>
+<span class="w">  </span><span class="n">posterior_vars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mixture_var</span>
+<span class="p">}</span>
+
+<span class="c1"># Results for first 5 variants</span>
+<span class="n">results_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span>
+<span class="w">  </span><span class="n">True_Effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_height</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Posterior_Mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_effects</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Posterior_SD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">posterior_vars</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Shrinkage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">abs</span><span class="p">(</span><span class="n">posterior_effects</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">beta_height</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1e-6</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior Effect Size Estimates (first 5 variants):\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">results_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior Effect Size Estimates (first 5 variants):
+  Variant True_Effect Posterior_Mean Posterior_SD Shrinkage
+1       1      -0.239         -0.313        0.040    -0.310
+2       2       0.000         -0.007        0.024 -7130.015
+3       3       0.000          0.000        0.006  -135.522
+4       4       0.000         -0.001        0.008  -676.215
+5       5       0.000         -0.001        0.010 -1204.275
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="updated-mixture-weights">
+<h2>Updated Mixture Weights<a class="headerlink" href="#updated-mixture-weights" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare prior vs posterior mixture weights</span>
+<span class="n">empirical_weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colMeans</span><span class="p">(</span><span class="n">posterior_probs</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Comparison of mixture weights:\n&quot;</span><span class="p">)</span>
+<span class="n">weight_comparison</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Prior</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pi_prior</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Empirical_Posterior</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empirical_weights</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">weight_comparison</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
+
+<span class="c1"># Plot weight comparison</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">weight_comparison</span><span class="p">,</span><span class="w"> </span><span class="n">beside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;lightblue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lightcoral&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Prior vs Empirical Posterior Weights&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Component&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Weight&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Prior&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Empirical Posterior&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Comparison of mixture weights:
+                       M0    M1    M2    M3    M4    M5    M6
+Prior               0.700 0.100 0.100 0.030 0.020 0.030 0.020
+Empirical_Posterior 0.602 0.156 0.086 0.047 0.031 0.047 0.031
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/efd3c0e72d85f30697bf3eaa01ae7fa8fecce1d5349eeb97ecc10ea5b53cf66d.png"><img alt="_images/efd3c0e72d85f30697bf3eaa01ae7fa8fecce1d5349eeb97ecc10ea5b53cf66d.png" src="_images/efd3c0e72d85f30697bf3eaa01ae7fa8fecce1d5349eeb97ecc10ea5b53cf66d.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
@@ -1187,17 +1472,23 @@ The following objects are masked from &#39;package:base&#39;:
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment-which-group-does-this-parameter-belong-to">Component Assignment: Which Group Does This Parameter Belong To?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-prior-structure">Setting Up the Prior Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-from-data-posterior-component-membership">Learning from Data: Posterior Component Membership</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-mixture-models-are-powerful-in-genetics">Why Mixture Models Are Powerful in Genetics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment-modeling-unknown-group-membership">Component Assignment: Modeling Unknown Group Membership</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-structure-for-uncertain-components">Prior Structure for Uncertain Components</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-component-membership-from-data">Learning Component Membership from Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-mixture-models-handle-conditioning-limitations">Why Mixture Models Handle Conditioning Limitations</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-mixture-distribution-of-effects">Create a Mixture Distribution of Effects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-individual-level-data">Simulating the Individual-Level Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-random-effects-model">Connection to Random Effects Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-of-simulated-data">Generation of Simulated Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-mixture-distribution-of-effects">Create a Mixture Distribution of Effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-individual-level-data">Simulating the Individual-Level Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-analysis-with-fixed-mixture-prior">Bayesian Analysis with Fixed Mixture Prior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-posterior-component-probabilities">Computing Posterior Component Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-effect-size-estimates">Posterior Effect Size Estimates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-mixture-weights">Updated Mixture Weights</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
