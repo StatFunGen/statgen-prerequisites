@@ -563,10 +563,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-detecting-pleiotropy">Example 2 – Detecting pleiotropy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Generation of Simulated Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-definition-and-likelihood-functions">Model Definition and Likelihood Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-and-prior-functions">Likelihood and Prior Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-marginal-likelihoods">Computing Marginal Likelihoods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-each-variant">Analyzing Each Variant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-uncertainty-about-component-membership">Quantifying Uncertainty About Component Membership</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-level-comparison">Model-Level Comparison</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-comparison-results">Model Comparison Results</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
@@ -945,7 +947,7 @@ $<span class="math notranslate nohighlight">\(
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define mixture weights - this is the biological reality!</span>
 <span class="c1"># Most variants are null, few show pleiotropy</span>
-<span class="n">weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.10</span><span class="p">,</span><span class="w"> </span><span class="m">0.10</span><span class="p">,</span><span class="w"> </span><span class="m">0.33</span><span class="p">,</span><span class="w"> </span><span class="m">0.32</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.03</span><span class="p">)</span><span class="w">  </span><span class="c1"># proportion of M0 to M6</span>
+<span class="n">weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.42</span><span class="p">,</span><span class="w"> </span><span class="m">0.20</span><span class="p">,</span><span class="w"> </span><span class="m">0.20</span><span class="p">,</span><span class="w"> </span><span class="m">0.13</span><span class="p">,</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0.03</span><span class="p">)</span><span class="w">  </span><span class="c1"># proportion of M0 to M6</span>
 <span class="nf">names</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M6&quot;</span><span class="p">)</span>
 
 <span class="n">component_assignments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">weights</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weights</span><span class="p">)</span>
@@ -1054,7 +1056,7 @@ $<span class="math notranslate nohighlight">\(
 </section>
 <section id="model-definition-and-likelihood-functions">
 <h3>Model Definition and Likelihood Functions<a class="headerlink" href="#model-definition-and-likelihood-functions" title="Link to this heading">#</a></h3>
-<p>Now we define two competing hypotheses about the underlying mixture structure:</p>
+<p>Since we cannot condition on the true biological model that generated our data, should must treat model choice as uncertain. We define two competing hypotheses about the mixture structure underlying our genetic data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define component covariance matrices (scaled by effect_scale^2)</span>
@@ -1068,172 +1070,138 @@ $<span class="math notranslate nohighlight">\(
 <span class="w">  </span><span class="n">M6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">        </span><span class="c1"># Strong correlation</span>
 <span class="p">)</span>
 
-<span class="c1"># Define mixture models</span>
-<span class="n">no_pleiotropy_components</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M2&quot;</span><span class="p">)</span>
-<span class="n">pleiotropy_components</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M6&quot;</span><span class="p">)</span>
+<span class="c1"># Since we cannot condition on which components exist in nature, </span>
+<span class="c1"># we compare two competing mixture hypotheses:</span>
+<span class="n">no_pleiotropy_components</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M2&quot;</span><span class="p">)</span><span class="w">  </span><span class="c1"># Single-trait effects only</span>
+<span class="n">pleiotropy_components</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;M3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M6&quot;</span><span class="p">)</span><span class="w">  </span><span class="c1"># Multi-trait effects</span>
 
-<span class="c1"># Mixture weights</span>
+<span class="c1"># These weights represent our prior uncertainty about component frequencies</span>
 <span class="n">no_pleiotropy_weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w">  </span>
 <span class="n">pleiotropy_weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">)</span>
-<span class="c1"># note that in practice this weights could also be estimated from data</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;No Pleiotropy Mixture:\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Components:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">no_pleiotropy_components</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weights:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">no_pleiotropy_weights</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Pleiotropy Mixture:\n&quot;</span><span class="p">)</span><span class="w"> </span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Components:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pleiotropy_components</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Weights:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pleiotropy_weights</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 
 <span class="n">effect_scale</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ES_sd</span><span class="w">  </span><span class="c1"># Use same scale as data generation</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No Pleiotropy Mixture:
-Components: M0 M1 M2 
-Weights: 0.2 0.5 0.3 
-
-Pleiotropy Mixture:
-Components: M3 M4 M5 M6 
-</pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weights: 0.25 0.25 0.25 0.25 
-</pre></div>
-</div>
-</div>
-</div>
+<p><strong>Key insight</strong>: Since we cannot condition on which biological mechanisms actually exist, we must quantify our uncertainty by comparing models that make different assumptions about the presence of pleiotropic effects.</p>
 </section>
-<section id="likelihood-and-prior-functions">
-<h3>Likelihood and Prior Functions<a class="headerlink" href="#likelihood-and-prior-functions" title="Link to this heading">#</a></h3>
+<section id="computing-marginal-likelihoods">
+<h3>Computing Marginal Likelihoods<a class="headerlink" href="#computing-marginal-likelihoods" title="Link to this heading">#</a></h3>
+<p>When we cannot condition on the true parameter values, we must integrate over all possibilities to compute marginal likelihoods. This integration captures our uncertainty about parameters within each model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to compute log-likelihood for given beta values and single variant</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to compute log-likelihood when we condition on specific beta values</span>
 <span class="n">log_likelihood_variant</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">genotypes_variant</span><span class="p">,</span><span class="w"> </span><span class="n">phenotypes</span><span class="p">,</span><span class="w"> </span><span class="n">residual_cov</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">phenotypes</span><span class="p">)</span>
 <span class="w">  </span><span class="n">ll</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># Baseline phenotypes (assume zero for simplicity)</span>
 <span class="w">  </span><span class="n">baseline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1"># Predicted phenotype for individual i</span>
 <span class="w">    </span><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">baseline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">genotypes_variant</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="c1"># Add to log-likelihood</span>
 <span class="w">    </span><span class="n">diff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">phenotypes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pred</span>
 <span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">residual_cov</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>
 <span class="w">          </span><span class="m">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="nf">det</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kc">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">residual_cov</span><span class="p">))</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="w">  </span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">ll</span><span class="p">))</span>
 <span class="p">}</span>
 
-<span class="c1"># Function to compute log-prior for beta given component</span>
+<span class="c1"># Function to compute prior probability when we condition on specific beta values</span>
 <span class="n">log_prior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">component_name</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">effect_scale</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">cov_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">models</span><span class="p">[[</span><span class="n">component_name</span><span class="p">]]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale</span><span class="o">^</span><span class="m">2</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># Handle null case</span>
 <span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nf">all</span><span class="p">(</span><span class="n">cov_matrix</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">all</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.01</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="kc">Inf</span><span class="p">))</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># Add small diagonal for numerical stability</span>
-<span class="w">  </span><span class="n">cov_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cov_matrix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># Compute log density</span>
+<span class="w">  </span><span class="n">cov_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cov_matrix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Numerical stability</span>
 <span class="w">  </span><span class="n">lp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>
 <span class="w">        </span><span class="m">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="nf">det</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kc">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cov_matrix</span><span class="p">))</span>
-<span class="w">  </span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">lp</span><span class="p">))</span>
 <span class="p">}</span>
 
-<span class="c1"># Function to compute marginal likelihood for each component for a single variant</span>
+<span class="c1"># The key challenge: since we cannot condition on beta, we must integrate</span>
 <span class="n">compute_component_marginal_likelihood</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">component_name</span><span class="p">,</span><span class="w"> </span><span class="n">genotypes_variant</span><span class="p">,</span><span class="w"> </span><span class="n">phenotypes_variant</span><span class="p">,</span><span class="w"> </span><span class="n">residual_cov</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">component_name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;M0&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1"># Null model: beta = (0, 0)</span>
+<span class="w">    </span><span class="c1"># Null model: we can condition on beta = (0, 0)</span>
 <span class="w">    </span><span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
 <span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_likelihood_variant</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">genotypes_variant</span><span class="p">,</span><span class="w"> </span><span class="n">phenotypes_variant</span><span class="p">,</span><span class="w"> </span><span class="n">residual_cov</span><span class="p">)</span>
 <span class="w">    </span><span class="n">lp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_prior</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">component_name</span><span class="p">)</span>
 <span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lp</span><span class="p">)</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># For non-null components, use grid approximation for integration</span>
-<span class="w">  </span><span class="n">beta_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">)</span><span class="w">  </span><span class="c1"># Reduced grid for efficiency</span>
+<span class="w">  </span><span class="c1"># For non-null components: cannot condition on beta, so we integrate</span>
+<span class="w">  </span><span class="c1"># This integration reflects our uncertainty about parameter values</span>
+<span class="w">  </span><span class="n">beta_range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">)</span>
 <span class="w">  </span><span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">beta_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_range</span><span class="p">,</span><span class="w"> </span><span class="n">beta_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_range</span><span class="p">)</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="n">log_integrand_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">grid</span><span class="o">$</span><span class="n">beta_height</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">grid</span><span class="o">$</span><span class="n">beta_weight</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<span class="w">    </span>
 <span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_likelihood_variant</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">genotypes_variant</span><span class="p">,</span><span class="w"> </span><span class="n">phenotypes_variant</span><span class="p">,</span><span class="w"> </span><span class="n">residual_cov</span><span class="p">)</span>
 <span class="w">    </span><span class="n">lp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_prior</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">component_name</span><span class="p">)</span>
-<span class="w">    </span>
 <span class="w">    </span><span class="n">log_integrand_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lp</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># Numerical integration using log-sum-exp trick</span>
+<span class="w">  </span><span class="c1"># Numerical integration using log-sum-exp for stability</span>
 <span class="w">  </span><span class="n">max_log</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">log_integrand_values</span><span class="p">[</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">log_integrand_values</span><span class="p">)])</span>
 <span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">max_log</span><span class="p">))</span><span class="w"> </span><span class="kr">return</span><span class="p">(</span><span class="o">-</span><span class="kc">Inf</span><span class="p">)</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="n">log_marginal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">max_log</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="nf">exp</span><span class="p">(</span><span class="n">log_integrand_values</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_log</span><span class="p">),</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># Normalize by grid spacing (assuming uniform grid)</span>
 <span class="w">  </span><span class="n">grid_spacing</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">beta_range</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">beta_range</span><span class="p">[</span><span class="m">1</span><span class="p">])</span><span class="o">^</span><span class="m">2</span>
-<span class="w">  </span><span class="n">log_marginal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_marginal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">grid_spacing</span><span class="p">)</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">log_marginal</span><span class="p">)</span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">log_marginal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">grid_spacing</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>For multiple variants:</p>
+<p>The marginal likelihood computation requires integrating over all possible parameter values because we cannot condition on their true values. This integration naturally penalizes complex models that spread probability too widely.</p>
+</section>
+<section id="analyzing-each-variant">
+<h3>Analyzing Each Variant<a class="headerlink" href="#analyzing-each-variant" title="Link to this heading">#</a></h3>
+<p>Since we cannot condition on which component generated each variant, we compute the evidence for each component for every variant:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate residual covariance from data</span>
-<span class="c1"># For simplicity, assume diagonal (independent residuals)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate residual covariance (assuming we cannot condition on exact values)</span>
 <span class="n">residual_var_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">Y</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">h2</span><span class="p">)</span>
 <span class="n">residual_var_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">Y</span><span class="p">[,</span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">h2</span><span class="p">)</span>
 <span class="n">residual_cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">residual_var_height</span><span class="p">,</span><span class="w"> </span><span class="n">residual_var_weight</span><span class="p">))</span>
 
-<span class="c1"># Store results for all variants</span>
+<span class="c1"># Store marginal likelihoods for uncertainty quantification</span>
 <span class="n">all_log_marginals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">models</span><span class="p">))</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">all_log_marginals</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
 
-<span class="c1"># Analyze each variant</span>
+<span class="c1"># Since we cannot condition on component membership, analyze each variant</span>
 <span class="kr">for</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">genotypes_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">m</span><span class="p">]</span>
 <span class="w">  </span><span class="n">phenotypes_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Y</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># Compute marginal likelihood for each component</span>
+<span class="w">  </span><span class="c1"># Compute evidence for each possible component</span>
 <span class="w">  </span><span class="kr">for</span><span class="p">(</span><span class="n">comp</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">models</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">all_log_marginals</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">comp</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">compute_component_marginal_likelihood</span><span class="p">(</span>
 <span class="w">      </span><span class="n">comp</span><span class="p">,</span><span class="w"> </span><span class="n">genotypes_m</span><span class="p">,</span><span class="w"> </span><span class="n">phenotypes_m</span><span class="p">,</span><span class="w"> </span><span class="n">residual_cov</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
-
-<span class="n">log_marginals_subset</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">all_log_marginals</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-</section>
-<section id="model-comparison-results">
-<h2>Model Comparison Results<a class="headerlink" href="#model-comparison-results" title="Link to this heading">#</a></h2>
+<section id="quantifying-uncertainty-about-component-membership">
+<h3>Quantifying Uncertainty About Component Membership<a class="headerlink" href="#quantifying-uncertainty-about-component-membership" title="Link to this heading">#</a></h3>
+<p>Since we cannot condition on which component each variant belongs to, we compute posterior probabilities that reflect our uncertainty:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute posterior probabilities for each variant and component</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert marginal likelihoods to posterior probabilities</span>
 <span class="n">variant_posteriors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">models</span><span class="p">))</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">variant_posteriors</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
 
 <span class="kr">for</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">log_marg_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_marginals_subset</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="p">]</span>
+<span class="w">  </span><span class="n">log_marg_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">all_log_marginals</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="p">]</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># Convert to probabilities using log-sum-exp</span>
+<span class="w">  </span><span class="c1"># Normalize to get posterior probabilities over components</span>
 <span class="w">  </span><span class="n">max_log</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">log_marg_m</span><span class="p">[</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">log_marg_m</span><span class="p">)])</span>
 <span class="w">  </span><span class="kr">if</span><span class="p">(</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">max_log</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">probs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">log_marg_m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_log</span><span class="p">)</span>
@@ -1242,124 +1210,61 @@ Components: M3 M4 M5 M6
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1"># Aggregate mixture-level evidence</span>
+<span class="c1"># Aggregate uncertainty about mixture-level hypotheses</span>
 <span class="n">no_pleio_posteriors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">variant_posteriors</span><span class="p">[,</span><span class="w"> </span><span class="n">no_pleiotropy_components</span><span class="p">],</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="n">pleio_posteriors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">variant_posteriors</span><span class="p">[,</span><span class="w"> </span><span class="n">pleiotropy_components</span><span class="p">],</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Variant-Level Results (first 10 variants):\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;==========================================\n&quot;</span><span class="p">)</span>
-<span class="kr">for</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">min</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(True:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">component_assignments</span><span class="p">[</span><span class="n">m</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;):\n&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  P(No Pleiotropy) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">no_pleio_posteriors</span><span class="p">[</span><span class="n">m</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  P(Pleiotropy) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pleio_posteriors</span><span class="p">[</span><span class="n">m</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;  Most likely component:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="nf">which.max</span><span class="p">(</span><span class="n">variant_posteriors</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="p">])),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variant-Level Results (first 10 variants):
-==========================================
-Variant 1 (True: M3 ):
-  P(No Pleiotropy) = 0 
-  P(Pleiotropy) = 1 
-  Most likely component: M6 
-
-Variant 2 (True: M3 ):
-  P(No Pleiotropy) = 0 
-  P(Pleiotropy) = 1 
-  Most likely component: M5 
-
-Variant 3 (True: M4 ):
-  P(No Pleiotropy) = 0 
-  P(Pleiotropy) = 1 
-  Most likely component: M5 
-
-Variant 4 (True: M5 ):
-  P(No Pleiotropy) = 0 
-  P(Pleiotropy) = 1 
-  Most likely component: M5 
-
-Variant 5 (True: M3 ):
-  P(No Pleiotropy) = 0 
-  P(Pleiotropy) = 1 
-  Most likely component: M3 
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="model-level-comparison">
+<h3>Model-Level Comparison<a class="headerlink" href="#model-level-comparison" title="Link to this heading">#</a></h3>
+<p>Since we cannot condition on which mixture model is correct, we compare the overall evidence for each hypothesis:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Overall mixture model comparison</span>
-<span class="c1"># Compute mixture marginal likelihoods by summing over variants</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute total evidence for each mixture model</span>
 <span class="n">log_ml_no_pleio_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
 <span class="n">log_ml_pleio_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
 
 <span class="kr">for</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1"># No pleiotropy mixture</span>
-<span class="w">  </span><span class="n">no_pleio_components_ml</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_marginals_subset</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">no_pleiotropy_components</span><span class="p">]</span>
+<span class="w">  </span><span class="c1"># No pleiotropy mixture evidence</span>
+<span class="w">  </span><span class="n">no_pleio_components_ml</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">all_log_marginals</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">no_pleiotropy_components</span><span class="p">]</span>
 <span class="w">  </span><span class="kr">if</span><span class="p">(</span><span class="nf">any</span><span class="p">(</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">no_pleio_components_ml</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">max_no_pleio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">no_pleio_components_ml</span><span class="p">[</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">no_pleio_components_ml</span><span class="p">)])</span>
 <span class="w">    </span><span class="n">log_ml_no_pleio_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">max_no_pleio</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">no_pleiotropy_weights</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">no_pleio_components_ml</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_no_pleio</span><span class="p">),</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
 <span class="w">    </span><span class="n">log_ml_no_pleio_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_ml_no_pleio_total</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">log_ml_no_pleio_m</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="c1"># Pleiotropy mixture</span>
-<span class="w">  </span><span class="n">pleio_components_ml</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_marginals_subset</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">pleiotropy_components</span><span class="p">]</span>
+<span class="w">  </span><span class="c1"># Pleiotropy mixture evidence</span>
+<span class="w">  </span><span class="n">pleio_components_ml</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">all_log_marginals</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">pleiotropy_components</span><span class="p">]</span>
 <span class="w">  </span><span class="kr">if</span><span class="p">(</span><span class="nf">any</span><span class="p">(</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">pleio_components_ml</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">max_pleio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">pleio_components_ml</span><span class="p">[</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">pleio_components_ml</span><span class="p">)])</span>
 <span class="w">    </span><span class="n">log_ml_pleio_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">max_pleio</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">pleiotropy_weights</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">pleio_components_ml</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_pleio</span><span class="p">),</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
 <span class="w">    </span><span class="n">log_ml_pleio_total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log_ml_pleio_total</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">log_ml_pleio_m</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
+
+<span class="c1"># Bayes factor quantifies how data updates our uncertainty about models</span>
+<span class="n">bayes_factor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">log_ml_pleio_total</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">log_ml_no_pleio_total</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Overall Bayes factor</span>
-<span class="n">bayes_factor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">log_ml_pleio_total</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">log_ml_no_pleio_total</span><span class="p">)</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Overall Model Comparison:\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;========================\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;No Pleiotropy log marginal likelihood:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">log_ml_no_pleio_total</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Pleiotropy log marginal likelihood:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">log_ml_pleio_total</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Bayes Factor (Pleiotropy vs No Pleiotropy):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">bayes_factor</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-
-<span class="c1"># Evidence interpretation</span>
-<span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">bayes_factor</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">evidence_strength</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Strong evidence for Pleiotropy&quot;</span>
-<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">bayes_factor</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">evidence_strength</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Moderate evidence for Pleiotropy&quot;</span>
-<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">bayes_factor</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">evidence_strength</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Weak evidence for Pleiotropy&quot;</span>
-<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">bayes_factor</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">evidence_strength</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Strong evidence for No Pleiotropy&quot;</span>
-<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">bayes_factor</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.33</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">evidence_strength</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Moderate evidence for No Pleiotropy&quot;</span>
-<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">evidence_strength</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Weak evidence for No Pleiotropy&quot;</span>
-<span class="p">}</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bayes_factor</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overall Model Comparison:
-========================
-No Pleiotropy log marginal likelihood: -1665.89 
-Pleiotropy log marginal likelihood: -1544.13 
-Bayes Factor (Pleiotropy vs No Pleiotropy): 7.545029e+52 
-</pre></div>
+<div class="output text_html">176652722808.239</div></div>
 </div>
-</div>
-</div>
+<p>This suggests strong evidence for pleiotropy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Evidence interpretation:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">evidence_strength</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-
-<span class="c1"># Posterior model probabilities</span>
-<span class="n">prior_prob_equal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Final posterior uncertainty about which model is correct</span>
+<span class="n">prior_prob_equal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w">  </span><span class="c1"># Equal prior uncertainty about models</span>
 <span class="n">max_log_ml</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">log_ml_pleio_total</span><span class="p">,</span><span class="w"> </span><span class="n">log_ml_no_pleio_total</span><span class="p">)</span>
 
 <span class="n">unnorm_post_pleio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">log_ml_pleio_total</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_log_ml</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">prior_prob_equal</span>
@@ -1369,37 +1274,21 @@ Bayes Factor (Pleiotropy vs No Pleiotropy): 7.545029e+52
 <span class="n">posterior_prob_pleio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unnorm_post_pleio</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_unnorm</span>
 <span class="n">posterior_prob_no_pleio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unnorm_post_no_pleio</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_unnorm</span>
 
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior Model Probabilities:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nFinal Uncertainty About Models:\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;P(Pleiotropy | Data) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_prob_pleio</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;P(No Pleiotropy | Data) =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_prob_no_pleio</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-
-<span class="c1"># Summary statistics</span>
-<span class="n">true_pleio_variants</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">component_assignments</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">]</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">pleiotropy_components</span><span class="p">)</span>
-<span class="n">detected_pleio_variants</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">pleio_posteriors</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">no_pleio_posteriors</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nDetection Summary:\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;True pleiotropy variants (first&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">true_pleio_variants</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Detected pleiotropy variants:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">detected_pleio_variants</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Detection accuracy:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">mean</span><span class="p">((</span><span class="n">pleio_posteriors</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">component_assignments</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">]</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">pleiotropy_components</span><span class="p">),</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evidence interpretation: Strong evidence for Pleiotropy 
-
-Posterior Model Probabilities:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final Uncertainty About Models:
 P(Pleiotropy | Data) = 1 
 P(No Pleiotropy | Data) = 0 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Detection Summary:
-True pleiotropy variants (first 5 ): 5 
-Detected pleiotropy variants: 5 
-Detection accuracy: 1 
-</pre></div>
 </div>
 </div>
-</div>
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
@@ -1555,10 +1444,12 @@ Detection accuracy: 1
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-detecting-pleiotropy">Example 2 – Detecting pleiotropy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Generation of Simulated Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-definition-and-likelihood-functions">Model Definition and Likelihood Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-and-prior-functions">Likelihood and Prior Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-marginal-likelihoods">Computing Marginal Likelihoods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-each-variant">Analyzing Each Variant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-uncertainty-about-component-membership">Quantifying Uncertainty About Component Membership</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-level-comparison">Model-Level Comparison</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-comparison-results">Model Comparison Results</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
