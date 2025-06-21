@@ -218,7 +218,6 @@
 
 
 
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fixed Effects Models</span></p>
 <ul class="nav bd-sidenav">
@@ -548,10 +547,6 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonal-of-grm">Diagonal of GRM</a></li>
-</ul>
-</li>
 </ul>
 
             </nav>
@@ -589,9 +584,9 @@ document.write(`
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="relationship-to-kinship">
 <h2>Relationship to Kinship<a class="headerlink" href="#relationship-to-kinship" title="Link to this heading">#</a></h2>
-<p><strong>What is kinship?</strong> Kinship measures how much DNA two people share from common ancestors. You share about 50% of your DNA with each parent. If you and your cousin both have the same grandparents, you share about 12.5% of your DNA. Strangers typically share almost no DNA.</p>
+<p><strong>What is kinship?</strong> Kinship measures how much DNA two people share from common ancestors. You share about 50% of your DNA with each parent. If you and your cousin both have the same grandparents, you share about 12.5% of your DNA with him or her. Strangers typically share almost no DNA.</p>
 <p><strong>So what’s different about the GRM?</strong> Instead of relying on family trees, the GRM looks directly at thousands of genetic variants and asks: “Based on what I can actually observe in the DNA, how similar are these two people?”</p>
-<p><strong>Why is this better?</strong> Family trees can be wrong or incomplete. Maybe two “unrelated” people in your study are actually distant cousins, or maybe there’s some population structure you didn’t know about. The GRM catches these things because it’s looking at the actual genetic data.</p>
+<p><strong>Why is this better for statistical genetics?</strong> Family trees can be wrong or incomplete. Maybe two “unrelated” people in your study are actually distant cousins, or maybe there’s some population structure you didn’t know about. The GRM catches these things because it’s looking at the actual genetic data. However, kinship still has advantages - it’s computationally simpler, doesn’t require genotyping, and works well for breeding programs or family studies where pedigrees are accurate and complete.</p>
 <p><strong>What’s this about allele frequencies?</strong> Here’s the key insight: if everyone in your population has allele A at some position, then you and I both having A tells us nothing special. But if only 2% of people have allele B, and we both have it, that’s much more informative about our relatedness. The GRM weights rare shared alleles more heavily than common ones.</p>
 </section>
 <section id="scaling-properties">
@@ -701,16 +696,6 @@ document.write(`
 </div></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
-<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
-<section id="diagonal-of-grm">
-<h2>Diagonal of GRM<a class="headerlink" href="#diagonal-of-grm" title="Link to this heading">#</a></h2>
-<p>Off-diagonal elements represent the relatedness between two individuals (in histogram the large peak centered at 0). Diagonal elements represent the relatedness of an individual with itself, which is the average homozygosity or the level of inbreeding (in histogram the small peak centered at 1).</p>
-<ul class="simple">
-<li><p>While the LD of a SNP with itself is 1 by definition, the genetic relatedness of an individual with itself can vary around one, because <strong>the genotype scaling is performed per SNP</strong>, not per individual.</p></li>
-</ul>
-</section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -786,10 +771,6 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonal-of-grm">Diagonal of GRM</a></li>
-</ul>
-</li>
 </ul>
 
   </nav></div>
