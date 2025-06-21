@@ -390,7 +390,6 @@
 
 
 
-
 </ul>
 
     </div>
@@ -954,13 +953,13 @@ Mean genotype value: 0.6
 Effect sizes (beta):
 Height effects range: -0.744 0.847 
 Weight effects range: -0.629 1.333 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Genetic values (X * beta):
+
+Genetic values (X * beta):
 Height genetic values range: -2.37 4.65 
 Weight genetic values range: -2.49 9.18 
-
-Final phenotypes:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final phenotypes:
 Height phenotypes range: -3.57 5.34 
 Weight phenotypes range: -4.72 9.68 
 Phenotype correlation: 0.223 
@@ -1007,7 +1006,9 @@ Achieved heritability - Weight: 0.712
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mixture composition:
-- Null variants: 74 %
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Null variants: 74 %
 - Pleiotropic variants: 11 %
 - Effect correlation: 0.334 
 - Phenotype correlation: 0.223 
@@ -1235,8 +1236,7 @@ Variant 10 0.850 0.014 0.121 0.004 0.003 0.004 0.003
 <span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span>
 <span class="w">  </span><span class="n">True_Effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_height</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
 <span class="w">  </span><span class="n">Posterior_Mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_effects</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Posterior_SD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">posterior_vars</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Shrinkage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">abs</span><span class="p">(</span><span class="n">posterior_effects</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">beta_height</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1e-6</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Posterior_SD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">posterior_vars</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]),</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior Effect Size Estimates (first 5 variants):\n&quot;</span><span class="p">)</span>
@@ -1246,12 +1246,12 @@ Variant 10 0.850 0.014 0.121 0.004 0.003 0.004 0.003
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior Effect Size Estimates (first 5 variants):
-  Variant True_Effect Posterior_Mean Posterior_SD Shrinkage
-1       1      -0.239         -0.313        0.040    -0.310
-2       2       0.000         -0.007        0.024 -7130.015
-3       3       0.000          0.000        0.006  -135.522
-4       4       0.000         -0.001        0.008  -676.215
-5       5       0.000         -0.001        0.010 -1204.275
+  Variant True_Effect Posterior_Mean Posterior_SD
+1       1      -0.239         -0.313        0.040
+2       2       0.000         -0.007        0.024
+3       3       0.000          0.000        0.006
+4       4       0.000         -0.001        0.008
+5       5       0.000         -0.001        0.010
 </pre></div>
 </div>
 </div>

@@ -389,7 +389,6 @@
 
 
 
-
 </ul>
 
     </div>
@@ -542,16 +541,12 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-bayes-factor">Recall Bayes Factor</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-the-bayes-factor">Recall the Bayes Factor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-bayes-factor-to-model-selection">From Bayes Factor to Model Selection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-prior-model-probabilities">Setting Prior Model Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-bayes-factor">Understanding the Bayes Factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-uncertainty-quantification-to-model-selection">From Uncertainty Quantification to Model Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-prior-model-uncertainty">Quantifying Prior Model Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-marginal-likelihood">Computing the Marginal Likelihood</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-case-conjugate-priors">Simple Case: Conjugate Priors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-case-non-conjugate-priors-and-high-dimensional-models">Complex Case: Non-Conjugate Priors and High-Dimensional Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-case-when-we-can-condition-analytically">Simple Case: When We Can Condition Analytically</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-case-when-parameter-uncertainty-cannot-be-resolved-analytically">Complex Case: When Parameter Uncertainty Cannot Be Resolved Analytically</a></li>
 </ul>
 </li>
 </ul>
@@ -566,7 +561,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-detecting-pleiotropy">Example 2 – Detecting pleiotropy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Generation of Simulated Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Generation of Simulated Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-definition-and-likelihood-functions">Model Definition and Likelihood Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-and-prior-functions">Likelihood and Prior Functions</a></li>
 </ul>
@@ -575,7 +570,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Graphical Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -592,7 +587,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-model-comparison">
 <h1>Bayesian Model Comparison<a class="headerlink" href="#bayesian-model-comparison" title="Link to this heading">#</a></h1>
-<p>Bayesian model comparison evaluates competing models by measuring how well they predict observed data while accounting for model complexity, which is reflected in how broadly the prior distribution spreads probability across the parameter space.</p>
+<p>Bayesian model comparison arises when we cannot condition on which model generated our data, leaving this model choice uncertain, so we quantify our uncertainty about competing models by measuring how well they predict observed data while accounting for the uncertainty inherent in their parameter spaces reflected by how broadly their priors spread probability.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -600,7 +595,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>When comparing two models <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span>, we calculate the <strong>posterior odds</strong> for each model. The <strong>posterior odds</strong> represent the ratio of the posterior probabilities for the two models:</p>
+<p>When we cannot condition on which model <span class="math notranslate nohighlight">\(M_1\)</span> or <span class="math notranslate nohighlight">\(M_2\)</span> generated our data, we quantify our uncertainty about model choice by calculating <strong>posterior odds</strong>. These represent our updated uncertainty about competing models after observing the data:</p>
 <div class="math notranslate nohighlight">
 \[ \frac{P(M_1|D)}{P(M_2|D)} = \frac{P(D|M_1)P(M_1)}{P(D|M_2)P(M_2)} \]</div>
 <p>This can be decomposed as:</p>
@@ -608,79 +603,69 @@ document.write(`
 \[ \text{Posterior Odds} = \text{Bayes Factor} \times \text{Prior Odds} \]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P(M_1|D)\)</span> and <span class="math notranslate nohighlight">\(P(M_2|D)\)</span> are the <strong>posterior probabilities</strong> of models <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span> given the observed data</p></li>
-<li><p><span class="math notranslate nohighlight">\(\frac{P(D|M_1)}{P(D|M_2)}\)</span> is the <strong>Bayes factor</strong>, which quantifies how much the data favors one model over the other</p></li>
-<li><p><span class="math notranslate nohighlight">\(P(M_1)\)</span> and <span class="math notranslate nohighlight">\(P(M_2)\)</span> are the <strong>prior probabilities</strong> representing our initial beliefs about each model before seeing the data</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(M_1|D)\)</span> and <span class="math notranslate nohighlight">\(P(M_2|D)\)</span> are our <strong>posterior uncertainties</strong> about models <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span> after conditioning on the observed data</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{P(D|M_1)}{P(D|M_2)}\)</span> is the <strong>Bayes factor</strong>, which quantifies how the data updates our uncertainty about which model is more plausible</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(M_1)\)</span> and <span class="math notranslate nohighlight">\(P(M_2)\)</span> are our <strong>prior uncertainties</strong> about each model before conditioning on any data, representing what we cannot know a priori about model choice</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="recall-bayes-factor">
-<h2>Recall Bayes Factor<a class="headerlink" href="#recall-bayes-factor" title="Link to this heading">#</a></h2>
+<section id="understanding-the-bayes-factor">
+<h2>Understanding the Bayes Factor<a class="headerlink" href="#understanding-the-bayes-factor" title="Link to this heading">#</a></h2>
+<p>The <strong>Bayes Factor</strong> quantifies how the data updates our uncertainty about competing models when we cannot condition on which model generated the observations:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{BF}_{21} = \frac{L(\text{M}_2|\text{D})}{L(\text{M}_1|\text{D})} ={\frac {\int \Pr(\theta_{2}|M_{2})\Pr(D|\theta_{2},M_{2})\,d\theta _{2}}{\int \Pr(\theta_{1}|M_{1})\Pr(D|\theta_{1},M_{1})\,d\theta _{1}}}
 \]</div>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Technical Details<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<section id="recall-the-bayes-factor">
-<h2>Recall the Bayes Factor<a class="headerlink" href="#recall-the-bayes-factor" title="Link to this heading">#</a></h2>
-<p>Recall that the <strong>Bayes Factor</strong> measures how much the observed data favors one model over another:</p>
-<div class="math notranslate nohighlight">
-\[
-\text{BF}_{21} = \frac{L(\text{M}_2|\text{D})}{L(\text{M}_1|\text{D})} ={\frac {\int \Pr(\theta_{2}|M_{2})\Pr(D|\theta_{2},M_{2})\,d\theta _{2}}{\int \Pr(\theta_{1}|M_{1})\Pr(D|\theta_{1},M_{1})\,d\theta _{1}}}
-\]</div>
-<p><strong>Intuitive interpretation</strong>:</p>
+<p><strong>Interpreting uncertainty updates</strong>:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} &gt; 1\)</span>: Data favors model <span class="math notranslate nohighlight">\(M_2\)</span> over <span class="math notranslate nohighlight">\(M_1\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} &lt; 1\)</span>: Data favors model <span class="math notranslate nohighlight">\(M_1\)</span> over <span class="math notranslate nohighlight">\(M_2\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} = 1\)</span>: Data provides no evidence for either model</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} &gt; 1\)</span>: Data reduces our uncertainty by favoring model <span class="math notranslate nohighlight">\(M_2\)</span> over <span class="math notranslate nohighlight">\(M_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} &lt; 1\)</span>: Data reduces our uncertainty by favoring model <span class="math notranslate nohighlight">\(M_1\)</span> over <span class="math notranslate nohighlight">\(M_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} = 1\)</span>: Data provides no information to reduce our uncertainty between models</p></li>
 </ul>
 </section>
-<section id="from-bayes-factor-to-model-selection">
-<h2>From Bayes Factor to Model Selection<a class="headerlink" href="#from-bayes-factor-to-model-selection" title="Link to this heading">#</a></h2>
-<p>The Bayes factor connects to our model comparison formula through:</p>
+<section id="from-uncertainty-quantification-to-model-selection">
+<h2>From Uncertainty Quantification to Model Selection<a class="headerlink" href="#from-uncertainty-quantification-to-model-selection" title="Link to this heading">#</a></h2>
+<p>Since we cannot condition on the true model a priori, the Bayes factor updates our prior uncertainty through:</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{P(M_2|D)}{P(M_1|D)} = \text{BF}_{21} \times \frac{P(M_2)}{P(M_1)}
 \]</div>
-<p>This shows that:
+<p>This shows how conditioning on data transforms our uncertainty:
 $<span class="math notranslate nohighlight">\(
-\text{Posterior Odds} = \text{Bayes Factor} \times \text{Prior Odds}
+\text{Posterior Uncertainty} = \text{Evidence Update} \times \text{Prior Uncertainty}
 \)</span>$</p>
 </section>
-<section id="setting-prior-model-probabilities">
-<h2>Setting Prior Model Probabilities<a class="headerlink" href="#setting-prior-model-probabilities" title="Link to this heading">#</a></h2>
-<p><strong>Equal priors</strong> (no initial preference): Set <span class="math notranslate nohighlight">\(P(M_1) = P(M_2) = 0.5\)</span>
+<section id="quantifying-prior-model-uncertainty">
+<h2>Quantifying Prior Model Uncertainty<a class="headerlink" href="#quantifying-prior-model-uncertainty" title="Link to this heading">#</a></h2>
+<p><strong>Equal uncertainty</strong> (no initial preference): Set <span class="math notranslate nohighlight">\(P(M_1) = P(M_2) = 0.5\)</span>
 $<span class="math notranslate nohighlight">\(
 \frac{P(M_2|D)}{P(M_1|D)} = \text{BF}_{21}
 \)</span>$
-<em>The posterior odds equal the Bayes factor.</em></p>
-<p><strong>Unequal priors</strong> (one model initially preferred):
+<em>Our posterior uncertainty is determined entirely by the data.</em></p>
+<p><strong>Unequal uncertainty</strong> (one model initially preferred):
 $<span class="math notranslate nohighlight">\(
 \frac{P(M_2|D)}{P(M_1|D)} = \text{BF}_{21} \times \frac{P(M_2)}{P(M_1)}
 \)</span>$
-<em>The Bayes factor adjusts our prior beliefs.</em></p>
+<em>The data updates our initial uncertainty about model choice.</em></p>
 </section>
 <section id="computing-the-marginal-likelihood">
 <h2>Computing the Marginal Likelihood<a class="headerlink" href="#computing-the-marginal-likelihood" title="Link to this heading">#</a></h2>
-<p>The integral <span class="math notranslate nohighlight">\(\int \Pr(\theta|M)\Pr(D|\theta,M)\,d\theta\)</span> represents the <strong>marginal likelihood</strong> - the probability of observing the data under a model, averaged over all possible parameter values.</p>
-<section id="simple-case-conjugate-priors">
-<h3>Simple Case: Conjugate Priors<a class="headerlink" href="#simple-case-conjugate-priors" title="Link to this heading">#</a></h3>
-<p>When the prior and likelihood are conjugate (like the normal distributions that we did in the Bayesian normal mean model and Bayesian multivariate normal mean model), the marginal likelihood has a closed form solution.</p>
+<p>The integral <span class="math notranslate nohighlight">\(\int \Pr(\theta|M)\Pr(D|\theta,M)\,d\theta\)</span> represents the <strong>marginal likelihood</strong> - the probability of observing the data under a model when we cannot condition on specific parameter values and must average over all possibilities.</p>
+<section id="simple-case-when-we-can-condition-analytically">
+<h3>Simple Case: When We Can Condition Analytically<a class="headerlink" href="#simple-case-when-we-can-condition-analytically" title="Link to this heading">#</a></h3>
+<p>When the prior and likelihood are conjugate (like the normal distributions in our Bayesian normal mean and multivariate normal mean models), we can analytically integrate out the parameter uncertainty, yielding closed-form marginal likelihoods.</p>
 </section>
-<section id="complex-case-non-conjugate-priors-and-high-dimensional-models">
-<h3>Complex Case: Non-Conjugate Priors and High-Dimensional Models<a class="headerlink" href="#complex-case-non-conjugate-priors-and-high-dimensional-models" title="Link to this heading">#</a></h3>
-<p>When priors and likelihoods are not conjugate (as in our pleiotropy example), the marginal likelihood integral <span class="math notranslate nohighlight">\(\int \Pr(\theta|M)\Pr(D|\theta,M)\,d\theta\)</span> cannot be solved analytically and requires computationally intensive numerical methods. Our grid-based integration approach below for Example 2, while conceptually straightforward, becomes prohibitively expensive for large-scale applications, and real GWAS datasets with millions of variants would require weeks of computation.</p>
-<p>Several approximation methods have been developed to address this computational burden:</p>
+<section id="complex-case-when-parameter-uncertainty-cannot-be-resolved-analytically">
+<h3>Complex Case: When Parameter Uncertainty Cannot Be Resolved Analytically<a class="headerlink" href="#complex-case-when-parameter-uncertainty-cannot-be-resolved-analytically" title="Link to this heading">#</a></h3>
+<p>When priors and likelihoods are not conjugate (as in our pleiotropy example), we cannot analytically resolve the parameter uncertainty in <span class="math notranslate nohighlight">\(\int \Pr(\theta|M)\Pr(D|\theta,M)\,d\theta\)</span>. This reflects the fundamental challenge: when we cannot condition on parameters, we must numerically integrate over all possible values, which becomes computationally prohibitive for high-dimensional parameter spaces in real GWAS datasets.</p>
+<p>Several approximation methods have been developed to handle this uncertainty:</p>
 <ul class="simple">
-<li><p><strong>Laplace approximation</strong> (fast but assumes unimodal posteriors)</p></li>
-<li><p><strong>MCMC-based methods</strong> like Chib’s method or thermodynamic integration (accurate but slow)</p></li>
-<li><p><strong>Nested Sampling</strong> (good for complex posteriors)</p></li>
+<li><p><strong>Laplace approximation</strong> (assumes uncertainty is concentrated around the posterior mode)</p></li>
+<li><p><strong>MCMC-based methods</strong> like Chib’s method or thermodynamic integration (sample from the uncertainty distribution)</p></li>
+<li><p><strong>Nested Sampling</strong> (systematically explores the uncertainty landscape)</p></li>
 </ul>
-<p>The choice depends on the trade-off between computational speed and accuracy requirements for your specific application.</p>
+<p>The choice reflects a trade-off between computational feasibility and how thoroughly we can characterize the parameter uncertainty in our model comparison.</p>
 </section>
 </section>
 </section>
@@ -702,10 +687,10 @@ $<span class="math notranslate nohighlight">\(
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
 <section id="example-1-fine-mapping">
 <h2>Example 1 – Fine Mapping<a class="headerlink" href="#example-1-fine-mapping" title="Link to this heading">#</a></h2>
-<p>Remember when we discussed marginal versus joint effects? We saw how correlated predictors create misleading associations, and our solution was simple: fit a joint model with all predictors.</p>
-<p>But what if you can’t fit a joint model? In genomics, when you have hundreds of correlated variants in linkage disequilibrium (LD), joint models become unstable due to overfitting.</p>
-<p>This is the classic <strong>fine-mapping</strong> problem - variants in LD “travel together” through generations, making it hard to pinpoint which one is truly causal. All variants show association, but which one actually causes the disease?</p>
-<p>The question then becomes, which variant (if any) is most likely causal? One of the most popular approaches is to use Bayesian model comparison to systematically evaluate different hypotheses about which single variant is causal, properly accounting for uncertainty.</p>
+<p>Remember when we discussed marginal versus joint effects? We saw how correlated predictors create misleading associations, and our solution was simple: fit a joint model with all predictors. This approach treated effects as fixed parameters, assuming we could condition on everything simultaneously.</p>
+<p>But this assumption is not realistic - we cannot condition on everything. In genomics, when you have hundreds of correlated variants in linkage disequilibrium (LD), we cannot condition on all joint effects because the models become unstable due to overfitting, forcing us to acknowledge our conditioning limitations.</p>
+<p>This creates the classic <strong>fine-mapping</strong> problem - because we cannot condition on everything, we face fundamental uncertainty about which variant is truly causal. Variants in LD “travel together” through generations, leaving us uncertain about causality even though all variants show association.</p>
+<p>Since we cannot condition on everything, we must treat causal variant identity as uncertain. Bayesian model comparison provides a principled framework for quantifying our uncertainty about different causal hypotheses, systematically evaluating which single variant is most likely causal while properly accounting for this inherent uncertainty arising from our conditioning limitations.</p>
 <p>Let’s define our competing models:</p>
 <ul class="simple">
 <li><p><strong>M0</strong>: Null model - none of the variants are causal</p></li>
@@ -918,10 +903,10 @@ $<span class="math notranslate nohighlight">\(
 </section>
 <section id="example-2-detecting-pleiotropy">
 <h2>Example 2 – Detecting pleiotropy<a class="headerlink" href="#example-2-detecting-pleiotropy" title="Link to this heading">#</a></h2>
-<p>Remember our <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_mixture_model.html">Bayesian mixture model</a> example where we studied hundreds of genetic variants affecting height and weight? We discovered that real populations are mixtures - most variants do nothing, some affect single traits, and a few show <strong>pleiotropy</strong> (affecting multiple traits simultaneously).</p>
-<p>But here’s a more important question: <strong>How do we know if pleiotropy actually exists in our data?</strong></p>
-<p>When you look at a scatter plot of genetic effects, you might see some correlation between height and weight effects. But is this evidence of true biological pleiotropy, or could it just be statistical noise? Maybe all variants really only affect single traits, and we’re seeing spurious correlations due to measurement error or population structure.</p>
-<p>This is where Bayesian model comparison becomes powerful.</p>
+<p>Remember our <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_mixture_model.html">Lecture: Bayesian mixture model</a> example where we studied hundreds of genetic variants affecting height and weight? We discovered that real populations are mixtures - most variants do nothing, some affect single traits, and a few show <strong>pleiotropy</strong> (affecting multiple traits simultaneously).</p>
+<p>But here’s a more fundamental question: <strong>Since we cannot condition on the true biological mechanisms, how do we quantify our uncertainty about whether pleiotropy actually exists in our data?</strong></p>
+<p>When you look at a scatter plot of genetic effects, you might see some correlation between height and weight effects. But since we cannot condition on the true causal pathways, we face uncertainty: is this evidence of true biological pleiotropy, or could it just be statistical noise? Maybe all variants really only affect single traits, and we’re seeing spurious correlations due to measurement error or population structure.</p>
+<p>This is where Bayesian model comparison becomes powerful - it allows us to quantify our uncertainty when we cannot condition on the true biological model.</p>
 <p>Recall the different models:</p>
 <ul class="simple">
 <li><p><strong>M0 (Null)</strong>: “This variant does nothing” - <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> = (0, 0)</p></li>
@@ -932,16 +917,16 @@ $<span class="math notranslate nohighlight">\(
 <li><p><strong>M5 (Medium Correlation)</strong>: “Effects are moderately related” - correlation = 0.5</p></li>
 <li><p><strong>M6 (Strong Correlation)</strong>: “Effects are strongly related” - correlation = 0.8</p></li>
 </ul>
-<p>Instead of assuming pleiotropy exists, we can formally test it by comparing two competing explanations:</p>
+<p>Since we cannot condition on which biological model is correct, we treat model choice as uncertain and compare two competing explanations:</p>
 <ul class="simple">
 <li><p><strong>Non-pleiotropy model</strong>: A mixture of variants that do nothing (M0), affect only height (M1), or affect only weight (M2)</p></li>
 <li><p><strong>Pleiotropy model</strong>: A mixture that includes variants affecting both traits with various correlations (M3-M6)</p></li>
 </ul>
-<p><strong>Our Question</strong>: Given the observed phenotypes and genotypes, which explanation better describes our data - a world without pleiotropy, or one where some variants truly affect multiple traits?</p>
-<p><strong>Our Approach</strong>: We’ll use proper Bayesian model comparison, computing marginal likelihoods <span class="math notranslate nohighlight">\(P(\text{D}|\text{M})\)</span> for each mixture model by integrating over all possible parameter values.</p>
-<p>Note that here for computational efficiency we decrease the number of individuals and number of variants, and increase the weights for non-null models.</p>
-<section id="id2">
-<h3>Generation of Simulated Data<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p><strong>Our Question</strong>: Since we cannot condition on the true biological mechanisms, which explanation should we believe more strongly given the observed phenotypes and genotypes - a world without pleiotropy, or one where some variants truly affect multiple traits?</p>
+<p><strong>Our Approach</strong>: We’ll use Bayesian model comparison to quantify our uncertainty about these competing biological explanations, computing marginal likelihoods <span class="math notranslate nohighlight">\(P(\text{D}|\text{M})\)</span> for each mixture model by integrating over all possible parameter values when we cannot condition on their true values.</p>
+<p>Note that here for <strong>computational efficiency</strong> we decrease the number of individuals and number of variants, and increase the weights for non-null models.</p>
+<section id="id1">
+<h3>Generation of Simulated Data<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>We’ll recreate the same mixture model simulation to generate realistic genetic data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1032,7 +1017,7 @@ $<span class="math notranslate nohighlight">\(
 <span class="n">beta_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">height_effects</span>
 <span class="n">beta_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">weight_effects</span>
 
-<span class="c1"># Calculate genetic values: X %*% β</span>
+<span class="c1"># Calculate genetic values: X %*% beta</span>
 <span class="n">genetic_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_height</span>
 <span class="n">genetic_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta_weight</span>
 
@@ -1051,7 +1036,7 @@ $<span class="math notranslate nohighlight">\(
 <span class="n">error_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">error_var_height</span><span class="p">))</span>
 <span class="n">error_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">error_var_weight</span><span class="p">))</span>
 
-<span class="c1"># Final phenotypes: Y = X*β + ε</span>
+<span class="c1"># Final phenotypes: Y = X*beta + epsilon</span>
 <span class="n">phenotype_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genetic_height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error_height</span>
 <span class="n">phenotype_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genetic_weight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error_weight</span>
 </pre></div>
@@ -1090,6 +1075,7 @@ $<span class="math notranslate nohighlight">\(
 <span class="c1"># Mixture weights</span>
 <span class="n">no_pleiotropy_weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w">  </span>
 <span class="n">pleiotropy_weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">)</span>
+<span class="c1"># note that in practice this weights could also be estimated from data</span>
 
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;No Pleiotropy Mixture:\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Components:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">no_pleiotropy_components</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
@@ -1110,7 +1096,9 @@ Weights: 0.2 0.5 0.3
 
 Pleiotropy Mixture:
 Components: M3 M4 M5 M6 
-Weights: 0.25 0.25 0.25 0.25 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weights: 0.25 0.25 0.25 0.25 
 </pre></div>
 </div>
 </div>
@@ -1401,11 +1389,10 @@ Bayes Factor (Pleiotropy vs No Pleiotropy): 7.545029e+52
 
 Posterior Model Probabilities:
 P(Pleiotropy | Data) = 1 
+P(No Pleiotropy | Data) = 0 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(No Pleiotropy | Data) = 0 
-
-Detection Summary:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Detection Summary:
 True pleiotropy variants (first 5 ): 5 
 Detected pleiotropy variants: 5 
 Detection accuracy: 1 
@@ -1417,8 +1404,8 @@ Detection accuracy: 1
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
-<section id="id3">
-<h2>Graphical Summary<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2>Graphical Summary<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
@@ -1546,16 +1533,12 @@ Detection accuracy: 1
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-bayes-factor">Recall Bayes Factor</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-the-bayes-factor">Recall the Bayes Factor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-bayes-factor-to-model-selection">From Bayes Factor to Model Selection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-prior-model-probabilities">Setting Prior Model Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-bayes-factor">Understanding the Bayes Factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-uncertainty-quantification-to-model-selection">From Uncertainty Quantification to Model Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-prior-model-uncertainty">Quantifying Prior Model Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-marginal-likelihood">Computing the Marginal Likelihood</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-case-conjugate-priors">Simple Case: Conjugate Priors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-case-non-conjugate-priors-and-high-dimensional-models">Complex Case: Non-Conjugate Priors and High-Dimensional Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-case-when-we-can-condition-analytically">Simple Case: When We Can Condition Analytically</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-case-when-parameter-uncertainty-cannot-be-resolved-analytically">Complex Case: When Parameter Uncertainty Cannot Be Resolved Analytically</a></li>
 </ul>
 </li>
 </ul>
@@ -1570,7 +1553,7 @@ Detection accuracy: 1
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-detecting-pleiotropy">Example 2 – Detecting pleiotropy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Generation of Simulated Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Generation of Simulated Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-definition-and-likelihood-functions">Model Definition and Likelihood Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-and-prior-functions">Likelihood and Prior Functions</a></li>
 </ul>
@@ -1579,7 +1562,7 @@ Detection accuracy: 1
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Graphical Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graphical Summary</a></li>
 </ul>
 </li>
 </ul>
