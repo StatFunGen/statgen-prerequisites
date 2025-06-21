@@ -602,10 +602,11 @@ document.write(`
 <p>(<span class="math notranslate nohighlight">\(N_{ij}\)</span> = count of individuals with Variable 1=<span class="math notranslate nohighlight">\(i\)</span> and Variable 2=<span class="math notranslate nohighlight">\(j\)</span>)</p>
 <p><strong>Odds for Variable 2=0:</strong> <span class="math notranslate nohighlight">\(\frac{N_{00}}{N_{10}}\)</span></p>
 <p><strong>Odds for Variable 2=1:</strong> <span class="math notranslate nohighlight">\(\frac{N_{01}}{N_{11}}\)</span></p>
-<p><strong>Odds Ratio:</strong>
-$<span class="math notranslate nohighlight">\(
+<p><strong>Odds Ratio:</strong></p>
+<div class="math notranslate nohighlight">
+\[
 OR = \frac{\text{Odds for Variable 2=0}}{\text{Odds for Variable 2=1}} = \frac{\frac{N_{00}}{N_{10}}}{\frac{N_{01}}{N_{11}}} = \frac{N_{00} \times N_{11}}{N_{10} \times N_{01}}
-\)</span>$</p>
+\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
@@ -645,15 +646,15 @@ OR = \frac{\text{Odds for Variable 2=0}}{\text{Odds for Variable 2=1}} = \frac{\
 <p>The chi-square test helps us determine if the odds ratio we calculated is statistically significant (not due to random chance).</p>
 <p><strong>What it tests:</strong> Whether two variables are independent or associated in a contingency table.</p>
 <p><strong>Null hypothesis:</strong> <span class="math notranslate nohighlight">\(H_0\)</span>: The two variables are independent (OR = 1)</p>
-<p><strong>Test statistic:</strong>
-$<span class="math notranslate nohighlight">\(
+<p><strong>Test statistic:</strong></p>
+<div class="math notranslate nohighlight">
+\[
 \chi^2 = \sum \frac{(\text{Observed} - \text{Expected})^2}{\text{Expected}}
-\)</span>$</p>
+\]</div>
 <p><strong>Simple interpretation:</strong></p>
 <ul class="simple">
-<li><p>Large <span class="math notranslate nohighlight">\(\chi^2\)</span> value -&gt; Strong evidence against independence -&gt; Variables are associated</p></li>
+<li><p>Large <span class="math notranslate nohighlight">\(\chi^2\)</span> value (p-value&lt;0.05) -&gt; Strong evidence against independence -&gt; Variables are associated (Reject null hypothesis)</p></li>
 <li><p>Small <span class="math notranslate nohighlight">\(\chi^2\)</span> value -&gt; Weak evidence -&gt; Variables might be independent</p></li>
-<li><p>P-value &lt; 0.05 -&gt; Reject null hypothesis -&gt; Association is statistically significant</p></li>
 </ul>
 <p><strong>Connection to OR:</strong> If chi-square test is significant, then our calculated odds ratio is likely a real association, not just random variation.</p>
 </section>
@@ -856,33 +857,12 @@ p-value = 3.619985e-01
 </div>
 </div>
 <p>Both methods give the same result because they’re testing the same hypothesis - independence of maternal and paternal alleles.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conclusion</span>
-<span class="n">alpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.05</span>
-<span class="kr">if</span><span class="p">(</span><span class="n">p_value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">alpha</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nConclusion: The population deviates significantly from Hardy-Weinberg equilibrium (p &lt; 0.05)&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nThis suggests maternal and paternal alleles are NOT chosen independently.&quot;</span><span class="p">)</span>
-<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nConclusion: The population is in Hardy-Weinberg equilibrium (p &gt;= 0.05)&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nThis suggests maternal and paternal alleles ARE chosen independently.&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Conclusion: The population is in Hardy-Weinberg equilibrium (p &gt;= 0.05)
-This suggests maternal and paternal alleles ARE chosen independently.
-</pre></div>
-</div>
-</div>
-</div>
 <p><strong>Exercise: Test HWE with Modified Data</strong></p>
 <p>Now that you’ve seen how to test HWE when it holds, try modifying the genotype counts to see what happens when independence breaks down. For example, what if we had 1469 AA, 500 Aa, and 0 aa individuals? Or try 1000 AA, 50 Aa, and 200 aa? Change the values of N_AA, N_Aa, and N_aa in the code above and rerun the analysis. Pay attention to how the odds ratio changes from 1.0 and how the p-value reflects the statistical significance of these deviations. This will help you understand what different types of HWE violations look like in practice - whether it’s excess heterozygotes, deficiency of heterozygotes, or other patterns that suggest non-random mating or population structure.</p>
 </section>
 <section id="example-2-gwas">
 <h2>Example 2 – GWAS<a class="headerlink" href="#example-2-gwas" title="Link to this heading">#</a></h2>
-<p>In genetic association studies, we often want to measure how strongly a genetic variant is associated with disease status. There are two common approaches to calculate odds ratios: using contingency tables with the formula <span class="math notranslate nohighlight">\(OR = \frac{N_{10} \times N_{01}}{N_{00} \times N_{11}}\)</span>, or using logistic regression where <span class="math notranslate nohighlight">\(OR = e^{\beta}\)</span>. This example demonstrates both methods using genetic data from 5 individuals with 3 variants each, and shows that both approaches yield identical results when applied to the same binary association.</p>
+<p>In genetic association studies, we often want to measure how strongly a genetic variant is associated with disease status. There are two common approaches to calculate odds ratios: using contingency tables with the formula <span class="math notranslate nohighlight">\(OR = \frac{N_{00} \times N_{11}}{N_{01} \times N_{10}}\)</span>, or using logistic regression where <span class="math notranslate nohighlight">\(OR = e^{\beta}\)</span>. This example demonstrates both methods using genetic data from 5 individuals with 3 variants each, and shows that both approaches yield identical results when applied to the same binary association.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
@@ -959,10 +939,22 @@ This suggests maternal and paternal alleles ARE chosen independently.
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create contingency table for variant1 (already binary)</span>
 <span class="n">cont_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">variant1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">Y</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Contingency Table:&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">cont_table</span><span class="p">)</span>
-
-<span class="c1"># Extract counts for odds ratio calculation</span>
+<span class="n">cont_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   
+    0 1
+  0 2 1
+  1 1 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract counts for odds ratio calculation</span>
 <span class="n">N_00</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cont_table</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># variant=0, disease=0</span>
 <span class="n">N_01</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cont_table</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="w">  </span><span class="c1"># variant=0, disease=1</span>
 <span class="n">N_10</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cont_table</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># variant=1, disease=0</span>
@@ -980,12 +972,7 @@ This suggests maternal and paternal alleles ARE chosen independently.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Contingency Table:&quot;
-   
-    0 1
-  0 2 1
-  1 1 1
-[1] &quot;N_00 (variant=0, disease=0): 2&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;N_00 (variant=0, disease=0): 2&quot;
 [1] &quot;N_01 (variant=0, disease=1): 1&quot;
 [1] &quot;N_10 (variant=1, disease=0): 1&quot;
 [1] &quot;N_11 (variant=1, disease=1): 1&quot;
@@ -1029,8 +1016,27 @@ Residual deviance: 6.5917  on 3  degrees of freedom
 AIC: 10.592
 
 Number of Fisher Scoring iterations: 4
+
+[1] &quot;Beta coefficient: 0.693147180559743&quot;
+[1] &quot;Odds Ratio from logistic regression: 1.99999999999959&quot;
 </pre></div>
 </div>
+</div>
+</div>
+<p>We check the <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> and the corresponding OR:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract coefficient (beta) for variant1</span>
+<span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">coef</span><span class="p">(</span><span class="n">model</span><span class="p">)[</span><span class="s">&quot;variant1&quot;</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Beta coefficient:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">))</span>
+
+<span class="c1"># Calculate odds ratio from beta</span>
+<span class="n">OR_logistic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Odds Ratio from logistic regression:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">OR_logistic</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Beta coefficient: 0.693147180559743&quot;
 [1] &quot;Odds Ratio from logistic regression: 1.99999999999959&quot;
 </pre></div>
@@ -1039,7 +1045,7 @@ Number of Fisher Scoring iterations: 4
 </div>
 <p>Both methods should give <strong>identical odds ratios</strong>, demonstrating that:</p>
 <ul class="simple">
-<li><p>The contingency table formula <span class="math notranslate nohighlight">\(OR = \frac{N_{10} \times N_{01}}{N_{00} \times N_{11}}\)</span></p></li>
+<li><p>The contingency table formula <span class="math notranslate nohighlight">\(OR = \frac{N_{00} \times N_{11}}{N_{01} \times N_{10}}\)</span></p></li>
 <li><p>The logistic regression formula <span class="math notranslate nohighlight">\(OR = e^{\beta}\)</span></p></li>
 </ul>
 <p>are mathematically equivalent ways of measuring the same association between binary variables.</p>
