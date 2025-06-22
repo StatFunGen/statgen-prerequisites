@@ -171,11 +171,6 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Notations</a></li>
 
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
@@ -545,19 +540,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Notations</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-models">Coding Models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-genotype-matrix">Standardized Genotype Matrix</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-snps-encoding-different-variant-types">Beyond SNPs: Encoding Different Variant Types</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-notations">Table of Notations</a></li>
 </ul>
 
             </nav>
@@ -574,371 +557,319 @@ document.write(`
 <h1>Notations<a class="headerlink" href="#notations" title="Link to this heading">#</a></h1>
 <p>Below is a table of notations that we use in this course.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
-<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="Fig" src="_images/Slide1.png" /></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
-<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>We use <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span> to denote the <strong>raw genotype matrix</strong> (an <span class="math notranslate nohighlight">\(N \times M\)</span> matrix representing genotypes for <span class="math notranslate nohighlight">\(N\)</span> individuals at <span class="math notranslate nohighlight">\(M\)</span> variants). By default, we use the <strong>additive coding model</strong> which takes values from <span class="math notranslate nohighlight">\(\{0, 1, 2\}\)</span> representing the count of alternative alleles.</p>
-<p>We use <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> to denote the <strong>standardized genotype matrix</strong>, which is the normalized version of <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span>. <strong>Why standardization?</strong> Different genetic variants have different allele frequencies, leading to different variances in their raw genotype values. Without standardization, effect sizes <span class="math notranslate nohighlight">\(\beta\)</span> are not comparable across variants - a <span class="math notranslate nohighlight">\(\beta = 0.1\)</span> effect on a rare variant affects the population differently than the same effect on a common variant.</p>
-<p><strong>Standardization puts all variants on the same scale</strong>, making effect sizes directly comparable across variants. This is essential for analyses that combine information across multiple variants, as we will see in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/proportion_of_variance_explained.html">Lecture: proportion of variance explained</a>, <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">Lecture: random effect</a>, <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html">Lecture: Bayesian normal mean model</a>, etc.</p>
-<p>For each column <span class="math notranslate nohighlight">\(j\)</span> (the <span class="math notranslate nohighlight">\(j\)</span>-th variant):</p>
-<div class="math notranslate nohighlight">
-\[
-X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
-\]</div>
-<p>Where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}\)</span> (mean of the <span class="math notranslate nohighlight">\(j\)</span>-th variant)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_j = \sqrt{\frac{1}{N-1}\sum_{i=1}^{N} (X_{\text{raw},ij} - \mu_j)^2}\)</span> (standard deviation of the <span class="math notranslate nohighlight">\(j\)</span>-th variant)</p></li>
-</ul>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
-<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="coding-models">
-<h2>Coding Models<a class="headerlink" href="#coding-models" title="Link to this heading">#</a></h2>
-<p>For diploid organisms (with two copies of each chromosome, e.g., human), we can use different coding models:</p>
-<ul class="simple">
-<li><p><strong>Additive model</strong> (default): takes value from <span class="math notranslate nohighlight">\(\{0, 1, 2\}\)</span></p>
-<ul>
-<li><p>0: Homozygous for reference allele (AA)</p></li>
-<li><p>1: Heterozygous (Aa)</p></li>
-<li><p>2: Homozygous for alternative allele (aa)</p></li>
-<li><p>Represents the count of alternative alleles</p></li>
-</ul>
-</li>
-<li><p><strong>Dominant model</strong>: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span></p>
-<ul>
-<li><p>0: Homozygous for reference allele (AA)</p></li>
-<li><p>1: Either heterozygous or homozygous for alternative allele (Aa or aa)</p></li>
-<li><p>Represents the presence of at least one copy of the alternative allele</p></li>
-</ul>
-</li>
-<li><p><strong>Recessive model</strong>: takes value from <span class="math notranslate nohighlight">\(\{0, 1\}\)</span></p>
-<ul>
-<li><p>0: Either homozygous for reference allele or heterozygous (AA or Aa)</p></li>
-<li><p>1: Homozygous for alternative allele (aa)</p></li>
-<li><p>Represents when both copies of the alternative allele are present</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="standardized-genotype-matrix">
-<h2>Standardized Genotype Matrix<a class="headerlink" href="#standardized-genotype-matrix" title="Link to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is a normalized version of <span class="math notranslate nohighlight">\(\mathbf{X}_\text{raw}\)</span> where each variant is scaled to have mean 0 and variance 1.</p>
-<p>For each column <span class="math notranslate nohighlight">\(j\)</span> (variant):</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mu_j = \frac{1}{N}\sum_{i=1}^{N} X_{\text{raw},ij}\)</span> (mean of the <span class="math notranslate nohighlight">\(j\)</span>-th variant)</p>
-<ul>
-<li><p>Represents the average number of alternative alleles at the <span class="math notranslate nohighlight">\(j\)</span>-th variant in the sample under the additive model</p></li>
-</ul>
-</li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_j = \sqrt{\frac{1}{N-1}\sum_{i=1}^{N} (X_{\text{raw},ij} - \mu_j)^2}\)</span> (standard deviation of the <span class="math notranslate nohighlight">\(j\)</span>-th variant)</p>
-<ul>
-<li><p>Measures the variability in the number of alternative alleles at the <span class="math notranslate nohighlight">\(j\)</span>-th variant</p></li>
-</ul>
-</li>
-</ul>
-<p>This standardization ensures that:</p>
-<ul class="simple">
-<li><p>Each column of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> has mean 0 and variance 1</p></li>
-<li><p>The standardized values reflect the deviation from the population mean in units of standard deviation</p></li>
-<li><p>All variants contribute equally to downstream statistical analyses regardless of their allele frequencies</p></li>
-</ul>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
-<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/proportion_of_variance_explained.html">proportion of variance explained</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">random effect</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html">Bayesian normal mean model</a></p></li>
-</ul>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="example">
-<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>Let’s say we have genetic data from 5 individuals tested at 3 different variants. How do we go from the actual genotype calls (like “CC” or “CT”) to the numerical matrices used in statistical genetics? What happens when we apply different coding models to the same data? And how do we standardize these matrices in R?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
-<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
-
-<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
-<span class="c1"># These represent actual alleles at each position</span>
-<span class="c1"># For example, Individual 1 the following nucleotides on three variants: CC, CT, AT</span>
-<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
-<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 1</span>
-<span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 2</span>
-<span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 3</span>
-<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 4</span>
-<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
-<span class="p">)</span>
-<span class="c1"># Reshape into a matrix</span>
-<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
-<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
-<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The raw genotype matrix is:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">geno_matrix</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 x 3 of type chr</caption>
+<section class="tex2jax_ignore mathjax_ignore" id="table-of-notations">
+<h1>Table of Notations<a class="headerlink" href="#table-of-notations" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Example Meaning</p></th>
+</tr>
 </thead>
 <tbody>
-	<tr><th scope=row>Individual 1</th><td>CC</td><td>CT</td><td>AT</td></tr>
-	<tr><th scope=row>Individual 2</th><td>TT</td><td>TT</td><td>AA</td></tr>
-	<tr><th scope=row>Individual 3</th><td>CT</td><td>CT</td><td>AA</td></tr>
-	<tr><th scope=row>Individual 4</th><td>CC</td><td>TT</td><td>AA</td></tr>
-	<tr><th scope=row>Individual 5</th><td>CC</td><td>CC</td><td>TT</td></tr>
+<tr class="row-even"><td><p><strong>Genotype Data</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{\text{raw}}\)</span></p></td>
+<td><p>Raw genotype matrix (without centering or standardization)</p></td>
+<td><p><span class="math notranslate nohighlight">\(N \times M\)</span> matrix with values 0, 1, 2 for AA, Aa, aa</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span></p></td>
+<td><p>Genotype matrix after normalization</p></td>
+<td><p>Centered and scaled genotype matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{i,\cdot}\)</span></p></td>
+<td><p>Genotype for individual <span class="math notranslate nohighlight">\(i\)</span> across all variants</p></td>
+<td><p>Row vector of genotypes for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{i,j}\)</span></p></td>
+<td><p>Genotype for individual <span class="math notranslate nohighlight">\(i\)</span> at variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p>Number of risk alleles (0, 1, or 2) for individual <span class="math notranslate nohighlight">\(i\)</span> at variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{X}_{\cdot,j}\)</span></p></td>
+<td><p>Genotype at variant <span class="math notranslate nohighlight">\(j\)</span> for all individuals</p></td>
+<td><p>Column vector of genotypes for variant <span class="math notranslate nohighlight">\(j\)</span> across all individuals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(X_i\)</span></p></td>
+<td><p>Genotype value for individual <span class="math notranslate nohighlight">\(i\)</span> (single variant case)</p></td>
+<td><p>Number of risk alleles for individual <span class="math notranslate nohighlight">\(i\)</span> (0, 1, or 2)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mu_j\)</span></p></td>
+<td><p>Mean value of variant <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(\mathbf{X}_{\text{raw}}\)</span></p></td>
+<td><p>Mean genotype value across all individuals for variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Indices and Dimensions</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>Index for individual</p></td>
+<td><p><span class="math notranslate nohighlight">\(i=1,2,...,N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p>Index for genetic variant</p></td>
+<td><p><span class="math notranslate nohighlight">\(j=1,2,...,M\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p>Index for study</p></td>
+<td><p><span class="math notranslate nohighlight">\(k=1,2,...,K\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td><p>Index for mixture component</p></td>
+<td><p><span class="math notranslate nohighlight">\(c=1,2,...,C\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+<td><p>Number of individuals</p></td>
+<td><p>500,000 individuals in UK Biobank subset</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td><p>Number of variants</p></td>
+<td><p>1,000,000 SNPs after quality control</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(K\)</span></p></td>
+<td><p>Number of studies</p></td>
+<td><p>3 studies in meta-analysis</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C\)</span></p></td>
+<td><p>Number of mixture components</p></td>
+<td><p>4 components in mixture model (null, small, medium, large effects)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Alleles and Frequencies</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A\)</span></p></td>
+<td><p>Major allele</p></td>
+<td><p>Reference allele (more common)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td><p>Minor allele</p></td>
+<td><p>Alternative allele (less common)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f_A\)</span>, <span class="math notranslate nohighlight">\(f_a\)</span></p></td>
+<td><p>Allele frequencies</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_A=0.7, f_a=0.3\)</span> for a variant</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Linkage and Relatedness</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(l_j\)</span></p></td>
+<td><p>LD score of variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p>Measure of local LD around variant <span class="math notranslate nohighlight">\(j\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span></p></td>
+<td><p>Genetic relationship matrix (GRM)</p></td>
+<td><p><span class="math notranslate nohighlight">\(N \times N\)</span> matrix of genetic similarities</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Traits and Phenotypes</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span></p></td>
+<td><p>Trait vector (multivariate case)</p></td>
+<td><p>Height and weight measurements</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Y_i\)</span></p></td>
+<td><p>Trait value for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>Height = 175cm for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Y_{i,a}\)</span>, <span class="math notranslate nohighlight">\(Y_{i,b}\)</span></p></td>
+<td><p>Trait values for individual <span class="math notranslate nohighlight">\(i\)</span> (multivariate)</p></td>
+<td><p>Height = 175cm, weight = 70kg for individual <span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Regression Parameters</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(b_0\)</span></p></td>
+<td><p>Intercept in regression model</p></td>
+<td><p>Mean height = 170cm when genotype = 0</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\beta\)</span></p></td>
+<td><p>Effect size of variant on trait (scalar)</p></td>
+<td><p>0.5cm increase in height per risk allele</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></p></td>
+<td><p>Effect size vector (multivariate)</p></td>
+<td><p>Effects on height and weight: <span class="math notranslate nohighlight">\(\begin{pmatrix} 0.5 \\ 0.3 \end{pmatrix}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\hat{\beta}_k\)</span></p></td>
+<td><p>Estimated effect from study <span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p>Effect estimate from European study</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mu_\beta\)</span></p></td>
+<td><p>Mean of <span class="math notranslate nohighlight">\(\beta\)</span> distribution</p></td>
+<td><p>Average effect across all variants</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Variance and Covariance</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\sigma^2\)</span></p></td>
+<td><p>Variance of trait</p></td>
+<td><p>Residual variance in height (e.g., 100 cm²)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span></p></td>
+<td><p>Known covariance matrix</p></td>
+<td><p>Residual covariance between height and weight</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Prior Parameters</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\beta_0\)</span></p></td>
+<td><p>Prior mean (scalar)</p></td>
+<td><p>Expected effect = 0 before seeing data</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_0\)</span></p></td>
+<td><p>Prior mean vector</p></td>
+<td><p>Expected effects = <span class="math notranslate nohighlight">\(\begin{pmatrix} 0 \\ 0 \end{pmatrix}\)</span> before data</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\sigma_0^2\)</span></p></td>
+<td><p>Prior variance (scalar)</p></td>
+<td><p>Prior uncertainty = 0.25 for effect size</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_0\)</span></p></td>
+<td><p>Prior covariance matrix</p></td>
+<td><p>Prior uncertainty about joint effects</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Posterior Parameters</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\beta_1\)</span></p></td>
+<td><p>Posterior mean (scalar)</p></td>
+<td><p>Updated effect = 0.3 after seeing data</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_1\)</span></p></td>
+<td><p>Posterior mean vector</p></td>
+<td><p>Updated effects = <span class="math notranslate nohighlight">\(\begin{pmatrix} 0.3 \\ 0.2 \end{pmatrix}\)</span> after data</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\sigma_1^2\)</span></p></td>
+<td><p>Posterior variance (scalar)</p></td>
+<td><p>Reduced uncertainty = 0.1 after data</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_1\)</span></p></td>
+<td><p>Posterior covariance matrix</p></td>
+<td><p>Reduced uncertainty about joint effects</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Mixed Models</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{g}\)</span></p></td>
+<td><p>Random effect vector in linear mixed models</p></td>
+<td><p>Individual-specific genetic effects</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span></p></td>
+<td><p>Design matrix for random effects</p></td>
+<td><p>Matrix linking observations to random effects</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span></p></td>
+<td><p>Random effect vector in linear mixed models</p></td>
+<td><p>Polygenic effects for each individual</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Covariates</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{W}\)</span></p></td>
+<td><p>Covariate matrix (confounder, collider, or mediator)</p></td>
+<td><p>Age, sex, principal components</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Meta-Analysis</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Q\)</span></p></td>
+<td><p>Cochran’s Q statistic</p></td>
+<td><p>Test statistic for heterogeneity = 12.5</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(I^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(I^2\)</span> statistic for heterogeneity</p></td>
+<td><p>Percentage of variation due to heterogeneity = 75%</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Model and Data</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td><p>Model</p></td>
+<td><p>Linear model vs. quadratic model</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D\)</span></p></td>
+<td><p>Observed data</p></td>
+<td><p>Genotype and phenotype measurements</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Likelihood and Testing</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathcal{L}\)</span></p></td>
+<td><p>Likelihood function</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{L}(\beta\mid Y,X) = P(Y\mid X,\beta)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\ell\)</span></p></td>
+<td><p>Log-likelihood</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ell = \log(\mathcal{L})\)</span> for numerical stability</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Lambda\)</span></p></td>
+<td><p>Likelihood ratio test statistic</p></td>
+<td><p><span class="math notranslate nohighlight">\(\Lambda = 2(\ell_1 - \ell_0)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(p\)</span></p></td>
+<td><p>P-value</p></td>
+<td><p>Probability = 0.001 under null hypothesis</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(H_0\)</span></p></td>
+<td><p>Null hypothesis</p></td>
+<td><p>No genetic effect (<span class="math notranslate nohighlight">\(\beta = 0\)</span>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(H_a\)</span></p></td>
+<td><p>Alternative hypothesis</p></td>
+<td><p>Genetic effect exists (<span class="math notranslate nohighlight">\(\beta \neq 0\)</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parameters and Spaces</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<td><p>Generic parameter of statistical model</p></td>
+<td><p>Could be <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(\sigma^2\)</span>, or other parameters</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
+<td><p>Parameter space of <span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<td><p>Set of all possible values for <span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Sufficient Statistics</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_1\)</span></p></td>
+<td><p>Sufficient statistic (scalar)</p></td>
+<td><p><span class="math notranslate nohighlight">\(T_1 = \sum_{i=1}^N X_i^2 = 1000\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{T}_2\)</span></p></td>
+<td><p>Sufficient statistic vector</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i\)</span> for multivariate traits</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Mixture Models</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\pi_c\)</span></p></td>
+<td><p>Mixture weight for component <span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td><p>90% of variants have no effect (<span class="math notranslate nohighlight">\(\pi_1 = 0.9\)</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p_c(\beta)\)</span></p></td>
+<td><p>Component density function</p></td>
+<td><p>Normal distribution for component <span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
 </tbody>
 </table>
-</div></div>
 </div>
-<p>Then we assign the alternative allele for each variant:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define alternative alleles for each variant</span>
-<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
-<span class="nf">names</span><span class="p">(</span><span class="n">alt_alleles</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now let’s convert the variants information for the individuals into a raw genotype matrix, under three different models:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># count number of non-reference alleles</span>
-<span class="n">Xraw_dominant</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># presence of alternative allele</span>
-<span class="n">Xraw_recessive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="c1"># two copies of alternative allele required</span>
-
-<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_dominant</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_recessive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_dominant</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_recessive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
-
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
-<span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-<span class="w">    </span><span class="n">Xraw_dominant</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="nf">any</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
-<span class="w">    </span><span class="n">Xraw_recessive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="nf">all</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Raw genotype matrix (Additive model: count of alternative alleles):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Raw genotype matrix (additive model):&quot;</span><span class="p">)</span>
-<span class="n">Xraw_additive</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Raw genotype matrix (additive model):&quot;
-</pre></div>
-</div>
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 x 3 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>Individual 1</th><td>0</td><td>1</td><td>1</td></tr>
-	<tr><th scope=row>Individual 2</th><td>2</td><td>0</td><td>0</td></tr>
-	<tr><th scope=row>Individual 3</th><td>1</td><td>1</td><td>0</td></tr>
-	<tr><th scope=row>Individual 4</th><td>0</td><td>0</td><td>0</td></tr>
-	<tr><th scope=row>Individual 5</th><td>0</td><td>2</td><td>2</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Raw genotype matrix (dominant model):&quot;</span><span class="p">)</span>
-<span class="n">Xraw_dominant</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Raw genotype matrix (dominant model):&quot;
-</pre></div>
-</div>
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 x 3 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>Individual 1</th><td>0</td><td>1</td><td>1</td></tr>
-	<tr><th scope=row>Individual 2</th><td>1</td><td>0</td><td>0</td></tr>
-	<tr><th scope=row>Individual 3</th><td>1</td><td>1</td><td>0</td></tr>
-	<tr><th scope=row>Individual 4</th><td>0</td><td>0</td><td>0</td></tr>
-	<tr><th scope=row>Individual 5</th><td>0</td><td>1</td><td>1</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Raw genotype matrix (recessive model):&quot;</span><span class="p">)</span>
-<span class="n">Xraw_recessive</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Raw genotype matrix (recessive model):&quot;
-</pre></div>
-</div>
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 x 3 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>Individual 1</th><td>0</td><td>0</td><td>0</td></tr>
-	<tr><th scope=row>Individual 2</th><td>1</td><td>0</td><td>0</td></tr>
-	<tr><th scope=row>Individual 3</th><td>0</td><td>0</td><td>0</td></tr>
-	<tr><th scope=row>Individual 4</th><td>0</td><td>0</td><td>0</td></tr>
-	<tr><th scope=row>Individual 5</th><td>0</td><td>1</td><td>1</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-<p>Then we standardize the raw genotype matrix under each model:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standardize each raw genotype matrix</span>
-<span class="n">X_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="n">X_dominant</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_dominant</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="n">X_recessive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_recessive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here are the standardized matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Standardized genotype matrix (additive model):&quot;</span><span class="p">)</span>
-<span class="n">X_additive</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Standardized genotype matrix (additive model):&quot;
-</pre></div>
-</div>
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 x 3 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>Individual 1</th><td>-0.6708204</td><td> 0.2390457</td><td> 0.4472136</td></tr>
-	<tr><th scope=row>Individual 2</th><td> 1.5652476</td><td>-0.9561829</td><td>-0.6708204</td></tr>
-	<tr><th scope=row>Individual 3</th><td> 0.4472136</td><td> 0.2390457</td><td>-0.6708204</td></tr>
-	<tr><th scope=row>Individual 4</th><td>-0.6708204</td><td>-0.9561829</td><td>-0.6708204</td></tr>
-	<tr><th scope=row>Individual 5</th><td>-0.6708204</td><td> 1.4342743</td><td> 1.5652476</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Standardized genotype matrix (dominant model):&quot;</span><span class="p">)</span>
-<span class="n">X_dominant</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Standardized genotype matrix (dominant model):&quot;
-</pre></div>
-</div>
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 x 3 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>Individual 1</th><td>-0.7302967</td><td> 0.7302967</td><td> 1.0954451</td></tr>
-	<tr><th scope=row>Individual 2</th><td> 1.0954451</td><td>-1.0954451</td><td>-0.7302967</td></tr>
-	<tr><th scope=row>Individual 3</th><td> 1.0954451</td><td> 0.7302967</td><td>-0.7302967</td></tr>
-	<tr><th scope=row>Individual 4</th><td>-0.7302967</td><td>-1.0954451</td><td>-0.7302967</td></tr>
-	<tr><th scope=row>Individual 5</th><td>-0.7302967</td><td> 0.7302967</td><td> 1.0954451</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Standardized genotype matrix (recessive model):&quot;</span><span class="p">)</span>
-<span class="n">X_recessive</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Standardized genotype matrix (recessive model):&quot;
-</pre></div>
-</div>
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 5 x 3 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>Variant 1</th><th scope=col>Variant 2</th><th scope=col>Variant 3</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>Individual 1</th><td>-0.4472136</td><td>-0.4472136</td><td>-0.4472136</td></tr>
-	<tr><th scope=row>Individual 2</th><td> 1.7888544</td><td>-0.4472136</td><td>-0.4472136</td></tr>
-	<tr><th scope=row>Individual 3</th><td>-0.4472136</td><td>-0.4472136</td><td>-0.4472136</td></tr>
-	<tr><th scope=row>Individual 4</th><td>-0.4472136</td><td>-0.4472136</td><td>-0.4472136</td></tr>
-	<tr><th scope=row>Individual 5</th><td>-0.4472136</td><td> 1.7888544</td><td> 1.7888544</td></tr>
-</tbody>
-</table>
-</div></div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
-<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
-<section id="beyond-snps-encoding-different-variant-types">
-<h2>Beyond SNPs: Encoding Different Variant Types<a class="headerlink" href="#beyond-snps-encoding-different-variant-types" title="Link to this heading">#</a></h2>
-<p>While we commonly encode SNPs, there are other types of genetic variations where the same principles also apply:</p>
-<ol class="arabic simple">
-<li><p><strong>Insertions and Deletions (Indels)</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>Small insertions or deletions in DNA sequence</p></li>
-<li><p>Typically encoded using the same 0/1/2 scheme as SNPs</p></li>
-</ul>
-<ol class="arabic simple" start="2">
-<li><p><strong>Copy Number Variations (CNVs)</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>Deletions or duplications of larger DNA segments</p></li>
-<li><p>Can be encoded as actual copy number (0, 1, 2, 3, etc.)</p></li>
-</ul>
-<ol class="arabic simple" start="3">
-<li><p><strong>Structural Variants</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>Inversions, translocations, and complex rearrangements</p></li>
-<li><p>Often encoded as binary (presence/absence)</p></li>
-</ul>
-<p>The choice of encoding scheme should reflect the biological hypothesis about how the variant affects the phenotype. For more information, refer to <a class="reference external" href="https://www.frontiersin.org/files/Articles/127738/fbioe-03-00013-HTML-r1/image_m/fbioe-03-00013-g001.jpg">Figure 1</a> in <a class="reference external" href="https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2015.00013/full">Cardoso et al., 2015</a>.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1006,19 +937,7 @@ X_{ij} = \frac{X_{\text{raw},ij} - \mu_j}{\sigma_j}
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Notations</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-models">Coding Models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-genotype-matrix">Standardized Genotype Matrix</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-snps-encoding-different-variant-types">Beyond SNPs: Encoding Different Variant Types</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-notations">Table of Notations</a></li>
 </ul>
 
   </nav></div>
