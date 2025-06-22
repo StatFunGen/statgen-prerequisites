@@ -634,7 +634,12 @@ document.write(`
 </li>
 <li><p><strong>Consistency</strong>:</p>
 <ul>
-<li><p>When variants are uncorrelated, marginal and joint effects are identical</p></li>
+<li><p>When variants are uncorrelated, marginal and joint effects are identical (<span class="math notranslate nohighlight">\(\hat{\beta}_{\text{marginal}} = \hat{\beta}_{\text{joint}}\)</span>), but joint model still provides advantages:</p>
+<ul>
+<li><p>Better precision: More accurate standard errors from pooled residual variance estimation</p></li>
+<li><p>Reduced multiple testing: One coherent test instead of many separate tests requiring correction</p></li>
+</ul>
+</li>
 <li><p>When variants are correlated, marginal and joint effects will differ</p></li>
 <li><p>Joint effects can be smaller or larger than marginal effects, or even have opposite signs</p></li>
 </ul>
@@ -741,6 +746,7 @@ document.write(`
 <span class="w">  </span><span class="n">P_Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">joint_p_values</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
 <span class="w">  </span><span class="n">Significant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint_p_values</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span>
 <span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">joint_OLS_results</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span>
 </pre></div>
 </div>
 </div>
@@ -776,13 +782,13 @@ document.write(`
 <div class="output text_html"><table class="dataframe">
 <caption>A data.frame: 3 x 4</caption>
 <thead>
-	<tr><th></th><th scope=col>Variant</th><th scope=col>Beta</th><th scope=col>P_Value</th><th scope=col>Significant</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;lgl&gt;</th></tr>
+	<tr><th scope=col>Variant</th><th scope=col>Beta</th><th scope=col>P_Value</th><th scope=col>Significant</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;lgl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>XVariant 1</th><td>Variant 1</td><td> 1.0253</td><td>0.0001</td><td> TRUE</td></tr>
-	<tr><th scope=row>XVariant 2</th><td>Variant 2</td><td> 0.0757</td><td>0.4226</td><td>FALSE</td></tr>
-	<tr><th scope=row>XVariant 3</th><td>Variant 3</td><td>-0.1323</td><td>0.4886</td><td>FALSE</td></tr>
+	<tr><td>Variant 1</td><td> 1.0253</td><td>0.0001</td><td> TRUE</td></tr>
+	<tr><td>Variant 2</td><td> 0.0757</td><td>0.4226</td><td>FALSE</td></tr>
+	<tr><td>Variant 3</td><td>-0.1323</td><td>0.4886</td><td>FALSE</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -790,7 +796,7 @@ document.write(`
 </section>
 <section id="example-2-simpson-s-paradox">
 <h2>Example 2 – Simpson’s Paradox<a class="headerlink" href="#example-2-simpson-s-paradox" title="Link to this heading">#</a></h2>
-<p>Sometimes a genetic variant can appear <strong>protective</strong> when analyzed alone, but turn out to be <strong>harmful</strong> when we account for other factors. This counterintuitive phenomenon is Simpson’s paradox - where the direction of association completely reverses between marginal and joint analysis.</p>
+<p>Sometimes a genetic variant can appear <strong>protective</strong> when analyzed alone, but turn out to be <strong>detrimental</strong> when we account for other factors. This counterintuitive phenomenon is Simpson’s paradox - where the direction of association completely reverses between marginal and joint analysis.</p>
 <p>The key question: <em>How can a genetic variant seem protective overall but actually increase risk when we control for confounding factors?</em></p>
 <p>We’ll simulate a scenario where genetic ancestry acts as a confounder:</p>
 <div class="cell docutils container">
@@ -822,8 +828,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Population A (ancestry=0) mean genotype: 0.33 
-Population B (ancestry=1) mean genotype: 1.57 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Population A (ancestry=0) mean genotype: 0.41 
+Population B (ancestry=1) mean genotype: 1.59 
 </pre></div>
 </div>
 </div>
@@ -853,8 +859,8 @@ Population B (ancestry=1) mean genotype: 1.57
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Population A disease rate: 0.8 
-Population B disease rate: 0.24 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Population A disease rate: 0.81 
+Population B disease rate: 0.26 
 </pre></div>
 </div>
 </div>
@@ -882,8 +888,8 @@ Population B disease rate: 0.24
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== WITHIN-POPULATION EFFECTS ===
-Population A: OR = 1.365 
-Population B: OR = 2.271 
+Population A: OR = 2.317 
+Population B: OR = 0.709 
 </pre></div>
 </div>
 </div>
@@ -898,19 +904,19 @@ Population B: OR = 2.271
 
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== MARGINAL EFFECT (combining populations, ignoring ancestry) ===\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;OR =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">marginal_OR</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;, p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">marginal_p</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Interpretation:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">marginal_OR</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Harmful&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Protective&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Interpretation:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">marginal_OR</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Detrimental &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Protective&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== MARGINAL EFFECT (combining populations, ignoring ancestry) ===
-OR = 0.379 , p = 5e-04 
+OR = 0.394 , p = 4e-04 
 Interpretation: Protective 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Even though the variant is harmful in both populations, it appears protective when we ignore ancestry!</p>
+<p>Even though the variant is detrimental in both populations, it appears protective when we ignore ancestry!</p>
 <p>Why this happens?</p>
 <ol class="arabic simple">
 <li><p><strong>Population B</strong> has higher frequency of risk alleles BUT lower baseline disease risk</p></li>
