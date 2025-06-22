@@ -1,13 +1,8 @@
 # statgen-prerequisites
 Computational codes accompany the 1-day lecture on statistics background in statistical genetics
 
-# Table of Content
-
-The notation table for this course can be found [here](https://gaow.github.io/statgen-prerequisites/notations.html).
 
 # Table of Content
-
-The notation table for this course can be found [here](https://gaow.github.io/statgen-prerequisites/notations.html).
 
 | Section | Subsection | Topic |
 |---------|------------|-------|
