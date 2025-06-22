@@ -556,7 +556,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-outcome-disease-status">Binary Outcome — Disease Status</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-summary-statistics-when-considering-covariates">Example 2: Summary Statistics when considering covariates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-summary-statistics-when-considering-covariates">Example 2: Summary Statistics When Considering Covariates</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-marginal-and-joint-effects">Example 3: Marginal and Joint Effects</a></li>
 </ul>
 </li>
@@ -578,7 +578,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics">
 <h1>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Link to this heading">#</a></h1>
-<p>Summary statistics in genetics capture how each genetic variant relates to a trait, where <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> for a SNP is a noisy measurement of the association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, representing the primary data input for most post-GWAS analyses, allowing researchers to share these standardized <span class="math notranslate nohighlight">\(X\)</span>-<span class="math notranslate nohighlight">\(Y\)</span> relationship measurements instead of raw genotype and phenotype data.</p>
+<p>Summary statistics in genetics capture how each genetic variant relates to a trait, where <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> for a SNP is a <strong>noisy measurement</strong> of the association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, representing the primary <strong>data input</strong> for most post-GWAS analyses, allowing researchers to share these standardized <span class="math notranslate nohighlight">\(X\)</span>-<span class="math notranslate nohighlight">\(Y\)</span> relationship measurements instead of raw genotype and phenotype data.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -710,8 +710,8 @@ P = 2 \times (1 - \Phi(|Z|))
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
 <h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">Odds Ratio</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">odds ratio</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/mediator.html">mediator</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/confounder.html">confounder</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/marginal_joint_effects.html">marginal/joint effects model</a></p></li>
@@ -793,7 +793,7 @@ P = 2 \times (1 - \Phi(|Z|))
 <p>In this example, we simulate a simple genome-wide association study (GWAS) by testing the relationship between three genetic variants and trait across five individuals.</p>
 <section id="continuous-outcome-height">
 <h3>Continuous Outcome – Height<a class="headerlink" href="#continuous-outcome-height" title="Link to this heading">#</a></h3>
-<p>Let’s first use OLS to compute the summary statistics for a continuous variable — height (we have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a>).</p>
+<p>Let’s first use OLS to compute the summary statistics for a continuous variable — height (we have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">Lecture: ordinary least squares</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed height for the 5 individuals</span>
@@ -848,7 +848,7 @@ P = 2 \times (1 - \Phi(|Z|))
 </section>
 <section id="binary-outcome-disease-status">
 <h3>Binary Outcome — Disease Status<a class="headerlink" href="#binary-outcome-disease-status" title="Link to this heading">#</a></h3>
-<p>Let’s then use logistic regression to compute the summary statistics for a binary trait — disease status (we have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">odds_ratio</a>).</p>
+<p>Let’s then use logistic regression to compute the summary statistics for a binary trait — disease status (we have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">Lecture: odds_ratio</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign observed disease status for the 5 individuals</span>
@@ -910,7 +910,7 @@ Warning message:
 </section>
 </section>
 <section id="example-2-summary-statistics-when-considering-covariates">
-<h2>Example 2: Summary Statistics when considering covariates<a class="headerlink" href="#example-2-summary-statistics-when-considering-covariates" title="Link to this heading">#</a></h2>
+<h2>Example 2: Summary Statistics When Considering Covariates<a class="headerlink" href="#example-2-summary-statistics-when-considering-covariates" title="Link to this heading">#</a></h2>
 <p>For this example we assume you already understand the basics of summary statistics and the concepts of covariates.</p>
 <p>We calculate the summary statistics using OLS and consider age as the covariate.</p>
 <div class="cell docutils container">
@@ -1020,7 +1020,7 @@ Warning message:
 </div>
 </div>
 </div>
-<p>Recall the marginal effects of the three variants:</p>
+<p>Recall again the marginal effects of the three variants:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sumstats_height</span>
@@ -1262,7 +1262,7 @@ Warning message:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-outcome-disease-status">Binary Outcome — Disease Status</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-summary-statistics-when-considering-covariates">Example 2: Summary Statistics when considering covariates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-summary-statistics-when-considering-covariates">Example 2: Summary Statistics When Considering Covariates</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-marginal-and-joint-effects">Example 3: Marginal and Joint Effects</a></li>
 </ul>
 </li>

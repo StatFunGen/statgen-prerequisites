@@ -572,7 +572,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="random-effect">
 <h1>Random Effect<a class="headerlink" href="#random-effect" title="Link to this heading">#</a></h1>
-<p>A random effect reflects our uncertainty when we haven’t conditioned on all the relevant factors - if we could measure and control for everything that matters, the effect would be fixed, but since we can’t, we model our incomplete knowledge as randomness.</p>
+<p>A random effect reflects our <strong>uncertainty</strong> when we <strong>haven’t conditioned on all the relevant factors</strong> - if we could measure and control for everything that matters, the effect would be fixed, but since we can’t, we model our incomplete knowledge as <strong>randomness</strong>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -756,16 +756,16 @@ document.write(`
 <span class="nf">set.seed</span><span class="p">(</span><span class="m">11</span><span class="p">)</span>
 
 <span class="c1"># Create a diverse study population</span>
-<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span>
 
 <span class="c1"># Generate population characteristics</span>
-<span class="n">ancestry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;European&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hispanic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;African&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Asian&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span>
+<span class="n">ancestry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;European&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hispanic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;African&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Asian&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span>
 <span class="w">                  </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">))</span>
-<span class="n">age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">50</span><span class="o">:</span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="n">sex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">))</span>
+<span class="n">age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">50</span><span class="o">:</span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">sex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">))</span>
 
 <span class="c1"># Generate APOEe4 genotypes (0, 1, or 2 copies)</span>
-<span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">))</span>
+<span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">))</span>
 
 <span class="c1"># The &quot;true&quot; APOEe4 effect depends on all these factors</span>
 <span class="c1"># Base effect sizes by ancestry</span>
@@ -783,11 +783,11 @@ document.write(`
 <span class="n">true_effect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">base_effect</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">age_modifier</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sex_modifier</span>
 
 <span class="c1"># Generate Alzheimer&#39;s risk (log-odds scale)</span>
-<span class="n">risk_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_effect</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+<span class="n">risk_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_effect</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
 
 <span class="c1"># Create dataframe</span>
 <span class="n">study_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span>
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">,</span>
 <span class="w">  </span><span class="n">ancestry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ancestry</span><span class="p">,</span>
 <span class="w">  </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span>
 <span class="w">  </span><span class="n">sex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span>
@@ -856,46 +856,46 @@ Effect variation (SD across individuals): 0.738
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the heterogeneity we&#39;re missing</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== THE HETEROGENEITY WE&#39;RE IGNORING ===\n&quot;</span><span class="p">)</span>
 <span class="n">effect_by_group</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="n">true_effect</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">ancestry</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">65</span><span class="p">),</span><span class="w"> </span>
 <span class="w">                           </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">study_data</span><span class="p">,</span><span class="w"> </span><span class="n">FUN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">effect_by_group</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Ancestry&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sex&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Elderly&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mean_Effect&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">effect_by_group</span><span class="p">)</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\n=== KEY INSIGHT ===\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Fixed effects work when effect variation is small (SD =&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">conditioned_data</span><span class="o">$</span><span class="n">true_effect</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;)\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Random effects needed when effect variation is large (SD =&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">study_data</span><span class="o">$</span><span class="n">true_effect</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;)\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">effect_by_group</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== THE HETEROGENEITY WE&#39;RE IGNORING ===
-   Ancestry    Sex Elderly Mean_Effect
-1   African Female   FALSE       0.234
-2     Asian Female   FALSE       0.351
-3  European Female   FALSE       0.468
-4  Hispanic Female   FALSE       0.312
-5   African   Male   FALSE       0.180
-6     Asian   Male   FALSE       0.270
-7  European   Male   FALSE       0.360
-8  Hispanic   Male   FALSE       0.240
-9   African Female    TRUE       1.170
-10    Asian Female    TRUE       1.755
-11 European Female    TRUE       2.340
-12 Hispanic Female    TRUE       1.560
-13  African   Male    TRUE       0.900
-14    Asian   Male    TRUE       1.350
-15 European   Male    TRUE       1.800
-16 Hispanic   Male    TRUE       1.200
-
-=== KEY INSIGHT ===
-Fixed effects work when effect variation is small (SD = 0 )
-Random effects needed when effect variation is large (SD = 0.738 )
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 16 x 4</caption>
+<thead>
+	<tr><th scope=col>Ancestry</th><th scope=col>Sex</th><th scope=col>Elderly</th><th scope=col>Mean_Effect</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>African </td><td>Female</td><td>FALSE</td><td>0.234</td></tr>
+	<tr><td>Asian   </td><td>Female</td><td>FALSE</td><td>0.351</td></tr>
+	<tr><td>European</td><td>Female</td><td>FALSE</td><td>0.468</td></tr>
+	<tr><td>Hispanic</td><td>Female</td><td>FALSE</td><td>0.312</td></tr>
+	<tr><td>African </td><td>Male  </td><td>FALSE</td><td>0.180</td></tr>
+	<tr><td>Asian   </td><td>Male  </td><td>FALSE</td><td>0.270</td></tr>
+	<tr><td>European</td><td>Male  </td><td>FALSE</td><td>0.360</td></tr>
+	<tr><td>Hispanic</td><td>Male  </td><td>FALSE</td><td>0.240</td></tr>
+	<tr><td>African </td><td>Female</td><td> TRUE</td><td>1.170</td></tr>
+	<tr><td>Asian   </td><td>Female</td><td> TRUE</td><td>1.755</td></tr>
+	<tr><td>European</td><td>Female</td><td> TRUE</td><td>2.340</td></tr>
+	<tr><td>Hispanic</td><td>Female</td><td> TRUE</td><td>1.560</td></tr>
+	<tr><td>African </td><td>Male  </td><td> TRUE</td><td>0.900</td></tr>
+	<tr><td>Asian   </td><td>Male  </td><td> TRUE</td><td>1.350</td></tr>
+	<tr><td>European</td><td>Male  </td><td> TRUE</td><td>1.800</td></tr>
+	<tr><td>Hispanic</td><td>Male  </td><td> TRUE</td><td>1.200</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <p>The ‘randomness’ isn’t truly random - it reflects our failure to condition on ancestry, age, and sex! But if we don’t measure and condition on these factors, the effect appears random from our perspective.</p>
 <p><strong>Even worse</strong>: There are always factors we don’t even know about yet. Maybe APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects also depend on:</p>
