@@ -6,11 +6,12 @@ parts:
 
   - caption: Popular Topics and Related Notebooks
     chapters:
-      - file: genotype_coding
+      - file: notations
       - file: popular_topics
   
   - caption: Basic Concepts
     chapters:
+      - file: genotype_coding
       - file: minor_allele_frequency
       - file: Hardy_Weinberg_equilibrium
   
