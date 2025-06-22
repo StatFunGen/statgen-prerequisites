@@ -545,11 +545,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-form-for-single-marker-regression">Simplified Form for Single Marker Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-properties">Statistical Properties</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unbiasedness">Unbiasedness</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-estimator">Variance of the Estimator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error">Standard Error</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-requirements">Sample Size Requirements</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-both-mathbf-x-and-mathbf-y-are-centered">When both <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> are centered:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slope-estimator">Slope Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-estimator">Variance of the Estimator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error">Standard Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-requirements">Sample Size Requirements</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
@@ -591,7 +595,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the scalar representing the effect size for the variant (to be estimated)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of error terms for <span class="math notranslate nohighlight">\(N\)</span> individuals and <span class="math notranslate nohighlight">\(\epsilon \sim N(0, \sigma^2)\)</span></p></li>
 </ul>
-<p>Using <strong>ordinary least squares (OLS)</strong>, we can derive the estimators for <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> in matrix form:</p>
+<p>Using <strong>ordinary least squares (OLS)</strong>, we can derive the estimators for <span class="math notranslate nohighlight">\(\beta\)</span> in matrix form:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\beta}_{\text{OLS}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
@@ -604,48 +608,65 @@ document.write(`
 <p>The OLS estimator has a beautiful geometric interpretation that makes intuitive sense in genomics. At its core, OLS is measuring <strong>how much two vectors align in the same direction</strong> through their inner product.</p>
 <p><strong>The Inner Product <span class="math notranslate nohighlight">\(\mathbf{X}^T\mathbf{Y}\)</span></strong>: This measures the projection of the phenotype vector <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> onto the genotype vector <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In genomic terms, it captures how much the phenotype and genotype “move together” - when genotype values are high, are phenotype values also high? The inner product quantifies this concordance. OLS will give you the linear combination of genotypes such that the combined genotypes aligns closest to <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> that’d be the <span class="math notranslate nohighlight">\(\mathbf{X}^T\mathbf{Y}\)</span> part.</p>
 <p><strong>Why the Scaling Factor <span class="math notranslate nohighlight">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span>?</strong>: This scalar normalization is crucial because we want our measure of association to be <strong>scale-independent</strong>. Whether we code genotypes as (0,1,2) or (0,2,4), or measure height in centimeters versus meters, the strength of association shouldn’t change due to arbitrary scaling choices. The factor <span class="math notranslate nohighlight">\((\mathbf{X}^T\mathbf{X})^{-1} = \frac{1}{\sum_{i=1}^N X_i^2}\)</span> normalizes by the “magnitude” of the genotype vector, making the result invariant to scaling.</p>
-<p><strong>The Complete Picture</strong>: OLS finds the linear combination of genotypes that aligns as closely as possible with the phenotype vector. It’s asking: “What’s the best way to scale the genotype vector so that it points in the same direction as the phenotype vector?” The answer is the OLS coefficient <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>.</p>
+<p><strong>The Complete Picture</strong>: OLS finds the linear combination of genotypes that aligns as closely as possible with the phenotype vector. It’s asking: “What’s the best way to scale the genotype vector so that it points in the same direction as the phenotype vector?” The answer is the OLS coefficient <span class="math notranslate nohighlight">\(\hat{\beta}_\text{OLS}\)</span>.</p>
 </section>
 <section id="simplified-form-for-single-marker-regression">
 <h2>Simplified Form for Single Marker Regression<a class="headerlink" href="#simplified-form-for-single-marker-regression" title="Link to this heading">#</a></h2>
 <p>For a single marker regression, the OLS estimator simplifies to:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\beta}_{\text{OLS}} = \frac{\sum_{i=1}^N X_i Y_i}{\sum_{i=1}^N X_i^2}
+\hat{\beta}_{\text{OLS}} = \frac{\sum_{i=1}^N (X_i-\bar{X}) (Y_i-\bar{Y})}{\sum_{i=1}^N (X_i-\bar{X})^2}
 \]</div>
-<p>If genotypes are centered (mean = 0), this becomes the sample covariance divided by sample variance:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\beta}_{\text{OLS}} = \frac{\text{Cov}(X, Y)}{\text{Var}(X)}
+\]</div>
+<p>If genotypes are scaled (variance = 1), this becomes the sample covariance:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_{\text{OLS}} = \text{Cov}(X, Y)
 \]</div>
 </section>
 <section id="statistical-properties">
 <h2>Statistical Properties<a class="headerlink" href="#statistical-properties" title="Link to this heading">#</a></h2>
 <section id="unbiasedness">
 <h3>Unbiasedness<a class="headerlink" href="#unbiasedness" title="Link to this heading">#</a></h3>
-<p>Under the assumption that <span class="math notranslate nohighlight">\(E[\boldsymbol{\epsilon}|\mathbf{X}] = 0\)</span>, we have</p>
+<p>Under the assumption that <span class="math notranslate nohighlight">\(E[\epsilon|\mathbf{X}] = 0\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[
 E[\hat{\beta}_{\text{OLS}}] = \beta
 \]</div>
 </section>
-<section id="variance-of-the-estimator">
-<h3>Variance of the Estimator<a class="headerlink" href="#variance-of-the-estimator" title="Link to this heading">#</a></h3>
+</section>
+<section id="when-both-mathbf-x-and-mathbf-y-are-centered">
+<h2>When both <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> are centered:<a class="headerlink" href="#when-both-mathbf-x-and-mathbf-y-are-centered" title="Link to this heading">#</a></h2>
+<p>When <span class="math notranslate nohighlight">\(\bar{X} = 0\)</span> and <span class="math notranslate nohighlight">\(\bar{Y} = 0\)</span>, we have a simple regression through the origin.</p>
+<section id="slope-estimator">
+<h3>Slope Estimator<a class="headerlink" href="#slope-estimator" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-\text{Var}(\hat{\beta}_{\text{OLS}}) = \sigma^2 (\mathbf{X}^T\mathbf{X})^{-1} = \frac{\sigma^2}{\sum_{i=1}^N X_i^2}
+\hat{\beta}_{\text{OLS}} = \frac{\sum_{i=1}^N X_i Y_i}{\sum_{i=1}^N X_i^2}
 \]</div>
 </section>
+<section id="variance-of-the-estimator">
+<h3>Variance of the Estimator<a class="headerlink" href="#variance-of-the-estimator" title="Link to this heading">#</a></h3>
+<p>Using the general formula <span class="math notranslate nohighlight">\(\text{Var}(\hat{\beta}) = \sigma^2 (\mathbf{X}^T\mathbf{X})^{-1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Var}(\hat{\beta}_{\text{OLS}}) = \sigma^2 \cdot \frac{1}{\sum_{i=1}^N X_i^2} = \frac{\sigma^2}{\sum_{i=1}^N X_i^2}
+\]</div>
+</section>
+</section>
 <section id="standard-error">
-<h3>Standard Error<a class="headerlink" href="#standard-error" title="Link to this heading">#</a></h3>
+<h2>Standard Error<a class="headerlink" href="#standard-error" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \text{SE}(\hat{\beta}_{\text{OLS}}) = \sqrt{\frac{\hat{\sigma}^2}{\sum_{i=1}^N X_i^2}}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = \frac{\sum_{i=1}^N (y_i - \hat{y}_i)^2}{N-1}\)</span> is the residual variance estimator.</p>
+<p>where <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = \frac{\sum_{i=1}^N (y_i - \hat{y}_i)^2}{N-1}\)</span> (using <span class="math notranslate nohighlight">\(N-1\)</span> degrees of freedom since we only estimate one parameter).</p>
 </section>
 <section id="sample-size-requirements">
-<h3>Sample Size Requirements<a class="headerlink" href="#sample-size-requirements" title="Link to this heading">#</a></h3>
+<h2>Sample Size Requirements<a class="headerlink" href="#sample-size-requirements" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Absolute minimum</strong>: <span class="math notranslate nohighlight">\(N \geq\)</span> number of parameters to estimate</p></li>
 <li><p>For single marker regression: <span class="math notranslate nohighlight">\(N \geq 2\)</span> (need at least 2 points to fit a line)</p></li>
@@ -653,7 +674,6 @@ E[\hat{\beta}_{\text{OLS}}] = \beta
 <li><p>Larger <span class="math notranslate nohighlight">\(N\)</span> improves estimate quality and reduces uncertainty</p></li>
 <li><p>In practice, for reliable estimate, generally <span class="math notranslate nohighlight">\(N \geq 30\)</span> (general rule of thumb)</p></li>
 </ul>
-</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
@@ -767,9 +787,9 @@ E[\hat{\beta}_{\text{OLS}}] = \beta
 <p>Or we can use the formula to calculate <span class="math notranslate nohighlight">\(\beta\)</span> directly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate β̂ for a single SNP explicitly</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate betahat for a single SNP explicitly</span>
 <span class="n">calculate_beta_ols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1"># βbeta_hat = (X^T X)^(-1) X^T Y</span>
+<span class="w">  </span><span class="c1"># beta_hat = (X^T X)^(-1) X^T Y</span>
 <span class="w">  </span><span class="n">beta_hat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">Y</span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">beta_hat</span><span class="p">)</span>
 <span class="p">}</span>
@@ -936,11 +956,15 @@ E[\hat{\beta}_{\text{OLS}}] = \beta
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-form-for-single-marker-regression">Simplified Form for Single Marker Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-properties">Statistical Properties</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unbiasedness">Unbiasedness</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-estimator">Variance of the Estimator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error">Standard Error</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-requirements">Sample Size Requirements</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-both-mathbf-x-and-mathbf-y-are-centered">When both <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> are centered:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slope-estimator">Slope Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-estimator">Variance of the Estimator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error">Standard Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-requirements">Sample Size Requirements</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
