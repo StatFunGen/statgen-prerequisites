@@ -563,7 +563,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayes-factor">
 <h1>Bayes Factor<a class="headerlink" href="#bayes-factor" title="Link to this heading">#</a></h1>
-<p>The Bayes factor compares the average evidence across one family of models to that of another family, while likelihood ratios compare one specific model to another specific model.</p>
+<p>The Bayes factor compares the evidence across one family of models to that of another family, averaged over the parameter uncertainty within each family; while likelihood ratios compare one specific model to another specific model.”</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -571,10 +571,11 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>Given a model selection problem in which one wishes to choose between two models on the basis of observed data <span class="math notranslate nohighlight">\(\text{D}\)</span>, the plausibility of the two different models <span class="math notranslate nohighlight">\(\text{M}_1\)</span> and <span class="math notranslate nohighlight">\(\text{M}_2\)</span>, parametrised by model parameter vectors <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span>, is assessed by the Bayes factor <span class="math notranslate nohighlight">\(\text{BF}\)</span> given by:
-$<span class="math notranslate nohighlight">\(
+<p>Given a model selection problem in which one wishes to choose between two models on the basis of observed data <span class="math notranslate nohighlight">\(\text{D}\)</span>, the plausibility of the two different models <span class="math notranslate nohighlight">\(\text{M}_1\)</span> and <span class="math notranslate nohighlight">\(\text{M}_2\)</span>, parametrised by model parameter vectors <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span>, is assessed by the Bayes factor <span class="math notranslate nohighlight">\(\text{BF}\)</span> given by:</p>
+<div class="math notranslate nohighlight">
+\[
 \text{BF}_{21} = \frac{L(\text{M}_2|\text{D})}{L(\text{M}_1|\text{D})} ={\frac {\int \Pr(\theta_{2}|M_{2})\Pr(D|\theta_{2},M_{2})\,d\theta _{2}}{\int \Pr(\theta_{1}|M_{1})\Pr(D|\theta_{1},M_{1})\,d\theta _{1}}}
-\)</span>$</p>
+\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
@@ -598,7 +599,7 @@ $<span class="math notranslate nohighlight">\(
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>We will use the same genetic example from the <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">Lecture: likelihood</a>, and recall the concepts of MLE as we did in Example 2 in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">maximum likelihood estimation</a>.</p>
+<p>We will use the same genetic example from the <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">Lecture: likelihood</a>, and recall the concepts of MLE as we did in Example 2 in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">Lecture: maximum likelihood estimation</a>.</p>
 <p>Now you’re faced with a decision problem: Should you believe there’s no genetic effect at all, or should you believe there’s some kind of effect? But here’s where it gets interesting - if you think there’s an effect, how do you handle the uncertainty about exactly how big that effect might be?</p>
 <p>This leads to two different approaches for comparing hypotheses:</p>
 <ul class="simple">
@@ -608,7 +609,7 @@ $<span class="math notranslate nohighlight">\(
 <p>For Bayes factors, we’ll compare these two model families:</p>
 <ul class="simple">
 <li><p><strong>Model Family 1</strong>: No effect (<span class="math notranslate nohighlight">\(\beta = 0\)</span>, point mass)</p></li>
-<li><p><strong>Model Family 2</strong>: Some effect (<span class="math notranslate nohighlight">\(\beta \sim N(0.75, 0.25^2)\)</span>, representing our uncertainty about the effect size). Here <span class="math notranslate nohighlight">\(\beta\)</span> is a random effect.</p></li>
+<li><p><strong>Model Family 2</strong>: Some effect (<span class="math notranslate nohighlight">\(\beta \sim N(0, 1)\)</span>, representing our uncertainty about the effect size). Here <span class="math notranslate nohighlight">\(\beta\)</span> is a random effect.</p></li>
 </ul>
 <p>Let’s see how these approaches work with the same data.</p>
 <div class="cell docutils container">
@@ -666,28 +667,28 @@ $<span class="math notranslate nohighlight">\(
 </div>
 <section id="likelihood-ratio-analysis">
 <h2>Likelihood Ratio Analysis<a class="headerlink" href="#likelihood-ratio-analysis" title="Link to this heading">#</a></h2>
-<p>We have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood_ratio.html">Lecture: likelihood ratio</a>, just to recap here:</p>
+<p>We have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood_ratio.html">Lecture: likelihood ratio</a>, just to recap here with the comparison between Model 1 and Model 2:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test three different models with different beta values</span>
-<span class="n">beta_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span><span class="w">  </span><span class="c1"># Three different effect sizes to test</span>
-<span class="n">model_names</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Model &quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; (beta = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta_values</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">beta_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">  </span><span class="c1"># Three different effect sizes to test</span>
+<span class="n">model_names</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Model &quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; (beta = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta_values</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Calculate likelihoods and log-likelihoods</span>
 <span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
 <span class="w">  </span><span class="n">Model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_names</span><span class="p">,</span>
 <span class="w">  </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">,</span>
-<span class="w">  </span><span class="n">Likelihood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Log_Likelihood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Likelihood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">2</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Log_Likelihood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Likelihood</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
 <span class="w">  </span><span class="n">results</span><span class="o">$</span><span class="n">Log_Likelihood</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log_likelihood</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_sd</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1"># Calculate all pairwise likelihood ratios</span>
-<span class="n">model_pairs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">combn</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># All combinations of 2 models from 3</span>
+<span class="n">model_pairs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">combn</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="c1"># All combinations of 2 models from 3</span>
 <span class="n">n_pairs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">model_pairs</span><span class="p">)</span>
 
 <span class="n">lr_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
@@ -731,15 +732,13 @@ $<span class="math notranslate nohighlight">\(
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 3 x 6</caption>
+<caption>A data.frame: 1 x 6</caption>
 <thead>
 	<tr><th scope=col>Comparison</th><th scope=col>Model_1</th><th scope=col>Model_2</th><th scope=col>LR</th><th scope=col>Log_LR</th><th scope=col>Interpretation</th></tr>
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>Model 1 vs Model 2</td><td>Model 1 (beta = 0)  </td><td>Model 2 (beta = 0.5)</td><td>0.8747253</td><td>-0.1338454</td><td>Model 2 better supported</td></tr>
-	<tr><td>Model 1 vs Model 3</td><td>Model 1 (beta = 0)  </td><td>Model 3 (beta = 1)  </td><td>2.0798778</td><td> 0.7323091</td><td>Model 1 better supported</td></tr>
-	<tr><td>Model 2 vs Model 3</td><td>Model 2 (beta = 0.5)</td><td>Model 3 (beta = 1)  </td><td>2.3777498</td><td> 0.8661546</td><td>Model 2 better supported</td></tr>
+	<tr><td>Model 1 vs Model 2</td><td>Model 1 (beta = 0)</td><td>Model 2 (beta = 0.5)</td><td>0.8747253</td><td>-0.1338454</td><td>Model 2 better supported</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -759,10 +758,10 @@ $<span class="math notranslate nohighlight">\(
 </li>
 <li><p><strong>Model Family 2: “Some Effect”</strong></p>
 <ul>
-<li><p>This is a <strong>family of infinitely many models</strong>: beta can be any value from the normal distribution <span class="math notranslate nohighlight">\(N(0.75, 0.25^2)\)</span></p></li>
+<li><p>This is a <strong>family of infinitely many models</strong>: beta can be any value from the normal distribution <span class="math notranslate nohighlight">\(N(0, 1)\)</span></p></li>
 <li><p>Different values of beta within this family have different probabilities based on the prior</p></li>
 <li><p>We’re saying: “We believe there’s some effect, but we’re uncertain about exactly how big it is”</p></li>
-<li><p>Values around 0.75 are most plausible, but values like 0.5, 1.0, 0.9, etc. are also possible with lower probability</p></li>
+<li><p>Values around 0 are most plausible, but values like 0.5, 1.0, 0.9, etc. are also possible with lower probability</p></li>
 </ul>
 </li>
 </ul>
@@ -771,14 +770,14 @@ $<span class="math notranslate nohighlight">\(
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define prior distributions for each model family</span>
 <span class="c1"># Model Family 1: beta = 0, point mass</span>
-<span class="c1"># Model Family 2: beta ~ Normal(0.75, 0.25^2) - centered around moderate-to-strong effects</span>
+<span class="c1"># Model Family 2: beta ~ Normal(0, 1)</span>
 
 <span class="c1"># For Bayes Factor calculation, we need to integrate over the prior</span>
 <span class="c1"># For the second family of models, we&#39;ll use numerical integration</span>
 
 <span class="c1"># Define the prior for the second model family</span>
-<span class="n">prior_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.75</span>
-<span class="n">prior_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.25</span>
+<span class="n">prior_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="n">prior_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
 
 <span class="c1"># Function to calculate marginal likelihood for the second model family</span>
 <span class="c1"># This integrates: P(Data|beta) * P(beta) over all beta values</span>
@@ -814,7 +813,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.80995121586455</div></div>
+<div class="output text_html">0.523839537510472</div></div>
 </div>
 </section>
 <section id="visualization">
@@ -853,7 +852,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/56746e73680628620189dc6e5147f8ea689ebc05997ccce8facd31b8ebbd208d.png"><img alt="_images/56746e73680628620189dc6e5147f8ea689ebc05997ccce8facd31b8ebbd208d.png" src="_images/56746e73680628620189dc6e5147f8ea689ebc05997ccce8facd31b8ebbd208d.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/2ce49c0f3b451a4d665119a46562c6c86457be3e0cd5768212bbe1e57b1f15ed.png"><img alt="_images/2ce49c0f3b451a4d665119a46562c6c86457be3e0cd5768212bbe1e57b1f15ed.png" src="_images/2ce49c0f3b451a4d665119a46562c6c86457be3e0cd5768212bbe1e57b1f15ed.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
@@ -887,7 +886,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/514d7e6bf5e4a8f09407bec9f647218aadc5e9149ff9519b918fe79a0de7a5c6.png"><img alt="_images/514d7e6bf5e4a8f09407bec9f647218aadc5e9149ff9519b918fe79a0de7a5c6.png" src="_images/514d7e6bf5e4a8f09407bec9f647218aadc5e9149ff9519b918fe79a0de7a5c6.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/11c104e1f4e5d63d84dc152baec9c490f2df9106ad0e1d5a508a34a3c624ce91.png"><img alt="_images/11c104e1f4e5d63d84dc152baec9c490f2df9106ad0e1d5a508a34a3c624ce91.png" src="_images/11c104e1f4e5d63d84dc152baec9c490f2df9106ad0e1d5a508a34a3c624ce91.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
