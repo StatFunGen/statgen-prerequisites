@@ -6,7 +6,7 @@ parts:
 
   - caption: Popular Topics and Related Notebooks
     chapters:
-      - file: notations
+      - file: genotype_coding
       - file: popular_topics
   
   - caption: Basic Concepts
