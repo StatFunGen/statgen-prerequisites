@@ -356,8 +356,9 @@
 
 
 
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Model</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
 
@@ -373,6 +374,9 @@
 
 
 
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multiple Bayesian models</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -380,9 +384,6 @@
 
 
 
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
 
 
@@ -551,6 +552,16 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-our-investigation">Setting Up Our Investigation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-would-a-fair-coin-actually-do">What Would a Fair Coin Actually Do?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-question-how-extreme-is-our-result">The Key Question: How Extreme Is Our Result?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-mathematical-answer">The “Exact” Mathematical Answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-p-value-actually-mean">What Does This P-value Actually Mean?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-see-what-would-convince-us">Let’s See What Would Convince Us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bottom-line">The Bottom Line</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
 </ul>
 
@@ -613,18 +624,14 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 <section id="connection-to-bayesian-inference">
 <h2>Connection to Bayesian Inference<a class="headerlink" href="#connection-to-bayesian-inference" title="Link to this heading">#</a></h2>
 <ul>
-<li><p><strong>Important</strong>: P-values are almost always reported in <strong>summary statistics</strong>, but it is not inference. They summarize how compatible the observed data is with <span class="math notranslate nohighlight">\(H_0\)</span>, but they don’t directly provide probabilistic statements about hypotheses.</p></li>
-<li><p><strong>What would we do in Bayesian hypothesis testing to answer the same question</strong>:</p>
-<ul class="simple">
-<li><p>In Bayesian inference with posterior distribution <span class="math notranslate nohighlight">\(N(\mu, \sigma^2)\)</span>, we can check: Does the 95% High Probability Density (HPD) region cover zero?</p></li>
-<li><p>This directly gives the probability that <span class="math notranslate nohighlight">\(H_0\)</span> is true:</p></li>
-</ul>
+<li><p>P-values are almost always reported in <strong>summary statistics</strong>, but it is not inference. They summarize how compatible the observed data is with <span class="math notranslate nohighlight">\(H_0\)</span>, but they don’t directly provide probabilistic statements about hypotheses.</p></li>
+<li><p>In Bayesian inference, we actually can calculate the following directly:</p>
 <div class="math notranslate nohighlight">
 \[
     P(H_0 | \text{D}) = \frac{P(\text{D} | H_0) \cdot P(H_0)}{P(\text{D})}
     \]</div>
+<p>which is the probability of the <span class="math notranslate nohighlight">\(H_0\)</span> being true (accept the null, rather than the probability of fail to reject the null (0.05) in frequentist). This is the false discovery rate (FDR), providing direct probabilistic interpretations that p-values cannot.</p>
 </li>
-<li><p><strong>False Discovery Rate (FDR)</strong>: In Bayesian mixture models, we can compute FDR based on data <span class="math notranslate nohighlight">\(P(H_0 | \text{D})\)</span>. This provides direct probabilistic interpretations that p-values cannot.</p></li>
 </ul>
 </section>
 </section>
@@ -636,6 +643,203 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayes_factor.html">Bayes factor</a></p></li>
 </ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>You find a coin on the street and wonder: “Is this thing rigged?” So you flip it 10 times and get only 3 heads and 7 tails. Your gut says something’s off, but how do you know if you’re just unlucky or if the coin is actually biased?</p>
+<p>This is exactly what p-values help us figure out. Instead of relying on gut feelings, we can ask: <em>If this coin were perfectly fair, how often would we see results this extreme (or more extreme) just by random chance?”</em></p>
+<section id="setting-up-our-investigation">
+<h2>Setting Up Our Investigation<a class="headerlink" href="#setting-up-our-investigation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+<span class="c1"># Our observed data</span>
+<span class="n">heads_observed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span>
+<span class="n">tails_observed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">7</span>
+<span class="n">total_flips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span>
+
+<span class="c1"># Our hypothesis</span>
+<span class="n">fair_coin_prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Observed: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">heads_observed</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; heads out of &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_flips</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; flips\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;That&#39;s &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">heads_observed</span><span class="o">/</span><span class="n">total_flips</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;% heads\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observed:  3  heads out of  10  flips
+That&#39;s  30 % heads
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-would-a-fair-coin-actually-do">
+<h2>What Would a Fair Coin Actually Do?<a class="headerlink" href="#what-would-a-fair-coin-actually-do" title="Link to this heading">#</a></h2>
+<p>Let’s simulate what happens when we flip a fair coin 10 times, thousands of times over:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">29</span><span class="p">)</span><span class="w">  </span><span class="c1"># For reproducible results</span>
+<span class="n">n_simulations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10000</span>
+
+<span class="c1"># Simulate 10,000 experiments of flipping a fair coin 10 times</span>
+<span class="n">simulated_heads</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n_simulations</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_flips</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fair_coin_prob</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;In our first 20 simulations, we got this many heads...&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">simulated_heads</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In our first 20 simulations, we got this many heads...
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3</li><li>4</li><li>3</li><li>4</li><li>5</li><li>3</li><li>7</li><li>7</li><li>3</li><li>4</li><li>8</li><li>5</li><li>4</li><li>6</li><li>4</li><li>6</li><li>6</li><li>4</li><li>7</li><li>4</li></ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a histogram to see the distribution</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">simulated_heads</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution of Heads in 10 Fair Coin Flips\n(10,000 simulations)&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Number of Heads&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Frequency&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lightblue&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">)</span>
+
+<span class="c1"># Mark our observed result</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">heads_observed</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">heads_observed</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">simulated_heads</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Our result:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">heads_observed</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;heads&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">     </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b4894a0188fd61fdd1884a636928715b014d93ca78ca696271bf17f2730c514f.png"><img alt="_images/b4894a0188fd61fdd1884a636928715b014d93ca78ca696271bf17f2730c514f.png" src="_images/b4894a0188fd61fdd1884a636928715b014d93ca78ca696271bf17f2730c514f.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="the-key-question-how-extreme-is-our-result">
+<h2>The Key Question: How Extreme Is Our Result?<a class="headerlink" href="#the-key-question-how-extreme-is-our-result" title="Link to this heading">#</a></h2>
+<p>Now here’s the crucial insight: we want to know how often a fair coin would give us results <strong>as extreme or more extreme</strong> than what we observed.</p>
+<p>Since we got 3 heads (which is below the expected 5), “more extreme” means getting 3 or fewer heads, OR getting 7 or more heads (the mirror image).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate p-value the simulation way</span>
+<span class="n">extreme_low</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">simulated_heads</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">heads_observed</span><span class="p">)</span>
+<span class="n">extreme_high</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">simulated_heads</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="p">(</span><span class="n">total_flips</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">heads_observed</span><span class="p">))</span>
+<span class="n">total_extreme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extreme_low</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">extreme_high</span>
+
+<span class="n">p_value_simulated</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">total_extreme</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n_simulations</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Out of&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n_simulations</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;simulations:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- Got&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">heads_observed</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;or fewer heads:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extreme_low</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;times\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- Got&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_flips</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">heads_observed</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;or more heads:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extreme_high</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;times\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- Total extreme results:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_extreme</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- P-value (simulated):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p_value_simulated</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Out of 10000 simulations:
+- Got 3 or fewer heads: 1762 times
+- Got 7 or more heads: 1717 times
+- Total extreme results: 3479 
+- P-value (simulated): 0.3479 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-exact-mathematical-answer">
+<h2>The “Exact” Mathematical Answer<a class="headerlink" href="#the-exact-mathematical-answer" title="Link to this heading">#</a></h2>
+<p>We can also calculate this precisely using the binomial distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the exact p-value</span>
+<span class="n">p_value_exact</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pbinom</span><span class="p">(</span><span class="n">heads_observed</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_flips</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fair_coin_prob</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Exact p-value:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p_value_exact</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Simulated p-value:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p_value_simulated</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Difference:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">abs</span><span class="p">(</span><span class="n">p_value_exact</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p_value_simulated</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exact p-value: 0.3438 
+Simulated p-value: 0.3479 
+Difference: 0.00415 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-does-this-p-value-actually-mean">
+<h2>What Does This P-value Actually Mean?<a class="headerlink" href="#what-does-this-p-value-actually-mean" title="Link to this heading">#</a></h2>
+<p><strong>Our p-value ≈ 0.34</strong> means:</p>
+<blockquote>
+<div><p>“If the coin were truly fair, we’d see results this extreme (3 or fewer heads, or 7 or more heads) about 34% of the time just by random chance.”</p>
+</div></blockquote>
+<p>In other words:</p>
+<ul class="simple">
+<li><p><strong>NOT rare at all!</strong> Getting 3 heads out of 10 flips happens pretty often with fair coins</p></li>
+<li><p><strong>We can’t conclude the coin is biased</strong> - this result is totally consistent with a fair coin having a bad luck streak</p></li>
+<li><p><strong>We fail to reject the null hypothesis</strong> that the coin is fair</p></li>
+</ul>
+</section>
+<section id="let-s-see-what-would-convince-us">
+<h2>Let’s See What Would Convince Us<a class="headerlink" href="#let-s-see-what-would-convince-us" title="Link to this heading">#</a></h2>
+<p>What if we had gotten more extreme results? Let’s check:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test different scenarios</span>
+<span class="n">scenarios</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">heads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">5</span><span class="p">,</span>
+<span class="w">  </span><span class="n">p_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pbinom</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">scenarios</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nInteresting thresholds:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- 1 head or fewer: p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pbinom</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- 2 heads or fewer: p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pbinom</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  heads     p_value
+1     0 0.001953125
+2     1 0.021484375
+3     2 0.109375000
+4     3 0.343750000
+5     4 0.753906250
+6     5 1.246093750
+
+Interesting thresholds:
+- 1 head or fewer: p = 0.0215 
+- 2 heads or fewer: p = 0.1094 
+</pre></div>
+</div>
+</div>
+</div>
+<p>So if we had gotten only 1 head out of 10 flips, the p-value would be about 0.02 - now THAT would be pretty suspicious for a fair coin!</p>
+</section>
+<section id="the-bottom-line">
+<h2>The Bottom Line<a class="headerlink" href="#the-bottom-line" title="Link to this heading">#</a></h2>
+<p>P-values answer the question: <strong>“How surprised should I be by this data if my hypothesis were true?”</strong></p>
+<ul class="simple">
+<li><p><strong>High p-value (like our 0.34)</strong>: Not surprised at all, data is consistent with hypothesis</p></li>
+<li><p><strong>Low p-value (like &lt; 0.05)</strong>: Very surprised, data seems inconsistent with hypothesis</p></li>
+</ul>
+<p>Our coin? It’s probably fair - we just got unlucky with our 10 flips!</p>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
@@ -722,6 +926,16 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-our-investigation">Setting Up Our Investigation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-would-a-fair-coin-actually-do">What Would a Fair Coin Actually Do?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-question-how-extreme-is-our-result">The Key Question: How Extreme Is Our Result?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-mathematical-answer">The “Exact” Mathematical Answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-p-value-actually-mean">What Does This P-value Actually Mean?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-see-what-would-convince-us">Let’s See What Would Convince Us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bottom-line">The Bottom Line</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
 </ul>
 

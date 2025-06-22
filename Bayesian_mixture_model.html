@@ -356,9 +356,10 @@
 
 
 
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
-<ul class="current nav bd-sidenav">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Model</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
 
 
@@ -373,6 +374,9 @@
 
 
 
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multiple Bayesian models</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Bayesian Mixture Model</a></li>
 
 
@@ -380,9 +384,6 @@
 
 
 
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
 
 
@@ -541,6 +542,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayesian Mixture Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment-modeling-unknown-group-membership">Component Assignment: Modeling Unknown Group Membership</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-structure-for-uncertain-components">Prior Structure for Uncertain Components</a></li>
@@ -548,7 +550,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-mixture-models-handle-conditioning-limitations">Why Mixture Models Handle Conditioning Limitations</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-of-simulated-data">Generation of Simulated Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-mixture-distribution-of-effects">Create a Mixture Distribution of Effects</a></li>
@@ -599,6 +600,19 @@ p(\beta) = \sum_{c=1}^{C} \pi_c p_c(\beta)
 </ul>
 <p>This captures heterogeneity by allowing different parameter types while quantifying our uncertainty about which type each parameter represents.</p>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">random effect</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/proportion_of_variance_explained.html">proportion of variance explained and heritability</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">maximum likelihood estimation</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html#">Bayesian normal mean model</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_multivariate_normal_mean_model.html#">Bayesian multivariate normal mean model</a></p></li>
+</ul>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <p>In statistical genetics, we cannot condition on which type of effect each parameter represents - whether it’s null, moderate, or large. This uncertainty about parameter heterogeneity is precisely why we need Bayesian mixture models. Rather than assuming all genetic effects come from a single distribution, we acknowledge that we don’t know which “type” each parameter belongs to and model this uncertainty explicitly.</p>
@@ -610,25 +624,27 @@ p(\beta) = \sum_{c=1}^{C} \pi_c p_c(\beta)
 \[
 z \in \{1, 2, \ldots, C\}
 \]</div>
-<p>Our uncertainty about component membership is captured by:
-$<span class="math notranslate nohighlight">\(
+<p>Our uncertainty about component membership is captured by:</p>
+<div class="math notranslate nohighlight">
+\[
 P(z = c) = \pi_c
-\)</span>$</p>
-<p>Once we condition on the (unknown) component assignment, the parameter follows that component’s distribution:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>Once we condition on the (unknown) component assignment, the parameter follows that component’s distribution:</p>
+<div class="math notranslate nohighlight">
+\[
 \beta \mid z = c \sim p_c(\beta)
-\)</span>$</p>
+\]</div>
 <p>The key insight is that <span class="math notranslate nohighlight">\(z\)</span> represents information we cannot condition on directly - we never observe which component actually generated each parameter.</p>
 </section>
 <section id="prior-structure-for-uncertain-components">
 <h2>Prior Structure for Uncertain Components<a class="headerlink" href="#prior-structure-for-uncertain-components" title="Link to this heading">#</a></h2>
 <p><strong>Mixture Weights - Quantifying Component Uncertainty</strong></p>
-<p>The mixture weights <span class="math notranslate nohighlight">\(\boldsymbol{\pi} = (\pi_1, \pi_2, \ldots, \pi_C)\)</span> represent our prior uncertainty about component frequencies. We place a Dirichlet prior on these weights:</p>
+<p>The mixture weights <span class="math notranslate nohighlight">\(\boldsymbol{\pi} = (\pi_1, \pi_2, \ldots, \pi_C)\)</span> represent our prior uncertainty about component frequencies. For simplicity, we can start with <strong>equal priors for all components</strong> (in reality we can estimate <span class="math notranslate nohighlight">\(\boldsymbol{\pi}\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{\pi} \sim \text{Dirichlet}(\alpha_1, \alpha_2, \ldots, \alpha_C)
+\pi_1 = \pi_2 = \ldots = \pi_C = \frac{1}{C}
 \]</div>
-<p>This prior quantifies our uncertainty about how common each component is before seeing data.</p>
+<p>This assumes we have no initial preference for any particular component - each type of effect is equally likely a priori.</p>
 <p><strong>Component-Specific Parameters</strong></p>
 <p>Each component represents a different “type” of uncertainty about parameter values. For genetic effects, we might specify:</p>
 <ul class="simple">
@@ -637,7 +653,7 @@ $<span class="math notranslate nohighlight">\(
 <li><p>Component 3 (large effects): <span class="math notranslate nohighlight">\(p_3(\beta) = \mathcal{N}(0, \sigma_3^2)\)</span> with large <span class="math notranslate nohighlight">\(\sigma_3^2\)</span></p></li>
 </ul>
 <p>Each <span class="math notranslate nohighlight">\(\sigma_c^2\)</span> has its own prior, reflecting our uncertainty about the scale of effects within each component.</p>
-<p>Or we can also specify that the mean of each component is different but have a shared variance. Or both of them are different, or even from different distributions even.</p>
+<p>Or we can also specify that the mean of each component is different but have a shared variance. Or both of them are different, or even from different distributions.</p>
 </section>
 <section id="learning-component-membership-from-data">
 <h2>Learning Component Membership from Data<a class="headerlink" href="#learning-component-membership-from-data" title="Link to this heading">#</a></h2>
@@ -656,19 +672,6 @@ P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_
 <li><p><strong>Flexible Uncertainty Modeling</strong>: We can adapt the mixture structure to reflect different sources of uncertainty - population differences, effect mechanisms, or measurement contexts - by adjusting the components accordingly.</p></li>
 </ul>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
-<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">random effect</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/proportion_of_variance_explained.html">proportion of variance explained and heritability</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/maximum_likelihood_estimation.html">maximum likelihood estimation</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html#">Bayesian normal mean model</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayesian_multivariate_normal_mean_model.html#">Bayesian multivariate normal mean model</a></p></li>
-</ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
@@ -1471,6 +1474,7 @@ The following objects are masked from &#39;package:base&#39;:
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayesian Mixture Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-assignment-modeling-unknown-group-membership">Component Assignment: Modeling Unknown Group Membership</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-structure-for-uncertain-components">Prior Structure for Uncertain Components</a></li>
@@ -1478,7 +1482,6 @@ The following objects are masked from &#39;package:base&#39;:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-mixture-models-handle-conditioning-limitations">Why Mixture Models Handle Conditioning Limitations</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-of-simulated-data">Generation of Simulated Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-mixture-distribution-of-effects">Create a Mixture Distribution of Effects</a></li>

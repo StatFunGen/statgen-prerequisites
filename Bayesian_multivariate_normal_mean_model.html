@@ -356,8 +356,9 @@
 
 
 
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes Models</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Model</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
 
@@ -373,6 +374,9 @@
 
 
 
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multiple Bayesian models</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
 
 
@@ -380,9 +384,6 @@
 
 
 
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Comparison</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
 
 
@@ -636,6 +637,55 @@ document.write(`
 <li><p>Subscript <span class="math notranslate nohighlight">\(0\)</span> = prior parameters (initial uncertainty)</p></li>
 <li><p>Subscript <span class="math notranslate nohighlight">\(1\)</span> = posterior parameters (updated uncertainty after conditioning)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\rho_0, \rho_1\)</span> = prior and posterior correlations quantifying how uncertainty about one parameter relates to uncertainty about the other</p></li>
+</ul>
+<p><strong>This general framework encompasses several things we have discussed previously as special cases</strong>:</p>
+<ul class="simple">
+<li><p><strong>Random Effects Meta-Analysis</strong></p></li>
+</ul>
+<p>When <span class="math notranslate nohighlight">\(\rho_0 = 0\)</span> and <span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0} = \sigma\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+\sigma^2 &amp; 0 \\
+0 &amp; \sigma^2
+\end{pmatrix}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>No correlation</strong> between trait effects (<span class="math notranslate nohighlight">\(\rho_0 = 0\)</span>)</p></li>
+<li><p><strong>Equal uncertainty</strong> for both traits (<span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0}\)</span>)</p></li>
+<li><p>Effects are independent but equally variable across studies</p></li>
+<li><p><strong>Fixed Effects Meta-Analysis</strong></p></li>
+</ul>
+<p>When <span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0}\)</span> and <span class="math notranslate nohighlight">\(\rho_0 = 1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+\sigma^2 &amp; \sigma^2 \\
+\sigma^2 &amp; \sigma^2
+\end{pmatrix}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>Perfect correlation</strong> between trait effects (<span class="math notranslate nohighlight">\(\rho_0 = 1\)</span>)</p></li>
+<li><p><strong>Equal uncertainty</strong> for both traits</p></li>
+<li><p>Effects move together completely - if one is high, the other is high</p></li>
+<li><p><strong>Trait-Specific Effects</strong>
+When <span class="math notranslate nohighlight">\(\sigma_{a,0} = 0\)</span> or <span class="math notranslate nohighlight">\(\sigma_{b,0} = 0\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+0 &amp; 0 \\
+0 &amp; \sigma_{b,0}^2
+\end{pmatrix} \quad \text{or} \quad
+\begin{pmatrix}
+\sigma_{a,0}^2 &amp; 0 \\
+0 &amp; 0
+\end{pmatrix}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>One trait has no effect</strong> (zero variance)</p></li>
+<li><p><strong>Other trait varies</strong> across studies</p></li>
+<li><p>Variant affects only one trait</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
