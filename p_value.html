@@ -606,7 +606,7 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 <h3>Key Properties<a class="headerlink" href="#key-properties" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Monotonic Relationship</strong>: Smaller p-values correspond to more extreme test statistics</p></li>
-<li><p><strong>Significance Level</strong>: We reject <span class="math notranslate nohighlight">\(H_0\)</span> if <span class="math notranslate nohighlight">\(p\text{-value} \leq \alpha\)</span></p></li>
+<li><p><strong>Significance Level</strong>: We reject <span class="math notranslate nohighlight">\(H_0\)</span> if <span class="math notranslate nohighlight">\(p\text{-value} \leq \alpha\)</span> (<span class="math notranslate nohighlight">\(\alpha\)</span> is the significance level)</p></li>
 </ol>
 </section>
 <section id="critical-limitation-asymmetric-logic">
@@ -620,9 +620,9 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 </section>
 <section id="contrast-with-bayesian-inference-when-only-considering-h-0-and-h-a">
 <h2>Contrast with Bayesian Inference when only considering <span class="math notranslate nohighlight">\(H_0\)</span> and <span class="math notranslate nohighlight">\(H_a\)</span><a class="headerlink" href="#contrast-with-bayesian-inference-when-only-considering-h-0-and-h-a" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>In frequentist:</p>
 <ul>
+<li><p>In frequentist:</p>
+<ul class="simple">
 <li><p>The action we do in frequentist is to “<strong>reject</strong> the null” versus “<strong>fail to reject</strong> the null” under the observed data</p></li>
 <li><p>“Not rejected” is not “accepted” or “true”. Absence of evidence is not evidence of absence</p></li>
 <li><p>p-value is the type I error under the null hypothesis.</p></li>
@@ -630,10 +630,12 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 </li>
 <li><p>In Bayesian inference:</p>
 <ul>
-<li><p>One can directly calculate the probability of <strong>accepting <span class="math notranslate nohighlight">\(H_0\)</span></strong> given the observed data <span class="math notranslate nohighlight">\(\text{D}\)</span>:
-$<span class="math notranslate nohighlight">\(
-P(H_0 | \text{D}) = \frac{P(\text{D} | H_0) \cdot P(H_0)}{P(\text{D})}
-\)</span>$</p></li>
+<li><p>One can directly calculate the probability of <strong>accepting <span class="math notranslate nohighlight">\(H_0\)</span></strong> given the observed data <span class="math notranslate nohighlight">\(\text{D}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    P(H_0 | \text{D}) = \frac{P(\text{D} | H_0) \cdot P(H_0)}{P(\text{D})}
+    \]</div>
+</li>
 <li><p>and it can be either accepting <span class="math notranslate nohighlight">\(H_0\)</span> or any other model or hypothesis</p></li>
 </ul>
 </li>
