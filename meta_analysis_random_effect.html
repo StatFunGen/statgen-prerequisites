@@ -546,7 +546,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-heterogeneity">What is Heterogeneity?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-heterogeneity">Measuring Heterogeneity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effect-model">Random Effect Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-heterogeneity-tau-2">Estimating Heterogeneity (<span class="math notranslate nohighlight">\(\tau^2\)</span>)</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
@@ -565,7 +564,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="meta-analysis-random-effect">
 <h1>Meta-Analysis Random Effect<a class="headerlink" href="#meta-analysis-random-effect" title="Link to this heading">#</a></h1>
-<p>Random-effects meta-analysis accounts for variability in effect sizes across studies by assuming each study estimates a different effect drawn from a shared distribution, thus modeling both within-study error and between-study heterogeneity.</p>
+<p>Random-effects meta-analysis <strong>accounts for variability</strong> in effect sizes across studies by assuming each study estimates a different effect <strong>drawn from a shared distribution</strong>, thus modeling both within-study error and between-study heterogeneity.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -601,14 +600,15 @@ document.write(`
 <li><p>Different populations (age, ethnicity, health status)</p></li>
 <li><p>Different study designs or measurement methods</p></li>
 <li><p>Different environmental contexts</p></li>
-<li><p>True biological differences between populations</p></li>
 </ul>
 </section>
 <section id="measuring-heterogeneity">
 <h2>Measuring Heterogeneity<a class="headerlink" href="#measuring-heterogeneity" title="Link to this heading">#</a></h2>
 <p><strong><span class="math notranslate nohighlight">\(I^2\)</span> statistic</strong>: The most intuitive measure - tells us what percentage of the observed variation comes from real differences between studies rather than random chance.</p>
 <div class="math notranslate nohighlight">
-\[I^2 = \max\left(0, \frac{Q - (K-1)}{Q} \times 100\%\right)\]</div>
+\[
+I^2 = \max\left(0, \frac{Q - (K-1)}{Q} \times 100\%\right)
+\]</div>
 <p><strong>Interpretation:</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(I^2 = 0\%\)</span>: Studies are consistent - variation is just due to random sampling</p></li>
@@ -622,8 +622,11 @@ document.write(`
 <h2>Random Effect Model<a class="headerlink" href="#random-effect-model" title="Link to this heading">#</a></h2>
 <p><strong>The Problem:</strong> When studies show heterogeneity, we can’t assume they’re all estimating the same true effect.</p>
 <p><strong>The Solution:</strong> Assume each study estimates its own true effect, but these true effects come from a common distribution.</p>
-<p><strong>Assumption</strong>: True effects follow a distribution
-$<span class="math notranslate nohighlight">\(\beta_k \sim N(\beta, \tau^2)\)</span>$</p>
+<p><strong>Assumption</strong>: True effects follow a distribution</p>
+<div class="math notranslate nohighlight">
+\[
+\beta_k \sim N(\beta, \tau^2)
+\]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\beta\)</span> = mean effect across all possible studies (what we want to estimate)</p></li>
@@ -657,15 +660,6 @@ $<span class="math notranslate nohighlight">\(\beta_k \sim N(\beta, \tau^2)\)</s
 </tbody>
 </table>
 </div>
-</section>
-<section id="estimating-heterogeneity-tau-2">
-<h2>Estimating Heterogeneity (<span class="math notranslate nohighlight">\(\tau^2\)</span>)<a class="headerlink" href="#estimating-heterogeneity-tau-2" title="Link to this heading">#</a></h2>
-<p><strong>Step 1</strong>: Calculate <span class="math notranslate nohighlight">\(Q\)</span> statistic (measures total heterogeneity)
-$<span class="math notranslate nohighlight">\(
-Q = \sum_{k=1}^{K} w_k (\hat{\beta}_k - \hat{\beta}_{\text{fixed}})^2
-\)</span>$</p>
-<p><strong>Step 2</strong>: Estimate <span class="math notranslate nohighlight">\(\tau^2\)</span> using DerSimonian-Laird method
-$<span class="math notranslate nohighlight">\(\hat{\tau}^2 = \max\left(0, \frac{Q - (K-1)}{\sum w_k - \frac{\sum w_k^2}{\sum w_k}}\right)\)</span>$</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
@@ -767,7 +761,7 @@ $<span class="math notranslate nohighlight">\(\hat{\tau}^2 = \max\left(0, \frac{
 <span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span>
 <span class="n">p_heterogeneity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">pchisq</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">)</span>
 
-<span class="c1"># I² statistic (percentage of variation due to heterogeneity)</span>
+<span class="c1"># I^2 statistic (percentage of variation due to heterogeneity)</span>
 <span class="n">I_squared</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Q</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span>
 
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Heterogeneity Statistics:\n&quot;</span><span class="p">)</span>
@@ -787,9 +781,7 @@ $<span class="math notranslate nohighlight">\(\hat{\tau}^2 = \max\left(0, \frac{
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Heterogeneity Statistics:
 Q statistic: 61.44 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Degrees of freedom: 1 
+Degrees of freedom: 1 
 P-value for heterogeneity: 0 
 I^2 statistic: 98.4 %
 
@@ -852,20 +844,11 @@ HETEROGENEITY DETECTED - Random-effects model is appropriate!
 <span class="w">  </span><span class="n">Study</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">K</span><span class="p">,</span>
 <span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">studies</span><span class="o">$</span><span class="n">N</span><span class="p">,</span>
 <span class="w">  </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">SE</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Weight_Naive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Weight</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Weight_Fixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Weight</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
 <span class="w">  </span><span class="n">Weight_Random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Weight_Random</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
 <span class="w">  </span><span class="n">Difference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Weight_Random</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">studies</span><span class="o">$</span><span class="n">Weight</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">weight_comparison</span>
-
-<span class="c1"># Show how tau^2 affects individual study influence</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Impact of tau^2 on weighting:\n&quot;</span><span class="p">)</span>
-<span class="kr">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">original_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">studies</span><span class="o">$</span><span class="n">SE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="m">2</span>
-<span class="w">  </span><span class="n">new_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">studies</span><span class="o">$</span><span class="n">SE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau_squared_est</span>
-<span class="w">  </span><span class="n">weight_ratio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="n">new_var</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="n">original_var</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Study&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: Weight reduced by factor of&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">weight_ratio</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -873,7 +856,7 @@ HETEROGENEITY DETECTED - Random-effects model is appropriate!
 <div class="output text_html"><table class="dataframe">
 <caption>A data.frame: 2 x 6</caption>
 <thead>
-	<tr><th scope=col>Study</th><th scope=col>N</th><th scope=col>SE</th><th scope=col>Weight_Naive</th><th scope=col>Weight_Random</th><th scope=col>Difference</th></tr>
+	<tr><th scope=col>Study</th><th scope=col>N</th><th scope=col>SE</th><th scope=col>Weight_Fixed</th><th scope=col>Weight_Random</th><th scope=col>Difference</th></tr>
 	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
@@ -881,12 +864,7 @@ HETEROGENEITY DETECTED - Random-effects model is appropriate!
 	<tr><td>2</td><td>8000</td><td>0.0482</td><td>0.676</td><td>0.503</td><td>-0.173</td></tr>
 </tbody>
 </table>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Impact of tau^2 on weighting:
-Study 1 : Weight reduced by factor of 0.02 
-Study 2 : Weight reduced by factor of 0.01 
-</pre></div>
-</div>
-</div>
+</div></div>
 </div>
 </section>
 
@@ -961,7 +939,6 @@ Study 2 : Weight reduced by factor of 0.01
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-heterogeneity">What is Heterogeneity?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-heterogeneity">Measuring Heterogeneity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effect-model">Random Effect Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-heterogeneity-tau-2">Estimating Heterogeneity (<span class="math notranslate nohighlight">\(\tau^2\)</span>)</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>

@@ -543,7 +543,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-with-log-likelihood">Work with Log-Likelihood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-with-log-likelihood">Work With Log-Likelihood</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-equations">Likelihood Equations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-and-identically-distributed-iid-data">Independent and Identically Distributed (IID) Data</a></li>
 </ul>
@@ -577,7 +577,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="maximum-likelihood-estimation">
 <h1>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Link to this heading">#</a></h1>
-<p>Maximum likelihood estimation identifies the parameter values that maximize the probability of observing your actual data, essentially asking “which model settings would make what we actually saw most likely to occur?”</p>
+<p>Maximum likelihood estimation identifies the parameter value(s) that <strong>maximizes the probability of observing your actual data</strong>, essentially asking “which model settings would make what we actually saw most likely to occur?”</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -594,15 +594,15 @@ document.write(`
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\hat{\theta}\)</span> is our estimated parameter value (the “hat” indicates it’s an estimate)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta\)</span> represents the (general symbol of) parameter we want to estimate (e.g., <span class="math notranslate nohighlight">\(\beta\)</span> in our genetic model)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\Theta\)</span> is the parameter space - all possible values θ can take</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Theta\)</span> is the parameter space - all possible values <span class="math notranslate nohighlight">\(\theta\)</span> can take</p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{D}\)</span> is our observed data</p></li>
-<li><p><span class="math notranslate nohighlight">\(\operatorname{argmax}\)</span> means “the argument (value of θ) that maximizes the function”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\operatorname{argmax}\)</span> means “the argument (value of <span class="math notranslate nohighlight">\(\theta\)</span>) that maximizes the function”</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
 <section id="work-with-log-likelihood">
-<h2>Work with Log-Likelihood<a class="headerlink" href="#work-with-log-likelihood" title="Link to this heading">#</a></h2>
+<h2>Work With Log-Likelihood<a class="headerlink" href="#work-with-log-likelihood" title="Link to this heading">#</a></h2>
 <p>We have introduced log-likelihood before:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -645,7 +645,7 @@ document.write(`
 <ul class="simple">
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 </ul>
 </section>
@@ -690,10 +690,11 @@ document.write(`
 <li><p>TT: <span class="math notranslate nohighlight">\(f_T^2\)</span></p></li>
 <li><p>CT: <span class="math notranslate nohighlight">\(2f_T(1-f_T)\)</span></p></li>
 </ul>
-<p>Therefore, the likelihood is:
-$<span class="math notranslate nohighlight">\(
+<p>Therefore, the likelihood is:</p>
+<div class="math notranslate nohighlight">
+\[
 \mathcal{L}(\text{M}_{f_T} \mid \text{D}) = (1-f_T)^2 \times f_T^2 \times 2f_T(1-f_T) \times (1-f_T)^2 \times (1-f_T)^2 = 2f_T^3(1-f_T)^7
-\)</span>$</p>
+\]</div>
 <p>When computing likelihoods for parametric models, we often use the parameter value to denote the model. So instead of <span class="math notranslate nohighlight">\(\mathcal{L}(\text{M}_{f_T} \mid \text{D})\)</span>, we write <span class="math notranslate nohighlight">\(\mathcal{L}(f_T \mid \text{D})\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -795,7 +796,7 @@ f_T = \frac{3}{10} = 0.3
 </section>
 <section id="example-2-genetic-effect">
 <h2>Example 2 – Genetic Effect<a class="headerlink" href="#example-2-genetic-effect" title="Link to this heading">#</a></h2>
-<p>Looking at our likelihood results about the genetic effect in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a>, we see that Model 2 (<span class="math notranslate nohighlight">\(\beta = 0.5\)</span>) performs better than both Model 1 (<span class="math notranslate nohighlight">\(\beta = 0\)</span>) and Model 3 (<span class="math notranslate nohighlight">\(\beta = 1.0\)</span>). But this raises an interesting question: we only tested three specific values. What if the optimal <span class="math notranslate nohighlight">\(\beta\)</span> is somewhere between 0.5 and 1.0, or maybe 0.4 or 0.6?</p>
+<p>Looking at our likelihood results about the genetic effect in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">Lecture: likelihood</a>, we see that Model 2 (<span class="math notranslate nohighlight">\(\beta = 0.5\)</span>) performs better than both Model 1 (<span class="math notranslate nohighlight">\(\beta = 0\)</span>) and Model 3 (<span class="math notranslate nohighlight">\(\beta = 1.0\)</span>). But this raises an interesting question: we only tested three specific values. What if the optimal <span class="math notranslate nohighlight">\(\beta\)</span> is somewhere between 0.5 and 1.0, or maybe 0.4 or 0.6?</p>
 <p>Instead of guessing more values to test, we can use <strong>Maximum Likelihood Estimation (MLE)</strong> to find <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> that maximizes the likelihood function. Then we can compare this optimal estimate to our models - particularly the null model (<span class="math notranslate nohighlight">\(\beta = 0\)</span>), which is often of special interest in genetics because it represents “no genetic effect.”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1110,7 +1111,7 @@ Log-likelihood at MLE = -6.054
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-with-log-likelihood">Work with Log-Likelihood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-with-log-likelihood">Work With Log-Likelihood</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-equations">Likelihood Equations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-and-identically-distributed-iid-data">Independent and Identically Distributed (IID) Data</a></li>
 </ul>
