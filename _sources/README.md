@@ -16,7 +16,7 @@ Computational codes accompany the 1-day lecture on statistics background in stat
 | | Extend to binary outcome | [Odds Ratio](https://gaow.github.io/statgen-prerequisites/odds_ratio.html) |
 | | Extend to multiple variables| [Marginal vs. Joint Effects](https://gaow.github.io/statgen-prerequisites/marginal_joint_effects.html) |
 | | | [Summary Statistics](https://gaow.github.io/statgen-prerequisites/summary_statistics.html) |
-| | Genetic effects | [Random Effect](https://gaow.github.io/statgen-prerequisites/random_effect.html) |
+| Genetic effects | | [Random Effect](https://gaow.github.io/statgen-prerequisites/random_effect.html) |
 | | | [Proportion of Variance Explained](https://gaow.github.io/statgen-prerequisites/proportion_of_variance_explained.html) |
 | | | [Linear Mixed Model](https://gaow.github.io/statgen-prerequisites/linear_mixed_model.html) |
 | | Covariates | [Confounder](https://gaow.github.io/statgen-prerequisites/confounder.html) |
