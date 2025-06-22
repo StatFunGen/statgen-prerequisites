@@ -564,12 +564,12 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-detecting-pleiotropy">Example 2 – Detecting pleiotropy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-data-from-a-true-model">Generate Data from a True Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-model-comparison-setup">Bayesian Model Comparison Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-likelihood-calculation">Marginal Likelihood Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bayesian Model Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-probabilities-and-results">Posterior Probabilities and Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-model-comparison-setup">Bayesian Model Comparison Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-likelihood-calculation">Marginal Likelihood Calculation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bayesian Model Comparison</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-probabilities-and-results">Posterior Probabilities and Results</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
@@ -998,9 +998,8 @@ Effect on weight (beta2): 2.16
 </div>
 </div>
 </section>
-</section>
 <section id="bayesian-model-comparison-setup">
-<h2>Bayesian Model Comparison Setup<a class="headerlink" href="#bayesian-model-comparison-setup" title="Link to this heading">#</a></h2>
+<h3>Bayesian Model Comparison Setup<a class="headerlink" href="#bayesian-model-comparison-setup" title="Link to this heading">#</a></h3>
 <p>We’ll define all possible models as prior covariance matrices for the effect sizes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1035,7 +1034,7 @@ Effect on weight (beta2): 2.16
 </div>
 </section>
 <section id="marginal-likelihood-calculation">
-<h2>Marginal Likelihood Calculation<a class="headerlink" href="#marginal-likelihood-calculation" title="Link to this heading">#</a></h2>
+<h3>Marginal Likelihood Calculation<a class="headerlink" href="#marginal-likelihood-calculation" title="Link to this heading">#</a></h3>
 <p>When we cannot condition on the true parameter values, we must integrate over all possibilities to compute marginal likelihoods. This integration captures our uncertainty about parameters within each model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1108,7 +1107,7 @@ Effect on weight (beta2): 2.16
 </div>
 </section>
 <section id="id1">
-<h2>Bayesian Model Comparison<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h3>Bayesian Model Comparison<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate marginal likelihood for each model</span>
@@ -1127,7 +1126,7 @@ Effect on weight (beta2): 2.16
 </div>
 </section>
 <section id="posterior-probabilities-and-results">
-<h2>Posterior Probabilities and Results<a class="headerlink" href="#posterior-probabilities-and-results" title="Link to this heading">#</a></h2>
+<h3>Posterior Probabilities and Results<a class="headerlink" href="#posterior-probabilities-and-results" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate posterior probabilities using Bayes&#39; theorem</span>
@@ -1219,6 +1218,7 @@ Bayes factor vs M0: 1.715549e+33
 </a>
 </div>
 </div>
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
@@ -1382,12 +1382,12 @@ Bayes factor vs M0: 1.715549e+33
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-detecting-pleiotropy">Example 2 – Detecting pleiotropy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-data-from-a-true-model">Generate Data from a True Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-model-comparison-setup">Bayesian Model Comparison Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-likelihood-calculation">Marginal Likelihood Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bayesian Model Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-probabilities-and-results">Posterior Probabilities and Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-model-comparison-setup">Bayesian Model Comparison Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-likelihood-calculation">Marginal Likelihood Calculation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bayesian Model Comparison</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-probabilities-and-results">Posterior Probabilities and Results</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
