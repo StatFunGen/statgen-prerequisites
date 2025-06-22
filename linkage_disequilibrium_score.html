@@ -169,6 +169,10 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
 
 
@@ -176,10 +180,6 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html">Minor Allele Frequency</a></li>
 
 
@@ -540,8 +540,12 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linkage Disequilibrium Score</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topic">Related Topic</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-calculation">Definition and Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-high-ld-score-and-gwas-signals">Interpretation: High LD Score and GWAS Signals</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
@@ -577,6 +581,8 @@ l_j = \sum_{k=1, k \neq j}^M r^2(\textbf{X}_j, \textbf{X}_k)
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="definition-and-calculation">
+<h2>Definition and Calculation<a class="headerlink" href="#definition-and-calculation" title="Link to this heading">#</a></h2>
 <p>The LD score for the <span class="math notranslate nohighlight">\(j\)</span>-th variant is defined as the sum of the squared correlation coefficients <span class="math notranslate nohighlight">\(r^2\)</span> between that variant and all other variants in the genome, typically within a specified genomic window or region:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -592,10 +598,18 @@ r_\text{adj}^2 =  \hat{r}^2 - \frac{1-\hat{r}^2}{N-2}
 l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2 
 \]</div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="related-topic">
-<h1>Related Topic<a class="headerlink" href="#related-topic" title="Link to this heading">#</a></h1>
+<section id="interpretation-high-ld-score-and-gwas-signals">
+<h2>Interpretation: High LD Score and GWAS Signals<a class="headerlink" href="#interpretation-high-ld-score-and-gwas-signals" title="Link to this heading">#</a></h2>
+<p><strong>What does a high LD score mean for GWAS results?</strong> When a variant has high LD, any causal effect in the region gets “shared” across all correlated variants. If there’s a true causal variant nearby, the marginal association signal will spread to all variants in LD with it.</p>
+<p>Therefore, <strong>variants with higher LD scores are more likely to show inflated marginal association statistics</strong> (larger |Z-scores|) even if they’re not causal themselves. This is why LD score is useful for distinguishing true signals from LD-induced signals and for heritability estimation.</p>
+<p><strong>Key insight</strong>: LD score predicts how much a variant’s marginal effect will be inflated by linkage to other causal variants.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">linkage disequilibrium</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
@@ -882,8 +896,12 @@ l_j = \sum_{k=1, k \neq j}^M  r_\text{adj}^2
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linkage Disequilibrium Score</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topic">Related Topic</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-calculation">Definition and Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-high-ld-score-and-gwas-signals">Interpretation: High LD Score and GWAS Signals</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
