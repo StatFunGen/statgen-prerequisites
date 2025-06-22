@@ -541,7 +541,13 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayesian Multivariate Normal Mean Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-form">General Form</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effects-meta-analysis">Random Effects Meta-Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effects-meta-analysis">Fixed Effects Meta-Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trait-specific-effects">Trait-Specific Effects</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bayesian-perspective-joint-uncertainty">The Bayesian Perspective: Joint Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
@@ -592,6 +598,8 @@ document.write(`
 <!-- ![fig](./cartoons/Bayesian_multivariate_normal_mean_model.svg) --></section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<section id="general-form">
+<h2>General Form<a class="headerlink" href="#general-form" title="Link to this heading">#</a></h2>
 <p>In the bivariate normal mean model, if our joint uncertainty about the parameters is represented by the prior:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -639,57 +647,59 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\rho_0, \rho_1\)</span> = prior and posterior correlations quantifying how uncertainty about one parameter relates to uncertainty about the other</p></li>
 </ul>
 <p><strong>This general framework encompasses several things we have discussed previously as special cases</strong>:</p>
-<ul>
-<li><p><strong>Random Effects Meta-Analysis</strong></p>
+</section>
+<section id="random-effects-meta-analysis">
+<h2>Random Effects Meta-Analysis<a class="headerlink" href="#random-effects-meta-analysis" title="Link to this heading">#</a></h2>
 <p>When <span class="math notranslate nohighlight">\(\rho_0 = 0\)</span> and <span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0} = \sigma\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-  \begin{pmatrix}
-  \sigma^2 &amp; 0 \\
-  0 &amp; \sigma^2
-  \end{pmatrix}
-  \end{split}\]</div>
+\begin{pmatrix}
+\sigma^2 &amp; 0 \\
+0 &amp; \sigma^2
+\end{pmatrix}
+\end{split}\]</div>
 <ul class="simple">
 <li><p><strong>No correlation</strong> between trait effects (<span class="math notranslate nohighlight">\(\rho_0 = 0\)</span>)</p></li>
 <li><p><strong>Equal uncertainty</strong> for both traits (<span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0}\)</span>)</p></li>
 <li><p>Effects are independent but equally variable across studies</p></li>
 </ul>
-</li>
-<li><p><strong>Fixed Effects Meta-Analysis</strong></p>
+</section>
+<section id="fixed-effects-meta-analysis">
+<h2>Fixed Effects Meta-Analysis<a class="headerlink" href="#fixed-effects-meta-analysis" title="Link to this heading">#</a></h2>
 <p>When <span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0}\)</span> and <span class="math notranslate nohighlight">\(\rho_0 = 1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-  \begin{pmatrix}
-  \sigma^2 &amp; \sigma^2 \\
-  \sigma^2 &amp; \sigma^2
-  \end{pmatrix}
-  \end{split}\]</div>
+\begin{pmatrix}
+\sigma^2 &amp; \sigma^2 \\
+\sigma^2 &amp; \sigma^2
+\end{pmatrix}
+\end{split}\]</div>
 <ul class="simple">
 <li><p><strong>Perfect correlation</strong> between trait effects (<span class="math notranslate nohighlight">\(\rho_0 = 1\)</span>)</p></li>
 <li><p><strong>Equal uncertainty</strong> for both traits</p></li>
 <li><p>Effects move together completely - if one is high, the other is high</p></li>
 </ul>
-</li>
-<li><p><strong>Trait-Specific Effects</strong>
-When <span class="math notranslate nohighlight">\(\sigma_{a,0} = 0\)</span> or <span class="math notranslate nohighlight">\(\sigma_{b,0} = 0\)</span>:</p>
+</section>
+<section id="trait-specific-effects">
+<h2>Trait-Specific Effects<a class="headerlink" href="#trait-specific-effects" title="Link to this heading">#</a></h2>
+<p>When <span class="math notranslate nohighlight">\(\sigma_{a,0} = 0\)</span> or <span class="math notranslate nohighlight">\(\sigma_{b,0} = 0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-  \begin{pmatrix}
-  0 &amp; 0 \\
-  0 &amp; \sigma_{b,0}^2
-  \end{pmatrix} \quad \text{or} \quad
-  \begin{pmatrix}
-  \sigma_{a,0}^2 &amp; 0 \\
-  0 &amp; 0
-  \end{pmatrix}
-  \end{split}\]</div>
+\begin{pmatrix}
+0 &amp; 0 \\
+0 &amp; \sigma_{b,0}^2
+\end{pmatrix} \quad \text{or} \quad
+\begin{pmatrix}
+\sigma_{a,0}^2 &amp; 0 \\
+0 &amp; 0
+\end{pmatrix}
+\end{split}\]</div>
 <ul class="simple">
 <li><p><strong>One trait has no effect</strong> (zero variance)</p></li>
 <li><p><strong>Other trait varies</strong> across studies</p></li>
 <li><p>Variant affects only one trait</p></li>
 </ul>
-</li>
-</ul>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
@@ -807,7 +817,7 @@ T_1 = \sum_{i=1}^N X_i^2, \quad \mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
 <h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">random effect</a></p></li>
@@ -833,7 +843,7 @@ T_1 = \sum_{i=1}^N X_i^2, \quad \mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment and set reproducibility</span>
 <span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">26</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span>
 
 <span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">  </span><span class="c1"># for multivariate normal generation</span>
 
@@ -951,7 +961,7 @@ T_1 = \sum_{i=1}^N X_i^2, \quad \mathbf{T}_2 = \sum_{i=1}^N X_i \mathbf{Y}_i = \
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>What we learn from conditioning on data:
-Data&#39;s joint estimate (beta_hat): 0.21 0.569 
+Data&#39;s joint estimate (beta_hat): 0.615 0.206 
 (True effects were: 0.3 0.4 )
 </pre></div>
 </div>
@@ -986,9 +996,11 @@ Data&#39;s joint estimate (beta_hat): 0.21 0.569
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated joint uncertainty after conditioning (posterior):
 Posterior mean vector (beta_1):
-        [,1]
-Height 0.078
-Weight 0.260
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        [,1]
+Height 0.314
+Weight 0.075
 
 Posterior covariance matrix (Sigma_1):
        Height Weight
@@ -1036,12 +1048,14 @@ Posterior uncertainty (marginal variances): 0.1235 0.1359
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Comparison with independent analyses:
 Independent analysis results:
-Height effect: mean = 0.105 , var = 0.125 
-Weight effect: mean = 0.259 , var = 0.1364 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Height effect: mean = 0.308 , var = 0.125 
+Weight effect: mean = 0.093 , var = 0.1364 
 
 Joint analysis results:
-Height effect: mean = 0.078 , var = 0.1235 
-Weight effect: mean = 0.26 , var = 0.1359 
+Height effect: mean = 0.314 , var = 0.1235 
+Weight effect: mean = 0.075 , var = 0.1359 
 </pre></div>
 </div>
 </div>
@@ -1487,7 +1501,13 @@ ggplot2 3.4.0.
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bayesian Multivariate Normal Mean Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-form">General Form</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effects-meta-analysis">Random Effects Meta-Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effects-meta-analysis">Fixed Effects Meta-Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trait-specific-effects">Trait-Specific Effects</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bayesian-perspective-joint-uncertainty">The Bayesian Perspective: Joint Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assumptions">Model Assumptions</a></li>
