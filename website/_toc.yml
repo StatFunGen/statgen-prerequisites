@@ -64,12 +64,14 @@ parts:
       - file: Bayes_factor
       - file: p_value
   
-  - caption: Bayes Models
+  - caption: Bayesian Model
     chapters:
         - file: Bayesian_normal_mean_model
         - file: Bayesian_multivariate_normal_mean_model
-        - file: Bayesian_mixture_model
   
-  - caption: Model Comparison
+  - caption: Multiple Bayesian models
     chapters:
+        - file: Bayesian_mixture_model
         - file: Bayesian_model_comparison
+
+
