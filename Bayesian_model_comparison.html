@@ -543,7 +543,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-bayes-factor">Understanding the Bayes Factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-bayes-factor">Recall Bayes Factor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-uncertainty-quantification-to-model-selection">From Uncertainty Quantification to Model Selection</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-prior-model-uncertainty">Quantifying Prior Model Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-marginal-likelihood">Computing the Marginal Likelihood</a><ul class="nav section-nav flex-column">
@@ -590,7 +590,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-model-comparison">
 <h1>Bayesian Model Comparison<a class="headerlink" href="#bayesian-model-comparison" title="Link to this heading">#</a></h1>
-<p>Bayesian model comparison arises when we cannot condition on which model generated our data, leaving this model choice uncertain, so we quantify our uncertainty about competing models by measuring how well they predict observed data while accounting for the uncertainty inherent in their parameter spaces reflected by how broadly their priors spread probability.</p>
+<p>Bayesian model comparison arises when we cannot condition on which model generated our data, leaving this model choice uncertain, so we <strong>quantify our uncertainty</strong> about competing models by measuring how well they predict observed data while accounting for the uncertainty inherent in their parameter spaces reflected by how broadly their priors spread probability.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -613,9 +613,9 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="understanding-the-bayes-factor">
-<h2>Understanding the Bayes Factor<a class="headerlink" href="#understanding-the-bayes-factor" title="Link to this heading">#</a></h2>
-<p>The <strong>Bayes Factor</strong> quantifies how the data updates our uncertainty about competing models when we cannot condition on which model generated the observations:</p>
+<section id="recall-bayes-factor">
+<h2>Recall Bayes Factor<a class="headerlink" href="#recall-bayes-factor" title="Link to this heading">#</a></h2>
+<p><strong>Bayes factor</strong> quantifies how the data updates our uncertainty about competing models when we cannot condition on which model generated the observations:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{BF}_{21} = \frac{L(\text{M}_2|\text{D})}{L(\text{M}_1|\text{D})} ={\frac {\int \Pr(\theta_{2}|M_{2})\Pr(D|\theta_{2},M_{2})\,d\theta _{2}}{\int \Pr(\theta_{1}|M_{1})\Pr(D|\theta_{1},M_{1})\,d\theta _{1}}}
@@ -634,23 +634,26 @@ document.write(`
 \[
 \frac{P(M_2|D)}{P(M_1|D)} = \text{BF}_{21} \times \frac{P(M_2)}{P(M_1)}
 \]</div>
-<p>This shows how conditioning on data transforms our uncertainty:
-$<span class="math notranslate nohighlight">\(
+<p>This shows how conditioning on data transforms our uncertainty:</p>
+<div class="math notranslate nohighlight">
+\[
 \text{Posterior Uncertainty} = \text{Evidence Update} \times \text{Prior Uncertainty}
-\)</span>$</p>
+\]</div>
 </section>
 <section id="quantifying-prior-model-uncertainty">
 <h2>Quantifying Prior Model Uncertainty<a class="headerlink" href="#quantifying-prior-model-uncertainty" title="Link to this heading">#</a></h2>
-<p><strong>Equal uncertainty</strong> (no initial preference): Set <span class="math notranslate nohighlight">\(P(M_1) = P(M_2) = 0.5\)</span>
-$<span class="math notranslate nohighlight">\(
+<p><strong>Equal uncertainty</strong> (no initial preference): Set <span class="math notranslate nohighlight">\(P(M_1) = P(M_2) = 0.5\)</span></p>
+<div class="math notranslate nohighlight">
+\[
 \frac{P(M_2|D)}{P(M_1|D)} = \text{BF}_{21}
-\)</span>$
-<em>Our posterior uncertainty is determined entirely by the data.</em></p>
-<p><strong>Unequal uncertainty</strong> (one model initially preferred):
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p><em>Our posterior uncertainty is determined entirely by the data.</em></p>
+<p><strong>Unequal uncertainty</strong> (one model initially preferred):</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{P(M_2|D)}{P(M_1|D)} = \text{BF}_{21} \times \frac{P(M_2)}{P(M_1)}
-\)</span>$
-<em>The data updates our initial uncertainty about model choice.</em></p>
+\]</div>
+<p><em>The data updates our initial uncertainty about model choice.</em></p>
 </section>
 <section id="computing-the-marginal-likelihood">
 <h2>Computing the Marginal Likelihood<a class="headerlink" href="#computing-the-marginal-likelihood" title="Link to this heading">#</a></h2>
@@ -661,11 +664,11 @@ $<span class="math notranslate nohighlight">\(
 </section>
 <section id="complex-case-when-parameter-uncertainty-cannot-be-resolved-analytically">
 <h3>Complex Case: When Parameter Uncertainty Cannot Be Resolved Analytically<a class="headerlink" href="#complex-case-when-parameter-uncertainty-cannot-be-resolved-analytically" title="Link to this heading">#</a></h3>
-<p>When priors and likelihoods are not conjugate (as in our pleiotropy example), we cannot analytically resolve the parameter uncertainty in <span class="math notranslate nohighlight">\(\int \Pr(\theta|M)\Pr(D|\theta,M)\,d\theta\)</span>. This reflects the fundamental challenge: when we cannot condition on parameters, we must numerically integrate over all possible values, which becomes computationally prohibitive for high-dimensional parameter spaces in real GWAS datasets.</p>
+<p>When priors and likelihoods are not conjugate, we may not be able to analytically resolve the parameter uncertainty in <span class="math notranslate nohighlight">\(\int \Pr(\theta|M)\Pr(D|\theta,M)\,d\theta\)</span>. This reflects the fundamental challenge: when we cannot condition on parameters, we must numerically integrate over all possible values, which becomes computationally prohibitive for high-dimensional parameter spaces in real GWAS datasets.</p>
 <p>Several approximation methods have been developed to handle this uncertainty:</p>
 <ul class="simple">
 <li><p><strong>Laplace approximation</strong> (assumes uncertainty is concentrated around the posterior mode)</p></li>
-<li><p><strong>MCMC-based methods</strong> like Chib’s method or thermodynamic integration (sample from the uncertainty distribution)</p></li>
+<li><p><strong>MCMC-based methods</strong> (e.g., Chib’s method or thermodynamic integration, which samples from the uncertainty distribution)</p></li>
 <li><p><strong>Nested Sampling</strong> (systematically explores the uncertainty landscape)</p></li>
 </ul>
 <p>The choice reflects a trade-off between computational feasibility and how thoroughly we can characterize the parameter uncertainty in our model comparison.</p>
@@ -675,7 +678,8 @@ $<span class="math notranslate nohighlight">\(
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
 <h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/odds_ratio.html">odds ratio</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">linkage disequilibrium</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/marginal_joint_effects.html">marginal and joint effects</a></p></li>
@@ -1357,7 +1361,7 @@ Bayes factor vs M0: 1.715549e+33
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-bayes-factor">Understanding the Bayes Factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-bayes-factor">Recall Bayes Factor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-uncertainty-quantification-to-model-selection">From Uncertainty Quantification to Model Selection</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-prior-model-uncertainty">Quantifying Prior Model Uncertainty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-marginal-likelihood">Computing the Marginal Likelihood</a><ul class="nav section-nav flex-column">
