@@ -551,8 +551,8 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-individual-level-random-effects-simulation">Example 1 – Individual-Level Random Effects Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-apoe4-and-alzheimer-s-disease">Example 2 – APOE4 and Alzheimer’s Disease</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-story-why-apoe4-effects-vary">The Story: Why APOE4 Effects Vary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-apoe-varepsilon4-and-alzheimer-s-disease">Example 2 – APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> and Alzheimer’s Disease</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-story-why-apoe-varepsilon4-effects-vary">The Story: Why APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> Effects Vary</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
@@ -632,10 +632,11 @@ document.write(`
 \[
 \text{Incomplete conditioning} \rightarrow \text{Random effects}
 \]</div>
-<p>However,
-$<span class="math notranslate nohighlight">\(
+<p>However,</p>
+<div class="math notranslate nohighlight">
+\[
 \text{Unknown factors always exist} \rightarrow \text{Random effects are more reasonable}
-\)</span>$</p>
+\]</div>
 <p>In practice, we can never achieve complete conditioning because we don’t even know what all the relevant factors are. Random effects models honestly acknowledge this fundamental limitation - there’s always something affecting genetic effects that we haven’t accounted for.</p>
 </section>
 <section id="related-topics">
@@ -722,22 +723,22 @@ $<span class="math notranslate nohighlight">\(
 </div></div>
 </div>
 </section>
-<section id="example-2-apoe4-and-alzheimer-s-disease">
-<h2>Example 2 – APOE4 and Alzheimer’s Disease<a class="headerlink" href="#example-2-apoe4-and-alzheimer-s-disease" title="Link to this heading">#</a></h2>
-<p>Let’s use a real-world example to understand when genetic effects should be treated as fixed versus random. Consider the APOE4 variant, one of the strongest known genetic risk factors for Alzheimer’s disease.</p>
+<section id="example-2-apoe-varepsilon4-and-alzheimer-s-disease">
+<h2>Example 2 – APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> and Alzheimer’s Disease<a class="headerlink" href="#example-2-apoe-varepsilon4-and-alzheimer-s-disease" title="Link to this heading">#</a></h2>
+<p>Let’s use a real-world example to understand when genetic effects should be treated as fixed versus random. Consider the APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> variant, one of the strongest known genetic risk factors for Alzheimer’s disease.</p>
 </section>
-<section id="the-story-why-apoe4-effects-vary">
-<h2>The Story: Why APOE4 Effects Vary<a class="headerlink" href="#the-story-why-apoe4-effects-vary" title="Link to this heading">#</a></h2>
-<p>Imagine you’re studying APOE4’s effect on Alzheimer’s risk. The key insight is that this effect isn’t the same for everyone - it depends on factors we may or may not have measured.</p>
-<p><strong>When would APOE4 have a “fixed” effect?</strong> Only if we’ve conditioned on all the key factors:</p>
+<section id="the-story-why-apoe-varepsilon4-effects-vary">
+<h2>The Story: Why APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> Effects Vary<a class="headerlink" href="#the-story-why-apoe-varepsilon4-effects-vary" title="Link to this heading">#</a></h2>
+<p>Imagine you’re studying APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span>’s effect on Alzheimer’s risk. The key insight is that this effect isn’t the same for everyone - it depends on factors we may or may not have measured.</p>
+<p><strong>When would APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> have a “fixed” effect?</strong> Only if we’ve conditioned on all the key factors:</p>
 <ul class="simple">
-<li><p><strong>Ancestry</strong>: European populations show strong APOE4 effects, while some other populations show weaker associations</p></li>
-<li><p><strong>Age</strong>: APOE4 barely affects risk before age 65, but has large effects in older adults</p></li>
-<li><p><strong>Sex</strong>: Alzheimer’s affects women twice as often as men, and APOE4 effects differ by sex</p></li>
+<li><p><strong>Ancestry</strong>: European populations show strong APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects, while some other populations show weaker associations</p></li>
+<li><p><strong>Age</strong>: APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> barely affects risk before age 65, but has large effects in older adults</p></li>
+<li><p><strong>Sex</strong>: Alzheimer’s affects women twice as often as men, and APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects differ by sex</p></li>
 <li><p>…</p></li>
 </ul>
-<p>If we study only elderly European women (and very likely a lot of other factors fixed), we might see a consistent APOE4 effect - making it reasonable to treat as “fixed.”</p>
-<p><strong>But what happens when we don’t condition properly?</strong> If our study includes mixed ancestry, all ages, and both sexes without accounting for these differences, we may see wildly varying APOE4 effects:</p>
+<p>If we study only elderly European women (and very likely a lot of other factors fixed), we might see a consistent APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effect - making it reasonable to treat as “fixed.”</p>
+<p><strong>But what happens when we don’t condition properly?</strong> If our study includes mixed ancestry, all ages, and both sexes without accounting for these differences, we may see wildly varying APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects:</p>
 <ul class="simple">
 <li><p>Europeans: large effect size</p></li>
 <li><p>Hispanics: moderate effect size</p></li>
@@ -745,7 +746,7 @@ $<span class="math notranslate nohighlight">\(
 <li><p>Elderly: large effect size</p></li>
 <li><p>And so on…</p></li>
 </ul>
-<p>Now APOE4’s effect looks “random” - but it’s not truly random, it’s just that we haven’t conditioned on the factors that determine the effect size.</p>
+<p>Now APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span>’s effect looks “random” - but it’s not truly random, it’s just that we haven’t conditioned on the factors that determine the effect size.</p>
 <p>In this R example we just assume that there is no other factor (which is very unlikely to be true) in this model, and conduct two analysis:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -762,10 +763,10 @@ $<span class="math notranslate nohighlight">\(
 <span class="n">age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">50</span><span class="o">:</span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="n">sex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">))</span>
 
-<span class="c1"># Generate APOE4 genotypes (0, 1, or 2 copies)</span>
-<span class="n">apoe4_copies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">))</span>
+<span class="c1"># Generate APOEe4 genotypes (0, 1, or 2 copies)</span>
+<span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">))</span>
 
-<span class="c1"># The &quot;true&quot; APOE4 effect depends on all these factors</span>
+<span class="c1"># The &quot;true&quot; APOEe4 effect depends on all these factors</span>
 <span class="c1"># Base effect sizes by ancestry</span>
 <span class="n">base_effect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;European&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span>
 <span class="w">              </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Hispanic&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span>
@@ -781,7 +782,7 @@ $<span class="math notranslate nohighlight">\(
 <span class="n">true_effect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">base_effect</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">age_modifier</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sex_modifier</span>
 
 <span class="c1"># Generate Alzheimer&#39;s risk (log-odds scale)</span>
-<span class="n">risk_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apoe4_copies</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_effect</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+<span class="n">risk_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_effect</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
 
 <span class="c1"># Create dataframe</span>
 <span class="n">study_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
@@ -789,7 +790,7 @@ $<span class="math notranslate nohighlight">\(
 <span class="w">  </span><span class="n">ancestry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ancestry</span><span class="p">,</span>
 <span class="w">  </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span>
 <span class="w">  </span><span class="n">sex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span>
-<span class="w">  </span><span class="n">apoe4_copies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apoe4_copies</span><span class="p">,</span>
+<span class="w">  </span><span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="p">,</span>
 <span class="w">  </span><span class="n">true_effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_effect</span><span class="p">,</span>
 <span class="w">  </span><span class="n">risk_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">risk_score</span>
 <span class="p">)</span>
@@ -807,8 +808,8 @@ $<span class="math notranslate nohighlight">\(
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Analyzing elderly European females only\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sample size:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">conditioned_data</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 
-<span class="n">fixed_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">risk_score</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">apoe4_copies</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conditioned_data</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;APOE4 effect estimate:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">fixed_model</span><span class="p">)[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="n">fixed_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">risk_score</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conditioned_data</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;APOEe4 effect estimate:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">fixed_model</span><span class="p">)[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Standard error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">fixed_model</span><span class="p">)</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Effect variation (SD across individuals):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">conditioned_data</span><span class="o">$</span><span class="n">true_effect</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
 </pre></div>
@@ -818,9 +819,7 @@ $<span class="math notranslate nohighlight">\(
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== FIXED EFFECTS SCENARIO ===
 Analyzing elderly European females only
 Sample size: 135 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APOE4 effect estimate: 2.399 
+APOEe4 effect estimate: 2.399 
 Standard error: 0.066 
 Effect variation (SD across individuals): 0 
 </pre></div>
@@ -835,8 +834,8 @@ Effect variation (SD across individuals): 0
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Analyzing full diverse population without conditioning\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sample size:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">study_data</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 
-<span class="n">unconditioned_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">risk_score</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">apoe4_copies</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">study_data</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;APOE4 effect estimate:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">unconditioned_model</span><span class="p">)[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="n">unconditioned_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">risk_score</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">study_data</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;APOEe4 effect estimate:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">unconditioned_model</span><span class="p">)[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Standard error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">unconditioned_model</span><span class="p">)</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Effect variation (SD across individuals):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">study_data</span><span class="o">$</span><span class="n">true_effect</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
 </pre></div>
@@ -846,7 +845,7 @@ Effect variation (SD across individuals): 0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== RANDOM EFFECTS SCENARIO ===
 Analyzing full diverse population without conditioning
 Sample size: 1000 
-APOE4 effect estimate: 1.076 
+APOEe4 effect estimate: 1.076 
 Standard error: 0.038 
 Effect variation (SD across individuals): 0.738 
 </pre></div>
@@ -872,7 +871,9 @@ Effect variation (SD across individuals): 0.738
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== THE HETEROGENEITY WE&#39;RE IGNORING ===
-   Ancestry    Sex Elderly Mean_Effect
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Ancestry    Sex Elderly Mean_Effect
 1   African Female   FALSE       0.234
 2     Asian Female   FALSE       0.351
 3  European Female   FALSE       0.468
@@ -893,14 +894,12 @@ Effect variation (SD across individuals): 0.738
 === KEY INSIGHT ===
 Fixed effects work when effect variation is small (SD = 0 )
 Random effects needed when effect variation is large (SD = 0.738 )
-
-The &#39;randomness&#39; isn&#39;t truly random - it reflects our failure to condition on ancestry, age, and sex!
 </pre></div>
 </div>
 </div>
 </div>
 <p>The ‘randomness’ isn’t truly random - it reflects our failure to condition on ancestry, age, and sex! But if we don’t measure and condition on these factors, the effect appears random from our perspective.</p>
-<p><strong>Even worse</strong>: There are always factors we don’t even know about yet. Maybe APOE4 effects also depend on:</p>
+<p><strong>Even worse</strong>: There are always factors we don’t even know about yet. Maybe APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects also depend on:</p>
 <ul class="simple">
 <li><p>Specific dietary patterns we haven’t discovered</p></li>
 <li><p>Interactions with other genes we haven’t identified</p></li>
@@ -1156,8 +1155,8 @@ Warning message in is.na(x):
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-individual-level-random-effects-simulation">Example 1 – Individual-Level Random Effects Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-apoe4-and-alzheimer-s-disease">Example 2 – APOE4 and Alzheimer’s Disease</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-story-why-apoe4-effects-vary">The Story: Why APOE4 Effects Vary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-apoe-varepsilon4-and-alzheimer-s-disease">Example 2 – APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> and Alzheimer’s Disease</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-story-why-apoe-varepsilon4-effects-vary">The Story: Why APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> Effects Vary</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
