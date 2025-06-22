@@ -584,10 +584,10 @@ X \rightarrow W \leftarrow Y
 <li><p><span class="math notranslate nohighlight">\(W\)</span> is the collider variable</p></li>
 <li><p><span class="math notranslate nohighlight">\(X\)</span> is one cause of the collider</p></li>
 <li><p><span class="math notranslate nohighlight">\(Y\)</span> is another cause of the collider</p></li>
-<li><p>The arrows (→) indicate the direction of causal influence</p></li>
+<li><p>The arrows (<span class="math notranslate nohighlight">\(\rightarrow\)</span>) indicate the direction of causal influence</p></li>
 </ul>
 <p>This diagram illustrates that a collider (<span class="math notranslate nohighlight">\(W\)</span>) is a variable that is <em>caused by</em> both the exposure (<span class="math notranslate nohighlight">\(X\)</span>) and the outcome (<span class="math notranslate nohighlight">\(Y\)</span>), creating a situation where <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> both flow into <span class="math notranslate nohighlight">\(W\)</span>.</p>
-<p>A <strong>collider</strong> is a variable that is influenced by two other variables in a causal pathway. When we condition on (adjust for, stratify by, or select based on) a collider, we can induce a spurious association between its causes, even if they were originally independent.</p>
+<p>When we condition on (adjust for, stratify by, or select based on) a collider, we can induce a spurious association between its causes, even if they were originally independent.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
@@ -625,9 +625,9 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 <section id="common-colliders-in-genetic-studies">
 <h2>Common Colliders in Genetic Studies<a class="headerlink" href="#common-colliders-in-genetic-studies" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Study Participation/Selection: Genetic Risk → Study Participation ← Disease Status</p></li>
-<li><p>Hospital Admission: Genetic Variant → Hospital Admission ← Disease Severity</p></li>
-<li><p>Survival to Study Age: Protective Alleles → Survival ← Disease Resistance. Studying only elderly survivors can bias estimates of genetic effects on longevity.</p></li>
+<li><p>Study Participation/Selection: Genetic Risk <span class="math notranslate nohighlight">\(\leftarrow\)</span> Study Participation <span class="math notranslate nohighlight">\(\rightarrow\)</span> Disease Status</p></li>
+<li><p>Hospital Admission: Genetic Variant <span class="math notranslate nohighlight">\(\leftarrow\)</span> Hospital Admission <span class="math notranslate nohighlight">\(\rightarrow\)</span> Disease Severity</p></li>
+<li><p>Survival to Study Age: Protective Alleles <span class="math notranslate nohighlight">\(\leftarrow\)</span> Survival <span class="math notranslate nohighlight">\(\rightarrow\)</span> Disease Resistance. Studying only elderly survivors can bias estimates of genetic effects on longevity.</p></li>
 </ul>
 </section>
 <section id="the-key-principle">
@@ -647,39 +647,45 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>Imagine you’re studying the relationship between genetic variants and waist circumference. You might think: “Since BMI is related to both genetics and body measurements, I should control for it to get a cleaner analysis, right?”</p>
+<p>Imagine you’re studying the relationship between genetic variants and waist circumference. You might think: “Since body mass index (BMI) is related to both genetics and body measurements, I should control for it to get a cleaner analysis, right?”</p>
 <p>Wrong! This intuitive approach can actually create false associations where none exist.</p>
 <p>Here’s the puzzle: What happens when we study the relationship between genetic variants and waist circumference, with and without “controlling” for BMI? You might expect that adding more variables to your model would make your analysis more accurate, but sometimes it can completely mislead you.</p>
-<p>We’ll explore this using a simple simulation where we know the true relationships: genetic variants affect BMI, waist circumference also affects BMI, but there’s no direct connection between genetics and waist circumference. The key question is: <em>What happens to our results when we incorrectly adjust for a variable that are affected by both the genetic variants and also the trait?</em></p>
-<p>Let’s first generate the data for genotype variants, BMI and the waist circumference (independent of genetics).</p>
+<p>We’ll explore this using a simple simulation where we know the true relationships: imagine that a genetic variant affects height, therefore affecting BMI, but not affects waist circumference (WC) directly. However, BMI can also be affected by WC because of adiposity. So in this diagram BMI serves as the collider.</p>
+<p>We’ll see how our results change when we <strong>don’t adjust for BMI</strong> versus when we mistakenly <strong>include it as a covariate</strong>.</p>
+<p>Let’s create a scenario where we know the true relationships. We’ll generate data for 500 people with a genetic variant that affects height (and therefore BMI), plus waist circumference that’s completely independent of genetics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
-<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">15</span><span class="p">)</span><span class="w">  </span><span class="c1"># For reproducibility</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">15</span><span class="p">)</span>
 
-<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="w">  </span><span class="c1"># Sample size</span>
-<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w">   </span><span class="c1"># Number of variants</span>
+<span class="c1"># Sample size</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span>
 
-<span class="c1"># Generate genetic variants that affect BMI</span>
-<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">*</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">)),</span><span class="w"> </span>
-<span class="w">                        </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span>
-<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+<span class="c1"># Generate SNP (0, 1, 2 copies of height-increasing allele)</span>
+<span class="n">snp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">))</span>
 
-<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="c1"># Generate waist circumference (completely independent of SNP)</span>
+<span class="c1"># This represents individual differences in adiposity</span>
+<span class="n">waist_circumference</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we build the causal relationships that make BMI a collider:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># SNP affects height (each copy adds ~3cm)</span>
+<span class="n">height_cm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">165</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">snp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
 
-<span class="c1"># Generate waist circumference (independent of genetics)</span>
-<span class="n">waist_circumference</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
-<span class="n">waist_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">waist_circumference</span><span class="p">)</span>
+<span class="c1"># Weight comes from two sources:</span>
+<span class="c1"># 1. Height contributes through lean body mass</span>
+<span class="c1"># 2. Waist circumference contributes through adiposity</span>
+<span class="n">weight_from_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">height_cm</span><span class="w">  </span><span class="c1"># Lean mass component</span>
+<span class="n">weight_from_adiposity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">waist_circumference</span><span class="w">  </span><span class="c1"># Fat mass component</span>
+<span class="n">weight_kg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">weight_from_height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">weight_from_adiposity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">140</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
 
-<span class="c1"># Generate BMI as COLLIDER: caused by BOTH genetics AND waist circumference</span>
-<span class="n">genetic_effect_on_bmi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Xraw_additive</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="p">]</span><span class="w">        </span><span class="c1"># Only Variant 3 affects BMI</span>
-<span class="n">waist_effect_on_bmi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.15</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">waist_circumference</span><span class="w">      </span><span class="c1"># Waist circumference affects BMI</span>
-
-<span class="c1"># BMI is the sum of genetic and waist effects plus noise</span>
-<span class="n">bmi_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">genetic_effect_on_bmi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">waist_effect_on_bmi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
-<span class="n">bmi_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">bmi_raw</span><span class="p">)</span>
+<span class="c1"># Calculate BMI (the collider!)</span>
+<span class="n">bmi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">weight_kg</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">height_cm</span><span class="o">/</span><span class="m">100</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
 </pre></div>
 </div>
 </div>
@@ -691,67 +697,67 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_values_correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">  </span><span class="c1"># Store p-values for correct analysis</span>
-<span class="n">betas_correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">     </span><span class="c1"># Store estimated effect sizes for correct analysis</span>
-<span class="n">p_values_biased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">   </span><span class="c1"># Store p-values for biased analysis (controlling for collider)</span>
-<span class="n">betas_biased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w">      </span><span class="c1"># Store estimated effect sizes for biased analysis</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standardize variables for easier interpretation</span>
+<span class="n">snp_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">snp</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">wc_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">waist_circumference</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">bmi_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">bmi</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
 
-<span class="c1"># Perform OLS regression for each SNP</span>
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">SNP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w">  </span><span class="c1"># Extract genotype for SNP j</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># CORRECT analysis: SNP vs waist circumference (no BMI control)</span>
-<span class="w">  </span><span class="n">correct_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">waist_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="p">)</span><span class="w">  </span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># INCORRECT analysis: Control for BMI (the collider)</span>
-<span class="w">  </span><span class="n">biased_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">waist_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">SNP</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bmi_scaled</span><span class="p">)</span><span class="w">  </span>
-<span class="w">  </span>
-<span class="w">  </span><span class="n">summary_correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">correct_model</span><span class="p">)</span>
-<span class="w">  </span><span class="n">summary_biased</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">biased_model</span><span class="p">)</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1"># Store p-values and effect sizes</span>
-<span class="w">  </span><span class="n">p_values_correct</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_correct</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">  </span><span class="c1"># p-value for SNP effect (correct)</span>
-<span class="w">  </span><span class="n">betas_correct</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_correct</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">     </span><span class="c1"># Estimated beta coefficient (correct)</span>
-<span class="w">  </span><span class="n">p_values_biased</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_biased</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w">    </span><span class="c1"># p-value for SNP effect (biased)</span>
-<span class="w">  </span><span class="n">betas_biased</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_biased</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">       </span><span class="c1"># Estimated beta coefficient (biased)</span>
-<span class="p">}</span>
+<span class="c1"># Analysis 1: CORRECT - Don&#39;t adjust for BMI</span>
+<span class="n">correct_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">wc_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">snp_scaled</span><span class="p">)</span>
+<span class="n">correct_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">correct_model</span><span class="p">)</span>
+
+<span class="c1"># Analysis 2: INCORRECT - Adjust for BMI (the collider)</span>
+<span class="n">biased_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">wc_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">snp_scaled</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bmi_scaled</span><span class="p">)</span>
+<span class="n">biased_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">biased_model</span><span class="p">)</span>
+
+<span class="c1"># Extract results</span>
+<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Analysis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Correct (no BMI)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Incorrect (with BMI)&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">correct_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">correct_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">correct_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="n">Significant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">correct_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The results are:</p>
+<p>Let’s taka a look at the results:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create results table</span>
-<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Beta_Correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">betas_correct</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
-<span class="w">  </span><span class="n">P_Value_Correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p_values_correct</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Significant_Correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">p_values_correct</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Beta_Biased</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">betas_biased</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
-<span class="w">  </span><span class="n">P_Value_Biased</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p_values_biased</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Significant_Biased</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">p_values_biased</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">results</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 3 x 7</caption>
+<caption>A data.frame: 2 x 5</caption>
 <thead>
-	<tr><th scope=col>Variant</th><th scope=col>Beta_Correct</th><th scope=col>P_Value_Correct</th><th scope=col>Significant_Correct</th><th scope=col>Beta_Biased</th><th scope=col>P_Value_Biased</th><th scope=col>Significant_Biased</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+	<tr><th scope=col>Analysis</th><th scope=col>Beta</th><th scope=col>SE</th><th scope=col>P_value</th><th scope=col>Significant</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>Variant 1</td><td> 0.0645</td><td>0.7347</td><td>No</td><td> 0.1841</td><td>0.2437</td><td>No </td></tr>
-	<tr><td>Variant 2</td><td> 0.2585</td><td>0.1677</td><td>No</td><td> 0.0667</td><td>0.6890</td><td>No </td></tr>
-	<tr><td>Variant 3</td><td>-0.0203</td><td>0.9154</td><td>No</td><td>-0.7733</td><td>0.0000</td><td>Yes</td></tr>
+	<tr><td>Correct (no BMI)    </td><td>-0.0044</td><td>0.0448</td><td>0.9218</td><td>No </td></tr>
+	<tr><td>Incorrect (with BMI)</td><td> 0.0715</td><td>0.0183</td><td>0.0001</td><td>Yes</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
-<p>This example illustrates the dangers of collider bias in genetic association studies. The correct analysis shows no significant associations between genetic variants and waist circumference, which reflects the true underlying biology since we generated the data with no direct causal pathway between them. However, when we incorrectly adjust for BMI (the collider), we observe spurious significant associations. This occurs because BMI is causally influenced by both the genetic variants and waist circumference, so conditioning on BMI creates an artificial correlation between the variants and waist circumference. In real-world studies, researchers must carefully consider the causal structure of their variables to avoid such biased conclusions that could mislead scientific understanding and clinical decision-making.</p>
+<p>This example shows how controlling for BMI creates a false association between a genetic variant and waist circumference, even though no true biological relationship exists. The “controlling for everything” approach that seems so intuitive actually generates bias.</p>
+<p>The key lesson: <strong>Before adjusting for any variable, ask whether it could be caused by both your exposure and outcome.</strong> If yes, conditioning on it may introduce collider bias rather than remove confounding.</p>
+<p>In real studies, this type of bias could lead to false discoveries, wasted resources chasing non-existent mechanisms, and potentially harmful clinical recommendations based on spurious associations.</p>
 </section>
 
     <script type="text/x-thebe-config">

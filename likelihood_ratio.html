@@ -652,9 +652,8 @@ document.write(`
 <ul class="simple">
 <li><p>Requires <strong>nested models</strong> - cannot compare non-nested models</p>
 <ul>
-<li><p><strong>Common mistake</strong>: Taking likelihood ratios between different variants (e.g., Variant A vs Variant B) and assuming it follows χ² distribution for variant selection</p></li>
-<li><p><strong>Why this fails</strong>: Models with different variants are non-nested - neither is a subset of the other</p></li>
-<li><p><strong>Correct usage</strong>: Only compare models where one is a restricted version of the other</p></li>
+<li><p><strong>Counterexample</strong>: Taking likelihood ratios between different variants (e.g., Variant A vs Variant B) and assuming it follows <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution for variant selection. This is incorrect because models with different variants are <strong>non-nested - neither is a subset of the other</strong></p></li>
+<li><p>You can compute the likelihood ratio, but you cannot conduct a likelihood ratio test</p></li>
 </ul>
 </li>
 <li><p><strong>Asymptotic approximation</strong> may be poor with small sample sizes</p></li>

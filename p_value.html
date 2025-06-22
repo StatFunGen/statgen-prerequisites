@@ -548,7 +548,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-limitation-asymmetric-logic">Critical Limitation: Asymmetric Logic</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-bayesian-inference">Connection to Bayesian Inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-bayesian-inference-contrast-with-bayesian-inference">Connection to Bayesian Inference [Contrast with Bayesian Inference]</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
@@ -558,8 +558,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-question-how-extreme-is-our-result">The Key Question: How Extreme Is Our Result?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-mathematical-answer">The “Exact” Mathematical Answer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-p-value-actually-mean">What Does This P-value Actually Mean?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-see-what-would-convince-us">Let’s See What Would Convince Us</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bottom-line">The Bottom Line</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
@@ -588,7 +586,7 @@ document.write(`
 <p>The p-value represents the probability of observing a test statistic at least as extreme as what was actually observed, assuming the null hypothesis is true.</p>
 <div class="math notranslate nohighlight">
 \[
-p\text{-value} = P(\text{Test Statistic is as extreme or more extreme than observed} | H_0 \text{is true})
+p\text{-value} = P(\text{Test Statistic is as extreme or more extreme than observed} | H_0 \text{ is true})
 \]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
@@ -618,12 +616,13 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 <li><p><strong>Rejected</strong> (when <span class="math notranslate nohighlight">\(p\text{-value} \leq \alpha\)</span>): Strong evidence against <span class="math notranslate nohighlight">\(H_0\)</span></p></li>
 <li><p><strong>Not rejected</strong> (when <span class="math notranslate nohighlight">\(p\text{-value} &gt; \alpha\)</span>): Insufficient evidence to reject <span class="math notranslate nohighlight">\(H_0\)</span></p></li>
 </ul>
-<p>“Not rejected” is not “accepted” or “true”. Absence of evidence is not evidence of absence.</p>
 </section>
 </section>
-<section id="connection-to-bayesian-inference">
-<h2>Connection to Bayesian Inference<a class="headerlink" href="#connection-to-bayesian-inference" title="Link to this heading">#</a></h2>
+<section id="connection-to-bayesian-inference-contrast-with-bayesian-inference">
+<h2>Connection to Bayesian Inference [Contrast with Bayesian Inference]<a class="headerlink" href="#connection-to-bayesian-inference-contrast-with-bayesian-inference" title="Link to this heading">#</a></h2>
 <ul>
+<li><p>In frequentist, “Not rejected” is not “accepted” or “true”. Absence of evidence is not evidence of absence. P(H_1|D) — confidence interval — actually fail to reject H0</p></li>
+<li><p>Bayesian directly measure P(H_1|D)</p></li>
 <li><p>P-values are almost always reported in <strong>summary statistics</strong>, but it is not inference. They summarize how compatible the observed data is with <span class="math notranslate nohighlight">\(H_0\)</span>, but they don’t directly provide probabilistic statements about hypotheses.</p></li>
 <li><p>In Bayesian inference, we actually can calculate the following directly:</p>
 <div class="math notranslate nohighlight">
@@ -794,52 +793,6 @@ Difference: 0.00415
 <li><p><strong>We fail to reject the null hypothesis</strong> that the coin is fair</p></li>
 </ul>
 </section>
-<section id="let-s-see-what-would-convince-us">
-<h2>Let’s See What Would Convince Us<a class="headerlink" href="#let-s-see-what-would-convince-us" title="Link to this heading">#</a></h2>
-<p>What if we had gotten more extreme results? Let’s check:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test different scenarios</span>
-<span class="n">scenarios</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">heads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">5</span><span class="p">,</span>
-<span class="w">  </span><span class="n">p_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pbinom</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="n">scenarios</span><span class="p">)</span>
-
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nInteresting thresholds:\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- 1 head or fewer: p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pbinom</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;- 2 heads or fewer: p =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pbinom</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  heads     p_value
-1     0 0.001953125
-2     1 0.021484375
-3     2 0.109375000
-4     3 0.343750000
-5     4 0.753906250
-6     5 1.246093750
-
-Interesting thresholds:
-- 1 head or fewer: p = 0.0215 
-- 2 heads or fewer: p = 0.1094 
-</pre></div>
-</div>
-</div>
-</div>
-<p>So if we had gotten only 1 head out of 10 flips, the p-value would be about 0.02 - now THAT would be pretty suspicious for a fair coin!</p>
-</section>
-<section id="the-bottom-line">
-<h2>The Bottom Line<a class="headerlink" href="#the-bottom-line" title="Link to this heading">#</a></h2>
-<p>P-values answer the question: <strong>“How surprised should I be by this data if my hypothesis were true?”</strong></p>
-<ul class="simple">
-<li><p><strong>High p-value (like our 0.34)</strong>: Not surprised at all, data is consistent with hypothesis</p></li>
-<li><p><strong>Low p-value (like &lt; 0.05)</strong>: Very surprised, data seems inconsistent with hypothesis</p></li>
-</ul>
-<p>Our coin? It’s probably fair - we just got unlucky with our 10 flips!</p>
-</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="supplementary">
 <h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
@@ -922,7 +875,7 @@ Interesting thresholds:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-limitation-asymmetric-logic">Critical Limitation: Asymmetric Logic</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-bayesian-inference">Connection to Bayesian Inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-bayesian-inference-contrast-with-bayesian-inference">Connection to Bayesian Inference [Contrast with Bayesian Inference]</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
@@ -932,8 +885,6 @@ Interesting thresholds:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-question-how-extreme-is-our-result">The Key Question: How Extreme Is Our Result?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-mathematical-answer">The “Exact” Mathematical Answer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-p-value-actually-mean">What Does This P-value Actually Mean?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-see-what-would-convince-us">Let’s See What Would Convince Us</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bottom-line">The Bottom Line</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a></li>
