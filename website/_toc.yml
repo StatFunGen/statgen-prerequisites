@@ -71,7 +71,7 @@ parts:
   
   - caption: Multiple Bayesian models
     chapters:
-        - file: Bayesian_mixture_model
         - file: Bayesian_model_comparison
+        - file: Bayesian_mixture_model
 
 
