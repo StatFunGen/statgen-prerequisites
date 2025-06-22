@@ -577,7 +577,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics">
 <h1>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Link to this heading">#</a></h1>
-<p>Summary statistics in genetics capture how each genetic variant relates to a trait, where <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> for a SNP is a noisy measurement of the X-Y relationship</p>
+<p>Summary statistics in genetics capture how each genetic variant relates to a trait, where <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> for a SNP is a noisy measurement of the association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -706,7 +706,7 @@ P = 2 \times (1 - \Phi(|Z|))
 \[
 \hat{\beta}_j \sim N(\beta_j, \sigma^2)
 \]</div>
-<p>Here, <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> is treated as a noisy observation of the true parameter <span class="math notranslate nohighlight">\(\beta_j\)</span> and the <strong>noisy</strong> comes from the assumption that it comes from a distribution rather than a fixed value. This allows Bayesian methods to quantify the uncertainty and place informative priors on effect sizes.</p>
+<p>Here, <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> is treated as a noisy observation of the true parameter <span class="math notranslate nohighlight">\(\beta_j\)</span> and the <strong>noise</strong> comes from the assumption that it comes from a distribution rather than a fixed value. This allows Bayesian methods to quantify the uncertainty and place informative priors on effect sizes.</p>
 <p><em>Note: Don’t worry if this Bayesian perspective seems abstract right now. We recommend revisiting this section after reading through the topics in the Related Topics section, which will provide concrete examples of how this framework is applied in practice.</em></p>
 </section>
 </section>
