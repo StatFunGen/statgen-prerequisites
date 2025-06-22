@@ -753,34 +753,42 @@ $<span class="math notranslate nohighlight">\(
 <section id="analytical-solution">
 <h3>Analytical Solution<a class="headerlink" href="#analytical-solution" title="Link to this heading">#</a></h3>
 <p>In this simple case, we can calculate <span class="math notranslate nohighlight">\(\hat{f_T}\)</span> analytically using calculus:</p>
-<p><strong>Step 1</strong>: Take the natural logarithm of the likelihood function:
-$<span class="math notranslate nohighlight">\(
+<p><strong>Step 1</strong>: Take the natural logarithm of the likelihood function:</p>
+<div class="math notranslate nohighlight">
+\[
 \ell(f_T \mid \text{D}) = \ln(2) + 3\ln(f_T) + 7\ln(1-f_T)
-\)</span>$</p>
-<p><strong>Step 2</strong>: Find the critical point by taking the derivative and setting it to zero:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p><strong>Step 2</strong>: Find the critical point by taking the derivative and setting it to zero:</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{d\ell(f_T \mid \text{D})}{df_T} = \frac{3}{f_T} - \frac{7}{1-f_T} = 0
-\)</span>$</p>
-<p><strong>Step 3</strong>: Solve for <span class="math notranslate nohighlight">\(f_T\)</span>:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p><strong>Step 3</strong>: Solve for <span class="math notranslate nohighlight">\(f_T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{3}{f_T} = \frac{7}{1-f_T}
-\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 3(1-f_T) = 7f_T
-\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 3 - 3f_T = 7f_T
-\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 3 = 10f_T
-\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 f_T = \frac{3}{10} = 0.3
-\)</span>$</p>
-<p><strong>Step 4</strong>: Verify it’s a maximum by checking the second derivative:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p><strong>Step 4</strong>: Verify it’s a maximum by checking the second derivative:</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{d^2\ell(f_T \mid \text{D})}{df_T^2} = -\frac{3}{f_T^2} - \frac{7}{(1-f_T)^2} &lt; 0
-\)</span>$</p>
+\]</div>
 <p>This is always negative for <span class="math notranslate nohighlight">\(f_T \in (0,1)\)</span>, confirming we have a maximum.</p>
 </section>
 </section>
@@ -819,6 +827,12 @@ $<span class="math notranslate nohighlight">\(
 
 <span class="c1"># Generate phenotype with true effect</span>
 <span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">true_sd</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;true effect beta =&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">true_beta</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true effect beta = 0.4 
 </pre></div>
 </div>
 </div>
