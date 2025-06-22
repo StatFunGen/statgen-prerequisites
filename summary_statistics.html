@@ -541,7 +541,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics-as-data-input">Summary Statistics as Data Input</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-statistics">From OLS to Summary Statistics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-measurements-for-analysis">Standardized Measurements for Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-gwas-data-format">Standard GWAS Data Format</a></li>
@@ -577,7 +576,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics">
 <h1>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Link to this heading">#</a></h1>
-<p>Summary statistics in genetics capture how each genetic variant relates to a trait, where <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> for a SNP is a noisy measurement of the association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>Summary statistics in genetics capture how each genetic variant relates to a trait, where <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> for a SNP is a noisy measurement of the association between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, representing the primary data input for most post-GWAS analyses, allowing researchers to share these standardized <span class="math notranslate nohighlight">\(X\)</span>-<span class="math notranslate nohighlight">\(Y\)</span> relationship measurements instead of raw genotype and phenotype data.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -594,10 +593,6 @@ Z = \frac{\hat{\beta}}{\text{SE}(\hat{\beta})}
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<section id="summary-statistics-as-data-input">
-<h2>Summary Statistics as Data Input<a class="headerlink" href="#summary-statistics-as-data-input" title="Link to this heading">#</a></h2>
-<p>Summary statistics represent the primary data format for most post-GWAS analyses. Rather than sharing raw genotype and phenotype data, researchers distribute these standardized measurements which capture the essential X-Y relationships needed for downstream methods.</p>
-</section>
 <section id="from-ols-to-summary-statistics">
 <h2>From OLS to Summary Statistics<a class="headerlink" href="#from-ols-to-summary-statistics" title="Link to this heading">#</a></h2>
 <p>When we perform GWAS analysis using OLS regression on standardized data (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> scaled to mean 0 and variance 1), we obtain:</p>
@@ -1252,7 +1247,6 @@ Warning message:
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics-as-data-input">Summary Statistics as Data Input</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-ols-to-summary-statistics">From OLS to Summary Statistics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-measurements-for-analysis">Standardized Measurements for Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-gwas-data-format">Standard GWAS Data Format</a></li>
