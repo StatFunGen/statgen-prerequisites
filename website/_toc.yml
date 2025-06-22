@@ -4,12 +4,9 @@ root: README
 
 parts:
 
-  - caption: Notations
-    chapters:
-      - file: notations
-  
   - caption: Popular Topics and Related Notebooks
     chapters:
+      - file: notations
       - file: popular_topics
   
   - caption: Basic Concepts
