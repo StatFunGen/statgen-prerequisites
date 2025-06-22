@@ -615,16 +615,20 @@ Y = \beta_0 + \beta_1 X + \beta_2 W_1 + \beta_3 W_2 + \ldots + \epsilon
 <li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> = the <strong>unbiased</strong> effect of the genetic variant</p></li>
 </ul>
 <p>Here are the common approaches in genetic studies:</p>
-<ul class="simple">
-<li><p>Principal Components (Most Common): Control for population structure by including top PCs:
-$<span class="math notranslate nohighlight">\(
-\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + PC1 + PC2 + PC3 + Age + Sex
-\)</span>$</p></li>
-<li><p>Linear Mixed Models: Use genetic relationship matrices for complex population structure:
-$<span class="math notranslate nohighlight">\(
-\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{Zu} + \boldsymbol{\epsilon}
-\)</span><span class="math notranslate nohighlight">\(
-  where \)</span>\mathbf{u} \sim N(0, \sigma^2 G)$, G is kinship matrix</p></li>
+<ul>
+<li><p>Principal Components (Most Common): Control for population structure by including top PCs:</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + PC1 + PC2 + PC3 + Age + Sex
+  \]</div>
+</li>
+<li><p>Linear Mixed Models: Use genetic relationship matrices for complex population structure:</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{Zu} + \boldsymbol{\epsilon}
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{u} \sim N(0, \sigma^2 G)\)</span>, G is kinship matrix</p>
+</li>
 <li><p>Stratified Analysis: Analyze each ancestry group separately, then combine results:</p>
 <ol class="arabic simple">
 <li><p>Europeans: Trait ~ SNP + Age + Sex</p></li>

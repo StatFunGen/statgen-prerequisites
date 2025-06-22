@@ -563,7 +563,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-mixed-model">
 <h1>Linear Mixed Model<a class="headerlink" href="#linear-mixed-model" title="Link to this heading">#</a></h1>
-<p>When we want to study a specific genetic variant as a fixed effect but know there are countless unmeasured factors affecting our trait, linear mixed models offer a practical solution: use a random effect based on genetic similarity to absorb all that unmeasured heterogeneity.</p>
+<p>When we want to study a specific genetic variant as a <strong>fixed effect</strong> but know there are <strong>countless unmeasured factors</strong> affecting our trait, linear mixed models offer a practical solution: use a <strong>random effect</strong> based on genetic similarity to absorb all that unmeasured heterogeneity.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -571,16 +571,16 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
-<p>In the linear mixed model (<strong>mixed</strong> because it incorporate both the <strong>fixed</strong> and the <strong>random</strong> effects), which accurately represent non-independent data structures,</p>
+<p>In the linear mixed model (<strong>mixed</strong> because it incorporate both the <strong>fixed</strong> and the <strong>random</strong> effects), which accurately represent non-independent data structures for a variant,</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{g} + \boldsymbol{\epsilon}
+\mathbf{Y} = \mathbf{X}\beta + \mathbf{g} + \boldsymbol{\epsilon}
 \]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of phenotypes</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is the <span class="math notranslate nohighlight">\(N \times M\)</span> design matrix for fixed effects (e.g., the specific genetic variant we’re testing, plus measurable covariates like age and sex)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> is the <span class="math notranslate nohighlight">\(M \times 1\)</span> vector of fixed effect coefficients (unknown, to be estimated)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> design matrix for fixed effects (e.g., the specific genetic variant we’re testing, plus measurable covariates like age and sex)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the scalar of fixed genetic effect coefficient (unknown, to be estimated)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbf{g}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of random effects that captures <strong>all the genetic factors we can’t or don’t want to model explicitly</strong> - population structure, polygenic background, family relationships, and countless unknown genetic influences</p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of residual errors, where <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon} \sim N(0, \sigma^2_e\mathbf{I})\)</span></p></li>
 </ul>
@@ -592,12 +592,12 @@ document.write(`
 <p>The key insight is that for a genetic variant, there are countless things to account for: age, sex, ancestry, thousands of genes and unknown ones. We can never write the complete model:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{Y} = \text{genetic variant} + \text{age} + \text{sex} + \text{ancestry} + \text{gene}_1 + \text{gene}_2 + \ldots + \text{gene}_{20000} + \text{unknown factors}
+\mathbf{Y} = \text{genetic variant} + \text{age} + \text{sex} + \text{ancestry} + \text{gene}_1 + \ldots + \text{gene}_{20000} + \text{unknown factors} + \boldsymbol{\epsilon}
 \]</div>
 <p>Instead, we approximate it as:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{Y} = \text{genetic variant} + \text{age} + \text{sex} + \mathbf{g}
+\mathbf{Y} = \text{genetic variant} + \text{age} + \text{sex} + \mathbf{g} + \boldsymbol{\epsilon}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{g}\)</span> soaks up the effects of ancestry, polygenic background, and all the other genetic factors we can’t explicitly model. It’s not as precise as conditioning on everything, but it’s the best we can do when complete conditioning is impossible.</p>
 <p><strong>What information should <span class="math notranslate nohighlight">\(\mathbf{g}\)</span> capture?</strong> Ideally, <span class="math notranslate nohighlight">\(\mathbf{g}\)</span> should include:</p>
@@ -615,8 +615,8 @@ document.write(`
 \]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> is the <span class="math notranslate nohighlight">\(N \times M\)</span> design matrix for random effects, where entry <span class="math notranslate nohighlight">\((i,j)\)</span> indicates how much random effect <span class="math notranslate nohighlight">\(j\)</span> contributes to observation <span class="math notranslate nohighlight">\(i\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span> is the <span class="math notranslate nohighlight">\(M \times 1\)</span> vector of random effects, where <span class="math notranslate nohighlight">\(\mathbf{u} \sim N(0, \sigma^2_u\mathbf{G})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> is the <span class="math notranslate nohighlight">\(N \times R\)</span> design matrix for random effects, where entry <span class="math notranslate nohighlight">\((i,j)\)</span> indicates how much a random effect contributes to observation <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span> is the <span class="math notranslate nohighlight">\(R \times 1\)</span> vector of random effects, where <span class="math notranslate nohighlight">\(\mathbf{u} \sim N(\mathbf{0}, \sigma^2_u\mathbf{G})\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span> is the genetic relationship matrix (GRM) that measures genetic similarity between individuals, effectively capturing all the unmeasured genetic factors through genome-wide similarity patterns</p></li>
 </ul>
 </section>
