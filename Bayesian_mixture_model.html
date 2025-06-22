@@ -579,7 +579,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-mixture-model">
 <h1>Bayesian Mixture Model<a class="headerlink" href="#bayesian-mixture-model" title="Link to this heading">#</a></h1>
-<p>A Bayesian mixture model arises when we cannot condition on which component generated each parameter, leaving this membership uncertain and requiring us to treat both the component assignments and parameters as random variables to quantify uncertainty about the underlying heterogeneous structure.</p>
+<p>A Bayesian mixture model arises when we <strong>cannot condition on which component generated each parameter</strong>, leaving this membership uncertain and requiring us to treat both the component assignments and parameters as random variables to quantify uncertainty about the <strong>underlying heterogeneous structure</strong>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -602,7 +602,7 @@ p(\beta) = \sum_{c=1}^{C} \pi_c p_c(\beta)
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
 <h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">random effect</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/proportion_of_variance_explained.html">proportion of variance explained and heritability</a></p></li>
@@ -691,7 +691,7 @@ P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">  </span><span class="c1"># for mvrnorm</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">29</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -794,11 +794,9 @@ P(z = c \mid \beta, \text{data}) = \frac{\pi_c p_c(\beta)}{\sum_{j=1}^C \pi_j p_
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mixture Population Summary:
 Total variants: 100 
-Null variants: 74 ( 74 %)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pleiotropic variants: 11 ( 11 %)
-Observed correlation: 0.334 
+Null variants: 77 ( 77 %)
+Pleiotropic variants: 7 ( 7 %)
+Observed correlation: 0.275 
 </pre></div>
 </div>
 </div>
@@ -830,7 +828,7 @@ Observed correlation: 0.334
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5beb3a4b39c4e7890136d36f1d840107a27f5a501c8b2c9fa6343f50605b6356.png"><img alt="_images/5beb3a4b39c4e7890136d36f1d840107a27f5a501c8b2c9fa6343f50605b6356.png" src="_images/5beb3a4b39c4e7890136d36f1d840107a27f5a501c8b2c9fa6343f50605b6356.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/77587c6f240d6ed1d4a00275d977ebdb769d5411fcb4a193329dd9c3f6954c45.png"><img alt="_images/77587c6f240d6ed1d4a00275d977ebdb769d5411fcb4a193329dd9c3f6954c45.png" src="_images/77587c6f240d6ed1d4a00275d977ebdb769d5411fcb4a193329dd9c3f6954c45.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
@@ -875,7 +873,7 @@ Observed correlation: 0.334
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/00532532bd42d83163bba59dd5d5ead788ab5f31c170147e795daf8d8068bfcb.png"><img alt="_images/00532532bd42d83163bba59dd5d5ead788ab5f31c170147e795daf8d8068bfcb.png" src="_images/00532532bd42d83163bba59dd5d5ead788ab5f31c170147e795daf8d8068bfcb.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/dc5f9e422e1291574d56e47fdcb14c79ff28319cb81609f64f48a3703debfb18.png"><img alt="_images/dc5f9e422e1291574d56e47fdcb14c79ff28319cb81609f64f48a3703debfb18.png" src="_images/dc5f9e422e1291574d56e47fdcb14c79ff28319cb81609f64f48a3703debfb18.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
@@ -953,20 +951,19 @@ Range of values: 0 2
 Mean genotype value: 0.6 
 
 Effect sizes (beta):
-Height effects range: -0.744 0.847 
-Weight effects range: -0.629 1.333 
+Height effects range: -1.162 0.601 
+Weight effects range: -1.285 0.591 
 
 Genetic values (X * beta):
-Height genetic values range: -2.37 4.65 
-Weight genetic values range: -2.49 9.18 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final phenotypes:
-Height phenotypes range: -3.57 5.34 
-Weight phenotypes range: -4.72 9.68 
-Phenotype correlation: 0.223 
-Achieved heritability - Height: 0.668 
-Achieved heritability - Weight: 0.712 
+Height genetic values range: -6.94 1.43 
+Weight genetic values range: -5.89 1.8 
+
+Final phenotypes:
+Height phenotypes range: -7.32 2.74 
+Weight phenotypes range: -7.27 4.15 
+Phenotype correlation: 0.22 
+Achieved heritability - Height: 0.721 
+Achieved heritability - Weight: 0.704 
 </pre></div>
 </div>
 </div>
@@ -1008,15 +1005,13 @@ Achieved heritability - Weight: 0.712
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mixture composition:
+- Null variants: 77 %
+- Pleiotropic variants: 7 %
+- Effect correlation: 0.275 
+- Phenotype correlation: 0.22 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Null variants: 74 %
-- Pleiotropic variants: 11 %
-- Effect correlation: 0.334 
-- Phenotype correlation: 0.223 
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="_images/0ebdc52b5fa33aaa4c12ba8e18deee72a3bdbed9434e22917a2be362091f7744.png"><img alt="_images/0ebdc52b5fa33aaa4c12ba8e18deee72a3bdbed9434e22917a2be362091f7744.png" src="_images/0ebdc52b5fa33aaa4c12ba8e18deee72a3bdbed9434e22917a2be362091f7744.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/bfcbc540cc1921aac0c73aeb9c2fa30201050746c1b93ad4b9e01948fc9aa5c0.png"><img alt="_images/bfcbc540cc1921aac0c73aeb9c2fa30201050746c1b93ad4b9e01948fc9aa5c0.png" src="_images/bfcbc540cc1921aac0c73aeb9c2fa30201050746c1b93ad4b9e01948fc9aa5c0.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
@@ -1095,13 +1090,13 @@ Component sigmas (sigma): 0 0.5 0 0.5 0.5 0.5 0.5
 <span class="w">      </span><span class="n">sigma_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sigma_mix</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
 <span class="w">      </span>
 <span class="w">      </span><span class="kr">if</span><span class="p">(</span><span class="n">sigma_beta</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1"># Null component: β = 0 exactly</span>
+<span class="w">        </span><span class="c1"># Null component: beta = 0 exactly</span>
 <span class="w">        </span><span class="c1"># Marginal likelihood: Y ~ N(μ, σ_e²)</span>
 <span class="w">        </span><span class="n">mu_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 <span class="w">        </span><span class="n">log_likelihoods</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu_null</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma_e</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
 <span class="w">        </span>
 <span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1"># Non-null component: β ~ N(0, σ_β²)</span>
+<span class="w">        </span><span class="c1"># Non-null component: beta ~ N(0, σ_beta²)</span>
 <span class="w">        </span><span class="c1"># Use normal-normal conjugacy for marginal likelihood</span>
 <span class="w">        </span>
 <span class="w">        </span><span class="n">XtX</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Xi_centered</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
@@ -1163,16 +1158,16 @@ Component sigmas (sigma): 0 0.5 0 0.5 0.5 0.5 0.5
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior component probabilities (first 10 variants):
               M0    M1    M2    M3    M4    M5    M6
-Variant 1  0.000 0.500 0.000 0.150 0.100 0.150 0.100
-Variant 2  0.778 0.055 0.111 0.017 0.011 0.017 0.011
-Variant 3  0.857 0.010 0.122 0.003 0.002 0.003 0.002
-Variant 4  0.852 0.013 0.122 0.004 0.003 0.004 0.003
-Variant 5  0.845 0.017 0.121 0.005 0.003 0.005 0.003
-Variant 6  0.852 0.013 0.122 0.004 0.003 0.004 0.003
-Variant 7  0.811 0.037 0.116 0.011 0.007 0.011 0.007
-Variant 8  0.852 0.013 0.122 0.004 0.003 0.004 0.003
-Variant 9  0.855 0.011 0.122 0.003 0.002 0.003 0.002
-Variant 10 0.850 0.014 0.121 0.004 0.003 0.004 0.003
+Variant 1  0.843 0.018 0.120 0.005 0.004 0.005 0.004
+Variant 2  0.737 0.079 0.105 0.024 0.016 0.024 0.016
+Variant 3  0.696 0.102 0.099 0.031 0.020 0.031 0.020
+Variant 4  0.854 0.012 0.122 0.004 0.002 0.004 0.002
+Variant 5  0.855 0.011 0.122 0.003 0.002 0.003 0.002
+Variant 6  0.855 0.012 0.122 0.003 0.002 0.003 0.002
+Variant 7  0.401 0.271 0.057 0.081 0.054 0.081 0.054
+Variant 8  0.842 0.019 0.120 0.006 0.004 0.006 0.004
+Variant 9  0.855 0.012 0.122 0.004 0.002 0.004 0.002
+Variant 10 0.829 0.027 0.118 0.008 0.005 0.008 0.005
 </pre></div>
 </div>
 </div>
@@ -1233,27 +1228,27 @@ Variant 10 0.850 0.014 0.121 0.004 0.003 0.004 0.003
 <span class="w">  </span><span class="n">posterior_vars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mixture_var</span>
 <span class="p">}</span>
 
-<span class="c1"># Results for first 5 variants</span>
+<span class="c1"># Results for 11th-15th variants</span>
 <span class="n">results_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span>
-<span class="w">  </span><span class="n">True_Effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_height</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Posterior_Mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_effects</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Posterior_SD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">posterior_vars</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]),</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="o">:</span><span class="m">15</span><span class="p">,</span>
+<span class="w">  </span><span class="n">True_Effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_height</span><span class="p">[</span><span class="m">11</span><span class="o">:</span><span class="m">15</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Posterior_Mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">posterior_effects</span><span class="p">[</span><span class="m">11</span><span class="o">:</span><span class="m">15</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Posterior_SD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">posterior_vars</span><span class="p">[</span><span class="m">11</span><span class="o">:</span><span class="m">15</span><span class="p">]),</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior Effect Size Estimates (first 5 variants):\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nPosterior Effect Size Estimates (the 11th-15th variants):\n&quot;</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">results_table</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior Effect Size Estimates (first 5 variants):
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior Effect Size Estimates (the 11th-15th variants):
   Variant True_Effect Posterior_Mean Posterior_SD
-1       1      -0.239         -0.313        0.040
-2       2       0.000         -0.007        0.024
-3       3       0.000          0.000        0.006
-4       4       0.000         -0.001        0.008
-5       5       0.000         -0.001        0.010
+1      11       0.601          0.657        0.047
+2      12       0.000         -0.001        0.010
+3      13       0.000          0.001        0.008
+4      14       0.000         -0.001        0.011
+5      15       0.000          0.008        0.027
 </pre></div>
 </div>
 </div>
@@ -1286,10 +1281,10 @@ Variant 10 0.850 0.014 0.121 0.004 0.003 0.004 0.003
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Comparison of mixture weights:
                        M0    M1    M2    M3    M4    M5    M6
 Prior               0.700 0.100 0.100 0.030 0.020 0.030 0.020
-Empirical_Posterior 0.602 0.156 0.086 0.047 0.031 0.047 0.031
+Empirical_Posterior 0.645 0.131 0.092 0.039 0.026 0.039 0.026
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/efd3c0e72d85f30697bf3eaa01ae7fa8fecce1d5349eeb97ecc10ea5b53cf66d.png"><img alt="_images/efd3c0e72d85f30697bf3eaa01ae7fa8fecce1d5349eeb97ecc10ea5b53cf66d.png" src="_images/efd3c0e72d85f30697bf3eaa01ae7fa8fecce1d5349eeb97ecc10ea5b53cf66d.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/dd9a0b6c4449c13ce6af933f6055021d8462e2480295080b6ba92c862688d87a.png"><img alt="_images/dd9a0b6c4449c13ce6af933f6055021d8462e2480295080b6ba92c862688d87a.png" src="_images/dd9a0b6c4449c13ce6af933f6055021d8462e2480295080b6ba92c862688d87a.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
