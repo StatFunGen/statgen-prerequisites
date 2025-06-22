@@ -567,10 +567,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayes-rule">
 <h1>Bayes Rule<a class="headerlink" href="#bayes-rule" title="Link to this heading">#</a></h1>
-<blockquote>
-<div><p>Being a Frequentist is all about evaluating what happens if I do this procedure in long-run practice across a population of situations, and choosing procedures that work well across this population; then, when faced with one real situation, assume that this one situation is randomly drawn from all possible situations; subtleties involve conditioning on observed aspects of the real situation to choose more apposite procedures. Bayesians attempt to condition on everything that is known, implying that everything that is unknown has a distribution.</p>
-<p>Quote from Donald Rubin</p>
-</div></blockquote>
+<p>Bayes’ rule arises when you want to make statements about an unknown quantity (e.g., a parameter, hypothesis, or event) given everything you know about a specific situation (data, and generative model for the data) so you can condition on all the knowns and treat the unknown as distributions, scaled by the overall likelihood of data to calibrate.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -736,7 +733,7 @@ P(\theta|D) = \frac{P(D|\theta) × P(\theta)} {P(D)}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prior probabilities (must sum to 1)</span>
-<span class="n">priors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w">  </span><span class="c1"># P(beta=0)=0.6, P(beta=0.5)=0.3, P(beta=1.0)=0.1</span>
+<span class="n">priors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.35</span><span class="p">,</span><span class="w"> </span><span class="m">0.35</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -784,9 +781,9 @@ P(\theta|D) = \frac{P(D|\theta) × P(\theta)} {P(D)}
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>beta=0</th><td>beta=0  </td><td>0.6</td><td>0.0019210299</td><td>0.60542181</td></tr>
-	<tr><th scope=row>beta=0.5</th><td>beta=0.5</td><td>0.3</td><td>0.0021961524</td><td>0.34606398</td></tr>
-	<tr><th scope=row>beta=1.0</th><td>beta=1.0</td><td>0.1</td><td>0.0009236263</td><td>0.04851421</td></tr>
+	<tr><th scope=row>beta=0</th><td>beta=0  </td><td>0.35</td><td>0.0019210299</td><td>0.3913392</td></tr>
+	<tr><th scope=row>beta=0.5</th><td>beta=0.5</td><td>0.35</td><td>0.0021961524</td><td>0.4473852</td></tr>
+	<tr><th scope=row>beta=1.0</th><td>beta=1.0</td><td>0.30</td><td>0.0009236263</td><td>0.1612756</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -815,7 +812,7 @@ P(\theta|D) = \frac{P(D|\theta) × P(\theta)} {P(D)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/40ca9a94ef2ce56a98b51f3f32cda1ae03e489367ac79e6096a5b419b2e4ae18.png"><img alt="_images/40ca9a94ef2ce56a98b51f3f32cda1ae03e489367ac79e6096a5b419b2e4ae18.png" src="_images/40ca9a94ef2ce56a98b51f3f32cda1ae03e489367ac79e6096a5b419b2e4ae18.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/f67e203a2c1fabaef604a97c56bff03dd9ea160ecf6612938d9286475a23d52b.png"><img alt="_images/f67e203a2c1fabaef604a97c56bff03dd9ea160ecf6612938d9286475a23d52b.png" src="_images/f67e203a2c1fabaef604a97c56bff03dd9ea160ecf6612938d9286475a23d52b.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
@@ -910,7 +907,7 @@ The following objects are masked from &#39;package:base&#39;:
     intersect, setdiff, setequal, union
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/3e696705a261ce0d10b4e88614903e676a6a39e61ca2857eb347fd3dc9760a39.png"><img alt="_images/3e696705a261ce0d10b4e88614903e676a6a39e61ca2857eb347fd3dc9760a39.png" src="_images/3e696705a261ce0d10b4e88614903e676a6a39e61ca2857eb347fd3dc9760a39.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/e0c16e23fe5739308f37e4fb034086e9901ce7be43db05ea28a14324d660bbb5.png"><img alt="_images/e0c16e23fe5739308f37e4fb034086e9901ce7be43db05ea28a14324d660bbb5.png" src="_images/e0c16e23fe5739308f37e4fb034086e9901ce7be43db05ea28a14324d660bbb5.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
