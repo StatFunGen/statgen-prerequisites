@@ -3,6 +3,7 @@ format: jb-book
 root: README
 
 parts:
+
   - caption: Notations
     chapters:
       - file: notations
