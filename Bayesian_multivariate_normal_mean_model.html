@@ -584,7 +584,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-multivariate-normal-mean-model">
 <h1>Bayesian Multivariate Normal Mean Model<a class="headerlink" href="#bayesian-multivariate-normal-mean-model" title="Link to this heading">#</a></h1>
-<p>The Bayesian multivariate normal mean model extends the univariate case by treating multiple unknown mean parameters as jointly uncertain through a multivariate normal distribution, then conditioning on observed data while accounting for correlations between parameters, which allows uncertainty about one parameter to inform and reduce uncertainty about others in ways that independent analyses cannot achieve.</p>
+<p>The Bayesian multivariate normal mean model extends the univariate case by treating <strong>multiple unknown mean parameters</strong> as <strong>jointly uncertain</strong> through a multivariate normal distribution, then conditioning on observed data while accounting for correlations between parameters, which allows uncertainty about one parameter to inform and reduce uncertainty about others in ways that independent analyses cannot achieve.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -639,53 +639,56 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\rho_0, \rho_1\)</span> = prior and posterior correlations quantifying how uncertainty about one parameter relates to uncertainty about the other</p></li>
 </ul>
 <p><strong>This general framework encompasses several things we have discussed previously as special cases</strong>:</p>
-<ul class="simple">
-<li><p><strong>Random Effects Meta-Analysis</strong></p></li>
-</ul>
+<ul>
+<li><p><strong>Random Effects Meta-Analysis</strong></p>
 <p>When <span class="math notranslate nohighlight">\(\rho_0 = 0\)</span> and <span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0} = \sigma\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{pmatrix}
-\sigma^2 &amp; 0 \\
-0 &amp; \sigma^2
-\end{pmatrix}
-\end{split}\]</div>
+  \begin{pmatrix}
+  \sigma^2 &amp; 0 \\
+  0 &amp; \sigma^2
+  \end{pmatrix}
+  \end{split}\]</div>
 <ul class="simple">
 <li><p><strong>No correlation</strong> between trait effects (<span class="math notranslate nohighlight">\(\rho_0 = 0\)</span>)</p></li>
 <li><p><strong>Equal uncertainty</strong> for both traits (<span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0}\)</span>)</p></li>
 <li><p>Effects are independent but equally variable across studies</p></li>
-<li><p><strong>Fixed Effects Meta-Analysis</strong></p></li>
 </ul>
+</li>
+<li><p><strong>Fixed Effects Meta-Analysis</strong></p>
 <p>When <span class="math notranslate nohighlight">\(\sigma_{a,0} = \sigma_{b,0}\)</span> and <span class="math notranslate nohighlight">\(\rho_0 = 1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{pmatrix}
-\sigma^2 &amp; \sigma^2 \\
-\sigma^2 &amp; \sigma^2
-\end{pmatrix}
-\end{split}\]</div>
+  \begin{pmatrix}
+  \sigma^2 &amp; \sigma^2 \\
+  \sigma^2 &amp; \sigma^2
+  \end{pmatrix}
+  \end{split}\]</div>
 <ul class="simple">
 <li><p><strong>Perfect correlation</strong> between trait effects (<span class="math notranslate nohighlight">\(\rho_0 = 1\)</span>)</p></li>
 <li><p><strong>Equal uncertainty</strong> for both traits</p></li>
 <li><p>Effects move together completely - if one is high, the other is high</p></li>
-<li><p><strong>Trait-Specific Effects</strong>
-When <span class="math notranslate nohighlight">\(\sigma_{a,0} = 0\)</span> or <span class="math notranslate nohighlight">\(\sigma_{b,0} = 0\)</span>:</p></li>
 </ul>
+</li>
+<li><p><strong>Trait-Specific Effects</strong>
+When <span class="math notranslate nohighlight">\(\sigma_{a,0} = 0\)</span> or <span class="math notranslate nohighlight">\(\sigma_{b,0} = 0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{pmatrix}
-0 &amp; 0 \\
-0 &amp; \sigma_{b,0}^2
-\end{pmatrix} \quad \text{or} \quad
-\begin{pmatrix}
-\sigma_{a,0}^2 &amp; 0 \\
-0 &amp; 0
-\end{pmatrix}
-\end{split}\]</div>
+  \begin{pmatrix}
+  0 &amp; 0 \\
+  0 &amp; \sigma_{b,0}^2
+  \end{pmatrix} \quad \text{or} \quad
+  \begin{pmatrix}
+  \sigma_{a,0}^2 &amp; 0 \\
+  0 &amp; 0
+  \end{pmatrix}
+  \end{split}\]</div>
 <ul class="simple">
 <li><p><strong>One trait has no effect</strong> (zero variance)</p></li>
 <li><p><strong>Other trait varies</strong> across studies</p></li>
 <li><p>Variant affects only one trait</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="technical-details">

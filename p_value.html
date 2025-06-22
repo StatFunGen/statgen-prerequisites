@@ -575,7 +575,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="p-value">
 <h1>p-value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h1>
-<p>In null-hypothesis significance testing, the p-value is the probability of obtaining test results at least as extreme as the result actually observed, under the assumption that the null hypothesis is correct.</p>
+<p>In null-hypothesis significance testing, the p-value is <strong>the probability of obtaining test results at least as extreme as the result actually observed</strong>, under the assumption that the <strong>null hypothesis is correct</strong>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
@@ -645,7 +645,7 @@ p\text{-value} &amp;= 2 \times P(T \geq |t| | H_0) \quad \text{[two-tailed test]
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
 <h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a></p></li>
+<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
 <li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/Bayes_factor.html">Bayes factor</a></p></li>
@@ -686,7 +686,7 @@ That&#39;s  30 % heads
 <p>Let’s simulate what happens when we flip a fair coin 10 times, thousands of times over:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">29</span><span class="p">)</span><span class="w">  </span><span class="c1"># For reproducible results</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">25</span><span class="p">)</span><span class="w">  </span><span class="c1"># For reproducible results</span>
 <span class="n">n_simulations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10000</span>
 
 <span class="c1"># Simulate 10,000 experiments of flipping a fair coin 10 times</span>
@@ -705,7 +705,7 @@ That&#39;s  30 % heads
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>3</li><li>4</li><li>3</li><li>4</li><li>5</li><li>3</li><li>7</li><li>7</li><li>3</li><li>4</li><li>8</li><li>5</li><li>4</li><li>6</li><li>4</li><li>6</li><li>6</li><li>4</li><li>7</li><li>4</li></ol>
+<ol class=list-inline><li>5</li><li>6</li><li>3</li><li>7</li><li>3</li><li>8</li><li>6</li><li>4</li><li>3</li><li>4</li><li>4</li><li>4</li><li>8</li><li>5</li><li>6</li><li>3</li><li>5</li><li>6</li><li>5</li><li>6</li></ol>
 </div></div>
 </div>
 <div class="cell docutils container">
@@ -728,7 +728,7 @@ That&#39;s  30 % heads
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b4894a0188fd61fdd1884a636928715b014d93ca78ca696271bf17f2730c514f.png"><img alt="_images/b4894a0188fd61fdd1884a636928715b014d93ca78ca696271bf17f2730c514f.png" src="_images/b4894a0188fd61fdd1884a636928715b014d93ca78ca696271bf17f2730c514f.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/bf35b276e77e4a8c2dfa2677ae7d59e42a9c371aef79c127ce19473998a932e3.png"><img alt="_images/bf35b276e77e4a8c2dfa2677ae7d59e42a9c371aef79c127ce19473998a932e3.png" src="_images/bf35b276e77e4a8c2dfa2677ae7d59e42a9c371aef79c127ce19473998a932e3.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>
@@ -756,10 +756,10 @@ That&#39;s  30 % heads
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Out of 10000 simulations:
-- Got 3 or fewer heads: 1762 times
-- Got 7 or more heads: 1717 times
-- Total extreme results: 3479 
-- P-value (simulated): 0.3479 
+- Got 3 or fewer heads: 1675 times
+- Got 7 or more heads: 1748 times
+- Total extreme results: 3423 
+- P-value (simulated): 0.3423 
 </pre></div>
 </div>
 </div>
@@ -781,8 +781,8 @@ That&#39;s  30 % heads
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exact p-value: 0.3438 
-Simulated p-value: 0.3479 
-Difference: 0.00415 
+Simulated p-value: 0.3423 
+Difference: 0.00145 
 </pre></div>
 </div>
 </div>
