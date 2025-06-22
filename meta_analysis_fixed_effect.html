@@ -589,22 +589,25 @@ document.write(`
 <h2>Why Do We Need Meta-Analysis?<a class="headerlink" href="#why-do-we-need-meta-analysis" title="Link to this heading">#</a></h2>
 <p><strong>Individual studies have limitations:</strong></p>
 <ul class="simple">
-<li><p>Small sample sizes → low statistical power</p></li>
-<li><p>Population-specific effects → limited generalizability</p></li>
-<li><p>Random variation → unreliable estimates</p></li>
+<li><p>Small sample sizes -&gt; low statistical power</p></li>
+<li><p>Population-specific effects -&gt; limited generalizability</p></li>
+<li><p>Random variation -&gt; unreliable estimates</p></li>
 </ul>
 <p><strong>Meta-analysis provides:</strong></p>
 <ul class="simple">
-<li><p>Larger effective sample size → higher power to detect true effects</p></li>
-<li><p>More precise effect estimates → narrower confidence intervals</p></li>
-<li><p>Broader population representation → better generalizability</p></li>
+<li><p>Larger effective sample size -&gt; higher power to detect true effects</p></li>
+<li><p>More precise effect estimates -&gt; narrower confidence intervals</p></li>
+<li><p>Broader population representation -&gt; better generalizability</p></li>
 </ul>
 </section>
 <section id="how-the-weighting-works">
 <h2>How the Weighting Works<a class="headerlink" href="#how-the-weighting-works" title="Link to this heading">#</a></h2>
 <p>The key insight is that <strong>not all studies should contribute equally</strong>. Studies with more information should have more influence on the final result.</p>
-<p><strong>Weight is based on precision:</strong>
-$<span class="math notranslate nohighlight">\(w_k = \frac{1}{\text{SE}_k^2}\)</span>$</p>
+<p><strong>Weight is based on precision:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+w_k = \frac{1}{\text{SE}_k^2}
+\]</div>
 <p>Where <span class="math notranslate nohighlight">\(\text{SE}_k\)</span> is the standard error of study <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <p><strong>This means:</strong></p>
 <ul class="simple">

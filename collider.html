@@ -649,7 +649,7 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 <p>Imagine you’re studying the relationship between genetic variants and waist circumference. You might think: “Since BMI is related to both genetics and body measurements, I should control for it to get a cleaner analysis, right?”</p>
 <p>Wrong! This intuitive approach can actually create false associations where none exist.</p>
 <p>Here’s the puzzle: What happens when we study the relationship between genetic variants and waist circumference, with and without “controlling” for BMI? You might expect that adding more variables to your model would make your analysis more accurate, but sometimes it can completely mislead you.</p>
-<p>We’ll explore this using a simple simulation where we know the true relationships: genetic variants affect BMI, waist circumference also affects BMI, but there’s no direct connection between genetics and waist circumference. The key question is: <em>What happens to our results when we incorrectly adjust for a variable that sits “in the middle” of our causal pathway?</em></p>
+<p>We’ll explore this using a simple simulation where we know the true relationships: genetic variants affect BMI, waist circumference also affects BMI, but there’s no direct connection between genetics and waist circumference. The key question is: <em>What happens to our results when we incorrectly adjust for a variable that are affected by both the genetic variants and also the trait?</em></p>
 <p>Let’s first generate the data for genotype variants, BMI and the waist circumference (independent of genetics).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

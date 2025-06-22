@@ -592,7 +592,9 @@ document.write(`
 <h2>Components of Variance<a class="headerlink" href="#components-of-variance" title="Link to this heading">#</a></h2>
 <p>Any phenotype can be modeled as the sum of genetic and environmental effects:</p>
 <div class="math notranslate nohighlight">
-\[\text{Phenotype}_(P) = \text{Genotype}_(G) + \text{Environment}_(E)\]</div>
+\[
+\text{Phenotype} (P) = \text{Genotype} (G) + \text{Environment} (E)
+\]</div>
 <p>The phenotypic variance in the trait can then be partitioned as:</p>
 <div class="math notranslate nohighlight">
 \[\text{Var}_P = \text{Var}_G + \text{Var}_E + 2\text{Cov}(G,E)\]</div>
@@ -676,7 +678,7 @@ document.write(`
 </div>
 <section id="random-effect">
 <h2>Random effect<a class="headerlink" href="#random-effect" title="Link to this heading">#</a></h2>
-<p>Following the example in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">random effect</a>, we then calculate the PVE of the variants.</p>
+<p>Following the example in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/random_effect.html">Lecture: random effect</a>, we then calculate the PVE of the variants.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
