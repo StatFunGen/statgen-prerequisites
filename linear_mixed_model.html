@@ -615,9 +615,11 @@ document.write(`
 \]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> is the <span class="math notranslate nohighlight">\(N \times R\)</span> design matrix for random effects, where entry <span class="math notranslate nohighlight">\((i,j)\)</span> indicates how much a random effect contributes to observation <span class="math notranslate nohighlight">\(i\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span> is the <span class="math notranslate nohighlight">\(R \times 1\)</span> vector of random effects, where <span class="math notranslate nohighlight">\(\mathbf{u} \sim N(\mathbf{0}, \sigma^2_u\mathbf{G})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{g}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of random effects for <span class="math notranslate nohighlight">\(N\)</span> individuals, where <span class="math notranslate nohighlight">\(\mathbf{g} \sim N(\mathbf{0}, \sigma^2_g\mathbf{G})\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbf{G}\)</span> is the genetic relationship matrix (GRM) that measures genetic similarity between individuals, effectively capturing all the unmeasured genetic factors through genome-wide similarity patterns</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> is the <span class="math notranslate nohighlight">\(N \times M\)</span> genotype matrix for <span class="math notranslate nohighlight">\(M\)</span> genetic variants</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{u} \sim N(0, \sigma_u^2\mathbf{I})\)</span> is a <span class="math notranslate nohighlight">\(M \times 1\)</span> vector of random SNP effects</p></li>
+<li><p>Formally known as the infinitesmal model</p></li>
 </ul>
 </section>
 <section id="popular-lmm-methods-in-statistical-genetics">
@@ -639,7 +641,7 @@ document.write(`
 <tr class="row-odd"><td><p><strong>GEMMA</strong></p></td>
 <td><p>Fast genome-wide association studies with population structure control</p></td>
 <td><p>Efficient algorithms for large-scale GWAS with kinship correction</p></td>
-<td><p>Computationally efficient for biobank-scale data</p></td>
+<td><p>Computationally efficient for large-scale data</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>BOLT-LMM</strong></p></td>
 <td><p>Ultra-fast mixed model association testing</p></td>
@@ -653,8 +655,8 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p><strong>REGENIE</strong></p></td>
 <td><p>Whole genome regression with prediction</p></td>
-<td><p>Two-step procedure combining whole-genome regression with mixed models</p></td>
-<td><p>Robust to population stratification and relatedness</p></td>
+<td><p>Two-step procedure combining whole-genome regression to solve mixed models</p></td>
+<td><p>Use ridge regression instead of conventional LMM</p></td>
 </tr>
 </tbody>
 </table>
