@@ -31,10 +31,11 @@ Computational codes accompany the 1-day lecture on statistics background in stat
 | | | [Bayes Rule](https://gaow.github.io/statgen-prerequisites/Bayes_rule.html) |
 | | | [Bayes Factor](https://gaow.github.io/statgen-prerequisites/Bayes_factor.html) |
 | | | [P-value](https://gaow.github.io/statgen-prerequisites/p_value.html) |
-| | Bayesian Models | [Bayesian Normal Mean Model](https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html) |
+| | Bayesian Model | [Bayesian Normal Mean Model](https://gaow.github.io/statgen-prerequisites/Bayesian_normal_mean_model.html) |
 | | | [Bayesian Multivariate Normal Mean Model](https://gaow.github.io/statgen-prerequisites/Bayesian_multivariate_normal_mean_model.html) |
+| | Multiple Bayesian Models | [Bayesian Model Comparison](https://gaow.github.io/statgen-prerequisites/Bayesian_model_comparison.html) |
 | | | [Bayesian Mixture Model](https://gaow.github.io/statgen-prerequisites/Bayesian_mixture_model.html) |
-| | Model Comparison/Selection | [Bayesian Model Comparison](https://gaow.github.io/statgen-prerequisites/Bayesian_model_comparison.html) |
+
 
 
 # References
