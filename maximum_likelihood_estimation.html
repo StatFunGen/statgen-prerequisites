@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -643,10 +643,10 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
 <h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/likelihood.html">likelihood</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/minor_allele_frequency.html">minor allele frequency</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
@@ -655,7 +655,7 @@ document.write(`
 <p>This is exactly what maximum likelihood estimation (MLE) does. Instead of testing a handful of theories, <strong>MLE searches across all possible parameter values to find the one that makes our observed data most likely</strong>.</p>
 <section id="example-1-allele-frequency">
 <h2>Example 1 – Allele Frequency<a class="headerlink" href="#example-1-allele-frequency" title="Link to this heading">#</a></h2>
-<p>Now let’s reconsider the question of estimating minor allele frequency. We have done this in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/minor_allele_frequency.html">Lecture: minor allele frequency</a> using simple counting, but in practice geneticists use MLE because it handles missing data naturally and provides more stable estimates with small sample sizes. Also it is impossible for you to obtain the data for every sample in the population and sequence all of them.</p>
+<p>Now let’s reconsider the question of estimating minor allele frequency. We have done this in <a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/minor_allele_frequency.html">Lecture: minor allele frequency</a> using simple counting, but in practice geneticists use MLE because it handles missing data naturally and provides more stable estimates with small sample sizes. Also it is impossible for you to obtain the data for every sample in the population and sequence all of them.</p>
 <p>We’re asking “<strong>what’s the most plausible frequency of the T allele in the population?</strong>” MLE will give us the single best estimate by finding the frequency that maximizes the likelihood of seeing exactly these genotypes.</p>
 <section id="calculate-mle-from-likelihood-function">
 <h3>Calculate MLE From Likelihood Function<a class="headerlink" href="#calculate-mle-from-likelihood-function" title="Link to this heading">#</a></h3>
@@ -796,7 +796,7 @@ f_T = \frac{3}{10} = 0.3
 </section>
 <section id="example-2-genetic-effect">
 <h2>Example 2 – Genetic Effect<a class="headerlink" href="#example-2-genetic-effect" title="Link to this heading">#</a></h2>
-<p>Looking at our likelihood results about the genetic effect in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/likelihood.html">Lecture: likelihood</a>, we see that Model 2 (<span class="math notranslate nohighlight">\(\beta = 0.5\)</span>) performs better than both Model 1 (<span class="math notranslate nohighlight">\(\beta = 0\)</span>) and Model 3 (<span class="math notranslate nohighlight">\(\beta = 1.0\)</span>). But this raises an interesting question: we only tested three specific values. What if the optimal <span class="math notranslate nohighlight">\(\beta\)</span> is somewhere between 0.5 and 1.0, or maybe 0.4 or 0.6?</p>
+<p>Looking at our likelihood results about the genetic effect in <a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/likelihood.html">Lecture: likelihood</a>, we see that Model 2 (<span class="math notranslate nohighlight">\(\beta = 0.5\)</span>) performs better than both Model 1 (<span class="math notranslate nohighlight">\(\beta = 0\)</span>) and Model 3 (<span class="math notranslate nohighlight">\(\beta = 1.0\)</span>). But this raises an interesting question: we only tested three specific values. What if the optimal <span class="math notranslate nohighlight">\(\beta\)</span> is somewhere between 0.5 and 1.0, or maybe 0.4 or 0.6?</p>
 <p>Instead of guessing more values to test, we can use <strong>Maximum Likelihood Estimation (MLE)</strong> to find <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> that maximizes the likelihood function. Then we can compare this optimal estimate to our models - particularly the null model (<span class="math notranslate nohighlight">\(\beta = 0\)</span>), which is often of special interest in genetics because it represents “no genetic effect.”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

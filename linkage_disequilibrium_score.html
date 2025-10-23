@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -622,13 +622,13 @@ M_{e} = \frac{M}{\bar{\boldsymbol{l}}} = \frac{M^2}{\sum_j l_j}
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
 <h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">linkage disequilibrium</a></p></li>
-<li><p><a class="reference external" href="https://gaow.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/linkage_disequilibrium.html">linkage disequilibrium</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>We’ve seen how genetic variants can be correlated with each other in <a class="reference external" href="https://gaow.github.io/statgen-prerequisites/linkage_disequilibrium.html">Lecture: linkage disequilibrium</a>, but how do we summarize the overall “connectedness” of each variant to all others? In statistical genetics, this is captured by the LD score - a single number that tells us how much linkage disequilibrium a variant has with all other variants in the region.</p>
+<p>We’ve seen how genetic variants can be correlated with each other in <a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/linkage_disequilibrium.html">Lecture: linkage disequilibrium</a>, but how do we summarize the overall “connectedness” of each variant to all others? In statistical genetics, this is captured by the LD score - a single number that tells us how much linkage disequilibrium a variant has with all other variants in the region.</p>
 <p>But there’s a catch: with small sample sizes, the sample correlation is a biased estimator, meaning even unrelated variants can show non-zero correlations just due to sampling noise. How do we adjust for this bias, and what do LD scores look like before and after this adjustment?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
