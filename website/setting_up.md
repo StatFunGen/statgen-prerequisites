@@ -46,7 +46,7 @@ This will:
 3. Ensure the source is set to the `gh-pages` branch and the folder is `/ (root)`
 4. Save the settings
 
-The site should be live at: https://gaow.github.io/statgen-prerequisites/
+The site should be live at: https://statfungen.github.io/statgen-prerequisites/
 
 ## 6. Optional: Set Up GitHub Actions for Automatic Deployment
 

@@ -11,7 +11,7 @@ latex:
 bibtex_bibfiles:
   - references.bib
 repository:
-  url: https://github.com/gaow/statgen-prerequisites
+  url: https://github.com/statfungen/statgen-prerequisites
   path_to_book: ""
   branch: main
 html:
