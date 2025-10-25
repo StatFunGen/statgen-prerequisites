@@ -551,7 +551,19 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-setup-height-as-a-collider">The Setup: Height as a Collider</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-this-create-bias">Why Does This Create Bias?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-setup">Simulation Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-1-correct-approach-no-adjustment-for-height">Analysis 1: Correct Approach (No Adjustment for Height)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-2-incorrect-approach-adjusting-for-the-collider">Analysis 2: Incorrect Approach (Adjusting for the Collider)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-3-stratification-by-height-another-way-to-condition-on-the-collider">Analysis 3: Stratification by Height (Another Way to Condition on the Collider)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-results">Compile Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-this-matter">Why Does This Matter?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-lesson">The Key Lesson</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -647,94 +659,267 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
-<p>Imagine you’re studying the relationship between genetic variants and waist circumference. You might think: “Since body mass index (BMI) is related to both genetics and body measurements, I should control for it to get a cleaner analysis, right?”</p>
-<p>Wrong! This intuitive approach can actually create false associations where none exist.</p>
-<p>Here’s the puzzle: What happens when we study the relationship between genetic variants and waist circumference, with and without “controlling” for BMI? You might expect that adding more variables to your model would make your analysis more accurate, but sometimes it can completely mislead you.</p>
-<p>We’ll explore this using a simple simulation where we know the true relationships: imagine that a genetic variant affects height, therefore affecting BMI, but not affects waist circumference (WC) directly. However, BMI can also be affected by WC because of adiposity. So in this diagram BMI serves as the collider.</p>
-<p>We’ll see how our results change when we <strong>don’t adjust for BMI</strong> versus when we mistakenly <strong>include it as a covariate</strong>.</p>
-<p>Let’s create a scenario where we know the true relationships. We’ll generate data for 500 people with a genetic variant that affects height (and therefore BMI), plus waist circumference that’s completely independent of genetics.</p>
+<p>Here’s a biologically implausible scenario that perfectly demonstrates collider bias: What if we told you that certain genetic variants (autosomal SNPs) are associated with biological sex? That sounds absurd, right? Sex is determined by sex chromosomes (XX or XY), so autosomal SNPs (variants on non-sex chromosomes) should have <strong>zero</strong> association with whether someone is male or female.</p>
+<p>Yet, if we make one seemingly innocent analytical choice—adjusting for height in our model—we can create hundreds of “genome-wide significant” associations between autosomal SNPs and sex. These associations are completely spurious, arising purely from collider bias.</p>
+<p>This example is based on a landmark study published in the <em>American Journal of Human Genetics</em> that used UK Biobank data to definitively demonstrate collider bias. The researchers deliberately induced this bias to show how adjusting for heritable covariates can create biologically impossible associations.</p>
+<section id="the-setup-height-as-a-collider">
+<h2>The Setup: Height as a Collider<a class="headerlink" href="#the-setup-height-as-a-collider" title="Link to this heading">#</a></h2>
+<p>The causal structure is:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{SNP} \rightarrow \text{Height} \leftarrow \text{Sex}
+\]</div>
+<ul class="simple">
+<li><p>Genetic variants influence height (taller alleles exist)</p></li>
+<li><p>Sex influences height (males are typically taller than females)</p></li>
+<li><p>SNPs and sex are <strong>causally independent</strong> (autosomal variants don’t cause sex)</p></li>
+<li><p>Height is the <strong>collider</strong>—it’s caused by both SNP and sex</p></li>
+</ul>
+<p>When we condition on height (e.g., by only studying tall people, or by including height as a covariate), we induce a spurious association between SNPs and sex, even though no biological relationship exists.</p>
+</section>
+<section id="why-does-this-create-bias">
+<h2>Why Does This Create Bias?<a class="headerlink" href="#why-does-this-create-bias" title="Link to this heading">#</a></h2>
+<p>Think about it this way: If you restrict your analysis to very tall people, you’re selecting a group where:</p>
+<ul class="simple">
+<li><p>Females with height-increasing alleles are more likely to be included</p></li>
+<li><p>Males without height-increasing alleles are more likely to be included</p></li>
+</ul>
+<p>This creates an artificial negative correlation: within tall people, having height-increasing alleles makes you more likely to be female. But this correlation exists <strong>only because we conditioned on height</strong>, not because of any biological relationship between autosomal SNPs and sex.</p>
+<p>Let’s demonstrate this with a simulation.</p>
+</section>
+<section id="simulation-setup">
+<h2>Simulation Setup<a class="headerlink" href="#simulation-setup" title="Link to this heading">#</a></h2>
+<p>We’ll create data for 10,000 individuals where we know the true relationships. We’ll simulate:</p>
+<ol class="arabic simple">
+<li><p>Sex (independent, ~50% male/female)</p></li>
+<li><p>A genetic variant (SNP) that affects height (independent of sex)</p></li>
+<li><p>Height, which is influenced by <strong>both</strong> sex and the SNP</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">15</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
 
 <span class="c1"># Sample size</span>
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10000</span>
 
-<span class="c1"># Generate SNP (0, 1, 2 copies of height-increasing allele)</span>
+<span class="c1"># Generate sex (0 = Female, 1 = Male)</span>
+<span class="c1"># Sex is randomly assigned and independent of genetics</span>
+<span class="n">sex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+
+<span class="c1"># Generate SNP (0, 1, 2 copies of a height-increasing allele)</span>
+<span class="c1"># This is a common autosomal variant, independent of sex</span>
 <span class="n">snp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">))</span>
-
-<span class="c1"># Generate waist circumference (completely independent of SNP)</span>
-<span class="c1"># This represents individual differences in adiposity</span>
-<span class="n">waist_circumference</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now we build the causal relationships that make BMI a collider:</p>
+<p>Now we build the causal relationships that make height a collider. Height is influenced by both sex and the genetic variant, but sex and the SNP are causally independent:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># SNP affects height (each copy adds ~3cm)</span>
-<span class="n">height_cm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">165</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">snp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
-
-<span class="c1"># Weight comes from two sources:</span>
-<span class="c1"># 1. Height contributes through lean body mass</span>
-<span class="c1"># 2. Waist circumference contributes through adiposity</span>
-<span class="n">weight_from_height</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">height_cm</span><span class="w">  </span><span class="c1"># Lean mass component</span>
-<span class="n">weight_from_adiposity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">waist_circumference</span><span class="w">  </span><span class="c1"># Fat mass component</span>
-<span class="n">weight_kg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">weight_from_height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">weight_from_adiposity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">140</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
-
-<span class="c1"># Calculate BMI (the collider!)</span>
-<span class="n">bmi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">weight_kg</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">height_cm</span><span class="o">/</span><span class="m">100</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Height is caused by BOTH sex and SNP</span>
+<span class="c1"># Males are on average 13 cm taller</span>
+<span class="c1"># Each copy of the height-increasing allele adds ~2 cm</span>
+<span class="n">height_cm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">160</span><span class="w"> </span><span class="o">+</span><span class="w">           </span><span class="c1"># Baseline (female, 0 copies)</span>
+<span class="w">             </span><span class="m">13</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sex</span><span class="w"> </span><span class="o">+</span><span class="w">       </span><span class="c1"># Sex effect (males taller)</span>
+<span class="w">             </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">snp</span><span class="w"> </span><span class="o">+</span><span class="w">        </span><span class="c1"># SNP effect (each allele adds height)</span>
+<span class="w">             </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)</span><span class="w">   </span><span class="c1"># Individual variation</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Based on how the waist circumference is generated, it is independent from the genetic effect. Thus we should expect no signals when we test for the associations between waist circumference and SNPs. So we perform two analysis here:</p>
-<ul class="simple">
-<li><p>ignore the collider (BMI), regress waist circumference on SNPs</p></li>
-<li><p>consider the collider (BMI), regress waist circumference on SNPs and BMI</p></li>
-</ul>
+</section>
+<section id="analysis-1-correct-approach-no-adjustment-for-height">
+<h2>Analysis 1: Correct Approach (No Adjustment for Height)<a class="headerlink" href="#analysis-1-correct-approach-no-adjustment-for-height" title="Link to this heading">#</a></h2>
+<p>First, let’s test the association between SNP and sex <strong>without</strong> adjusting for height. Since autosomal SNPs don’t cause sex, we should see no association:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standardize variables for easier interpretation</span>
 <span class="n">snp_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">snp</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
-<span class="n">wc_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">waist_circumference</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
-<span class="n">bmi_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">bmi</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">sex_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">sex</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">height_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">height_cm</span><span class="p">)[,</span><span class="m">1</span><span class="p">]</span>
 
-<span class="c1"># Analysis 1: CORRECT - Don&#39;t adjust for BMI</span>
-<span class="n">correct_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">wc_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">snp_scaled</span><span class="p">)</span>
+<span class="c1"># Analysis 1: CORRECT - Don&#39;t adjust for height</span>
+<span class="c1"># Model: sex ~ SNP</span>
+<span class="n">correct_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">sex_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">snp_scaled</span><span class="p">)</span>
 <span class="n">correct_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">correct_model</span><span class="p">)</span>
+<span class="n">correct_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = sex_scaled ~ snp_scaled)
 
-<span class="c1"># Analysis 2: INCORRECT - Adjust for BMI (the collider)</span>
-<span class="n">biased_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">wc_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">snp_scaled</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bmi_scaled</span><span class="p">)</span>
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.0032 -0.9888 -0.9743  1.0113  1.0257 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) -1.487e-16  1.000e-02   0.000    1.000
+snp_scaled   1.013e-02  1.000e-02   1.013    0.311
+
+Residual standard error: 1 on 9998 degrees of freedom
+Multiple R-squared:  0.0001027,	Adjusted R-squared:  2.65e-06 
+F-statistic: 1.027 on 1 and 9998 DF,  p-value: 0.311
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis-2-incorrect-approach-adjusting-for-the-collider">
+<h2>Analysis 2: Incorrect Approach (Adjusting for the Collider)<a class="headerlink" href="#analysis-2-incorrect-approach-adjusting-for-the-collider" title="Link to this heading">#</a></h2>
+<p>Now let’s repeat the analysis, but this time adjusting for height. This is where collider bias strikes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analysis 2: INCORRECT - Adjust for height (the collider)</span>
+<span class="c1"># Model: sex ~ SNP + height</span>
+<span class="n">biased_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">sex_scaled</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">snp_scaled</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">height_scaled</span><span class="p">)</span>
 <span class="n">biased_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">biased_model</span><span class="p">)</span>
+<span class="n">biased_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = sex_scaled ~ snp_scaled + height_scaled)
 
-<span class="c1"># Extract results</span>
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.33341 -0.48342 -0.00341  0.48873  2.16265 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   -2.340e-16  6.779e-03    0.00        1    
+snp_scaled    -1.178e-01  6.882e-03  -17.12   &lt;2e-16 ***
+height_scaled  7.462e-01  6.882e-03  108.43   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.6779 on 9997 degrees of freedom
+Multiple R-squared:  0.5405,	Adjusted R-squared:  0.5404 
+F-statistic:  5879 on 2 and 9997 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis-3-stratification-by-height-another-way-to-condition-on-the-collider">
+<h2>Analysis 3: Stratification by Height (Another Way to Condition on the Collider)<a class="headerlink" href="#analysis-3-stratification-by-height-another-way-to-condition-on-the-collider" title="Link to this heading">#</a></h2>
+<p>Conditioning on a collider doesn’t just mean including it as a covariate—it also includes selecting or stratifying by that variable. Let’s see what happens when we only analyze tall people or only short people:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define tall and short groups based on height</span>
+<span class="n">tall_threshold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">quantile</span><span class="p">(</span><span class="n">height_cm</span><span class="p">,</span><span class="w"> </span><span class="m">0.75</span><span class="p">)</span><span class="w">    </span><span class="c1"># Top 25%</span>
+<span class="n">short_threshold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">quantile</span><span class="p">(</span><span class="n">height_cm</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">)</span><span class="w">   </span><span class="c1"># Bottom 25%</span>
+
+<span class="c1"># Analysis 3a: Only tall people</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;============================ Tall group analysis ============================&quot;</span><span class="p">)</span>
+<span class="n">tall_subset</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">height_cm</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">tall_threshold</span>
+<span class="n">tall_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">sex_scaled</span><span class="p">[</span><span class="n">tall_subset</span><span class="p">]</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">snp_scaled</span><span class="p">[</span><span class="n">tall_subset</span><span class="p">])</span>
+<span class="n">tall_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">tall_model</span><span class="p">)</span>
+<span class="n">tall_summary</span>
+
+<span class="c1"># Analysis 3b: Only short people</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;============================ Short group analysis ============================&quot;</span><span class="p">)</span>
+<span class="n">short_subset</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">height_cm</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">short_threshold</span>
+<span class="n">short_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">sex_scaled</span><span class="p">[</span><span class="n">short_subset</span><span class="p">]</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">snp_scaled</span><span class="p">[</span><span class="n">short_subset</span><span class="p">])</span>
+<span class="n">short_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">short_model</span><span class="p">)</span>
+<span class="n">short_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;============================ Tall group analysis ============================&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = sex_scaled[tall_subset] ~ snp_scaled[tall_subset])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.9563  0.0720  0.0720  0.1002  0.1002 
+
+Coefficients:
+                         Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)              0.939679   0.007825 120.089   &lt;2e-16 ***
+snp_scaled[tall_subset] -0.019773   0.007814  -2.531   0.0115 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.3821 on 2498 degrees of freedom
+Multiple R-squared:  0.002557,	Adjusted R-squared:  0.002158 
+F-statistic: 6.403 on 1 and 2498 DF,  p-value: 0.01145
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;============================ Short group analysis ============================&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = sex_scaled[short_subset] ~ snp_scaled[short_subset])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.08144 -0.08144 -0.04754 -0.04754  1.98638 
+
+Coefficients:
+                          Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)              -0.940756   0.006543 -143.780  &lt; 2e-16 ***
+snp_scaled[short_subset] -0.023730   0.006560   -3.617 0.000304 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.3199 on 2498 degrees of freedom
+Multiple R-squared:  0.005211,	Adjusted R-squared:  0.004812 
+F-statistic: 13.08 on 1 and 2498 DF,  p-value: 0.0003037
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compile-results">
+<h2>Compile Results<a class="headerlink" href="#compile-results" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract results</span>
 <span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">  </span><span class="n">Analysis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Correct (no BMI)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Incorrect (with BMI)&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Analysis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;Correct (no height adjustment)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;BIASED (adjusted for height)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;BIASED (only tall people)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;BIASED (only short people)&quot;</span>
+<span class="w">  </span><span class="p">),</span>
 <span class="w">  </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
 <span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">correct_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
-<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">tall_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">short_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
 <span class="w">  </span><span class="p">),</span>
 <span class="w">  </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
 <span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">correct_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
-<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">tall_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">short_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
 <span class="w">  </span><span class="p">),</span>
 <span class="w">  </span><span class="n">P_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
 <span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">correct_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
-<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">tall_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="n">short_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
 <span class="w">  </span><span class="p">),</span>
-<span class="w">  </span><span class="n">Significant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
-<span class="w">    </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">correct_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">),</span>
-<span class="w">    </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">biased_summary</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Interpretation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;No association (correct!)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Strong spurious association&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Spurious association (tall subset)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Spurious association (short subset)&quot;</span>
 <span class="w">  </span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Let’s taka a look at the results:</p>
+<p>Let’s look at the results:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
@@ -743,21 +928,60 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 2 x 5</caption>
+<caption>A data.frame: 4 × 5</caption>
 <thead>
-	<tr><th scope=col>Analysis</th><th scope=col>Beta</th><th scope=col>SE</th><th scope=col>P_value</th><th scope=col>Significant</th></tr>
+	<tr><th scope=col>Analysis</th><th scope=col>Beta</th><th scope=col>SE</th><th scope=col>P_value</th><th scope=col>Interpretation</th></tr>
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>Correct (no BMI)    </td><td>-0.0044</td><td>0.0448</td><td>0.9218</td><td>No </td></tr>
-	<tr><td>Incorrect (with BMI)</td><td> 0.0715</td><td>0.0183</td><td>0.0001</td><td>Yes</td></tr>
+	<tr><td>Correct (no height adjustment)</td><td> 0.0101</td><td>0.0100</td><td>0.3110</td><td>No association (correct!)          </td></tr>
+	<tr><td>BIASED (adjusted for height)  </td><td>-0.1178</td><td>0.0069</td><td>0.0000</td><td>Strong spurious association        </td></tr>
+	<tr><td>BIASED (only tall people)     </td><td>-0.0198</td><td>0.0078</td><td>0.0115</td><td>Spurious association (tall subset) </td></tr>
+	<tr><td>BIASED (only short people)    </td><td>-0.0237</td><td>0.0066</td><td>0.0003</td><td>Spurious association (short subset)</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
-<p>This example shows how controlling for BMI creates a false association between a genetic variant and waist circumference, even though no true biological relationship exists. The “controlling for everything” approach that seems so intuitive actually generates bias.</p>
-<p>The key lesson: <strong>Before adjusting for any variable, ask whether it could be caused by both your exposure and outcome.</strong> If yes, conditioning on it may introduce collider bias rather than remove confounding.</p>
-<p>In real studies, this type of bias could lead to false discoveries, wasted resources chasing non-existent mechanisms, and potentially harmful clinical recommendations based on spurious associations.</p>
+</section>
+<section id="interpretation">
+<h2>Interpretation<a class="headerlink" href="#interpretation" title="Link to this heading">#</a></h2>
+<p>The results are striking:</p>
+<ol class="arabic simple">
+<li><p><strong>Correct analysis (no height adjustment)</strong>: β ≈ 0, p &gt; 0.05</p>
+<ul class="simple">
+<li><p>As expected! Autosomal SNPs don’t cause sex, so there’s no association.</p></li>
+</ul>
+</li>
+<li><p><strong>Incorrect analysis (adjusted for height)</strong>: β ≈ -0.08, p &lt; 0.0001</p>
+<ul class="simple">
+<li><p>A highly “significant” association appears! But it’s completely spurious.</p></li>
+<li><p>The negative beta means: height-increasing alleles are associated with being female (when controlling for height).</p></li>
+<li><p>This is biologically impossible—it’s pure collider bias.</p></li>
+</ul>
+</li>
+<li><p><strong>Stratified analyses (tall or short people only)</strong>: Both show spurious associations</p>
+<ul class="simple">
+<li><p>Selecting only tall or short people also conditions on the collider.</p></li>
+<li><p>Even without explicitly including height as a covariate, we create bias through selection.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="why-does-this-matter">
+<h2>Why Does This Matter?<a class="headerlink" href="#why-does-this-matter" title="Link to this heading">#</a></h2>
+<p>This example demonstrates a critical principle: <strong>conditioning on a collider creates spurious associations between its causes</strong>, even when those causes are completely independent. In the real UK Biobank study, adjusting for height created over 200 genome-wide significant “associations” between autosomal SNPs and sex—all of them false.</p>
+<p>The implications are profound:</p>
+<ul class="simple">
+<li><p>Adjusting for heritable traits can create false-positive findings</p></li>
+<li><p>Selection bias (e.g., studying only hospitalized patients, survivors, or people who meet certain criteria) can induce collider bias</p></li>
+<li><p>The mantra “control for everything” is dangerous—sometimes controlling creates bias rather than removes it</p></li>
+</ul>
+</section>
+<section id="the-key-lesson">
+<h2>The Key Lesson<a class="headerlink" href="#the-key-lesson" title="Link to this heading">#</a></h2>
+<p>Before including a variable in your model, ask: <strong>Could this variable be caused by both my exposure and my outcome?</strong> If yes, you’re looking at a potential collider, and adjusting for it may create spurious associations rather than reveal true ones.</p>
+<p>In genetics and epidemiology, careful consideration of causal structure—often represented through directed acyclic graphs (DAGs)—is essential for avoiding collider bias and other forms of selection bias.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -836,7 +1060,19 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-setup-height-as-a-collider">The Setup: Height as a Collider</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-this-create-bias">Why Does This Create Bias?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-setup">Simulation Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-1-correct-approach-no-adjustment-for-height">Analysis 1: Correct Approach (No Adjustment for Height)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-2-incorrect-approach-adjusting-for-the-collider">Analysis 2: Incorrect Approach (Adjusting for the Collider)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-3-stratification-by-height-another-way-to-condition-on-the-collider">Analysis 3: Stratification by Height (Another Way to Condition on the Collider)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-results">Compile Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-this-matter">Why Does This Matter?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-lesson">The Key Lesson</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
@@ -852,7 +1088,7 @@ Y = \beta_0 + \beta_1 X + \beta_2 \text{Collider} + \epsilon \quad \text{(WRONG!
   <div class="footer-item">
     
 <p class="component-author">
-By Gao Wang
+By Gao Wang, Rui Dong
 </p>
 
   </div>
