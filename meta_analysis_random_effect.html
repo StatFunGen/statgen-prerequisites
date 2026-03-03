@@ -299,6 +299,12 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="modifier.html">Modifier</a></li>
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="current nav bd-sidenav">
@@ -607,13 +613,15 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
 <h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
-<p><img alt="Fig" src="_images/Slide18.png" /></p>
+<p><img alt="Fig" src="_images/Slide19.png" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="key-formula">
 <h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
 <p>In random-effects meta-analysis, we assume that the true effect sizes vary across studies. The weighted mean effect size is calculated as:</p>
 <div class="math notranslate nohighlight">
-\[\hat{\beta} = \frac{\sum_{k=1}^{K} w_k^* \hat{\beta}_k}{\sum_{k=1}^{K} w_k^*}\]</div>
+\[
+\hat{\beta} = \frac{\sum_{k=1}^{K} w_k^* \hat{\beta}_k}{\sum_{k=1}^{K} w_k^*}, \text{assuming the true } \beta_k \text{ comes from the same distribution}
+\]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\hat{\beta}\)</span> is the combined effect estimate across all studies</p></li>

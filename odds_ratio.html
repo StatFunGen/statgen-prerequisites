@@ -299,6 +299,12 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="modifier.html">Modifier</a></li>
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
@@ -577,6 +583,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-square-test">Chi-Square Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-to-multi-level-variables">Generalizing to Multi-level Variables</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
@@ -687,6 +694,15 @@ OR = \frac{\text{Odds for Variable 2=1}}{\text{Odds for Variable 2=0}} = \frac{\
 <li><p>Small <span class="math notranslate nohighlight">\(\chi^2\)</span> value -&gt; Weak evidence -&gt; Variables might be independent</p></li>
 </ul>
 <p><strong>Connection to OR:</strong> If chi-square test is significant, then our calculated odds ratio is likely a real association, not just random variation.</p>
+</section>
+<section id="generalizing-to-multi-level-variables">
+<h2>Generalizing to Multi-level Variables<a class="headerlink" href="#generalizing-to-multi-level-variables" title="Link to this heading">#</a></h2>
+<p>When one variable has more than 2 levels (e.g., a 2×3 contingency table), a single OR is not enough. The solution is to pick one level as a <strong>reference</strong> and compute one OR per remaining level.</p>
+<p>In general, <span class="math notranslate nohighlight">\(k\)</span> levels require <span class="math notranslate nohighlight">\(k-1\)</span> ORs, each with its own <span class="math notranslate nohighlight">\(\beta_j\)</span> in <strong>multinomial logistic regression</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln\left(\frac{P(Y=j)}{P(Y=\text{ref})}\right) = \alpha_j + \beta_j X
+\]</div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="related-topics">
@@ -1209,6 +1225,7 @@ Number of Fisher Scoring iterations: 4
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-square-test">Chi-Square Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-to-multi-level-variables">Generalizing to Multi-level Variables</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>

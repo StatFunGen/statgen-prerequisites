@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modifier &#8212; Statistical backgrounds for genetics trainees</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modifier';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Meta-Analysis Fixed Effect" href="meta_analysis_fixed_effect.html" />
+    <link rel="prev" title="Mediator" href="mediator.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for genetics trainees</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notations.html">Notations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Genetics Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html">Minor Allele Frequency</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Variants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html">Linkage Disequilibrium</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fixed Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html">Marginal and Joint Effects</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="random_effects.html">Random Effects</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Covariates</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modifier</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Meta-Analysis Fixed Effect</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effect</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Likelihood</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="likelihood.html">Likelihood</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html">Maximum Likelihood Estimation</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="expectation_maximum.html">Expectation-Maximum Algorithm</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_versus_frequentist.html">Bayesian versus Frequentist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_rule.html">Bayes Rule</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="p_value_and_Bayesian_hypothesis_testing.html"><span class="math notranslate nohighlight">\(p\)</span>-value and Bayesian Hypothesis Testing</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Regression Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multiple Bayesian Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Latent Structures in Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="factor_analysis.html">Factor Analysis</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="principal_component_analysis.html">Principal Component Analysis</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="hidden_Markov_model.html">Hidden Markov Model</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/modifier.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modifier</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modifier</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gene-environment-ge-interaction">Gene-Environment (G×E) Interaction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-detect-modification">How to Detect Modification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifier-vs-other-variable-types">Modifier vs. Other Variable Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-a-modifier">Ignoring a Modifier</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-1-ignoring-the-modifier">Analysis 1: Ignoring the Modifier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-2-including-the-interaction-term">Analysis 2: Including the Interaction Term</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-3-stratified-analysis">Analysis 3: Stratified Analysis</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modifier">
+<h1>Modifier<a class="headerlink" href="#modifier" title="Link to this heading">#</a></h1>
+<p>A modifier (also called effect modifier) is a variable that <strong>changes the magnitude or direction of the effect</strong> of an exposure on an outcome. The relationship between exposure and outcome differs across levels of the modifier.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="Fig" src="_images/Slide17.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>Unlike confounders, colliders, and mediators—which can all be represented by simple directed arrows—a modifier changes the <strong>strength</strong> of an existing arrow. This is represented as an <strong>interaction</strong> in a regression model:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = \beta_0 + \beta_1 X + \beta_2 M + \beta_3 (X \times M) + \epsilon
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> is the exposure (e.g., genetic variant)</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> is the outcome (e.g., trait)</p></li>
+<li><p><span class="math notranslate nohighlight">\(M\)</span> is the modifier (e.g., an environmental variable)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_3\)</span> is the <strong>interaction coefficient</strong>, capturing how much the effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> changes per unit of <span class="math notranslate nohighlight">\(M\)</span></p></li>
+</ul>
+<p>The total effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> at a given level of <span class="math notranslate nohighlight">\(M\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial Y}{\partial X} = \beta_1 + \beta_3 M
+\]</div>
+<p>When <span class="math notranslate nohighlight">\(M = 0\)</span>: the effect of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(\beta_1\)</span>. When <span class="math notranslate nohighlight">\(M = 1\)</span>: the effect of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(\beta_1 + \beta_3\)</span>. If <span class="math notranslate nohighlight">\(\beta_3 \neq 0\)</span>, effect modification is present.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="gene-environment-ge-interaction">
+<h2>Gene-Environment (G×E) Interaction<a class="headerlink" href="#gene-environment-ge-interaction" title="Link to this heading">#</a></h2>
+<p>In statistical genetics, effect modification is most commonly encountered as <strong>gene-environment (G×E) interaction</strong>: a genetic variant’s effect on a trait depends on an environmental exposure (e.g., diet, smoking, medication).</p>
+<div class="math notranslate nohighlight">
+\[
+Y = \beta_0 + \beta_G G + \beta_E E + \beta_{G \times E}(G \times E) + \epsilon
+\]</div>
+<ul class="simple">
+<li><p><strong>No interaction</strong> (<span class="math notranslate nohighlight">\(\beta_{G \times E} = 0\)</span>): the genetic effect is the same regardless of environment</p></li>
+<li><p><strong>Positive interaction</strong> (<span class="math notranslate nohighlight">\(\beta_{G \times E} &gt; 0\)</span>): the genetic effect is amplified in the presence of the environmental factor</p></li>
+<li><p><strong>Complete interaction</strong> (<span class="math notranslate nohighlight">\(\beta_G = 0\)</span>, <span class="math notranslate nohighlight">\(\beta_{G \times E} \neq 0\)</span>): the genetic effect exists <strong>only</strong> in the presence of the modifier</p></li>
+</ul>
+</section>
+<section id="how-to-detect-modification">
+<h2>How to Detect Modification<a class="headerlink" href="#how-to-detect-modification" title="Link to this heading">#</a></h2>
+<p>There are two complementary approaches:</p>
+<ol class="arabic simple">
+<li><p><strong>Interaction term</strong>: Include <span class="math notranslate nohighlight">\(X \times M\)</span> in the regression model and test whether <span class="math notranslate nohighlight">\(\beta_3 \neq 0\)</span></p></li>
+<li><p><strong>Stratified analysis</strong>: Run separate regressions within each stratum of <span class="math notranslate nohighlight">\(M\)</span> and compare the estimated effects</p></li>
+</ol>
+<p>Both approaches should give consistent results. The interaction term approach is more powerful (uses all data in one model), while stratification is more interpretable.</p>
+</section>
+<section id="modifier-vs-other-variable-types">
+<h2>Modifier vs. Other Variable Types<a class="headerlink" href="#modifier-vs-other-variable-types" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Causal Structure</p></th>
+<th class="head"><p>Question</p></th>
+<th class="head"><p>What to Do</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Confounder</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(X \leftarrow W \rightarrow Y\)</span></p></td>
+<td><p>Independently causes both <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>?</p></td>
+<td><p>Adjust for it</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Collider</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(X \rightarrow W \leftarrow Y\)</span></p></td>
+<td><p>Caused by both <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>?</p></td>
+<td><p>Never adjust</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Mediator</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(X \rightarrow W \rightarrow Y\)</span></p></td>
+<td><p>On the causal path from <span class="math notranslate nohighlight">\(X\)</span> to <span class="math notranslate nohighlight">\(Y\)</span>?</p></td>
+<td><p>Adjust to isolate direct effect</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Modifier</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(X \xrightarrow{M} Y\)</span></p></td>
+<td><p>Changes the size of the <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span> effect?</p></td>
+<td><p>Stratify or add interaction term</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Important</strong>: A variable can play more than one role simultaneously. For example, smoking could be both a confounder (if it affects allele frequencies through population structure) and a modifier (if it changes the genetic effect size). Always consider the full causal structure.</p>
+</section>
+<section id="ignoring-a-modifier">
+<h2>Ignoring a Modifier<a class="headerlink" href="#ignoring-a-modifier" title="Link to this heading">#</a></h2>
+<p>If a true modifier exists but is ignored, the estimated effect of <span class="math notranslate nohighlight">\(X\)</span> will be an <strong>average</strong> across strata of <span class="math notranslate nohighlight">\(M\)</span>. This can:</p>
+<ul class="simple">
+<li><p>Dilute the true effect (appear null when a real effect exists in a subgroup)</p></li>
+<li><p>Produce a misleading overall estimate that is unrepresentative of any subgroup</p></li>
+<li><p>Miss important biological or clinical insights</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-primer/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-primer/confounder.html">confounder</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-primer/collider.html">collider</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-primer/mediator.html">mediator</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>A genetic variant is associated with blood pressure—but only in smokers. Among non-smokers, the variant has no effect. Smoking is the <strong>modifier</strong>.</p>
+<p>If we analyze the full sample without accounting for this interaction, the effect appears diluted or absent. Only by including an interaction term (or stratifying by smoking status) do we recover the true genetic effect.</p>
+<p><strong>The causal structure:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+G \xrightarrow{\text{only when } E=1} Y
+\]</div>
+<p>Both <span class="math notranslate nohighlight">\(G\)</span> (genetic variant) and <span class="math notranslate nohighlight">\(E\)</span> (smoking) independently affect blood pressure (<span class="math notranslate nohighlight">\(Y\)</span>), and they also interact: the effect of <span class="math notranslate nohighlight">\(G\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> is present only when <span class="math notranslate nohighlight">\(E = 1\)</span>.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
+
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">50</span>
+
+<span class="c1"># Generate genetic variant (0, 1, 2 copies of risk allele)</span>
+<span class="n">G</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">))</span>
+
+<span class="c1"># Generate smoking status (independent of genetics)</span>
+<span class="n">smoking</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">)</span><span class="w">  </span><span class="c1"># 40% smokers</span>
+
+<span class="c1"># Blood pressure: the SNP only has an effect in smokers (G x E interaction)</span>
+<span class="c1"># Among non-smokers: no genetic effect</span>
+<span class="c1"># Among smokers: each risk allele raises BP by 5 mmHg</span>
+<span class="n">BP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">120</span><span class="w"> </span><span class="o">+</span><span class="w">                        </span><span class="c1"># Baseline</span>
+<span class="w">      </span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">smoking</span><span class="w"> </span><span class="o">+</span><span class="w">                </span><span class="c1"># Smoking main effect</span>
+<span class="w">      </span><span class="m">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">+</span><span class="w">                      </span><span class="c1"># No main genetic effect</span>
+<span class="w">      </span><span class="m">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">smoking</span><span class="w"> </span><span class="o">+</span><span class="w">            </span><span class="c1"># Interaction: SNP effect only in smokers</span>
+<span class="w">      </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w">               </span><span class="c1"># Noise</span>
+
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">BP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BP</span><span class="p">,</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">smoking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">smoking</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sample size:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Non-smokers:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">smoking</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;| Smokers:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">smoking</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample size: 50 
+Non-smokers: 32 | Smokers: 18 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis-1-ignoring-the-modifier">
+<h2>Analysis 1: Ignoring the Modifier<a class="headerlink" href="#analysis-1-ignoring-the-modifier" title="Link to this heading">#</a></h2>
+<p>If we ignore smoking and test for the genetic effect in the full sample, the estimated effect is diluted because it averages over smokers (where the effect exists) and non-smokers (where it does not):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model without interaction</span>
+<span class="n">model_no_interaction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">BP</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">smoking</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="n">summary_no_interaction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">model_no_interaction</span><span class="p">)</span>
+
+<span class="n">beta_G</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_no_interaction</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Estimate&quot;</span><span class="p">]</span>
+<span class="n">p_G</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_no_interaction</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pr(&gt;|t|)&quot;</span><span class="p">]</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== WITHOUT INTERACTION TERM ===\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;Estimated G effect: beta = %.3f, p = %.4f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta_G</span><span class="p">,</span><span class="w"> </span><span class="n">p_G</span><span class="p">))</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Interpretation: Weak and potentially non-significant — effect is diluted\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== WITHOUT INTERACTION TERM ===
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated G effect: beta = 1.755, p = 0.0672
+Interpretation: Weak and potentially non-significant — effect is diluted
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis-2-including-the-interaction-term">
+<h2>Analysis 2: Including the Interaction Term<a class="headerlink" href="#analysis-2-including-the-interaction-term" title="Link to this heading">#</a></h2>
+<p>Including the interaction term <span class="math notranslate nohighlight">\(G \times \text{smoking}\)</span> correctly recovers the true structure. The significant interaction coefficient confirms that smoking modifies the genetic effect:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model with interaction</span>
+<span class="n">model_interaction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">BP</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">smoking</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="n">summary_interaction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">model_interaction</span><span class="p">)</span>
+
+<span class="n">beta_G_main</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_interaction</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w">         </span><span class="s">&quot;Estimate&quot;</span><span class="p">]</span>
+<span class="n">p_G_main</span><span class="w">       </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_interaction</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w">         </span><span class="s">&quot;Pr(&gt;|t|)&quot;</span><span class="p">]</span>
+<span class="n">beta_GxE</span><span class="w">       </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_interaction</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G:smoking&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Estimate&quot;</span><span class="p">]</span>
+<span class="n">p_GxE</span><span class="w">          </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary_interaction</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G:smoking&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pr(&gt;|t|)&quot;</span><span class="p">]</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== WITH INTERACTION TERM ===\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;Main effect of G (in non-smokers): beta = %.3f, p = %.4f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta_G_main</span><span class="p">,</span><span class="w"> </span><span class="n">p_G_main</span><span class="p">))</span>
+<span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;G x Smoking interaction:           beta = %.3f, p = %.4f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beta_GxE</span><span class="p">,</span><span class="w"> </span><span class="n">p_GxE</span><span class="p">))</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Interpretation: Significant interaction — smoking modifies the genetic effect\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== WITH INTERACTION TERM ===
+Main effect of G (in non-smokers): beta = -0.179, p = 0.8708
+G x Smoking interaction:           beta = 5.268, p = 0.0054
+Interpretation: Significant interaction — smoking modifies the genetic effect
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis-3-stratified-analysis">
+<h2>Analysis 3: Stratified Analysis<a class="headerlink" href="#analysis-3-stratified-analysis" title="Link to this heading">#</a></h2>
+<p>Stratifying by smoking status makes the pattern immediately clear. The genetic effect is present only in smokers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stratified analysis</span>
+<span class="n">model_nonsmokers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">BP</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">$</span><span class="n">smoking</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="p">])</span>
+<span class="n">model_smokers</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">BP</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">$</span><span class="n">smoking</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="p">])</span>
+
+<span class="n">s_ns</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">model_nonsmokers</span><span class="p">)</span>
+<span class="n">s_s</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">model_smokers</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== STRATIFIED ANALYSIS ===\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;Non-smokers: beta = %.3f, p = %.4f\n&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">s_ns</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Estimate&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="n">s_ns</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pr(&gt;|t|)&quot;</span><span class="p">]))</span>
+<span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;Smokers:     beta = %.3f, p = %.4f\n&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">s_s</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Estimate&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="n">s_s</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pr(&gt;|t|)&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== STRATIFIED ANALYSIS ===
+Non-smokers: beta = -0.179, p = 0.8784
+Smokers:     beta = 5.089, p = 0.0009
+</pre></div>
+</div>
+</div>
+</div>
+<p>The stratified analysis and the interaction model both reveal the same truth: the genetic variant only affects blood pressure in smokers. Ignoring the modifier produces a diluted, potentially misleading estimate.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mediator.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mediator</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="meta_analysis_fixed_effect.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Meta-Analysis Fixed Effect</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modifier</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gene-environment-ge-interaction">Gene-Environment (G×E) Interaction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-detect-modification">How to Detect Modification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifier-vs-other-variable-types">Modifier vs. Other Variable Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-a-modifier">Ignoring a Modifier</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-1-ignoring-the-modifier">Analysis 1: Ignoring the Modifier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-2-including-the-interaction-term">Analysis 2: Including the Interaction Term</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-3-stratified-analysis">Analysis 3: Stratified Analysis</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang and Rui Dong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

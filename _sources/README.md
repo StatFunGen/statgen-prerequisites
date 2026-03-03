@@ -24,6 +24,7 @@ The goal is to bridge the knowledge gap between these existing backgrounds and t
 | | Covariates | [Confounder](https://statfungen.github.io/statgen-primer/confounder.html) |
 | | | [Collider](https://statfungen.github.io/statgen-primer/collider.html) |
 | | | [Mediator](https://statfungen.github.io/statgen-primer/mediator.html) |
+| | | [Modifier](https://statfungen.github.io/statgen-primer/modifier.html) |
 | | Multiple studies | [Meta Analysis Fixed Effect](https://statfungen.github.io/statgen-primer/meta_analysis_fixed_effect.html) |
 | | | [Meta Analysis Random Effect](https://statfungen.github.io/statgen-primer/meta_analysis_random_effect.html) |
 | **Statistical Inference** | Likelihood | [Likelihood](https://statfungen.github.io/statgen-primer/likelihood.html) |

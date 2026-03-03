@@ -299,6 +299,12 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="modifier.html">Modifier</a></li>
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
 <ul class="nav bd-sidenav">
@@ -576,6 +582,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-ld-values">Interpreting LD Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-chi-square-test">Connection to Chi-Square Test</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ld-blocks">LD Blocks</a></li>
 </ul>
 </li>
@@ -652,6 +659,13 @@ document.write(`
 </li>
 </ul>
 </section>
+<section id="connection-to-chi-square-test">
+<h2>Connection to Chi-Square Test<a class="headerlink" href="#connection-to-chi-square-test" title="Link to this heading">#</a></h2>
+<p>The <span class="math notranslate nohighlight">\(r^2\)</span> value has a direct relationship to the chi-square statistic for testing whether two loci are in linkage equilibrium:</p>
+<div class="math notranslate nohighlight">
+\[\chi^2 = N \cdot r^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the sample size. This means testing for LD is equivalent to a chi-square test of independence on a 2×2 haplotype frequency table — a larger sample gives stronger evidence for the same degree of correlation. We will introduce the chi-square test in more detail in the <a class="reference external" href="https://statfungen.github.io/statgen-primer/odds_ratio.html">Lecture: odds ratio</a> topic.</p>
+</section>
 <section id="ld-blocks">
 <h2>LD Blocks<a class="headerlink" href="#ld-blocks" title="Link to this heading">#</a></h2>
 <p><strong>LD blocks</strong> are genome regions with consistently high LD among SNPs, separated by recombination hotspots. SNPs within a block are highly correlated and inherited together as haplotypes (introduced later in <a class="reference external" href="https://statfungen.github.io/statgen-primer/factor_analysis.html">Lecture: factor analysis</a>).</p>
@@ -676,6 +690,7 @@ document.write(`
 <ul class="simple">
 <li><p><a class="reference external" href="https://statfungen.github.io/statgen-primer/genotype_coding.html">genotype coding</a></p></li>
 <li><p><a class="reference external" href="https://statfungen.github.io/statgen-primer/minor_allele_frequency.html">minor allele frequency</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-primer/odds_ratio.html">odds ratio</a></p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="example">
@@ -948,6 +963,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-ld-values">Interpreting LD Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-chi-square-test">Connection to Chi-Square Test</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ld-blocks">LD Blocks</a></li>
 </ul>
 </li>
