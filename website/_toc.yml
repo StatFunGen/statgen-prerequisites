@@ -45,6 +45,7 @@ parts:
       - file: confounder
       - file: collider
       - file: mediator
+      - file: modifier
       
   - caption: Meta-analysis
     chapters:
