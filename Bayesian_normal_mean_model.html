@@ -681,7 +681,7 @@ p(\mathbf{Y}\mid\beta) \propto \exp\left(-\frac{1}{2\sigma^2} \sum_{i=1}^N (Y_i 
 </section>
 <section id="posterior-distribution">
 <h2>Posterior Distribution<a class="headerlink" href="#posterior-distribution" title="Link to this heading">#</a></h2>
-<p>Using Bayes’ theorem, we update our uncertainty given the observed data:</p>
+<p>Using Bayes’ rule, we update our uncertainty given the observed data:</p>
 <div class="math notranslate nohighlight">
 \[
 p(\beta|\mathbf{Y}) \propto p(\mathbf{Y}|\beta) \cdot p(\beta)
@@ -706,7 +706,7 @@ p(\beta|\mathbf{Y}) \propto p(\mathbf{Y}|\beta) \cdot p(\beta)
 <p>where <span class="math notranslate nohighlight">\(w = \frac{T_1/\sigma^2}{T_1/\sigma^2 + 1/\sigma_0^2}\)</span>, <span class="math notranslate nohighlight">\(\hat{\beta}_{\text{data}} = T_2/T_1\)</span>, and <span class="math notranslate nohighlight">\(T_1 = \sum_{i=1}^N X_i^2\)</span>, <span class="math notranslate nohighlight">\(T_2 = \sum_{i=1}^N X_i Y_i\)</span>.</p>
 <p><strong>Interpretation</strong>:</p>
 <ul class="simple">
-<li><p>More data or lower noise → <span class="math notranslate nohighlight">\(w \approx 1\)</span> (trust data)</p></li>
+<li><p>More data or lower noise (small <span class="math notranslate nohighlight">\(\sigma^2\)</span>) → <span class="math notranslate nohighlight">\(w \approx 1\)</span> (trust data)</p></li>
 <li><p>Vague prior (large <span class="math notranslate nohighlight">\(\sigma_0^2\)</span>) → <span class="math notranslate nohighlight">\(w \approx 1\)</span> (data dominates)</p></li>
 <li><p>Strong prior (small <span class="math notranslate nohighlight">\(\sigma_0^2\)</span>) → <span class="math notranslate nohighlight">\(w \approx 0\)</span> (prior dominates)</p></li>
 </ul>

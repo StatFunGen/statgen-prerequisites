@@ -650,13 +650,13 @@ document.write(`
 <p>Recall in <a class="reference external" href="https://statfungen.github.io/statgen-primer/Bayes_factor.html">Lecture: Bayes factor</a>, we learn that the <strong>Bayes factor</strong> quantifies the relative evidence data provides for competing models:</p>
 <div class="math notranslate nohighlight">
 \[
-\text{BF}_{21} = \frac{L(\text{M}_2|\text{D})}{L(\text{M}_1|\text{D})} ={\frac {\int \Pr(\theta_{2}|M_{2})\Pr(D|\theta_{2},M_{2})\,d\theta _{2}}{\int \Pr(\theta_{1}|M_{1})\Pr(D|\theta_{1},M_{1})\,d\theta _{1}}}
+\text{BF}_{12} = \frac{L(\text{M}_1|\text{D})}{L(\text{M}_2|\text{D})} ={\frac {\int \Pr(\theta_{1}|M_{1})\Pr(D|\theta_{1},M_{1})\,d\theta _{1}}{\int \Pr(\theta_{2}|M_{2})\Pr(D|\theta_{2},M_{2})\,d\theta _{2}}}
 \]</div>
 <p><strong>Interpretation</strong>:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} &gt; 1\)</span>: Data favors <span class="math notranslate nohighlight">\(\text{M}_2\)</span> over <span class="math notranslate nohighlight">\(\text{M}_1\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} &lt; 1\)</span>: Data favors <span class="math notranslate nohighlight">\(\text{M}_1\)</span> over <span class="math notranslate nohighlight">\(\text{M}_2\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\text{BF}_{21} = 1\)</span>: Data uninformative for model choice</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{BF}_{12} &gt; 1\)</span>: Data favors <span class="math notranslate nohighlight">\(\text{M}_1\)</span> over <span class="math notranslate nohighlight">\(\text{M}_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{BF}_{12} &lt; 1\)</span>: Data favors <span class="math notranslate nohighlight">\(\text{M}_2\)</span> over <span class="math notranslate nohighlight">\(\text{M}_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{BF}_{12} = 1\)</span>: Data uninformative for model choice</p></li>
 </ul>
 </section>
 <section id="posterior-odds">
@@ -664,7 +664,7 @@ document.write(`
 <p>The Bayes factor updates prior beliefs about models:</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{P(\text{M}_2|D)}{P(\text{M}_1|D)} = \text{BF}_{21} \times \frac{P(\text{M}_2)}{P(\text{M}_1)}
+\frac{P(\text{M}_1|D)}{P(\text{M}_2|D)} = \text{BF}_{12} \times \frac{P(\text{M}_1)}{P(\text{M}_2)}
 \]</div>
 <p>This shows how conditioning on data transforms our uncertainty:</p>
 <div class="math notranslate nohighlight">
