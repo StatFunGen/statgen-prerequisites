@@ -667,14 +667,16 @@ P(H_i \mid \text{D}) = \frac{P(\text{D} \mid H_i) \cdot P(H_i)}{P(\text{D})}
 <h2>Permutation Test<a class="headerlink" href="#permutation-test" title="Link to this heading">#</a></h2>
 <p>A method for obtaining the null distribution of a test statistic by shuffling data many times to simulate pure randomness. The resulting <span class="math notranslate nohighlight">\(p\)</span>-values are called <em>empirical <span class="math notranslate nohighlight">\(p\)</span>-values</em>.</p>
 <p><strong>Procedure</strong>:</p>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>Calculate test statistic <span class="math notranslate nohighlight">\(T_{\text{obs}}\)</span> on observed data</p></li>
 <li><p>Randomly permute labels/outcomes <span class="math notranslate nohighlight">\(B\)</span> times (typically <span class="math notranslate nohighlight">\(B = 10{,}000\)</span>)</p></li>
 <li><p>Calculate test statistic <span class="math notranslate nohighlight">\(T_b\)</span> for each permutation <span class="math notranslate nohighlight">\(b\)</span></p></li>
-<li><p>Compute empirical <span class="math notranslate nohighlight">\(p\)</span>-value:
-$<span class="math notranslate nohighlight">\(
-p\text{-value} = \frac{1 + \sum_{b=1}^{B} \mathbb{1}(T_b \geq T_{\text{obs}})}{B + 1}
-\)</span>$</p></li>
+<li><p>Compute empirical <span class="math notranslate nohighlight">\(p\)</span>-value:</p>
+<div class="math notranslate nohighlight">
+\[
+   p\text{-value} = \frac{1 + \sum_{b=1}^{B} \mathbb{1}(T_b \geq T_{\text{obs}})}{B + 1}
+   \]</div>
+</li>
 </ol>
 <p><strong>Advantages</strong>:</p>
 <ul class="simple">
@@ -948,14 +950,14 @@ Significant SNPs: 3
 <span class="n">results</span><span class="o">$</span><span class="n">Q_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">p.adjust</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">P_value</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;BH&quot;</span><span class="p">)</span>
 <span class="n">results</span><span class="o">$</span><span class="n">FDR_sig</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">Q_value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">alpha</span>
 
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;FDR threshold (largest p-value):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fdr_thresh</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;FDR threshold (largest p-value allowed):&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fdr_thresh</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Significant SNPs:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">FDR_sig</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
 <span class="n">results</span><span class="p">[</span><span class="n">results</span><span class="o">$</span><span class="n">FDR_sig</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;SNP&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Effect&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;P_value&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Q_value&quot;</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FDR threshold (largest p-value): 3.2523e-10 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FDR threshold (largest p-value allowed): 3.2523e-10 
 Significant SNPs: 3 
 </pre></div>
 </div>
@@ -977,7 +979,7 @@ Significant SNPs: 3
 </section>
 <section id="permutation-testing-for-egene-discovery">
 <h2>Permutation Testing for eGene Discovery<a class="headerlink" href="#permutation-testing-for-egene-discovery" title="Link to this heading">#</a></h2>
-<p>Permutation testing generates empirical p-values by shuffling sample labels to create a null distribution of the minimum p-value across all SNPs.</p>
+<p>Permutation testing generates empirical <span class="math notranslate nohighlight">\(p\)</span>-values by shuffling sample labels to create a null distribution of the minimum p-value across all SNPs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">min_pval_observed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">P_value</span><span class="p">)</span>
@@ -1041,6 +1043,10 @@ Permutation test completed.
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Empirical p-value: 0.00990099 
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“No fonts detected on your system. Using an empty font.”
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="_images/7e4803c3308dc2d5758741e61dd625f3d74c10363b7b41508239ef239e72015b.png"><img alt="_images/7e4803c3308dc2d5758741e61dd625f3d74c10363b7b41508239ef239e72015b.png" src="_images/7e4803c3308dc2d5758741e61dd625f3d74c10363b7b41508239ef239e72015b.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
@@ -1051,7 +1057,7 @@ Permutation test completed.
 <p><strong>What we did for ONE gene above:</strong></p>
 <ul class="simple">
 <li><p>Tested 25 SNPs for association with expression</p></li>
-<li><p>Used minimum $p-value across all SNPs as the gene-level test statistic</p></li>
+<li><p>Used minimum <span class="math notranslate nohighlight">\(p\)</span>-value across all SNPs as the gene-level test statistic</p></li>
 <li><p>Permuted expression labels to generate null distribution</p></li>
 <li><p>Computed empirical <span class="math notranslate nohighlight">\(p\)</span>-value for the gene</p></li>
 </ul>
@@ -1059,8 +1065,8 @@ Permutation test completed.
 <p>In a real eQTL study, we test thousands of genes. For each gene:</p>
 <ol class="arabic simple">
 <li><p>Test all nearby SNPs for association</p></li>
-<li><p>Use permutation to get an empirical $p-value (accounting for LD between SNPs)</p></li>
-<li><p>This gives us one $p-value per gene</p></li>
+<li><p>Use permutation to get an empirical <span class="math notranslate nohighlight">\(p\)</span>-value (accounting for LD between SNPs)</p></li>
+<li><p>This gives us one <span class="math notranslate nohighlight">\(p\)</span>-value per gene</p></li>
 </ol>
 <p><strong>The multiple testing problem:</strong> Testing many genes means we need FDR control at the gene level to determine which genes are true eGenes (genes with at least one eQTL).</p>
 <p>Below, we simulate this scenario: our analyzed gene plus 99 other genes, then apply FDR.</p>
@@ -1279,7 +1285,7 @@ Gene_1 (our analyzed gene): not significant
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4ee914ff350af08f0ad90436d50d405efbaa0493f4678abb77096dd935c08792.png"><img alt="_images/4ee914ff350af08f0ad90436d50d405efbaa0493f4678abb77096dd935c08792.png" src="_images/4ee914ff350af08f0ad90436d50d405efbaa0493f4678abb77096dd935c08792.png" style="width: 420px; height: 420px;" />
+<a class="reference internal image-reference" href="_images/605601f1d4b0249f6abb3f73c12f202fba05d2465aad8302bd402233dbb4ff53.png"><img alt="_images/605601f1d4b0249f6abb3f73c12f202fba05d2465aad8302bd402233dbb4ff53.png" src="_images/605601f1d4b0249f6abb3f73c12f202fba05d2465aad8302bd402233dbb4ff53.png" style="width: 420px; height: 420px;" />
 </a>
 </div>
 </div>

@@ -697,8 +697,8 @@ P(Z = c \mid \beta, \text{data}) \propto \pi_c p_c(\beta \mid \text{data})
 <p>In reality, genetic variants follow different biological mechanisms that we cannot condition on:</p>
 <ul class="simple">
 <li><p>Most variants have null effects on both traits</p></li>
-<li><p>Some affect only Height (growth pathways)</p></li>
-<li><p>Others affect only Weight (metabolism)</p></li>
+<li><p>Some affect only height (growth pathways)</p></li>
+<li><p>Others affect only weight (metabolism)</p></li>
 <li><p>A few affect both traits with varying correlations</p></li>
 </ul>
 <p>Since we cannot condition on which mechanism generated each variant, we observe only a heterogeneous scatter of effects with no clear pattern – a mixture of all models!</p>
@@ -708,8 +708,8 @@ P(Z = c \mid \beta, \text{data}) \propto \pi_c p_c(\beta \mid \text{data})
 <p>We generate data for multiple genetic variants from the same list of models as in <a class="reference external" href="https://statfungen.github.io/statgen-primer/Bayesian_model_comparison.html">Lecture: Bayesian model comparison</a>:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\text{M}_0\)</span> (No effect): <span class="math notranslate nohighlight">\(\boldsymbol{\beta} = (0, 0)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\text{M}_1\)</span> (Height Only): <span class="math notranslate nohighlight">\(\beta_2 = 0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\text{M}_2\)</span> (Weight Only): <span class="math notranslate nohighlight">\(\beta_1 = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{M}_1\)</span> (Height Only): <span class="math notranslate nohighlight">\(\beta_1 \neq 0, \beta_2 = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{M}_2\)</span> (Weight Only): <span class="math notranslate nohighlight">\(\beta_1 = 0, \beta_2 \neq 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{M}_3\)</span> (Perfect Correlation): <span class="math notranslate nohighlight">\(\text{cor}(\beta_1, \beta_2) = 1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{M}_4\)</span> (Weak Correlation): <span class="math notranslate nohighlight">\(\text{cor}(\beta_1, \beta_2) = 0.1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{M}_5\)</span> (Medium Correlation): <span class="math notranslate nohighlight">\(\text{cor}(\beta_1, \beta_2) = 0.5\)</span></p></li>
