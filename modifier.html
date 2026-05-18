@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -300,6 +300,7 @@
 
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modifier</a></li>
+
 
 
 
@@ -595,6 +596,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-3-stratified-analysis">Analysis 3: Stratified Analysis</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extended-reading">Extended Reading</a></li>
 </ul>
 
             </nav>
@@ -620,7 +622,7 @@ document.write(`
 <p>Unlike confounders, colliders, and mediators—which can all be represented by simple directed arrows—a modifier changes the <strong>strength</strong> of an existing arrow. This is represented as an <strong>interaction</strong> in a regression model:</p>
 <div class="math notranslate nohighlight">
 \[
-Y = \beta_0 + \beta_1 X + \beta_2 M + \beta_3 (X \times M) + \epsilon
+Y = \beta_0 + X\beta_1 + M \beta_2 + (X \times M) \beta_3  + \epsilon
 \]</div>
 <p>Where:</p>
 <ul class="simple">
@@ -632,7 +634,7 @@ Y = \beta_0 + \beta_1 X + \beta_2 M + \beta_3 (X \times M) + \epsilon
 <p>The total effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> at a given level of <span class="math notranslate nohighlight">\(M\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial Y}{\partial X} = \beta_1 + \beta_3 M
+\frac{\partial Y}{\partial X} = \beta_1 + M \beta_3
 \]</div>
 <p>When <span class="math notranslate nohighlight">\(M = 0\)</span>: the effect of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(\beta_1\)</span>. When <span class="math notranslate nohighlight">\(M = 1\)</span>: the effect of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(\beta_1 + \beta_3\)</span>. If <span class="math notranslate nohighlight">\(\beta_3 \neq 0\)</span>, effect modification is present.</p>
 </section>
@@ -643,7 +645,7 @@ Y = \beta_0 + \beta_1 X + \beta_2 M + \beta_3 (X \times M) + \epsilon
 <p>In statistical genetics, effect modification is most commonly encountered as <strong>gene-environment (G×E) interaction</strong>: a genetic variant’s effect on a trait depends on an environmental exposure (e.g., diet, smoking, medication).</p>
 <div class="math notranslate nohighlight">
 \[
-Y = \beta_0 + \beta_G G + \beta_E E + \beta_{G \times E}(G \times E) + \epsilon
+Y = \beta_0 + G \beta_G + E \beta_E + (G \times E) \beta_{G \times E} + \epsilon
 \]</div>
 <ul class="simple">
 <li><p><strong>No interaction</strong> (<span class="math notranslate nohighlight">\(\beta_{G \times E} = 0\)</span>): the genetic effect is the same regardless of environment</p></li>
@@ -857,6 +859,10 @@ Smokers:     beta = 5.089, p = 0.0009
 <p>The stratified analysis and the interaction model both reveal the same truth: the genetic variant only affects blood pressure in smokers. Ignoring the modifier produces a diluted, potentially misleading estimate.</p>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="extended-reading">
+<h1>Extended Reading<a class="headerlink" href="#extended-reading" title="Link to this heading">#</a></h1>
+<p><strong>Le Marchand, Loïc, et al.</strong> “Smokers with the CHRNA lung cancer–associated variants are exposed to higher levels of nicotine equivalents and a carcinogenic tobacco-specific nitrosamine.” Cancer research 68.22 (2008): 9137-9140. <a class="reference external" href="https://aacrjournals.org/cancerres/article/68/22/9137/541811/Smokers-with-the-CHRNA-Lung-Cancer-Associated">https://aacrjournals.org/cancerres/article/68/22/9137/541811/Smokers-with-the-CHRNA-Lung-Cancer-Associated</a></p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -940,6 +946,7 @@ Smokers:     beta = 5.089, p = 0.0009
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-3-stratified-analysis">Analysis 3: Stratified Analysis</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extended-reading">Extended Reading</a></li>
 </ul>
 
   </nav></div>
